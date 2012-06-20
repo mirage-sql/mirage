@@ -1,4 +1,4 @@
 mirage
 ======
 
-The SQL Centric Database Access Library
+The SQL Centric Database Access Library for Java
