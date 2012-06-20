@@ -1,0 +1,61 @@
+            ------
+            Configuration
+            ------
+            Naoki Takezoe
+            ------
+            2010-05-02
+
+Configuration
+
+* {jdbc.properties}
+
+ To use Mirage as standalone library, you have to create <<jdbc.properties>> in classpath root.
+ With JDBC 4.0 driver, you can omit jdbc.driver property.
+
+--------
+jdbc.driver=org.h2.Driver
+jdbc.url=jdbc:h2:tcp://localhost:9092/test
+jdbc.user=sa
+jdbc.password=
+--------
+
+ [Note] Mirage does not provide connection pooling in default configuration.
+        If you want to enable connection pooling, see {{{apidocs/jp/sf/amateras/mirage/session/DBCPSessionImpl.html}DBCPSessionImpl}}.
+
+ []
+
+ You can get SqlManager from {{{apidocs/jp/sf/amateras/mirage/session/Session.html}Session}}.
+ Session is created by {{{apidocs/jp/sf/amateras/mirage/session/SessionFactory.html}SessionFactory}}.
+ SessionFactory read jdbc.properties and initializes Session using this information.
+
+--------
+Session session = SessionFactory.getSession();
+SqlManager sqlManager = session.getSqlManager();
+--------
+
+ If you want to use Mirage with DI container such as Spring Framework or Google Guice,
+ you have to configure Mirage for these container. See the {{{integration.html}Using Mirage with other Frameworks}} section.
+
+* {OpenSessionInViewFilter}
+
+ Mirage can control transaction automatically using
+ <<{{{apidocs/jp/sf/amateras/mirage/filter/OpenSessionInViewFilter.html}OpenSessionInViewFilter}}>>.
+ Register it in your web.xml as follows:
+
+--------
+<filter>
+  <filter-name>OpenSessionInViewFilter</filter-name>
+  <filter-class>jp.sf.amateras.mirage.filter.OpenSessionInViewFilter</filter-class>
+</filter>
+
+<filter-mapping>
+  <filter-name>OpenSessionInViewFilter</filter-name>
+  <url-pattern>*</url-pattern>
+  <dispatcher>REQUEST</dispatcher>
+</filter-mapping>
+--------
+
+ This filter begins transaction at the head of request processing.
+ If no exception in request processing, this filter commit transaction by invoking {{{apidocs/jp/sf/amateras/mirage/session/Session.html#commit()}Session#commit()}}.
+ However if exception is caused, this filter catches it and rollback transaction by invoking {{{apidocs/jp/sf/amateras/mirage/session/Session.html#rollback()}Session#rollback()}}.
+

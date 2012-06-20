@@ -1,0 +1,18 @@
+package jp.sf.amateras.mirage.type;
+
+import junit.framework.TestCase;
+
+@Deprecated
+public class DefaultValueTypeTest extends TestCase {
+
+	public void testIsSupport() {
+		DefaultValueType valueType = new DefaultValueType();
+
+		byte[] bytes = new byte[0];
+		Object[] objs = new Object[0];
+
+		assertTrue(valueType.isSupport(bytes.getClass()));
+		assertFalse(valueType.isSupport(objs.getClass()));
+	}
+
+}

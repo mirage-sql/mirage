@@ -1,0 +1,128 @@
+            ------
+            2WaySQL
+            ------
+            Naoki Takezoe
+            ------
+            2010-05-02
+
+2WaySQL
+
+ Mirage is an easy and powerful SQL centric database access library.
+
+* {What's 2WaySQL?}
+
+  2WaySQL is the plain old SQL template. You can specify parameters and conditions using SQL comment.
+  So these SQLs are executable using SQL client tools. This feature based on Japanese O/R mapping framework
+  {{{http://s2container.seasar.org/2.4/ja/s2jdbc.html}S2JDBC}}.
+
+** {Parameter}
+
+ You can specify the parameter with <</*parameter name*/>> comment.
+ Here is the most simple example of parameter comment usage:
+
+--------
+SELECT * FROM BOOK
+WHERE AUTHOR = /*author*/'Naoki Takezoe'
+ORDER BY BOOK_ID ASC
+--------
+
+ Mirage replaces <</*author*/>> to a place holder and removes a word (<<'Naoki Takezoe'>>) after replaced SQL comment.
+ Actually, Mirage would execute the following SQL.
+
+--------
+SELECT * FROM BOOK
+WHERE AUTHOR = ?
+ORDER BY BOOK_ID ASC
+--------
+
+** {String Replacement}
+
+ <</*$parameter name*/>> makes string replacement. See the following example:
+
+--------
+SELECT * FROM BOOK
+ORDER BY /*$orderByColumn*/BOOK_ID ASC
+--------
+
+ Mirage replaces <</*$orderByColumn*/>> with given parameter string.
+ This is mere string replacement, not place holder. So Mirage checks whether the semicolon is included in the string.
+ If semicolon is included, Mirage throws an exception.
+
+** {IF, ELSE, END}
+
+ You can assemble SQL dynamically using <<IF>>, <<ELSE>> and <<END>> comment. The following SQL is a example of IF comment usage.
+ IF condition is written as {{{http://www.opensymphony.com/ognl/}OGNL}} expression.
+
+--------
+SELECT * FROM BOOK
+/*IF author != null */
+  WHERE AUTHOR = /*author*/'Naoki Takezoe'
+/*END*/
+ORDER BY BOOK_ID ASC
+--------
+
+ ELSE comment is a little special. You have to write it as single line comment (not block comment)
+ because it becomes an executable SQL. See the following example. When you execute it on SQL client tool,
+ ELSE statement is disabled because it's written as single line comment.
+
+--------
+SELECT * FROM BOOK
+WHERE
+/*IF published == true*/
+       PUBLISH_DATE <= SYSDATE
+--ELSE PUBLISH_DATE >  SYSDATE
+/*END*/
+ORDER BY BOOK_ID ASC
+--------
+
+** {BEGIN, END}
+
+ At first, see the following SQL:
+
+--------
+SELECT * FROM BOOK
+WHERE
+/*IF minPrice != null*/
+      PRICE >= /*minPrice*/1000
+/*END*/
+/*IF maxPrice != null*/
+  AND PRICE <= /*maxPrice*/2000
+/*END*/
+--------
+
+ When salaryMin is null and salaryMax is not null, this SQL becomes invalid as follows:
+
+--------
+SELECT * FROM BOOK
+WHERE
+AND PRICE <= ?
+--------
+
+ Of course, when both of salaryMin and salaryMax are null, it's similar to the above.
+
+--------
+SELECT * FROM BOOK
+WHERE
+--------
+
+ In these cases, add <<BEGIN>> and <<END>> comment as follows:
+
+--------
+SELECT * FROM BOOK
+/*BEGIN*/
+  WHERE
+  /*IF minProce != null*/
+        PRICE >= /*minPrice*/1000
+  /*END*/
+  /*IF maxPrice != null*/
+    AND PRICE <= /*maxPrice*/2000
+  /*END*/
+/*END*/
+--------
+
+ BEGIN - END comment cuts the enclosed range when the all inner expressions are false.
+ And it also removes AND if it's in a first approved expression.
+
+ As a result, the conditional expression can be written well by BEGIN - END comment and
+ IF - END comment combination.
+

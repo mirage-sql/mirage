@@ -1,0 +1,268 @@
+            ------
+            Welcome to Mirage
+            ------
+            Naoki Takezoe
+            ------
+            2010-05-02
+
+Welcome
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+* {What's Mirage?}
+
+ Mirage is an easy and powerful SQL centric database access library.
+
+   * 2WaySQL
+
+   The main feature of Mirage is 2WaySQL. This makes plain old SQL template,
+   and it is executable using any SQL client tools because parameters and
+   conditions are written as SQL comment.
+
+   * SQL less Update
+
+   Generally, update processing are simpler than search processing.
+   However, especially, large INSERT SQL brings us the considerable pain.
+   In the Mirage, you can insert / update / delete records using entity class (without SQL).
+
+   []
+
+* {Quick Start}
+
+ You can get JAR file from the download page or Maven repository. See the {{{download.html}Download}} section.
+
+** {First example of Mirage}
+
+ The basic example of searching using the SQL file. <<{{{apidocs/jp/sf/amateras/mirage/SqlManager.html}SqlManager}}>> is a main interface of Mirage.
+ You can get it from Session and you can control transaction using Session also.
+
+--------
+Session session = SessionFactory.getSession();
+SqlManager sqlManager = session.getSqlmanager();
+session.begin();
+
+try {
+  BookParam param = new BookParam();
+
+  List<Book> result = sqlManager.getResultList(
+    Book.class, "/META-INF/selectBooks.sql", param);
+
+  ...
+
+  session.commit();
+
+} catch(Exception ex) {
+  session.rollback();
+
+} finally {
+  session.release();
+}
+--------
+
+ <<Book>> is a POJO to mapping ResultSet:
+
+--------
+public class Book {
+  public Long bookId;
+  public String bookName;
+  public String author;
+  public Integer price;
+}
+--------
+
+ <<BookParam>> is a parameter class:
+
+--------
+public class BookParam {
+  public String author;
+  public Integer minPrice;
+  public Integer maxPrice;
+}
+--------
+
+ <</META-INF/selectProducts.sql>>:
+
+--------
+SELECT * FROM BOOK
+/*BEGIN*/
+  WHERE
+  /*IF author != null */
+        AUTHOR = /*author*/'Naoki Takezoe'
+  /*END*/
+  /*IF minPrice != null */
+    AND PRICE >= /*minPrice*/20
+  /*END*/
+  /*IF maxPrice != null */
+    AND PRICE <= /*maxPrice*/100
+  /*END*/
+/*END*/
+ORDER BY BOOK_ID ASC
+--------
+
+** {2WaySQL}
+
+ Mirage supports <<2WaySQL>>. This is based on Japanese O/R mapping framework {{{http://s2container.seasar.org/2.4/ja/s2jdbc.html}S2JDBC}}.
+ 2WaySQL is the plain old SQL template. You can specify parameters and conditions using SQL comment.
+ So these SQLs are executable using SQL client tools.
+
+ For exmaple, the following SQL has a SQL comment(/*author*/), however it is executable as SQL.
+
+--------
+SELECT * FROM BOOK
+WHERE AUTHOR = /*author*/'Naoki Takezoe'
+ORDER BY BOOK_ID ASC
+--------
+
+ Mirage replaces <</*author*/>> to a place holder and removes a word (<<'Naoki Takezoe'>>) after replaced SQL comment.
+ Actually, Mirage would execute the following SQL.
+
+--------
+SELECT * FROM BOOK
+WHERE AUTHOR = ?
+ORDER BY BOOK_ID ASC
+--------
+
+ See {{{2waysql.html}here}} to know details about 2WaySQL.
+
+** {SQL less Update}
+
+ Mirage can insert / update / delete using entity object (without SQL file).
+
+ Entity Class must have a primary key field with <<{{{apidocs/jp/sf/amateras/mirage/annotation/PrimaryKey.html}@PrimaryKey}}>> annotation:
+
+--------
+public class Book {
+  @PrimaryKey(generationType=GenerationType.IDENTITY)
+  public Long bookId;
+  public String bookName;
+  public String author;
+  public Integer price;
+}
+--------
+
+ You should specify the generation type of primary keys. Mirage supports following generation types:
+
+ * <<GenerationType.APPLICATION>>
+
+   Primary keys have to be set by the application before invocation of SqlManager#insertEntity().
+
+--------
+@PrimaryKey(generationType=GenerationType.APPLICATION)
+public Long id;
+--------
+
+ * <<GenerationType.IDENTITY>>
+
+   Primary keys are set by database automatically. Database have to support PreparedStatement.RETURN_GENERATED_KEYS to acquire generated keys.
+   Oracle does not support this feature.
+
+--------
+@PrimaryKey(generationType=GenerationType.IDENTITY)
+public Long id;
+--------
+
+ * <<GenerationType.SEQUENCE>>
+
+   Primary keys are set by Mirage using sequence. In this strategy, you have to specify the sequence name at generator attribute of @PrimaryKey annotation.
+
+--------
+@PrimaryKey(generationType=GenerationType.SEQUENCE, generator="USER_ID_SEQ")
+public Long id;
+--------
+
+ []
+
+ Example to insert an entity using <<SqlManager#insertEntity()>>:
+
+--------
+Book book = new Book();
+book.bookName = "Mirage in Action";
+book.author = "Naoki Takezoe";
+book.price = 20;
+
+sqlManager.insertEntity(entity);
+--------
+
+ You can also select entity using <<SqlManager#findEntity()>>.
+
+--------
+Book book = sqlManager.findEntity(Book.class, bookId);
+--------
+
+ [Note] Mirage does not support relationship between entities because it may bring complexity into Mirage.
+
+** {Iteration Search}
+
+ SqlManager#getResultList() creates all entity instances and returns a list which contains them.
+ If SQL returns a large result, it causes OutOfMemory.
+
+ In these case, you should use {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#iterate(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object)}SqlManager#iterate()}}
+ instead of SqlManager#getResultList().
+
+--------
+Integer result = sqlManager.iterate(
+    Book.class,
+    new IterationCallback<Book, Integer>() {
+
+        private int result;
+
+        @Override public Integer iterate(Book entity) {
+            result = result + entity.price;
+            return result;
+        }
+
+    },
+    SQL_PREFIX + "SqlManagerImplTest_selectBooks.sql");
+--------
+
+ SqlManager#iterate() accepts {{{apidocs/jp/sf/amateras/mirage/IterationCallback.html}IterationCallback}} and invoke it per record.
+ The return value of SqlManager#iterate() is a last returned value from IterationCallback.
+
+ If you want to break iteration search on the way, throw {{{apidocs/jp/sf/amateras/mirage/exception/BreakIterationException.html}BreakIterationException}} from IterationCallback.
+ By this exception, iteration search is stopped and SqlManager#iterate() returns the previous returned value from IterationCallback.
+ If BreakIterationException is thrown at first IterationCallback#iterate() invocation, SqlManager#iterate() returns null.
+
+** {Stored Procedure / Function}
+
+ Mirage can call stored procedures / functions by database independed way.
+
+ * <<SqlManager#call()>>
+
+   Calls the procedure or the function which returns the single result.
+
+ * <<SqlManager#callForList()>>
+
+   Calls the function which returns the result list.
+
+ []
+
+--------
+// Parameter class
+public class GetCountParam {
+  @In
+  public long deptId;
+}
+
+// Creates parameter object which give to stored function
+GetCountParam param = new GetCountParam();
+param.deptId = 1;
+
+// Calls a stored function and get a result value.
+Long count = sqlManager.call(Long.class, "get_emp_count", param);
+--------
+
+ Fields of the parameter class has annotation such as {{{apidocs/jp/sf/amateras/mirage/annotation/In.html}@In}},
+ {{{apidocs/jp/sf/amateras/mirage/annotation/Out.html}@Out}}, {{{apidocs/jp/sf/amateras/mirage/annotation/InOut.html}@InOut}}
+ and {{{apidocs/jp/sf/amateras/mirage/annotation/ResultSet.html}@ResultSet}}.
+ These annotations mean the parameter type.
+
+ * The field has no annotation or it has <<@In>> annotation, it means the IN parameter.
+
+ * The field has <<@Out>> annotation, it means the OUT parameter.
+
+ * The field has <<@InOut>> annotation, it means the INOUT parameter.
+
+ * The field has <<@ResultSet>> annotation, it's mapped to the result set which is not returned as a parameter.
+   In the database which can return a result set as a parameter only such as Oracle or PostgreSQL, @ResultSet field means the OUT parameter.
+
+ []

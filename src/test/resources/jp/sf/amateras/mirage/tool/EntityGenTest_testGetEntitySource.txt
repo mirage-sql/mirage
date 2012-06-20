@@ -1,0 +1,24 @@
+package jp.sf.amateras.mirage.entity;
+
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+
+@Table(name="BOOK")
+public class Book {
+
+    @PrimaryKey(generationType=GenerationType.SEQUENCE, generator="BOOK_BOOK_ID_SEQ")
+    @Column(name="BOOK_ID")
+    public Integer bookId;
+
+    @Column(name="BOOK_NAME")
+    public String bookName;
+
+    @Column(name="AUTHOR")
+    public String author;
+
+    @Column(name="PRICE")
+    public Integer price;
+
+}

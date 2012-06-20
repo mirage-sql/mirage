@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Mirage - SQL Centric Database Access Library">
+  <body>
+    <menu name="Documentation">
+      <item name="Welcome" href="welcome.html" />
+      <item name="Download" href="download.html" />
+      <item name="Configuration" href="configuration.html" />
+      <item name="2Way SQL" href="2waysql.html" />
+      <item name="UnitTest" href="unittest.html" />
+      <item name="Using Mirage with other Frameworks" href="integration.html" />
+      <item name="mirage-scala" href="mirage-scala.html" />
+      <item name="TODO" href="todo.html" />
+      <item name="Release Notes" href="release.html" />
+    </menu>
+    <menu ref="reports" />
+  </body>
+</project>
