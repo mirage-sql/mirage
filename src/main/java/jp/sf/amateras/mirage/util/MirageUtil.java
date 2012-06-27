@@ -13,6 +13,8 @@ import jp.sf.amateras.mirage.bean.BeanDescFactory;
 import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.dialect.Dialect;
 import jp.sf.amateras.mirage.naming.NameConverter;
+import jp.sf.amateras.mirage.parser.SqlContext;
+import jp.sf.amateras.mirage.parser.SqlContextImpl;
 import jp.sf.amateras.mirage.type.ValueType;
 
 public class MirageUtil {
@@ -154,6 +156,27 @@ public class MirageUtil {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Returns the {@link SqlContext} instance.
+	 * 
+	 * @param param the parameter object
+	 * @return {@link SqlContext} instance
+	 */
+	public static SqlContext getSqlContext(Object param) {
+		SqlContext context = new SqlContextImpl();
+
+		if (param != null) {
+			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(param);
+			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
+				PropertyDesc pd = beanDesc.getPropertyDesc(i);
+				context.addArg(pd.getPropertyName(), pd.getValue(param), pd
+						.getPropertyType());
+			}
+		}
+
+		return context;
 	}
 
 	/**

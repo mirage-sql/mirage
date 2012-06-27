@@ -20,7 +20,6 @@ import jp.sf.amateras.mirage.naming.DefaultNameConverter;
 import jp.sf.amateras.mirage.naming.NameConverter;
 import jp.sf.amateras.mirage.parser.Node;
 import jp.sf.amateras.mirage.parser.SqlContext;
-import jp.sf.amateras.mirage.parser.SqlContextImpl;
 import jp.sf.amateras.mirage.parser.SqlParserImpl;
 import jp.sf.amateras.mirage.provider.ConnectionProvider;
 import jp.sf.amateras.mirage.type.BigDecimalValueType;
@@ -174,18 +173,7 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	protected SqlContext prepareSqlContext(Object param){
-		SqlContext context = new SqlContextImpl();
-
-		if (param != null) {
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(param);
-			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
-				PropertyDesc pd = beanDesc.getPropertyDesc(i);
-				context.addArg(pd.getPropertyName(), pd.getValue(param), pd
-						.getPropertyType());
-			}
-		}
-
-		return context;
+		return MirageUtil.getSqlContext(param);
 	}
 
 	public int executeUpdate(String sqlPath) {
