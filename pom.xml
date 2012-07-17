@@ -299,6 +299,7 @@
     <snapshotRepository>
       <id>sourceforge.jp</id>
       <url>scp://shell.sourceforge.jp/home/groups/a/am/amateras/htdocs/mvn-snapshot/</url>
+      <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
     <site>
       <id>sourceforge.jp</id>
