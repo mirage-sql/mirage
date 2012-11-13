@@ -73,9 +73,9 @@ public class SqlContextImpl implements SqlContext {
 		} else if (parent != null) {
 			return parent.getArg(name);
 		} else {
-			if (args.size() == 1) {
-				return args.get(0);
-			}
+//			if (args.size() == 1) {
+//				return args.get(0);
+//			}
 			// logger.log("WSSR0010", new Object[] { name });
 			return null;
 		}
@@ -98,9 +98,9 @@ public class SqlContextImpl implements SqlContext {
 		} else if (parent != null) {
 			return parent.getArgType(name);
 		} else {
-			if (argTypes.size() == 1) {
-				return (Class<?>) argTypes.get(0);
-			}
+//			if (argTypes.size() == 1) {
+//				return (Class<?>) argTypes.get(0);
+//			}
 			// logger.log("WSSR0010", new Object[] { name });
 			return null;
 		}
