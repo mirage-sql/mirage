@@ -38,9 +38,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:svn:http://svn.sourceforge.jp/svnroot/amateras/mirage/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.sourceforge.jp/svnroot/amateras/mirage/trunk/</developerConnection>
-    <url>http://sourceforge.jp/projects/amateras/svn/view/mirage/?root=amateras</url>
+    <connection>scm:git:https://github.com/takezoe/mirage.git</connection>
+    <developerConnection>scm:git:https://github.com/takezoe/mirage.git</developerConnection>
+    <url>https://github.com/takezoe/mirage</url>
   </scm>
 
   <mailingLists>
