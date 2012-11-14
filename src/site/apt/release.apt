@@ -7,6 +7,10 @@
 
 Release Notes
 
+* {mirage 1.1.6 - 15 Nov 2012}
+
+ * Small bug fix and improvements about extendibility.
+
 * {mirage-scala 0.0.4 - 15 Apr 2012}
 
  * SqlManager interface is modified to use generics type parameter to specify the entity class instead of classOf.
