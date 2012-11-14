@@ -23,7 +23,7 @@ mirage-scala
 --------
 resolvers += "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
 
-libraryDependencies += "jp.sf.amateras.mirage" %% "mirage-scala" % "0.0.4" % "compile"
+libraryDependencies += "jp.sf.amateras.mirage" %% "mirage-scala" % "0.0.5" % "compile"
 --------
 
  This is a simple example to query using mirage-scala:
