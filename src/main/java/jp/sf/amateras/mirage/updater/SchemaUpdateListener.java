@@ -14,7 +14,7 @@ import jp.sf.amateras.mirage.util.ExceptionUtil;
 import jp.sf.amateras.mirage.util.StringUtil;
 
 /**
- * This is a ServletContextLisneter to execute {@link SchemaUpdater} when the servlet context is initialized.
+ * This is a ServletContextListener to execute {@link SchemaUpdater} when the servlet context is initialized.
  * <p>
  * This listener is only available when Mirage is working standalone.
  * Because this listener get connection configurations from jdbc.properties using {@link SessionFactory}.

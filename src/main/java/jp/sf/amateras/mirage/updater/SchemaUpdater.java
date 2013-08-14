@@ -138,7 +138,7 @@ public class SchemaUpdater {
 	}
 
 	/**
-	 * Checks the table which manages a schema version exists or not exisis.
+	 * Checks the table which manages a schema version exists or not exists.
 	 *
 	 * @return if the table exists then returns true; otherwise false
 	 */
