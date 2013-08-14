@@ -15,7 +15,7 @@ public interface Dialect {
     /**
      * Returns whether the result set of procedure invocation requires parameter or not.
      *
-     * @return true then rqeuired, faise then not required
+     * @return true then required, false then not required
      */
     boolean needsParameterForResultSet();
 
@@ -26,7 +26,7 @@ public interface Dialect {
     String getCountSql(String sql);
 
     /**
-     * Returnes the {@link ValueType} for the database product.
+     * Returns the {@link ValueType} for the database product.
      *
      * @return the value type or null
      */

@@ -13,7 +13,7 @@ public class ExecutedSQLInfo {
 	 * Constructor.
 	 *
 	 * @param sql the executed SQL
-	 * @param params the array of binded parameters
+	 * @param params the array of bound parameters
 	 */
 	public ExecutedSQLInfo(String sql, Object[] params){
 		this.sql = sql;
@@ -30,9 +30,9 @@ public class ExecutedSQLInfo {
 	}
 
 	/**
-	 * Returns the array of binded parameters.
+	 * Returns the array of bound parameters.
 	 *
-	 * @return the array of binded parameters
+	 * @return the array of bound parameters
 	 */
 	public Object[] getParams(){
 		if(params == null){

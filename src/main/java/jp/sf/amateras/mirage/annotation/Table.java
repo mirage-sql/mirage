@@ -23,7 +23,7 @@ import jp.sf.amateras.mirage.naming.NameConverter;
 public @interface Table {
 
 	/**
-	 * The table name which is mapped to the annotead entity class.
+	 * The table name which is mapped to the annotated entity class.
 	 */
 	String name();
 

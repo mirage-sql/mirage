@@ -15,7 +15,7 @@ import jp.sf.amateras.mirage.provider.DefaultConnectionProvider;
 import jp.sf.amateras.mirage.util.StringUtil;
 
 /**
- * The default inplementation of {@link Session}.
+ * The default implementation of {@link Session}.
  * <p>
  * This implementation set {@link Dialect} to {@link SqlManager} automatically by the JDBC connection URL.
  *

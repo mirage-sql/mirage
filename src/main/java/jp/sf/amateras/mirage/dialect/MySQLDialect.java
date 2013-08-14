@@ -2,7 +2,7 @@ package jp.sf.amateras.mirage.dialect;
 
 import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 
-// TODO stored procedure / function and seqauence support
+// TODO stored procedure / function and sequence support
 public class MySQLDialect extends StandardDialect {
 
 	@Override

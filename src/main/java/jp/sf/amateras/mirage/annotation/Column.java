@@ -23,7 +23,7 @@ import jp.sf.amateras.mirage.naming.NameConverter;
 public @interface Column {
 
 	/**
-	 * The column name which is mapped to the annotead property.
+	 * The column name which is mapped to the annotated property.
 	 */
 	String name();
 

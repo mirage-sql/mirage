@@ -49,9 +49,9 @@ public interface SqlManager {
 	/**
 	 * Sets the implementation of the {@link EntityOperator}.
 	 *
-	 * @param entityOreator the entity operator
+	 * @param entityOperator the entity operator
 	 */
-	public void setEntityOperator(EntityOperator entityOreator);
+	public void setEntityOperator(EntityOperator entityOperator);
 
 	/**
 	 * Returns the row count of the result of the given SQL.

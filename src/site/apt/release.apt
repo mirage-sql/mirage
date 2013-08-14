@@ -9,7 +9,7 @@ Release Notes
 
 * {mirage 1.1.6 and mirage-scala 0.0.5 - 15 Nov 2012}
 
- * Small bug fix and improvements about extendibility.
+ * Small bug fix and improvements about extendability.
 
 * {mirage-scala 0.0.4 - 15 Apr 2012}
 
@@ -49,7 +49,7 @@ Release Notes
 
  * Improvement: DefaultResultEntityCreator just reqires no-argument constructor.  It really doesn't matter if the constructor is public.
 
- * Improvement: Make ValueType parameterized.  If you implement custom ValueTypes, these is not compatible in this version.
+ * Improvement: Make ValueType parametrized.  If you implement custom ValueTypes, these is not compatible in this version.
 
  * Added {{{apidocs/jp/sf/amateras/mirage/exception/BreakIterationException.html}BreakIterationException}} to discontinue iteration search.
 
@@ -90,7 +90,7 @@ Release Notes
  * Added {{{apidocs/jp/sf/amateras/mirage/session/DBCPSessionImpl.html}DBCPSessionImpl}} to provide connection pooling as standalone usage.
 
  * Added {{{apidocs/jp/sf/amateras/mirage/integration/guice/TransactionInterceptor.html}TransactionInterceptor}} and {{{apidocs/jp/sf/amateras/mirage/integration/guice/Transactional.html}@Transactional}}
-   for {{{integration.html#Google_Guice}Guice Intagration}}.
+   for {{{integration.html#Google_Guice}Guice Integration}}.
 
  * {{{apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}} came to support stored procedure / function.
 
@@ -196,7 +196,7 @@ Release Notes
 
   * Dependency to Spring Framework and Guice became optional.
 
-  * Dependency to the patched OGNL changed to OGML 2.7.3.
+  * Dependency to the patched OGNL changed to OGNL 2.7.3.
 
   * BugFix about BLOB support.
 
