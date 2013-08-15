@@ -4,11 +4,11 @@ import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 import jp.sf.amateras.mirage.type.PostgreResultSetValueType;
 import junit.framework.TestCase;
 
-public class PostgreDialectTest extends TestCase {
+public class PostgreSQLDialectTest extends TestCase {
 
 	public void testGetName() {
 		PostgreSQLDialect dialect = new PostgreSQLDialect();
-		assertEquals("postgre", dialect.getName());
+		assertEquals("postgresql", dialect.getName());
 	}
 
 	public void testGetValueType() {
