@@ -9,7 +9,7 @@ import jp.sf.amateras.mirage.filter.OpenSessionInViewFilter;
  * <p>
  * You can control transaction and access {@link SqlManager} through this interface.
  * <p>
- * In addition, you can manage transaction automaticaly using this interface with {@link OpenSessionInViewFilter}.
+ * In addition, you can manage transaction automatically using this interface with {@link OpenSessionInViewFilter}.
  * <code>OpenSessionInViewFilter</code> begin and commit transaction per request.
  * It rollback transaction if it catches exception. So you can focus on operation of <code>SqlManager</code>.
  *
@@ -46,7 +46,7 @@ public interface Session {
 	public void release();
 
 	/**
-	 * Marks the current transation as rollback-only.
+	 * Marks the current transaction as rollback-only.
 	 */
 	public void setRollbackOnly();
 

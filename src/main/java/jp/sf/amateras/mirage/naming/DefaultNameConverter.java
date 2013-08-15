@@ -3,7 +3,7 @@ package jp.sf.amateras.mirage.naming;
 /**
  * The default implementation of {@link NameConverter}.
  * <p>
- * This implementation uses camelcase for entity / property names, and underscore for table / column names.
+ * This implementation uses camel case for entity / property names, and underscore for table / column names.
  *
  * @author Naoki Takezoe
  */
