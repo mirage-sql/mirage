@@ -7,23 +7,23 @@ import junit.framework.TestCase;
 public class PostgreDialectTest extends TestCase {
 
 	public void testGetName() {
-		PostgreDialect dialect = new PostgreDialect();
+		PostgreSQLDialect dialect = new PostgreSQLDialect();
 		assertEquals("postgre", dialect.getName());
 	}
 
 	public void testGetValueType() {
-		PostgreDialect dialect = new PostgreDialect();
+		PostgreSQLDialect dialect = new PostgreSQLDialect();
 		assertTrue(dialect.getValueType() instanceof PostgreResultSetValueType);
 	}
 
 	public void testGetSequenceSql() {
-		PostgreDialect dialect = new PostgreDialect();
+		PostgreSQLDialect dialect = new PostgreSQLDialect();
 		String sql = dialect.getSequenceSql("SEQUENCE");
 		assertEquals("SELECT NEXTVAL('SEQUENCE')", sql);
 	}
 
 	public void testSupportsGenerationType() {
-		PostgreDialect dialect = new PostgreDialect();
+		PostgreSQLDialect dialect = new PostgreSQLDialect();
 		assertTrue(dialect.supportsGenerationType(GenerationType.APPLICATION));
 		assertFalse(dialect.supportsGenerationType(GenerationType.IDENTITY));
 		assertTrue(dialect.supportsGenerationType(GenerationType.SEQUENCE));

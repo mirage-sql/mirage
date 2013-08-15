@@ -5,13 +5,13 @@ import jp.sf.amateras.mirage.type.PostgreResultSetValueType;
 import jp.sf.amateras.mirage.type.ValueType;
 
 // TODO LargeObject support
-public class PostgreDialect extends StandardDialect {
+public class PostgreSQLDialect extends StandardDialect {
 
 	private PostgreResultSetValueType valueType = new PostgreResultSetValueType();
 
 	@Override
     public String getName() {
-        return "postgre";
+        return "postgresql";
     }
 
 	@Override
