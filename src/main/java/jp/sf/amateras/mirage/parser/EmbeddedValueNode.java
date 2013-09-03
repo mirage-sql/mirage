@@ -77,4 +77,12 @@ public class EmbeddedValueNode extends AbstractNode {
             ctx.addSql(sql);
         }
     }
+
+	@Override
+	public String toString() {
+		return "EmbeddedValueNode [expression=" + expression + ", baseName=" + baseName + ", propertyName="
+				+ propertyName + ", children=" + children + "]";
+	}
+    
+    
 }
