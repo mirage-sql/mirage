@@ -59,17 +59,30 @@ public class DefaultEntityOperator implements EntityOperator {
 			} else {
 				Constructor<T>[] constructors = (Constructor<T>[]) clazz.getDeclaredConstructors();
 				for(Constructor<T> constructor: constructors){
-					constructor.setAccessible(true);
-					Class<?>[] types = constructor.getParameterTypes();
-					Object[] params = new Object[types.length];
-					for(int i = 0; i < params.length; i++){
-						ValueType valueType = MirageUtil.getValueType(types[i], dialect, valueTypes);
-						if(valueType != null){
-							params[i] = valueType.getDefaultValue();
+					try {
+						constructor.setAccessible(true);
+						Class<?>[] types = constructor.getParameterTypes();
+						Object[] params = new Object[types.length];
+						for(int i = 0; i < params.length; i++){
+							ValueType valueType = MirageUtil.getValueType(types[i], dialect, valueTypes);
+							if(valueType != null){
+								params[i] = valueType.getDefaultValue();
+							}
 						}
+						entity = constructor.newInstance(params);
+					} catch (InstantiationException e) {
+						// ignore
+					} catch (IllegalAccessException e) {
+						// ignore
+					} catch (IllegalArgumentException e) {
+						// ignore
+					} catch (InvocationTargetException e) {
+						// ignore
 					}
-					entity = constructor.newInstance(params);
 				}
+			}
+			if(entity == null) {
+				throw new EntityCreationFailedException();
 			}
 
 			for(int i = 0; i < columnCount; i++){
@@ -120,15 +133,6 @@ public class DefaultEntityOperator implements EntityOperator {
 //			throw new EntityCreationFailedException(e);
 
 		} catch (IllegalArgumentException e) {
-			throw new EntityCreationFailedException(e);
-
-		} catch (InstantiationException e) {
-			throw new EntityCreationFailedException(e);
-
-		} catch (IllegalAccessException e) {
-			throw new EntityCreationFailedException(e);
-
-		} catch (InvocationTargetException e) {
 			throw new EntityCreationFailedException(e);
 
 		}
