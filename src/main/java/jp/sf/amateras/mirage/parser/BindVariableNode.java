@@ -15,6 +15,8 @@
  */
 package jp.sf.amateras.mirage.parser;
 
+import java.util.Arrays;
+
 import jp.sf.amateras.mirage.bean.BeanDesc;
 import jp.sf.amateras.mirage.bean.BeanDescFactory;
 import jp.sf.amateras.mirage.bean.PropertyDesc;
@@ -65,5 +67,11 @@ public class BindVariableNode extends AbstractNode {
 			clazz = pd.getPropertyType();
 		}
 		ctx.addSql("?", value, clazz);
+	}
+
+	@Override
+	public String toString() {
+		return "BindVariableNode [expression=" + expression + ", names=" + Arrays.toString(names)
+				+ ", children=" + children + "]";
 	}
 }

@@ -38,4 +38,9 @@ public class BeginNode extends ContainerNode {
 					.getBindVariableTypes());
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "BeginNode [children=" + children + "]";
+	}
 }

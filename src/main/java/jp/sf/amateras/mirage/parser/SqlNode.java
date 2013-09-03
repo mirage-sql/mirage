@@ -47,4 +47,9 @@ public class SqlNode extends AbstractNode {
     public void accept(SqlContext ctx) {
         ctx.addSql(sql);
     }
+
+	@Override
+	public String toString() {
+		return "SqlNode [sql=" + sql + ", children=" + children + "]";
+	}
 }

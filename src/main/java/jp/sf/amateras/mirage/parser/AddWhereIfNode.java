@@ -49,4 +49,8 @@ public class AddWhereIfNode extends ContainerNode {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "AddWhereIfNode [children=" + children + "]";
+	}
 }

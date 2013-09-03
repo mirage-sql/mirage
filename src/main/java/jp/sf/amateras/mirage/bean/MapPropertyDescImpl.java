@@ -61,4 +61,8 @@ public class MapPropertyDescImpl implements PropertyDesc {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "MapPropertyDescImpl [value=" + value + ", propertyName=" + propertyName + "]";
+	}
 }
