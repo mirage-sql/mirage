@@ -63,4 +63,9 @@ public class PrefixSqlNode extends AbstractNode {
 		}
 		ctx.addSql(sql);
 	}
+
+	@Override
+	public String toString() {
+		return "PrefixSqlNode [prefix=" + prefix + ", sql=" + sql + ", children=" + children + "]";
+	}
 }

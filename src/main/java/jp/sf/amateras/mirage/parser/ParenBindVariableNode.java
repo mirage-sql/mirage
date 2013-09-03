@@ -92,4 +92,10 @@ public class ParenBindVariableNode extends AbstractNode {
         }
         ctx.addSql(")");
     }
+
+	@Override
+	public String toString() {
+		return "ParenBindVariableNode [expression=" + expression + ", parsedExpression=" + parsedExpression
+				+ ", children=" + children + "]";
+	}
 }

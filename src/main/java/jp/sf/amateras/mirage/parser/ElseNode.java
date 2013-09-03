@@ -34,4 +34,9 @@ public class ElseNode extends ContainerNode {
 		super.accept(ctx);
 		ctx.setEnabled(true);
 	}
+
+	@Override
+	public String toString() {
+		return "ElseNode [children=" + children + "]";
+	}
 }

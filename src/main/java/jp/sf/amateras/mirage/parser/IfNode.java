@@ -86,4 +86,12 @@ public class IfNode extends ContainerNode {
                 "%s is not bool expression.", expression));
         }
     }
+
+	@Override
+	public String toString() {
+		return "IfNode [expression=" + expression + ", parsedExpression=" + parsedExpression + ", elseNode=" + elseNode
+				+", children=" + children + "]";
+	}
+
+	
 }

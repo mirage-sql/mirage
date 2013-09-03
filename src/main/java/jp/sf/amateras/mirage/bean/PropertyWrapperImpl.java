@@ -120,4 +120,8 @@ public class PropertyWrapperImpl implements PropertyWrapper {
 		this.field = field;
 	}
 
+	@Override
+	public String toString() {
+		return "PropertyWrapperImpl [name=" + name + "]";
+	}
 }

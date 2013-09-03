@@ -26,7 +26,7 @@ import java.util.List;
  */
 public abstract class AbstractNode implements Node {
 
-    private List<Node> children = new ArrayList<Node>();
+    List<Node> children = new ArrayList<Node>();
 
     /**
      * <code>AbstractNode</code>を作成します。
