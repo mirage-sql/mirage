@@ -40,7 +40,7 @@ public class DefaultEntityOperatorTest extends TestCase {
 
 	DefaultEntityOperator operator = new DefaultEntityOperator();
 
-	public void testDefaultResultEntityCreator() throws SQLException {
+	public void testDefaultEntityOperator() throws SQLException {
 		ResultSet rs = mock(ResultSet.class);
 		ResultSetMetaData meta = mock(ResultSetMetaData.class);
 		BeanDesc beanDesc = mock(BeanDesc.class);
@@ -50,6 +50,21 @@ public class DefaultEntityOperatorTest extends TestCase {
 		// Although UserInfo doesn't have public no-args constructor,
 		// DefaultResultEntityCreator can create UserInfo instance
 		UserInfo userInfo = operator.createEntity(UserInfo.class, rs, meta, 0,
+				beanDesc, dialect, getDefaultValueTypes(), nc);
+
+		assertNotNull(userInfo);
+	}
+	
+	public void testDefaultEntityOperator3() throws SQLException {
+		ResultSet rs = mock(ResultSet.class);
+		ResultSetMetaData meta = mock(ResultSetMetaData.class);
+		BeanDesc beanDesc = mock(BeanDesc.class);
+		Dialect dialect = mock(Dialect.class);
+		NameConverter nc = mock(NameConverter.class);
+
+		// Although UserInfo doesn't have public no-args constructor,
+		// DefaultResultEntityCreator can create UserInfo instance
+		UserInfo3 userInfo = operator.createEntity(UserInfo3.class, rs, meta, 0,
 				beanDesc, dialect, getDefaultValueTypes(), nc);
 
 		assertNotNull(userInfo);
@@ -151,4 +166,45 @@ public class DefaultEntityOperatorTest extends TestCase {
 //			return userId + " " + userName;
 //		}
 //	}
+
+	public static class UserInfo3 {
+
+		@PrimaryKey(generationType=GenerationType.IDENTITY)
+		private int userId;
+
+		private String userName;
+
+		public UserInfo3(int userId, String userName) {
+			if(userId == 0 || userName == null) {
+				throw new NullPointerException();
+			}
+			this.userId = userId;
+			this.userName = userName;
+		}
+
+		@SuppressWarnings("unused") // for reflective access
+		private UserInfo3() {
+		}
+
+		public int getUserId() {
+			return userId;
+		}
+
+		public void setUserId(int userId) {
+			this.userId = userId;
+		}
+
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		@Override
+		public String toString() {
+			return userId + " " + userName;
+		}
+	}
 }
