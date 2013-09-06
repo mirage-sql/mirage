@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.sf.amateras.mirage.SqlManagerImplTest.Magazine.MagazineType;
 import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.Enumerated;
+import jp.sf.amateras.mirage.annotation.Enumerated.EnumType;
 import jp.sf.amateras.mirage.annotation.PrimaryKey;
 import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 import jp.sf.amateras.mirage.exception.BreakIterationException;
@@ -227,6 +230,30 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		assertEquals("Naoki Takezoe", bookList.get(0).author);
 		assertNull(bookList.get(0).price);
 	}
+	
+	public void testInsertEntityWithEnumerated() throws Exception {
+		Magazine mag = new Magazine();
+		mag.name = "Mirage News";
+		mag.magType = MagazineType.TYPE_B;
+		mag.price = 123;
+
+		sqlManager.insertEntity(mag);
+		assertEquals(new Long(0), mag.magazineId);
+
+		BookParam param = new BookParam();
+		param.bookName = "Mirage News";
+
+		List<Magazine> bookList = sqlManager.getResultList(
+				Magazine.class,
+				SQL_PREFIX + "SqlManagerImplTest_selectMagazineByBookName.sql",
+				param);
+
+		assertEquals(1, bookList.size());
+		assertEquals("Mirage News", bookList.get(0).name);
+		assertEquals(MagazineType.TYPE_B, bookList.get(0).magType);
+		assertEquals(Integer.valueOf(123), bookList.get(0).price);
+	}
+
 
 	public void testInsertBatchArray() throws Exception {
 		Book book1 = new Book();
@@ -443,9 +470,12 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 	public static class Book {
 		@PrimaryKey(generationType=GenerationType.IDENTITY)
 		public Long bookId;
+		
 		@Column(name="BOOK_NAME")
 		public String name;
+		
 		public String author;
+		
 		public Integer price;
 
 		public Book(){
@@ -470,4 +500,22 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		public String userName;
 	}
 
+	public static class Magazine {
+		
+		@PrimaryKey(generationType=GenerationType.IDENTITY)
+		public Long magazineId;
+		
+		@Column(name="BOOK_NAME")
+		public String name;
+		
+		@Enumerated(EnumType.STRING)
+		public MagazineType magType;
+		
+		public Integer price;
+		
+		public enum MagazineType {
+			TYPE_A,
+			TYPE_B
+		}
+	}
 }

@@ -200,7 +200,7 @@ public class CallExecutor {
 	}
 
     protected void prepareReturnParameter(List<Param> paramList, boolean resultList, Class<?> resultClass) {
-        final ValueType<?> valueType = getValueType(resultList ? List.class : resultClass);
+        final ValueType<?> valueType = getValueType(resultList ? List.class : resultClass, null);
         final Param p = addParam(paramList, null, resultClass, valueType);
         p.paramType = ParameterType.OUT;
     }
@@ -412,15 +412,15 @@ public class CallExecutor {
         }
     }
 
-    protected ValueType<?> getValueType(Class<?> type){
+    protected ValueType<?> getValueType(Class<?> type, PropertyDesc propertyDesc){
     	if(dialect.getValueType() != null){
     		ValueType<?> valueType = dialect.getValueType();
-    		if(valueType.isSupport(type)){
+    		if(valueType.isSupport(type, propertyDesc)){
     			return valueType;
     		}
     	}
     	for(ValueType<?> valueType: valueTypes){
-    		if(valueType.isSupport(type)){
+    		if(valueType.isSupport(type, propertyDesc)){
     			return valueType;
     		}
     	}
@@ -438,7 +438,7 @@ public class CallExecutor {
         if (paramClass == null) {
             throw new NullPointerException("paramClass");
         }
-        ValueType<?> valueType = getValueType(paramClass);
+        ValueType<?> valueType = getValueType(paramClass, null);
         return addParam(paramList, value, paramClass, valueType);
     }
 
@@ -477,7 +477,7 @@ public class CallExecutor {
             paramDesc.propertyDesc = pd;
             paramDesc.name = field.getName();
             paramDesc.paramClass = field.getType();
-			paramDesc.valueType = getValueType(paramDesc.paramClass);
+			paramDesc.valueType = getValueType(paramDesc.paramClass, pd);
 
             if (pd.getAnnotation(jp.sf.amateras.mirage.annotation.ResultSet.class) != null) {
                 paramDesc.paramType = ParameterType.RESULT_SET;

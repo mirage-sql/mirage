@@ -11,8 +11,8 @@ public class DefaultValueTypeTest extends TestCase {
 		byte[] bytes = new byte[0];
 		Object[] objs = new Object[0];
 
-		assertTrue(valueType.isSupport(bytes.getClass()));
-		assertFalse(valueType.isSupport(objs.getClass()));
+		assertTrue(valueType.isSupport(bytes.getClass(), null));
+		assertFalse(valueType.isSupport(objs.getClass(), null));
 	}
 
 }

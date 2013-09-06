@@ -81,6 +81,15 @@ public class SqlExecutor {
 		logger.info(sb.toString().trim());
 	}
 
+	private static void printParameters(PropertyDesc[] propDescs, Object entity){
+		if(propDescs == null){
+			return;
+		}
+		for(int i=0; i<propDescs.length; i++){
+			logger.info(String.format("params[%d]=%s", i, propDescs[i].getValue(entity)));
+		}
+	}
+
 	private static void printParameters(Object[] params){
 		if(params == null){
 			return;
@@ -231,7 +240,53 @@ public class SqlExecutor {
 	 * Exceutes the update SQL.
 	 *
 	 * @param sql the update SQL to execute
-	 * @param params the array of parameters
+	 * @param propDescs the array of parameters
+	 * @param entity the entity object in insertion, otherwise null
+	 * @return the number of updated rows
+	 * @throws SQLRuntimeException if a database access error occurs
+	 */
+	public int executeUpdateSql(String sql, PropertyDesc[] propDescs, Object entity){
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			Connection conn = connectionProvider.getConnection();
+
+			if(logger.isLoggable(Level.INFO)){
+				printSql(sql);
+ 				printParameters(propDescs);
+			}
+
+			if(entity != null && dialect.supportsGenerationType(GenerationType.IDENTITY)){
+				stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			} else {
+				stmt = conn.prepareStatement(sql);
+			}
+			setParameters(stmt, propDescs, entity);
+
+			int result = stmt.executeUpdate();
+
+			// Sets GenerationType.IDENTITY properties value.
+			if(entity != null && dialect.supportsGenerationType(GenerationType.IDENTITY)){
+				rs = stmt.getGeneratedKeys();
+				fillIdentityPrimaryKeys(entity, rs);
+			}
+
+			return result;
+
+		} catch(SQLException ex){
+			throw new SQLRuntimeException(ex);
+
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+		}
+	}
+
+	/**
+	 * Exceutes the update SQL.
+	 *
+	 * @param sql the update SQL to execute
+	 * @param propDescs the array of parameters
 	 * @param entity the entity object in insertion, otherwise null
 	 * @return the number of updated rows
 	 * @throws SQLRuntimeException if a database access error occurs
@@ -244,7 +299,7 @@ public class SqlExecutor {
 
 			if(logger.isLoggable(Level.INFO)){
 				printSql(sql);
-				printParameters(params);
+ 				printParameters(params);
 			}
 
 			if(entity != null && dialect.supportsGenerationType(GenerationType.IDENTITY)){
@@ -277,12 +332,12 @@ public class SqlExecutor {
 	 * Executes the update SQL.
 	 *
 	 * @param sql the update SQL to execute
-	 * @param paramsList the list of parameter arrays.
+	 * @param propDescsList the list of parameter arrays.
 	 * @param entities the entities object in insertion, otherwise null
 	 * @return the number of updated rows
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
-	public int executeBatchUpdateSql(String sql, List<Object[]> paramsList, Object[] entities) {
+	public int executeBatchUpdateSql(String sql, List<PropertyDesc[]> propDescsList, Object[] entities) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -290,10 +345,10 @@ public class SqlExecutor {
 
 			if(logger.isLoggable(Level.INFO)){
 				printSql(sql);
-				for(int i=0; i < paramsList.size(); i++){
-					Object[] params = paramsList.get(i);
+				for(int i=0; i < propDescsList.size(); i++){
+					PropertyDesc[] propDescs = propDescsList.get(i);
 					logger.info("[" + i + "]");
-					printParameters(params);
+					printParameters(propDescs, entities[i]);
 				}
 			}
 
@@ -302,10 +357,18 @@ public class SqlExecutor {
 			} else {
 				stmt = conn.prepareStatement(sql);
 			}
-
-			for(Object[] params: paramsList){
-				setParameters(stmt, params);
-				stmt.addBatch();
+			
+			if(entities != null) {
+				for (int i = 0; i < propDescsList.size(); i++) {
+					PropertyDesc[] propDescs = propDescsList.get(i);
+					setParameters(stmt, propDescs, entities[i]);
+					stmt.addBatch();
+				}
+			} else {
+				for(PropertyDesc[] propDescs: propDescsList){
+					setParameters(stmt, propDescs, null);
+					stmt.addBatch();
+				}
 			}
 
 			int[] results = stmt.executeBatch();
@@ -346,12 +409,12 @@ public class SqlExecutor {
 			PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
 			if(primaryKey != null && primaryKey.generationType() == GenerationType.IDENTITY){
 				if(rs.next()){
-					Class<?> type = propertyDesc.getPropertyType();
+					Class<?> propertyType = propertyDesc.getPropertyType();
 					@SuppressWarnings("rawtypes")
-					ValueType valueType = MirageUtil.getValueType(type, dialect, valueTypes);
+					ValueType valueType = MirageUtil.getValueType(propertyType, propertyDesc, dialect, valueTypes);
 
 					if(valueType != null){
-						 propertyDesc.setValue(entity, valueType.get(type, rs, 1));
+						 propertyDesc.setValue(entity, valueType.get(propertyType, rs, 1));
 					}
 				}
 			}
@@ -362,19 +425,46 @@ public class SqlExecutor {
 	 * Sets parameters to the PreparedStatement.
 	 */
 	@SuppressWarnings("unchecked")
-	protected void setParameters(PreparedStatement stmt, Object[] vars) throws SQLException {
-		for (int i = 0; i < vars.length; i++) {
-			if(vars[i] == null){
+	protected void setParameters(PreparedStatement stmt, PropertyDesc[] propDescs, Object entity) throws SQLException {
+		for (int i = 0; i < propDescs.length; i++) {
+			PropertyDesc propertyDesc = propDescs[i];
+			if(propertyDesc == null /*|| propertyDesc.getValue(entity) == null*/){
 				stmt.setObject(i + 1, null);
 			} else {
-				Class<?> type = vars[i].getClass();
+				Class<?> propertType = propertyDesc.getPropertyType();
 				@SuppressWarnings("rawtypes")
-				ValueType valueType = MirageUtil.getValueType(type, dialect, valueTypes);
+				ValueType valueType = MirageUtil.getValueType(propertType, propertyDesc, dialect, valueTypes);
 				if(valueType != null){
-					valueType.set(type, stmt, vars[i], i + 1);
+					valueType.set(propertType, stmt, propertyDesc.getValue(entity), i + 1);
+				} else {
+					if(logger.isLoggable(Level.INFO)) {
+						logger.warning("valueType for " + propertType.getName() + " not found.");
+					}
 				}
 			}
 		}
 	}
 
+	/**
+	 * Sets parameters to the PreparedStatement.
+	 */
+	@SuppressWarnings("unchecked")
+	protected void setParameters(PreparedStatement stmt, Object[] params) throws SQLException {
+		for (int i = 0; i < params.length; i++) {
+			if(params[i] == null){
+				stmt.setObject(i + 1, null);
+			} else {
+				Class<?> propertType = params[i].getClass();
+				@SuppressWarnings("rawtypes")
+				ValueType valueType = MirageUtil.getValueType(propertType, null, dialect, valueTypes);
+				if(valueType != null){
+					valueType.set(propertType, stmt, params[i], i + 1);
+				} else {
+					if(logger.isLoggable(Level.INFO)) {
+						logger.warning("valueType for " + propertType.getName() + " not found.");
+					}
+				}
+			}
+		}
+	}
 }

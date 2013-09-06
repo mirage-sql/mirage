@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.util.IOUtil;
 
 @Deprecated
@@ -447,7 +448,7 @@ public class DefaultValueType implements ValueType<Object> {
     }
 
 //	@Override
-	public boolean isSupport(Class<?> type) {
+	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
 		if(type == String.class
 				|| type == Integer.class || type == Integer.TYPE
 				|| type == Long.class  || type == Long.TYPE
