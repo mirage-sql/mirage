@@ -80,34 +80,58 @@ public interface SqlManager {
 
 	public int getCountBySql(String sql, Object... params);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource)}
+	 */
 	@Deprecated
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath);
 	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource, Object)}
+	 */
 	@Deprecated
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath, Object param);
 	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource)}
+	 */
 	@Deprecated
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath);
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource, Object)}
+	 */
 	@Deprecated
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath, Object param);
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource)}
+	 */
 	@Deprecated
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath);
 	public <T> T getSingleResult(Class<T> clazz, SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource, Object)}
+	 */
 	@Deprecated
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath, Object param);
 	public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
 
+	/**
+	 * @deprecated use {@link #executeUpdate(SqlResource)}
+	 */
 	@Deprecated
 	public int executeUpdate(String sqlPath);
 	public int executeUpdate(SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #executeUpdate(SqlResource, Object)}
+	 */
 	@Deprecated
 	public int executeUpdate(String sqlPath, Object param);
 	public int executeUpdate(SqlResource resource, Object param);
