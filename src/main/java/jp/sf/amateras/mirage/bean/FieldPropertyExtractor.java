@@ -17,6 +17,7 @@
 package jp.sf.amateras.mirage.bean;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,7 +31,6 @@ import java.util.Map;
  */
 public class FieldPropertyExtractor implements PropertyExtractor {
 
-//	@Override
 	public Map<String, PropertyWrapper> extractProperties(Class<?> clazz) {
 		Map<String, PropertyWrapper> map = new LinkedHashMap<String, PropertyWrapper>();
 		extractProperties0(clazz, map);
@@ -48,19 +48,26 @@ public class FieldPropertyExtractor implements PropertyExtractor {
 			if (map.containsKey(field.getName()) == false
 					&& Modifier.isStatic(modifiers) == false
 					&& Modifier.isFinal(modifiers) == false) {
-				map.put(field.getName(),
-						new PropertyWrapperImpl(field.getName(), null, null, field) {
-							@Override
-							public boolean isReadable() {
-								return true;
-							}
-							@Override
-							public boolean isWritable() {
-								return true;
-							}
-						});
+				map.put(field.getName(), new ReadableWritablePropertyWrapperImpl(field.getName(), null, null, field));
 			}
 		}
 		extractProperties0(clazz.getSuperclass(), map);
+	}
+
+	private static class ReadableWritablePropertyWrapperImpl extends PropertyWrapperImpl {
+		
+		private ReadableWritablePropertyWrapperImpl(String name, Method getter, Method setter, Field field) {
+			super(name, getter, setter, field);
+		}
+		
+		@Override
+		public boolean isReadable() {
+			return true;
+		}
+		
+		@Override
+		public boolean isWritable() {
+			return true;
+		}
 	}
 }

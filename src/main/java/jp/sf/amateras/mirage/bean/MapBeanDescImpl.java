@@ -68,5 +68,4 @@ public class MapBeanDescImpl implements BeanDesc {
 	public <T extends Annotation> T getAnnotation(Class<T> type) {
 		return null;
 	}
-
 }
