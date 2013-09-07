@@ -45,9 +45,9 @@ try {
   BookParam param = new BookParam();
 
   List<Book> result = sqlManager.getResultList(
-    Book.class, "/META-INF/selectBooks.sql", param);
+      Book.class, "/META-INF/selectBooks.sql", param);
 
-  ...
+  // ...
 
   session.commit();
 
@@ -204,12 +204,12 @@ Integer result = sqlManager.iterate(
     Book.class,
     new IterationCallback<Book, Integer>() {
 
-        private int result;
+      private int result;
 
-        @Override public Integer iterate(Book entity) {
-            result = result + entity.price;
-            return result;
-        }
+      @Override public Integer iterate(Book entity) {
+        result = result + entity.price;
+        return result;
+      }
 
     },
     SQL_PREFIX + "SqlManagerImplTest_selectBooks.sql");

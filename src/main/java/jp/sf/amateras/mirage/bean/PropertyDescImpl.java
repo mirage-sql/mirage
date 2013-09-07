@@ -15,9 +15,9 @@ public class PropertyDescImpl implements PropertyDesc {
 	}
 
 //	@Override
-	public Object getValue(Object obj){
+	public Object getValue(Object entity){
 		try {
-			return propertyWrapper.get(obj);
+			return propertyWrapper.get(entity);
 		} catch (IllegalAccessException ex) {
 			throw new BeanDescException(ex);
 
@@ -28,9 +28,9 @@ public class PropertyDescImpl implements PropertyDesc {
 	}
 
 //	@Override
-	public void setValue(Object obj, Object value){
+	public void setValue(Object entity, Object value){
 		try {
-			propertyWrapper.set(obj, value);
+			propertyWrapper.set(entity, value);
 		} catch (IllegalAccessException ex) {
 			throw new BeanDescException(ex);
 
