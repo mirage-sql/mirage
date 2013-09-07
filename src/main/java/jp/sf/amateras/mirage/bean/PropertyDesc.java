@@ -3,6 +3,7 @@ package jp.sf.amateras.mirage.bean;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
+import jp.sf.amateras.mirage.annotation.Transient;
 import jp.sf.amateras.mirage.exception.BeanDescException;
 
 /**
@@ -28,8 +29,18 @@ public interface PropertyDesc {
 	 */
 	public void setValue(Object entity, Object value);
 
+	/**
+	 * Tests whether this property is readable.
+	 * 
+	 * @return true if this property is readable
+	 */
 	public boolean isReadable();
 
+	/**
+	 * Tests whether this property is writable.
+	 * 
+	 * @return {@code true} if this property is writable
+	 */
 	public boolean isWritable();
 
 	/**
@@ -46,8 +57,18 @@ public interface PropertyDesc {
 	 */
 	public String getPropertyName();
 
+	/**
+	 * Returns the field object of this property.
+	 * 
+	 * @return {@link Field} or {@code null} if the property's implementation is not a field.
+	 */
 	public Field getField();
 
+	/**
+	 * Returns whether this property is transient (transient field or {@link Transient} annotated property).
+	 * 
+	 * @return {@code true} if this property is transient
+	 */
 	public boolean isTransient();
 
 	/**
