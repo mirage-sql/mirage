@@ -195,9 +195,9 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		assertEquals(new Long(0), userInfo1.userId);
 		assertEquals(new Long(1), userInfo2.userId);
 
-		List<UserInfo> userList = sqlManager.getResultListBySql(
+		List<UserInfo> userList = sqlManager.getResultList(
 				UserInfo.class,
-				"SELECT * FROM USER_INFO ORDER BY USER_ID");
+				new StringSqlResource("SELECT * FROM USER_INFO ORDER BY USER_ID"));
 
 		assertEquals(2, userList.size());
 		assertEquals(new Long(0), userList.get(0).userId);

@@ -75,9 +75,16 @@ public interface SqlManager {
 	public int getCount(String sqlPath, Object param);
 	public int getCount(SqlResource resource, Object param);
 	
-
+	/**
+	 * @deprecated use {@link #getCount(SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public int getCountBySql(String sql);
 
+	/**
+	 * @deprecated use {@link #getCount(SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public int getCountBySql(String sql, Object... params);
 
 	/**
@@ -248,16 +255,40 @@ public interface SqlManager {
 
 	public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> List<T> getResultListBySql(Class<T> clazz, String sql);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> List<T> getResultListBySql(Class<T> clazz, String sql, Object... params);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> T getSingleResultBySql(Class<T> clazz, String sql);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> T getSingleResultBySql(Class<T> clazz, String sql, Object... params);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql, Object... params);
 
 	/**
@@ -268,7 +299,9 @@ public interface SqlManager {
 	 *
 	 * @param sql the SQL to execute
 	 * @return the number of updated rows
+	 * @deprecated use {@link #executeUpdate(SqlResource)} and {@link StringSqlResource}
 	 */
+	@Deprecated
 	public int executeUpdateBySql(String sql);
 
 	/**
@@ -280,6 +313,7 @@ public interface SqlManager {
 	 * @param sql the SQL to execute which contains placeholder (This is not a 2waySQL)
 	 * @param params the parameters which are set to the placeholder
 	 * @return the number of updated rows
+	 * @deprecated use {@link #executeUpdate(SqlResource, Object)} and {@link StringSqlResource}
 	 */
 	public int executeUpdateBySql(String sql, Object... params);
 

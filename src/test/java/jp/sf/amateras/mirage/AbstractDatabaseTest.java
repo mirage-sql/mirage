@@ -45,7 +45,7 @@ public abstract class AbstractDatabaseTest extends TestCase {
 		String sql = new String(bytes, "UTF-8");
 		for(String statement: sql.split(";")){
 			if(statement.trim().length() > 0){
-				sqlManager.executeUpdateBySql(statement);
+				sqlManager.executeUpdate(new StringSqlResource(statement));
 			}
 		}
 	}
