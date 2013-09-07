@@ -29,7 +29,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> map = sqlManager.getSingleResult(
 				Map.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		assertEquals("Mirage in Action", map.get("bookName"));
@@ -61,7 +61,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Book> results = sqlManager.getResultList(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookNames.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookNames.sql"),
 				param);
 
 		assertEquals(2, results.size());
@@ -80,7 +80,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		Integer count = sqlManager.getSingleResult(
 				Integer.class,
-				SQL_PREFIX + "SqlManagerImplTest_countBook.sql");
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_countBook.sql"));
 
 		assertEquals(2, count.intValue());
 	}
@@ -105,7 +105,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		param.put("bookName", "Mirage in Action");
 
 		int count = sqlManager.getCount(
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		assertEquals(2, count);
@@ -119,7 +119,8 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		MockSqlManager sqlManager = new MockSqlManager();
 
 		sqlManager.getResultList(
-				Book.class, SQL_PREFIX + "SqlManagerImplTest_removeSemicolon.sql");
+				Book.class,
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_removeSemicolon.sql"));
 
 		MirageTestContext.verifySqlNumber(1);
 		ExecutedSQLInfo info = MirageTestContext.getExecutedSQLInfo(0);
@@ -134,7 +135,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		MirageTestContext.initMirageTestContext();
 		MockSqlManager sqlManager = new MockSqlManager();
 
-		sqlManager.getCount(SQL_PREFIX + "SqlManagerImplTest_testOracleHint1.sql");
+		sqlManager.getCount(new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_testOracleHint1.sql"));
 
 		MirageTestContext.verifySqlNumber(1);
 		ExecutedSQLInfo info = MirageTestContext.getExecutedSQLInfo(0);
@@ -151,7 +152,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		MirageTestContext.initMirageTestContext();
 		MockSqlManager sqlManager = new MockSqlManager();
 
-		sqlManager.getCount(SQL_PREFIX + "SqlManagerImplTest_testOracleHint2.sql");
+		sqlManager.getCount(new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_testOracleHint2.sql"));
 
 		MirageTestContext.verifySqlNumber(1);
 		ExecutedSQLInfo info = MirageTestContext.getExecutedSQLInfo(0);
@@ -173,7 +174,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Book> bookList = sqlManager.getResultList(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		assertEquals(1, bookList.size());
@@ -219,7 +220,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Book> bookList = sqlManager.getResultList(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		assertEquals(1, bookList.size());
@@ -246,7 +247,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Book> bookList = sqlManager.getResultList(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				new BookParam());
 
 		assertEquals(2, bookList.size());
@@ -280,7 +281,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Book> bookList = sqlManager.getResultList(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				new BookParam());
 
 		assertEquals(2, bookList.size());
@@ -308,7 +309,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		book = sqlManager.getSingleResult(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		book.price = 100;
@@ -316,7 +317,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Book> bookList = sqlManager.getResultList(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql");
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"));
 
 		assertEquals(1, bookList.size());
 		assertEquals("Mirage in Action", bookList.get(0).name);
@@ -337,14 +338,14 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		book = sqlManager.getSingleResult(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		sqlManager.deleteEntity(book);
 
 		book = sqlManager.getSingleResult(
 				Book.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"),
 				param);
 
 		assertNull(book);
@@ -383,7 +384,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 						return result;
 					}
 				},
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql");
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"));
 
 		assertEquals(80, result.intValue());
 	}
@@ -407,14 +408,14 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 						return result;
 					}
 				},
-				SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql");
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectByBookName.sql"));
 
 		assertEquals(50, result.intValue());
 	}
 
 	public void testCall() throws Exception {
 		try {
-			sqlManager.executeUpdate(SQL_PREFIX + "SqlManagerImplTest_testCall_setUp.sql");
+			sqlManager.executeUpdate(new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_testCall_setUp.sql"));
 
 			NewBookParam newBookParam = new NewBookParam();
 			newBookParam.bookName = "Seasar2徹底入門";
@@ -428,7 +429,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 			assertEquals(3990, book.price.intValue());
 
 		} finally {
-			sqlManager.executeUpdate(SQL_PREFIX + "SqlManagerImplTest_testCall_tearDown.sql");
+			sqlManager.executeUpdate(new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_testCall_tearDown.sql"));
 		}
 	}
 

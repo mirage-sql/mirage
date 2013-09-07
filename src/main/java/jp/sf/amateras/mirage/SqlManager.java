@@ -59,7 +59,10 @@ public interface SqlManager {
 	 * @param sqlPath the SQL file path
 	 * @return the row count
 	 */
+	@Deprecated
 	public int getCount(String sqlPath);
+	public int getCount(SqlResource resource);
+	
 
 	/**
 	 * Returns the row count of the result of the given SQL.
@@ -68,27 +71,46 @@ public interface SqlManager {
 	 * @param param the parameter object
 	 * @return the row count
 	 */
+	@Deprecated
 	public int getCount(String sqlPath, Object param);
+	public int getCount(SqlResource resource, Object param);
+	
 
 	public int getCountBySql(String sql);
 
 	public int getCountBySql(String sql, Object... params);
 
+	@Deprecated
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath);
+	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
 
+	@Deprecated
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath, Object param);
+	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
 
+	@Deprecated
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath);
+	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
 
+	@Deprecated
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath, Object param);
+	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
 
+	@Deprecated
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath);
+	public <T> T getSingleResult(Class<T> clazz, SqlResource resource);
 
+	@Deprecated
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath, Object param);
+	public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
 
+	@Deprecated
 	public int executeUpdate(String sqlPath);
+	public int executeUpdate(SqlResource resource);
 
+	@Deprecated
 	public int executeUpdate(String sqlPath, Object param);
+	public int executeUpdate(SqlResource resource, Object param);
 
 	/**
 	 * Inserts the given entity.
