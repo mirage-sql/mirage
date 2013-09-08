@@ -4,7 +4,7 @@
   <groupId>jp.sf.amateras.mirage</groupId>
   <artifactId>mirage</artifactId>
   <packaging>jar</packaging>
-  <version>1.1.6</version>
+  <version>1.2.0</version>
   <name>Mirage</name>
   <url>http://amateras.sourceforge.jp/site/mirage/welcome.html</url>
   <description>
