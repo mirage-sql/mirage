@@ -13,7 +13,7 @@ Release Notes
  
  * Apply Bootstrap theme to the generated Maven site.
  
- * Add {{{apidocs/jp/sf/amateras/mirage/dialect/H2Dialect.html}H2Dialect}}.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/dialect/H2Dialect.html}H2Dialect}}.
 
 * {mirage 1.1.6 and mirage-scala 0.0.5 - 15 Nov 2012}
 
@@ -41,9 +41,9 @@ Release Notes
 
 * {mirage 1.1.4 - 27 Jan 2012}
 
- * Added {{{apidocs/jp/sf/amateras/mirage/naming/RailsLikeNameConverter.html}RailsLikeNameConverter}} as an optional NameConverter.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/naming/RailsLikeNameConverter.html}RailsLikeNameConverter}} as an optional NameConverter.
 
- * Added {{{apidocs/jp/sf/amateras/mirage/beans/FieldPropertyExtractor.html}FieldPropertyExtractor}} as an optional implementation of PropertyExtractor.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/beans/FieldPropertyExtractor.html}FieldPropertyExtractor}} as an optional implementation of PropertyExtractor.
 
  * BugFix: Avoid depending on JDBC 4.0 (Java6) API in DefaultValueType
 
@@ -59,7 +59,7 @@ Release Notes
 
  * Improvement: Make ValueType parametrized.  If you implement custom ValueTypes, these is not compatible in this version.
 
- * Added {{{apidocs/jp/sf/amateras/mirage/exception/BreakIterationException.html}BreakIterationException}} to discontinue iteration search.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/exception/BreakIterationException.html}BreakIterationException}} to discontinue iteration search.
 
  * BugFix: @Column is available for the select query.
 
@@ -77,30 +77,30 @@ Release Notes
 
 * {mirage 1.1.3 / mirage-scala 0.0.1 - 6 Aug 2011}
 
- * Added {{{apidocs/jp/sf/amateras/mirage/updater/SchemaUpdater.html}SchemaUpdater}} and {{{apidocs/jp/sf/amateras/mirage/updater/SchemaUpdateListener.html}SchemaUpdateListener}} to update database schema automatically.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/updater/SchemaUpdater.html}SchemaUpdater}} and {{{./apidocs/jp/sf/amateras/mirage/updater/SchemaUpdateListener.html}SchemaUpdateListener}} to update database schema automatically.
 
- * Added {{{apidocs/jp/sf/amateras/mirage/session/Session.html#setRollbackOnly()}Session#setRollbackOnly()}} and {{{apidocs/jp/sf/amateras/mirage/session/Session.html#isRollbackOnly()}Session#isRollbackOnly()}} to rollback transaction without exception.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/session/Session.html#setRollbackOnly()}Session#setRollbackOnly()}} and {{{./apidocs/jp/sf/amateras/mirage/session/Session.html#isRollbackOnly()}Session#isRollbackOnly()}} to rollback transaction without exception.
 
- * SQL parsing result caching for performance improvement. You can control cache mode via {{{apidocs/jp/sf/amateras/mirage/SqlManagerImpl.html#setCacheMode(boolean)}SqlManagerImpl#setCacheMode()}}.
+ * SQL parsing result caching for performance improvement. You can control cache mode via {{{./apidocs/jp/sf/amateras/mirage/SqlManagerImpl.html#setCacheMode(boolean)}SqlManagerImpl#setCacheMode()}}.
 
  * Oracle hint support in 2-way SQL
 
- * Added {{{apidocs/jp/sf/amateras/mirage/ResultEntityCreator.html}ResultEntityCreator}} interface to extends SqlManager.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/ResultEntityCreator.html}ResultEntityCreator}} interface to extends SqlManager.
 
- * Added {{{apidocs/jp/sf/amateras/mirage/bean/PropertyExtractor.html}PropertyExtractor}} interface to extends BeanDesc.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/bean/PropertyExtractor.html}PropertyExtractor}} interface to extends BeanDesc.
 
- * Scala wrapper named {{{mirage-scala.html}mirage-scala}} is available.
+ * Scala wrapper named {{{./mirage-scala.html}mirage-scala}} is available.
 
  []
 
 * {mirage 1.1.2 - 1 May 2011}
 
- * Added {{{apidocs/jp/sf/amateras/mirage/session/DBCPSessionImpl.html}DBCPSessionImpl}} to provide connection pooling as standalone usage.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/session/DBCPSessionImpl.html}DBCPSessionImpl}} to provide connection pooling as standalone usage.
 
- * Added {{{apidocs/jp/sf/amateras/mirage/integration/guice/TransactionInterceptor.html}TransactionInterceptor}} and {{{apidocs/jp/sf/amateras/mirage/integration/guice/Transactional.html}@Transactional}}
-   for {{{integration.html#Google_Guice}Guice Integration}}.
+ * Added {{{./apidocs/jp/sf/amateras/mirage/integration/guice/TransactionInterceptor.html}TransactionInterceptor}} and {{{./apidocs/jp/sf/amateras/mirage/integration/guice/Transactional.html}@Transactional}}
+   for {{{./integration.html#Google_Guice}Guice Integration}}.
 
- * {{{apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}} came to support stored procedure / function.
+ * {{{./apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}} came to support stored procedure / function.
 
  []
 
@@ -116,22 +116,22 @@ Release Notes
 
  * Primary key generation support
 
-  * {{{apidocs/jp/sf/amateras/mirage/annotation/PrimaryKey.html}@PrimaryKey}} annotation has new attributes generationType and generator.
+  * {{{./apidocs/jp/sf/amateras/mirage/annotation/PrimaryKey.html}@PrimaryKey}} annotation has new attributes generationType and generator.
     The generationType attribute supports GenerationType.APPLICATION, GenerationType.IDENTIY and GenerationType.SEQAUENCE.
 
   * The persistent attribute of @PrimaryKey annotation has been removed.
 
  * Improvement of unit testing support
 
-  * Verification methods of {{{apidocs/jp/sf/amateras/mirage/test/MirageTestContext.html}MirageTestContext}} have been enhanced.
+  * Verification methods of {{{./apidocs/jp/sf/amateras/mirage/test/MirageTestContext.html}MirageTestContext}} have been enhanced.
 
  * New ConnectionProvider and Dialect
 
-  * Added {{{apidocs/jp/sf/amateras/mirage/provider/JNDIDataSourceConnectionProvider.html}JNDIDataSourceConnectionProvider}} and
-    {{{apidocs/jp/sf/amateras/mirage/provider/JNDIXADataSourceConnectionProvider.html}JNDIXADataSourceConnectionProvider}} to
+  * Added {{{./apidocs/jp/sf/amateras/mirage/provider/JNDIDataSourceConnectionProvider.html}JNDIDataSourceConnectionProvider}} and
+    {{{./apidocs/jp/sf/amateras/mirage/provider/JNDIXADataSourceConnectionProvider.html}JNDIXADataSourceConnectionProvider}} to
     obtain datasource from JNDI.
 
-  * Added {{{apidocs/jp/sf/amateras/mirage/dialect/MySQLDialect.html}MySQLDialect}} to MySQL support.
+  * Added {{{./apidocs/jp/sf/amateras/mirage/dialect/MySQLDialect.html}MySQLDialect}} to MySQL support.
 
  []
 
@@ -139,12 +139,12 @@ Release Notes
 
  * Unit Testing support
 
-   * Added {{{apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}} which is used in unit testing instead of SqlManager.
-     See details about Unit Testing support at the {{{unittest.html}UnitTest}} section.
+   * Added {{{./apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}} which is used in unit testing instead of SqlManager.
+     See details about Unit Testing support at the {{{./unittest.html}UnitTest}} section.
 
  * Ant Task
 
-   * Added {{{apidocs/jp/sf/amateras/mirage/tool/EntityGenTask.html}EntityGenTask}} for entity generation.
+   * Added {{{./apidocs/jp/sf/amateras/mirage/tool/EntityGenTask.html}EntityGenTask}} for entity generation.
 
  []
 
@@ -152,11 +152,11 @@ Release Notes
 
  * Added new methods to SqlManager for batch insert/update/delete entities:
 
-   * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#insertBatch(java.util.List)}SqlManager#insertBatch()}}
+   * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#insertBatch(java.util.List)}SqlManager#insertBatch()}}
 
-   * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#updateBatch(java.util.List)}SqlManager#updateBatch()}}
+   * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#updateBatch(java.util.List)}SqlManager#updateBatch()}}
 
-   * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#deleteBatch(java.util.List)}SqlManager#deleteBatch()}}
+   * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#deleteBatch(java.util.List)}SqlManager#deleteBatch()}}
 
  * BugFix: NullPointerException which is caused in conversion from NULL column value to java.util.Date.
 
@@ -164,7 +164,7 @@ Release Notes
 
  * Added new annotations @Table, @Column. These annotation are used to specify table and column name.
 
- * Entity Generation Tool (Experimental). See the {{{apidocs/jp/sf/amateras/mirage/tool/EntityGen.html}EntityGen Javadoc}} to know how to use it.
+ * Entity Generation Tool (Experimental). See the {{{./apidocs/jp/sf/amateras/mirage/tool/EntityGen.html}EntityGen Javadoc}} to know how to use it.
 
  []
 
@@ -178,21 +178,21 @@ Release Notes
 
  * Added new methods to SqlManager for direct sql execution:
 
-    * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#getResultListBySql(java.lang.Class, java.lang.String, java.lang.Object...)}SqlManager#getResultListBySql()}}
+    * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#getResultListBySql(java.lang.Class, java.lang.String, java.lang.Object...)}SqlManager#getResultListBySql()}}
 
-    * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#getSingleResult(java.lang.Class, java.lang.String, java.lang.Object)}SqlManager#getSingleResultBySql()}}
+    * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#getSingleResult(java.lang.Class, java.lang.String, java.lang.Object)}SqlManager#getSingleResultBySql()}}
 
-    * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#iterateBySql(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object...)}SqlManager#iterateBySql()}}
+    * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#iterateBySql(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object...)}SqlManager#iterateBySql()}}
 
-    * {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#executeUpdateBySql(java.lang.String, java.lang.Object...)}SqlManager#executeUpdateBySql()}}
+    * {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#executeUpdateBySql(java.lang.String, java.lang.Object...)}SqlManager#executeUpdateBySql()}}
 
  []
 
 * {mirage 1.0.3 - 15 Jun 2010}
 
   * Iteration search per a record using cursor.
-    See {{{apidocs/jp/sf/amateras/mirage/IterationCallback.html}IterationCallback}} and
-    {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#iterate(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object)}SqlManager#iterate()}}.
+    See {{{./apidocs/jp/sf/amateras/mirage/IterationCallback.html}IterationCallback}} and
+    {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#iterate(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object)}SqlManager#iterate()}}.
 
   * Stored procedure / function support.
 
@@ -216,13 +216,13 @@ Release Notes
 
   * Simple example and documentation for Google Guice integration.
 
-  * It's possible to specify a transient property by transient modifier instead of {{{apidocs/jp/sf/amateras/mirage/annotation/Transient.html}@Transient}} annotation.
+  * It's possible to specify a transient property by transient modifier instead of {{{./apidocs/jp/sf/amateras/mirage/annotation/Transient.html}@Transient}} annotation.
 
-  * Added new method {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#findEntity(java.lang.Class, java.lang.Object...)}SqlManager#findEntity(Class clazz, Object... id)}}
+  * Added new method {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#findEntity(java.lang.Class, java.lang.Object...)}SqlManager#findEntity(Class clazz, Object... id)}}
 
-  * Added new method {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#getCount(java.lang.String, java.lang.Object)}SqlManager#getCount(String sqlPath[, Object param])}}
+  * Added new method {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#getCount(java.lang.String, java.lang.Object)}SqlManager#getCount(String sqlPath[, Object param])}}
 
-  * {{{apidocs/jp/sf/amateras/mirage/type/ValueType.html}ValueType}} interface to add custom value type support
+  * {{{./apidocs/jp/sf/amateras/mirage/type/ValueType.html}ValueType}} interface to add custom value type support
 
   * BLOB support
 

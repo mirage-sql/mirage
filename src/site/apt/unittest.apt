@@ -9,10 +9,10 @@ UnitTest Support
 
 * {MockSqlManager}
 
- Mirage provides <<{{{apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}}>> for unit testing of classes which use SqlManager.
+ Mirage provides <<{{{./apidocs/jp/sf/amateras/mirage/test/MockSqlManager.html}MockSqlManager}}>> for unit testing of classes which use SqlManager.
 
  Using MockSqlManager instead of SqlManager, you can execute a your code which uses SqlManager without database.
- You can configure results of MockSqlManager and verify executed SQLs using <<{{{apidocs/jp/sf/amateras/mirage/test/MirageTestContext.html}MirageTestContext}}>>.
+ You can configure results of MockSqlManager and verify executed SQLs using <<{{{./apidocs/jp/sf/amateras/mirage/test/MirageTestContext.html}MirageTestContext}}>>.
 
  An example of TestCase which uses MockSqlManager is below:
 

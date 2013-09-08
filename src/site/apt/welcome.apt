@@ -29,11 +29,11 @@ Welcome
 
 * {Quick Start}
 
- You can get JAR file from the download page or Maven repository. See the {{{download.html}Download}} section.
+ You can get JAR file from the download page or Maven repository. See the {{{./download.html}Download}} section.
 
 ** {First example of Mirage}
 
- The basic example of searching using the SQL file. <<{{{apidocs/jp/sf/amateras/mirage/SqlManager.html}SqlManager}}>> is a main interface of Mirage.
+ The basic example of searching using the SQL file. <<{{{./apidocs/jp/sf/amateras/mirage/SqlManager.html}SqlManager}}>> is a main interface of Mirage.
  You can get it from Session and you can control transaction using Session also.
 
 --------
@@ -122,13 +122,13 @@ WHERE AUTHOR = ?
 ORDER BY BOOK_ID ASC
 --------
 
- See {{{2waysql.html}here}} to know details about 2WaySQL.
+ See {{{./2waysql.html}here}} to know details about 2WaySQL.
 
 ** {SQL less Update}
 
  Mirage can insert / update / delete using entity object (without SQL file).
 
- Entity Class must have a primary key field with <<{{{apidocs/jp/sf/amateras/mirage/annotation/PrimaryKey.html}@PrimaryKey}}>> annotation:
+ Entity Class must have a primary key field with <<{{{./apidocs/jp/sf/amateras/mirage/annotation/PrimaryKey.html}@PrimaryKey}}>> annotation:
 
 --------
 public class Book {
@@ -196,7 +196,7 @@ Book book = sqlManager.findEntity(Book.class, bookId);
  SqlManager#getResultList() creates all entity instances and returns a list which contains them.
  If SQL returns a large result, it causes OutOfMemory.
 
- In these case, you should use {{{apidocs/jp/sf/amateras/mirage/SqlManager.html#iterate(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object)}SqlManager#iterate()}}
+ In these case, you should use {{{./apidocs/jp/sf/amateras/mirage/SqlManager.html#iterate(java.lang.Class, jp.sf.amateras.mirage.IterationCallback, java.lang.String, java.lang.Object)}SqlManager#iterate()}}
  instead of SqlManager#getResultList().
 
 --------
@@ -215,10 +215,10 @@ Integer result = sqlManager.iterate(
     SQL_PREFIX + "SqlManagerImplTest_selectBooks.sql");
 --------
 
- SqlManager#iterate() accepts {{{apidocs/jp/sf/amateras/mirage/IterationCallback.html}IterationCallback}} and invoke it per record.
+ SqlManager#iterate() accepts {{{./apidocs/jp/sf/amateras/mirage/IterationCallback.html}IterationCallback}} and invoke it per record.
  The return value of SqlManager#iterate() is a last returned value from IterationCallback.
 
- If you want to break iteration search on the way, throw {{{apidocs/jp/sf/amateras/mirage/exception/BreakIterationException.html}BreakIterationException}} from IterationCallback.
+ If you want to break iteration search on the way, throw {{{./apidocs/jp/sf/amateras/mirage/exception/BreakIterationException.html}BreakIterationException}} from IterationCallback.
  By this exception, iteration search is stopped and SqlManager#iterate() returns the previous returned value from IterationCallback.
  If BreakIterationException is thrown at first IterationCallback#iterate() invocation, SqlManager#iterate() returns null.
 
@@ -251,9 +251,9 @@ param.deptId = 1;
 Long count = sqlManager.call(Long.class, "get_emp_count", param);
 --------
 
- Fields of the parameter class has annotation such as {{{apidocs/jp/sf/amateras/mirage/annotation/In.html}@In}},
- {{{apidocs/jp/sf/amateras/mirage/annotation/Out.html}@Out}}, {{{apidocs/jp/sf/amateras/mirage/annotation/InOut.html}@InOut}}
- and {{{apidocs/jp/sf/amateras/mirage/annotation/ResultSet.html}@ResultSet}}.
+ Fields of the parameter class has annotation such as {{{./apidocs/jp/sf/amateras/mirage/annotation/In.html}@In}},
+ {{{./apidocs/jp/sf/amateras/mirage/annotation/Out.html}@Out}}, {{{./apidocs/jp/sf/amateras/mirage/annotation/InOut.html}@InOut}}
+ and {{{./apidocs/jp/sf/amateras/mirage/annotation/ResultSet.html}@ResultSet}}.
  These annotations mean the parameter type.
 
  * The field has no annotation or it has <<@In>> annotation, it means the IN parameter.

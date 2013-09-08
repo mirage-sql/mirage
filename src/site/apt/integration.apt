@@ -12,7 +12,7 @@ Using Mirage with other Frameworks
 * {Spring Framework}
 
  Mirage can work with {{{http://www.springsource.org/}Spring Framework}} using
- <<{{{apidocs/jp/sf/amateras/mirage/integration/spring/SpringConnectionProvider.html}SpringConnectionProvider}}>>
+ <<{{{./apidocs/jp/sf/amateras/mirage/integration/spring/SpringConnectionProvider.html}SpringConnectionProvider}}>>
  instead of DefaultConnectionProvider.
 
 --------
@@ -62,7 +62,7 @@ public void execute(){
 * {Google Guice}
 
  You can use Mirage with {{{http://code.google.com/p/google-guice/}Google Guice}} using
- <<{{{apidocs/jp/sf/amateras/mirage/integration/guice/MirageModule.html}MirageModule}}>>.
+ <<{{{./apidocs/jp/sf/amateras/mirage/integration/guice/MirageModule.html}MirageModule}}>>.
 
 --------
 Injector injector = Guice.createInjector(new MirageModule());
@@ -87,10 +87,10 @@ try {
 
  MirageModule supports @Transactional for automatic transaction control.
  It applies TransactionInterceptor to methods of managed components.
- <<{{{apidocs/jp/sf/amateras/mirage/integration/guice/TransactionInterceptor.html}TransactionInterceptor}}>>
+ <<{{{./apidocs/jp/sf/amateras/mirage/integration/guice/TransactionInterceptor.html}TransactionInterceptor}}>>
  begins and commits / rollbacks a transaction automatically around the applied method.
  Of course, you can use OpenSessionInViewFilter instead of
- <<{{{apidocs/jp/sf/amateras/mirage/integration/guice/Transactional.html}@Transactional}}>> in the web application.
+ <<{{{./apidocs/jp/sf/amateras/mirage/integration/guice/Transactional.html}@Transactional}}>> in the web application.
 
 --------
 public class EmployeeDao {
@@ -122,7 +122,7 @@ dao.insertEmployee(employee);
  S2JDBC is similar to Mirage because we referred S2JDBC in various respects to design Mirage.
  However you can use Mirage instead of S2JDBC.
 
- Register <<SqlManager>> and <<{{{apidocs/jp/sf/amateras/mirage/integration/seasar/SeasarConnectionProvider.html}SeasarConnectionProvider}}>> into your dicon file as follows:
+ Register <<SqlManager>> and <<{{{./apidocs/jp/sf/amateras/mirage/integration/seasar/SeasarConnectionProvider.html}SeasarConnectionProvider}}>> into your dicon file as follows:
 
 --------
 <component class="jp.sf.amateras.mirage.integration.seasar.SeasarConnectionProvider" />

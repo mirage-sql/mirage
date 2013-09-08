@@ -75,7 +75,7 @@ Session.withTransaction { session =>
 }
 --------
 
- As different point of Mirage and mirage-scala, you can write {{{2waysql.html}2waySQL}} inline using <<Sql()>> in mirage-scala.
+ As different point of Mirage and mirage-scala, you can write {{{./2waysql.html}2waySQL}} inline using <<Sql()>> in mirage-scala.
  Of course, you can use external SQL file in mirage-scala using <<SqlFile()>>:
 
 --------
@@ -87,7 +87,7 @@ val result: List[Book] = sqlManager.getResultList[Book](
  In mirage-scala, you can use DTO or Map[String, _] as result class / parameter class.
  DTO must have var fields which correspond to select columns.
 
- See also {{{welcome.html}Mirage documentation}} to learn about usage of Mirage.
+ See also {{{./welcome.html}Mirage documentation}} to learn about usage of Mirage.
 
 * {SQL less Update}
 
@@ -150,7 +150,7 @@ sqlManager.deleteBatch(book1, book2, book3);
 sqlManager.deleteBatch(books: _*);
 --------
 
- As other way, you can generate Java source code of entities using {{{apidocs/jp/sf/amateras/mirage/tool/EntityGenTask.html}Ant Task}}.
+ As other way, you can generate Java source code of entities using {{{./apidocs/jp/sf/amateras/mirage/tool/EntityGenTask.html}Ant Task}}.
  Generated Java based entities are able to be used with mirage-scala.
 
 * {Iteration Search}
