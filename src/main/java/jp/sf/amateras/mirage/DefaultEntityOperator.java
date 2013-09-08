@@ -28,7 +28,7 @@ public class DefaultEntityOperator implements EntityOperator {
 	 * Creates and returns one entity instance from the ResultSet.
 	 *
 	 * @param <T> the type parameter of entity class
-	 * @param clazz the entity class
+	 * @param entityType the entity class
 	 * @param rs the ResultSet
 	 * @param meta the ResultSetMetaData
 	 * @param columnCount the column count
@@ -40,31 +40,31 @@ public class DefaultEntityOperator implements EntityOperator {
 	 * @throws EntityCreationFailedException if {@link EntityOperator} failed to create a result entity
 	 */
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public <T> T createEntity(Class<T> clazz, ResultSet rs,
+	public <T> T createEntity(Class<T> entityType, ResultSet rs,
 			ResultSetMetaData meta, int columnCount, BeanDesc beanDesc,
 			Dialect dialect, List<ValueType<?>> valueTypes, NameConverter nameConverter) {
 
 		try {
 			{
-				ValueType valueType = MirageUtil.getValueType(clazz, dialect, valueTypes);
+				ValueType valueType = MirageUtil.getValueType(entityType, null, dialect, valueTypes);
 				if(valueType != null){
-					return (T) ((ValueType<T>) valueType).get(clazz, rs, 1);
+					return (T) ((ValueType<T>) valueType).get(entityType, rs, 1);
 				}
 			}
 
 			T entity = null;
 
-			if(clazz == Map.class){
+			if(entityType == Map.class){
 				entity = (T) new HashMap<String, Object>();
 			} else {
-				Constructor<T>[] constructors = (Constructor<T>[]) clazz.getDeclaredConstructors();
+				Constructor<T>[] constructors = (Constructor<T>[]) entityType.getDeclaredConstructors();
 				for(Constructor<T> constructor: constructors){
 					try {
 						constructor.setAccessible(true);
 						Class<?>[] types = constructor.getParameterTypes();
 						Object[] params = new Object[types.length];
 						for(int i = 0; i < params.length; i++){
-							ValueType valueType = MirageUtil.getValueType(types[i], dialect, valueTypes);
+							ValueType valueType = MirageUtil.getValueType(types[i], null, dialect, valueTypes);
 							if(valueType != null){
 								params[i] = valueType.getDefaultValue();
 							}
@@ -105,7 +105,7 @@ public class DefaultEntityOperator implements EntityOperator {
 
 				if(pd != null){
 					Class<?> propertyType = pd.getPropertyType();
-					ValueType valueType = MirageUtil.getValueType(propertyType, dialect, valueTypes);
+					ValueType valueType = MirageUtil.getValueType(propertyType, pd, dialect, valueTypes);
 					if(valueType != null){
 						pd.setValue(entity, valueType.get(propertyType, rs, columnName));
 					} else {

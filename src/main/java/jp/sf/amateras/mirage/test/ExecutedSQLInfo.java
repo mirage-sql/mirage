@@ -1,5 +1,7 @@
 package jp.sf.amateras.mirage.test;
 
+import jp.sf.amateras.mirage.bean.PropertyDesc;
+
 /**
  *
  * @author Naoki Takezoe
@@ -7,13 +9,29 @@ package jp.sf.amateras.mirage.test;
 public class ExecutedSQLInfo {
 
 	private String sql;
+	private PropertyDesc[] propDescs;
+	private Object entity;
 	private Object[] params;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param sql the executed SQL
-	 * @param params the array of bound parameters
+	 * @param propDescs the array of bound parameters
+	 * @param entity 
+	 */
+	public ExecutedSQLInfo(String sql, PropertyDesc[] propDescs, Object entity){
+		this.sql = sql;
+		this.propDescs = propDescs;
+		this.entity = entity;
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param sql the executed SQL
+	 * @param propDescs the array of bound parameters
+	 * @param entity 
 	 */
 	public ExecutedSQLInfo(String sql, Object[] params){
 		this.sql = sql;
@@ -34,11 +52,14 @@ public class ExecutedSQLInfo {
 	 *
 	 * @return the array of bound parameters
 	 */
-	public Object[] getParams(){
-		if(params == null){
-			params = new Object[0];
+	public Object[] getParams() {
+		if(params == null) {
+			params = new Object[propDescs.length];
+			for (int i = 0; i < propDescs.length; i++) {
+				params[i] = propDescs[i].getValue(entity);
+			}
 		}
-		return this.params;
+		return params;
 	}
 
 }

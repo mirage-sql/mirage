@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.util.Validate;
 
 public abstract class AbstractValueType<T> implements ValueType<T> {
@@ -89,7 +90,7 @@ public abstract class AbstractValueType<T> implements ValueType<T> {
 		this.type = type;
 	}
 
-	public boolean isSupport(Class<?> type) {
+	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
 		return this.type == type;
 	}
 

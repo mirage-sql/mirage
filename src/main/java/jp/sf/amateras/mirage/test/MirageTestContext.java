@@ -10,6 +10,7 @@ import java.util.Map;
 import jp.sf.amateras.mirage.DefaultEntityOperator;
 import jp.sf.amateras.mirage.EntityOperator;
 import jp.sf.amateras.mirage.SqlManager;
+import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.naming.DefaultNameConverter;
 import jp.sf.amateras.mirage.naming.NameConverter;
 import jp.sf.amateras.mirage.util.MirageUtil;
@@ -157,9 +158,9 @@ public class MirageTestContext {
 	 * @param entity the entity which should be inserted
 	 */
 	public static void verifyInsertSql(int indexOfSql, Object entity){
-		List<Object> values = new ArrayList<Object>();
-		verifySql(indexOfSql, MirageUtil.buildInsertSql(entityOperator, entity, nameConverter, values));
-		verifyParameters(indexOfSql, values.toArray());
+		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
+		verifySql(indexOfSql, MirageUtil.buildInsertSql(entityOperator, entity.getClass(), nameConverter, values));
+		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
 
 	/**
@@ -169,9 +170,9 @@ public class MirageTestContext {
 	 * @param entity the entity which should be updated
 	 */
 	public static void verifyUpdatetSql(int indexOfSql, Object entity){
-		List<Object> values = new ArrayList<Object>();
-		verifySql(indexOfSql, MirageUtil.buildUpdateSql(entityOperator, entity, nameConverter, values));
-		verifyParameters(indexOfSql, values.toArray());
+		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
+		verifySql(indexOfSql, MirageUtil.buildUpdateSql(entityOperator, entity.getClass(), nameConverter, values));
+		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
 
 	/**
@@ -181,12 +182,23 @@ public class MirageTestContext {
 	 * @param entity the entity which should be deleted
 	 */
 	public static void verifyDeleteSql(int indexOfSql, Object entity){
-		List<Object> values = new ArrayList<Object>();
-		verifySql(indexOfSql, MirageUtil.buildDeleteSql(entityOperator, entity, nameConverter, values));
-		verifyParameters(indexOfSql, values.toArray());
+		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
+		verifySql(indexOfSql, MirageUtil.buildDeleteSql(entityOperator, entity.getClass(), nameConverter, values));
+		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
 
-	private static void verifyParameters(int indexOfSql, Object... values){
+	private static void verifyParameters(int indexOfSql, Object entity, PropertyDesc[] propDescs){
+		ExecutedSQLInfo executedSql = executedSqlList.get(indexOfSql);
+		Object[] params = executedSql.getParams();
+
+		assertEquals(propDescs.length, params.length);
+
+		for(int i=0; i < propDescs.length; i++){
+			assertEquals(propDescs[i].getValue(entity), params[i]);
+		}
+	}
+
+	private static void verifyParameters(int indexOfSql, Object[] values){
 		ExecutedSQLInfo executedSql = executedSqlList.get(indexOfSql);
 		Object[] params = executedSql.getParams();
 

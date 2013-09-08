@@ -70,8 +70,8 @@ public class MockSqlExecuter extends SqlExecutor {
 	}
 
 	@Override
-	public int executeUpdateSql(String sql, Object[] params, Object entity) {
-		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
+	public int executeUpdateSql(String sql, PropertyDesc[] propDescs, Object entity) {
+		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entity));
 
 		if(entity != null){
 			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entity.getClass());
@@ -93,9 +93,10 @@ public class MockSqlExecuter extends SqlExecutor {
 	}
 
 	@Override
-	public int executeBatchUpdateSql(String sql, List<Object[]> paramsList, Object[] entities) {
-		for(Object[] params: paramsList){
-			MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
+	public int executeBatchUpdateSql(String sql, List<PropertyDesc[]> propDescsList, Object[] entities) {
+		for (int i = 0; i < propDescsList.size(); i++) {
+			PropertyDesc[] propDescs = propDescsList.get(i);
+			MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entities[i]));
 		}
 
 		if(entities != null){

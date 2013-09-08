@@ -33,6 +33,9 @@ import jp.sf.amateras.mirage.type.TimeValueType;
 import jp.sf.amateras.mirage.type.TimestampValueType;
 import jp.sf.amateras.mirage.type.UtilDateValueType;
 import jp.sf.amateras.mirage.type.ValueType;
+import jp.sf.amateras.mirage.type.enumerate.EnumOneBasedOrdinalValueType;
+import jp.sf.amateras.mirage.type.enumerate.EnumOrdinalValueType;
+import jp.sf.amateras.mirage.type.enumerate.EnumStringValueType;
 import junit.framework.TestCase;
 
 
@@ -91,6 +94,9 @@ public class DefaultEntityOperatorTest extends TestCase {
 		valueTypes.add(new TimeValueType());
 		valueTypes.add(new TimestampValueType());
 		valueTypes.add(new ByteArrayValueType());
+		valueTypes.add(new EnumStringValueType());
+		valueTypes.add(new EnumOrdinalValueType());
+		valueTypes.add(new EnumOneBasedOrdinalValueType());
 		return valueTypes;
 	}
 

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.util.IOUtil;
 
 public class ByteArrayValueType extends AbstractValueType<byte[]> {
@@ -22,7 +23,7 @@ public class ByteArrayValueType extends AbstractValueType<byte[]> {
 	}
 	
 	@Override
-	public boolean isSupport(Class<?> type) {
+	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
 		return type.isArray() && type.getComponentType() == Byte.TYPE;
 	}
 	

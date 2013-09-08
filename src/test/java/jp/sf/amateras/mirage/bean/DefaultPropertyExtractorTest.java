@@ -13,7 +13,8 @@ public class DefaultPropertyExtractorTest extends TestCase {
 		Map<String, PropertyWrapper> properties = extractor.extractProperties(Book.class);
 		assertTrue(properties.containsKey("bookId"));
 		assertTrue(properties.containsKey("bookName"));
-		assertEquals(2, properties.size());
+		assertTrue(properties.containsKey("bookType"));
+		assertEquals(3, properties.size());
 	}
 
 	public void testDefaultPropertyExtractor_magazine() {
