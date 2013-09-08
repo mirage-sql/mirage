@@ -1,5 +1,6 @@
 package jp.sf.amateras.mirage;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class SqlManagerImpl implements SqlManager {
 
 	protected CallExecutor callExecutor = new CallExecutor();
 
-	protected Map<String, Node> nodeCache = new ConcurrentHashMap<String, Node>();
+	protected Map<SqlResource, Node> nodeCache = new ConcurrentHashMap<SqlResource, Node>();
 
 	protected boolean cacheMode = false;
 
@@ -139,29 +140,30 @@ public class SqlManagerImpl implements SqlManager {
 		return this.dialect;
 	}
 
-	protected Node prepareNode(String sqlPath) {
+	protected Node prepareNode(SqlResource resource) {
 
-		if(cacheMode && nodeCache.containsKey(sqlPath)){
-			return nodeCache.get(sqlPath);
-		}
-
-		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		InputStream in = cl.getResourceAsStream(sqlPath);
-		if (in == null) {
-			throw new RuntimeException(String.format(
-					"resource: %s is not found.", sqlPath));
+		if(cacheMode && nodeCache.containsKey(resource)){
+			return nodeCache.get(resource);
 		}
 
 		String sql = null;
 		try {
+			InputStream in = resource.getInputStream();
+			if (in == null) {
+				throw new RuntimeException(String.format(
+						"resource: %s is not found.", resource));
+			}
 			sql = new String(IOUtil.readStream(in), "UTF-8");
 		} catch (IORuntimeException ex){
-			throw new IORuntimeException(String.format("Failed to load SQL from: %s", sqlPath), ex.getCause());
+			throw new IORuntimeException(String.format("Failed to load SQL from: %s", resource), ex.getCause());
 
 		} catch (UnsupportedEncodingException e) {
 			// must not to be reached here
 			throw new RuntimeException(e);
 
+		} catch (IOException e) {
+			throw new IORuntimeException(e);
+			
 		} finally{}
 
 		sql = sql.trim();
@@ -172,7 +174,7 @@ public class SqlManagerImpl implements SqlManager {
 		Node node = new SqlParserImpl(sql).parse();
 
 		if(cacheMode){
-			nodeCache.put(sqlPath, node);
+			nodeCache.put(resource, node);
 		}
 
 		return node;
@@ -183,11 +185,17 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	public int executeUpdate(String sqlPath) {
-		return executeUpdate(sqlPath, null);
+		return executeUpdate(new ClasspathSqlResource(sqlPath));
+	}
+	public int executeUpdate(SqlResource resource) {
+		return executeUpdate(resource, null);
 	}
 
 	public int executeUpdate(String sqlPath, Object param) {
-		Node node = prepareNode(sqlPath);
+		return executeUpdate(new ClasspathSqlResource(sqlPath), param);
+	}
+	public int executeUpdate(SqlResource resource, Object param) {
+		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
 		node.accept(context);
 
@@ -196,11 +204,17 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath) {
-		return getResultList(clazz, sqlPath, null);
+		return getResultList(clazz, new ClasspathSqlResource(sqlPath));
+	}
+	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource) {
+		return getResultList(clazz, resource, null);
 	}
 
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath, Object param) {
-		Node node = prepareNode(sqlPath);
+		return getResultList(clazz, new ClasspathSqlResource(sqlPath), param);
+	}
+	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param) {
+		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
 		node.accept(context);
 
@@ -208,11 +222,17 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath) {
-		return getSingleResult(clazz, sqlPath, null);
+		return getSingleResult(clazz, new ClasspathSqlResource(sqlPath));
+	}
+	public <T> T getSingleResult(Class<T> clazz, SqlResource resource) {
+		return getSingleResult(clazz, resource, null);
 	}
 
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath, Object param) {
-		Node node = prepareNode(sqlPath);
+		return getSingleResult(clazz, new ClasspathSqlResource(sqlPath), param);
+	}
+	public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param) {
+		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
 		node.accept(context);
 
@@ -381,12 +401,18 @@ public class SqlManagerImpl implements SqlManager {
 
 //	@Override
 	public int getCount(String sqlPath) {
-		return getCount(sqlPath, null);
+		return getCount(new ClasspathSqlResource(sqlPath), null);
+	}
+	public int getCount(SqlResource resource) {
+		return getCount(resource, null);
 	}
 
 //	@Override
 	public int getCount(String sqlPath, Object param) {
-		Node node = prepareNode(sqlPath);
+		return getCount(new ClasspathSqlResource(sqlPath), param);
+	}
+	public int getCount(SqlResource resource, Object param) {
+		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
 		node.accept(context);
 		String sql = dialect.getCountSql(context.getSql());
@@ -408,13 +434,19 @@ public class SqlManagerImpl implements SqlManager {
 
 //	@Override
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath) {
-		return this.<T, R> iterate(clazz, callback, sqlPath, null);
+		return iterate(clazz, callback, new ClasspathSqlResource(sqlPath));
+	}
+	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource) {
+		return this.<T, R> iterate(clazz, callback, resource, null);
 	}
 
 //	@Override
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath, Object param) {
+		return iterate(clazz, callback, new ClasspathSqlResource(sqlPath), param);
+	}
+	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param) {
 
-		Node node = prepareNode(sqlPath);
+		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
 		node.accept(context);
 

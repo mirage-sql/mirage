@@ -1,6 +1,7 @@
 package jp.sf.amateras.mirage.integration.spring;
 
 import jp.sf.amateras.mirage.SqlManager;
+import jp.sf.amateras.mirage.StringSqlResource;
 import jp.sf.amateras.mirage.SqlManagerImplTest.Book;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +28,8 @@ public class SpringTestDao {
 
 	@Transactional
 	public int getCount(){
-		return sqlManager.getSingleResultBySql(
-				Integer.class, "SELECT COUNT(*) FROM BOOK");
+		return sqlManager.getSingleResult(
+				Integer.class, new StringSqlResource("SELECT COUNT(*) FROM BOOK"));
 	}
 
 }

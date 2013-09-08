@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import jp.sf.amateras.mirage.SqlManager;
 import jp.sf.amateras.mirage.SqlManagerImpl;
+import jp.sf.amateras.mirage.StringSqlResource;
 import jp.sf.amateras.mirage.dialect.Dialect;
 import jp.sf.amateras.mirage.exception.SQLRuntimeException;
 import jp.sf.amateras.mirage.util.IOUtil;
@@ -89,7 +90,7 @@ public class SchemaUpdater {
 
 		while((sql = getSql(version + 1)) != null){
 			if(sql.trim().length() != 0){
-				sqlManager.executeUpdateBySql(sql);
+				sqlManager.executeUpdate(new StringSqlResource(sql));
 			}
 			version++;
 		}
@@ -144,8 +145,8 @@ public class SchemaUpdater {
 	 */
 	protected boolean existsTable(){
 		try {
-			int count = sqlManager.getSingleResultBySql(Integer.class,
-					String.format("SELECT COUNT(*) FROM %s", tableName));
+			int count = sqlManager.getSingleResult(Integer.class,
+					new StringSqlResource(String.format("SELECT COUNT(*) FROM %s", tableName)));
 
 			if(count == 0){
 				// TODO Should insert an initial record?
@@ -162,11 +163,11 @@ public class SchemaUpdater {
 	 * Creates table which manages schema version and insert an initial record as version 0.
 	 */
 	protected void createTable(){
-		sqlManager.executeUpdateBySql(
-				String.format("CREATE TABLE %s (VERSION NUMERIC NOT NULL)", tableName));
+		sqlManager.executeUpdate(
+				new StringSqlResource(String.format("CREATE TABLE %s (VERSION NUMERIC NOT NULL)", tableName)));
 
-		sqlManager.executeUpdateBySql(
-				String.format("INSERT INTO %s (0))", tableName));
+		sqlManager.executeUpdate(
+				new StringSqlResource(String.format("INSERT INTO %s (0))", tableName)));
 	}
 
 	/**
@@ -175,8 +176,8 @@ public class SchemaUpdater {
 	 * @return the current version number
 	 */
 	protected int getCurrentVersion(){
-		return sqlManager.getSingleResultBySql(Integer.class,
-				String.format("SELECT COUNT(*) FROM %s", tableName));
+		return sqlManager.getSingleResult(Integer.class,
+				new StringSqlResource(String.format("SELECT COUNT(*) FROM %s", tableName)));
 	}
 
 	/**
@@ -185,8 +186,8 @@ public class SchemaUpdater {
 	 * @param version the version number
 	 */
 	protected void updateVersion(int version){
-		sqlManager.executeUpdateBySql(
-				String.format("UPDATE %s SET VERSION=?", tableName), version);
+		sqlManager.executeUpdate(
+				new StringSqlResource(String.format("UPDATE %s SET VERSION=?", tableName)), version);
 	}
 
 }

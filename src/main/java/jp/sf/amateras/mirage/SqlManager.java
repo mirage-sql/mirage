@@ -59,7 +59,10 @@ public interface SqlManager {
 	 * @param sqlPath the SQL file path
 	 * @return the row count
 	 */
+	@Deprecated
 	public int getCount(String sqlPath);
+	public int getCount(SqlResource resource);
+	
 
 	/**
 	 * Returns the row count of the result of the given SQL.
@@ -68,27 +71,77 @@ public interface SqlManager {
 	 * @param param the parameter object
 	 * @return the row count
 	 */
+	@Deprecated
 	public int getCount(String sqlPath, Object param);
-
+	public int getCount(SqlResource resource, Object param);
+	
+	/**
+	 * @deprecated use {@link #getCount(SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public int getCountBySql(String sql);
 
+	/**
+	 * @deprecated use {@link #getCount(SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public int getCountBySql(String sql, Object... params);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource)}
+	 */
+	@Deprecated
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath);
+	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource, Object)}
+	 */
+	@Deprecated
 	public <T> List<T> getResultList(Class<T> clazz, String sqlPath, Object param);
+	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource)}
+	 */
+	@Deprecated
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath);
+	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource, Object)}
+	 */
+	@Deprecated
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath, Object param);
+	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource)}
+	 */
+	@Deprecated
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath);
+	public <T> T getSingleResult(Class<T> clazz, SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource, Object)}
+	 */
+	@Deprecated
 	public <T> T getSingleResult(Class<T> clazz, String sqlPath, Object param);
+	public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
 
+	/**
+	 * @deprecated use {@link #executeUpdate(SqlResource)}
+	 */
+	@Deprecated
 	public int executeUpdate(String sqlPath);
+	public int executeUpdate(SqlResource resource);
 
+	/**
+	 * @deprecated use {@link #executeUpdate(SqlResource, Object)}
+	 */
+	@Deprecated
 	public int executeUpdate(String sqlPath, Object param);
+	public int executeUpdate(SqlResource resource, Object param);
 
 	/**
 	 * Inserts the given entity.
@@ -202,16 +255,40 @@ public interface SqlManager {
 
 	public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> List<T> getResultListBySql(Class<T> clazz, String sql);
 
+	/**
+	 * @deprecated use {@link #getResultList(Class, SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> List<T> getResultListBySql(Class<T> clazz, String sql, Object... params);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> T getSingleResultBySql(Class<T> clazz, String sql);
 
+	/**
+	 * @deprecated use {@link #getSingleResult(Class, SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T> T getSingleResultBySql(Class<T> clazz, String sql, Object... params);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql);
 
+	/**
+	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource, Object)} and {@link StringSqlResource}
+	 */
+	@Deprecated
 	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql, Object... params);
 
 	/**
@@ -222,7 +299,9 @@ public interface SqlManager {
 	 *
 	 * @param sql the SQL to execute
 	 * @return the number of updated rows
+	 * @deprecated use {@link #executeUpdate(SqlResource)} and {@link StringSqlResource}
 	 */
+	@Deprecated
 	public int executeUpdateBySql(String sql);
 
 	/**
@@ -234,6 +313,7 @@ public interface SqlManager {
 	 * @param sql the SQL to execute which contains placeholder (This is not a 2waySQL)
 	 * @param params the parameters which are set to the placeholder
 	 * @return the number of updated rows
+	 * @deprecated use {@link #executeUpdate(SqlResource, Object)} and {@link StringSqlResource}
 	 */
 	public int executeUpdateBySql(String sql, Object... params);
 
