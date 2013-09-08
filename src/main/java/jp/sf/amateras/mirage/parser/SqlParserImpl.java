@@ -71,6 +71,8 @@ public class SqlParserImpl implements SqlParser {
         case BIND_VARIABLE:
             parseBindVariable();
             break;
+        default:
+            break;
         }
     }
 

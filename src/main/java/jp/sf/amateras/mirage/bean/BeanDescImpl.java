@@ -98,7 +98,6 @@ public class BeanDescImpl implements BeanDesc {
 		return clazz.getAnnotation(type);
 	}
 
-
 	@Override
 	public String toString() {
 		return new StringBuilder(super.toString())

@@ -36,8 +36,8 @@ public class MapPropertyDescImpl implements PropertyDesc {
 
 //	@Override
 //	@SuppressWarnings("unchecked")
-	public Object getValue(Object obj) {
-		return Map.class.cast(obj).get(propertyName);
+	public Object getValue(Object entity) {
+		return Map.class.cast(entity).get(propertyName);
 	}
 
 //	@Override
@@ -52,8 +52,8 @@ public class MapPropertyDescImpl implements PropertyDesc {
 
 //	@Override
 	@SuppressWarnings("unchecked")
-	public void setValue(Object obj, Object value) {
-		((Map<Object, Object>) obj).put(propertyName, value);
+	public void setValue(Object entity, Object value) {
+		((Map<Object, Object>) entity).put(propertyName, value);
 	}
 
 //	@Override
