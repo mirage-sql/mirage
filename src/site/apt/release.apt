@@ -7,6 +7,12 @@
 
 Release Notes
 
+* {mirage 1.2 - 8 Sep 2013}
+
+ * Some internal interface changed.
+ 
+ * Apply Bootstrap theme to the generated Maven site.
+
 * {mirage 1.1.6 and mirage-scala 0.0.5 - 15 Nov 2012}
 
  * Small bug fix and improvements about extendability.
