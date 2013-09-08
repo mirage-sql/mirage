@@ -9,7 +9,7 @@ Release Notes
 
 * {mirage 1.2.0 - 8 Sep 2013}
 
- * Some internal interface changed.
+ * Added enum property type support which contains some internal interface changes.
  
  * Apply Bootstrap theme to the generated Maven site.
  
