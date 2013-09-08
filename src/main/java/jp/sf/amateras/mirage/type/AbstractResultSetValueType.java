@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import jp.sf.amateras.mirage.bean.PropertyDesc;
+
 public class AbstractResultSetValueType implements ValueType<Object> {
 
     private int sqlType;
@@ -40,7 +42,7 @@ public class AbstractResultSetValueType implements ValueType<Object> {
 	}
 
 //	@Override
-	public boolean isSupport(Class<?> type) {
+	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
 		if (List.class.isAssignableFrom(type)){
 			return true;
 		}

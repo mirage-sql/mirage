@@ -42,6 +42,9 @@ import jp.sf.amateras.mirage.type.TimeValueType;
 import jp.sf.amateras.mirage.type.TimestampValueType;
 import jp.sf.amateras.mirage.type.UtilDateValueType;
 import jp.sf.amateras.mirage.type.ValueType;
+import jp.sf.amateras.mirage.type.enumerate.EnumOneBasedOrdinalValueType;
+import jp.sf.amateras.mirage.type.enumerate.EnumOrdinalValueType;
+import jp.sf.amateras.mirage.type.enumerate.EnumStringValueType;
 import jp.sf.amateras.mirage.util.IOUtil;
 import jp.sf.amateras.mirage.util.MirageUtil;
 import jp.sf.amateras.mirage.util.Validate;
@@ -86,6 +89,9 @@ public class SqlManagerImpl implements SqlManager {
 		addValueType(new TimeValueType());
 		addValueType(new TimestampValueType());
 		addValueType(new ByteArrayValueType());
+		addValueType(new EnumStringValueType());
+		addValueType(new EnumOrdinalValueType());
+		addValueType(new EnumOneBasedOrdinalValueType());
 //		addValueType(new jp.sf.amateras.mirage.type.DefaultValueType());
 
 		setDialect(dialect);
@@ -214,10 +220,10 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	public int deleteEntity(Object entity) {
-		List<Object> params = new ArrayList<Object>();
-		String executeSql = MirageUtil.buildDeleteSql(entityOperator, entity, nameConverter, params);
+		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
+		String executeSql = MirageUtil.buildDeleteSql(entityOperator, entity.getClass(), nameConverter, propDescs);
 
-		return sqlExecutor.executeUpdateSql(executeSql, params.toArray(), null);
+		return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
 
 	public <T> int deleteBatch(T... entities) {
@@ -225,12 +231,12 @@ public class SqlManagerImpl implements SqlManager {
 			return 0;
 		}
 
-		List<Object[]> paramsList = new ArrayList<Object[]>();
+		List<PropertyDesc[]> paramsList = new ArrayList<PropertyDesc[]>();
 		String executeSql = null;
 
 		for(Object entity: entities){
-			List<Object> params = new ArrayList<Object>();
-			String sql = MirageUtil.buildDeleteSql(entityOperator, entity, nameConverter, params);
+			List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
+			String sql = MirageUtil.buildDeleteSql(entityOperator, entity.getClass(), nameConverter, propDescs);
 
 			if(executeSql == null){
 				executeSql = sql;
@@ -239,10 +245,10 @@ public class SqlManagerImpl implements SqlManager {
 				throw new IllegalArgumentException("Different entity is contained in the entity list.");
 			}
 
-			paramsList.add(params.toArray());
+			paramsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
 		}
 
-		return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, null);
+		return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, entities);
 	}
 
 	public <T> int deleteBatch(List<T> entities) {
@@ -275,10 +281,10 @@ public class SqlManagerImpl implements SqlManager {
 	public int insertEntity(Object entity) {
 		fillPrimaryKeysBySequence(entity);
 
-		List<Object> params = new ArrayList<Object>();
-		String sql = MirageUtil.buildInsertSql(entityOperator, entity, nameConverter, params);
+		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
+		String sql = MirageUtil.buildInsertSql(entityOperator, entity.getClass(), nameConverter, propDescs);
 
-		return sqlExecutor.executeUpdateSql(sql, params.toArray(), entity);
+		return sqlExecutor.executeUpdateSql(sql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
 
 	public <T> int insertBatch(T... entities){
@@ -286,14 +292,14 @@ public class SqlManagerImpl implements SqlManager {
 			return 0;
 		}
 
-		List<Object[]> paramsList = new ArrayList<Object[]>();
+		List<PropertyDesc[]> propDescsList = new ArrayList<PropertyDesc[]>();
 		String executeSql = null;
 
 		for(Object entity: entities){
 			fillPrimaryKeysBySequence(entity);
 
-			List<Object> params = new ArrayList<Object>();
-			String sql = MirageUtil.buildInsertSql(entityOperator, entity, nameConverter, params);
+			List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
+			String sql = MirageUtil.buildInsertSql(entityOperator, entity.getClass(), nameConverter, propDescs);
 
 			if(executeSql == null){
 				executeSql = sql;
@@ -302,10 +308,10 @@ public class SqlManagerImpl implements SqlManager {
 				throw new IllegalArgumentException("Different entity is contained in the entity list.");
 			}
 
-			paramsList.add(params.toArray());
+			propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
 		}
 		// TODO ここ？
-		return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, entities);
+		return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
 	}
 
 	public <T> int insertBatch(List<T> entities){
@@ -313,10 +319,10 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	public int updateEntity(Object entity) {
-		List<Object> params = new ArrayList<Object>();
-		String executeSql = MirageUtil.buildUpdateSql(entityOperator, entity, nameConverter, params);
+		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
+		String executeSql = MirageUtil.buildUpdateSql(entityOperator, entity.getClass(), nameConverter, propDescs);
 
-		return sqlExecutor.executeUpdateSql(executeSql, params.toArray(), null);
+		return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
 
 	public <T> int updateBatch(T... entities) {
@@ -324,12 +330,12 @@ public class SqlManagerImpl implements SqlManager {
 			return 0;
 		}
 
-		List<Object[]> paramsList = new ArrayList<Object[]>();
+		List<PropertyDesc[]> propDescsList = new ArrayList<PropertyDesc[]>();
 		String executeSql = null;
 
 		for(Object entity: entities){
-			List<Object> params = new ArrayList<Object>();
-			String sql = MirageUtil.buildUpdateSql(entityOperator, entity, nameConverter, params);
+			List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
+			String sql = MirageUtil.buildUpdateSql(entityOperator, entity.getClass(), nameConverter, propDescs);
 
 			if(executeSql == null){
 				executeSql = sql;
@@ -338,10 +344,10 @@ public class SqlManagerImpl implements SqlManager {
 				throw new IllegalArgumentException("Different entity is contained in the entity list.");
 			}
 
-			paramsList.add(params.toArray());
+			propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
 		}
 
-		return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, null);
+		return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
 	}
 
 	public <T> int updateBatch(List<T> entities) {

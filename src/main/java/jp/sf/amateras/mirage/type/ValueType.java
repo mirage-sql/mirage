@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jp.sf.amateras.mirage.bean.PropertyDesc;
+
 public interface ValueType<T> {
 
-	public boolean isSupport(Class<?> type);
+	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc);
 
 	public T getDefaultValue();
 

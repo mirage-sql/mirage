@@ -20,17 +20,17 @@ import jp.sf.amateras.mirage.type.ValueType;
 public class MirageUtil {
 
 	public static ValueType<?> getValueType(
-			Class<?> type, Dialect dialect, List<ValueType<?>> valueTypes){
+			Class<?> propertyType, PropertyDesc propertyDesc, Dialect dialect, List<ValueType<?>> valueTypes){
 
 		if(dialect.getValueType() != null){
 			ValueType<?> valueType = dialect.getValueType();
-			if(valueType.isSupport(type)){
+			if(valueType.isSupport(propertyType, propertyDesc)){
 				return valueType;
 			}
 		}
 
 		for(ValueType<?> valueType: valueTypes){
-			if(valueType.isSupport(type)){
+			if(valueType.isSupport(propertyType, propertyDesc)){
 				return valueType;
 			}
 		}
@@ -140,26 +140,26 @@ public class MirageUtil {
 	 *
 	 * @param entity the entity to insert
 	 * @param nameConverter the name converter
-	 * @param params the list of parameters
+	 * @param propDescs the list of parameters
 	 * @return Insert SQL
 	 */
-	public static String buildInsertSql(EntityOperator entityOperator, Object entity, NameConverter nameConverter, List<Object> params){
+	public static String buildInsertSql(EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
+			List<PropertyDesc> propDescs){
 		StringBuilder sb = new StringBuilder();
-		Class<?> clazz = entity.getClass();
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entityType);
 
-		sb.append("INSERT INTO ").append(getTableName(clazz, nameConverter)).append(" (");
+		sb.append("INSERT INTO ").append(getTableName(entityType, nameConverter)).append(" (");
 		{
 			int count = 0;
 			for(int i = 0; i < beanDesc.getPropertyDescSize(); i++){
 				PropertyDesc pd = beanDesc.getPropertyDesc(i);
-				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(clazz, pd, nameConverter);
+				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(entityType, pd, nameConverter);
 				if((primaryKey == null || primaryKey.generationType != GenerationType.IDENTITY)
 						&& !pd.isTransient() && pd.isReadable() ){
 					if(count != 0){
 						sb.append(", ");
 					}
-					sb.append(getColumnName(entityOperator, clazz, pd, nameConverter));
+					sb.append(getColumnName(entityOperator, entityType, pd, nameConverter));
 					count++;
 				}
 			}
@@ -169,7 +169,7 @@ public class MirageUtil {
 			int count = 0;
 			for(int i = 0; i < beanDesc.getPropertyDescSize(); i++){
 				PropertyDesc pd = beanDesc.getPropertyDesc(i);
-				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(clazz, pd, nameConverter);
+				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(entityType, pd, nameConverter);
 				if((primaryKey == null || primaryKey.generationType != GenerationType.IDENTITY)
 						&& !pd.isTransient() && pd.isReadable() ){
 					if(count != 0){
@@ -177,7 +177,7 @@ public class MirageUtil {
 					}
 					sb.append("?");
 
-					params.add(pd.getValue(entity));
+					propDescs.add(pd);
 
 					count++;
 				}
@@ -196,24 +196,24 @@ public class MirageUtil {
 	 * @param params the list of parameters
 	 * @return Update SQL
 	 */
-	public static String buildUpdateSql(EntityOperator entityOperator, Object entity, NameConverter nameConverter, List<Object> params){
+	public static String buildUpdateSql(EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
+			List<PropertyDesc> propDescs){
 		StringBuilder sb = new StringBuilder();
-		Class<?> clazz = entity.getClass();
 
-		sb.append("UPDATE ").append(getTableName(clazz, nameConverter)).append(" SET ");
+		sb.append("UPDATE ").append(getTableName(entityType, nameConverter)).append(" SET ");
 
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entityType);
 		{
 			int count = 0;
 			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
 				PropertyDesc pd = beanDesc.getPropertyDesc(i);
-				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(clazz, pd, nameConverter);
+				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(entityType, pd, nameConverter);
 				if(primaryKey == null && !pd.isTransient() && pd.isReadable() ){
 					if (count != 0) {
 						sb.append(", ");
 					}
-					sb.append(getColumnName(entityOperator, clazz, pd, nameConverter)).append(" = ?");
-					params.add(pd.getValue(entity));
+					sb.append(getColumnName(entityOperator, entityType, pd, nameConverter)).append(" = ?");
+					propDescs.add(pd);
 					count++;
 				}
 			}
@@ -223,19 +223,19 @@ public class MirageUtil {
 			int count = 0;
 			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
 				PropertyDesc pd = beanDesc.getPropertyDesc(i);
-				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(clazz, pd, nameConverter);
+				PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(entityType, pd, nameConverter);
 				if(primaryKey != null && pd.isReadable() ){
 					if(count != 0){
 						sb.append(" AND ");
 					}
-					sb.append(getColumnName(entityOperator, clazz, pd, nameConverter)).append(" = ? ");
-					params.add(pd.getValue(entity));
+					sb.append(getColumnName(entityOperator, entityType, pd, nameConverter)).append(" = ? ");
+					propDescs.add(pd);
 					count++;
 				}
 			}
 			if(count == 0){
 				throw new RuntimeException(
-						"Primary key is not found: " + entity.getClass().getName());
+						"Primary key is not found: " + entityType.getName());
 			}
 		}
 
@@ -250,32 +250,32 @@ public class MirageUtil {
 	 * @param params the list of parameters
 	 * @return Delete SQL
 	 */
-	public static String buildDeleteSql(EntityOperator entityOperator, Object entity, NameConverter nameConverter, List<Object> params){
+	public static String buildDeleteSql(EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
+			List<PropertyDesc> propDescs){
 		StringBuilder sb = new StringBuilder();
-		sb.append("DELETE FROM ").append(getTableName(entity.getClass(), nameConverter));
+		sb.append("DELETE FROM ").append(getTableName(entityType, nameConverter));
 		sb.append(" WHERE ");
 
 		boolean hasPrimaryKey = false;
 
-		Class<?> clazz = entity.getClass();
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entityType);
 
 		for(int i=0;i<beanDesc.getPropertyDescSize();i++){
 			PropertyDesc pd = beanDesc.getPropertyDesc(i);
-			PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(clazz, pd, nameConverter);
+			PrimaryKeyInfo primaryKey = entityOperator.getPrimaryKeyInfo(entityType, pd, nameConverter);
 			if(primaryKey != null && pd.isReadable()){
-				if(!params.isEmpty()){
+				if(!propDescs.isEmpty()){
 					sb.append(" AND ");
 				}
-				sb.append(getColumnName(entityOperator, clazz, pd, nameConverter)).append("=?");
-				params.add(pd.getValue(entity));
+				sb.append(getColumnName(entityOperator, entityType, pd, nameConverter)).append("=?");
+				propDescs.add(pd);
 				hasPrimaryKey = true;
 			}
 		}
 
 		if(hasPrimaryKey == false){
 			throw new RuntimeException(
-					"Primary key is not found: " + entity.getClass().getName());
+					"Primary key is not found: " + entityType.getName());
 		}
 
 		return sb.toString();
