@@ -12,6 +12,8 @@ Release Notes
  * Some internal interface changed.
  
  * Apply Bootstrap theme to the generated Maven site.
+ 
+ * Add {{{apidocs/jp/sf/amateras/mirage/dialect/H2Dialect.html}H2Dialect}}.
 
 * {mirage 1.1.6 and mirage-scala 0.0.5 - 15 Nov 2012}
 
