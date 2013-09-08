@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 import java.lang.reflect.Field;
 
 import jp.sf.amateras.mirage.SqlManager;
+import jp.sf.amateras.mirage.StringSqlResource;
 import jp.sf.amateras.mirage.session.Session;
 import jp.sf.amateras.mirage.session.SessionFactory;
 import jp.sf.amateras.mirage.test.MirageTestContext;
@@ -101,8 +102,8 @@ public class TransactionInterceptorTest extends TestCase {
 
 		@Transactional
 		public int getCount(){
-			return sqlManager.getSingleResultBySql(Integer.class,
-					"SELECT COUNT(*) AS COUNT FROM EMPLOYEE");
+			return sqlManager.getSingleResult(Integer.class,
+					new StringSqlResource("SELECT COUNT(*) AS COUNT FROM EMPLOYEE"));
 		}
 
 	}
