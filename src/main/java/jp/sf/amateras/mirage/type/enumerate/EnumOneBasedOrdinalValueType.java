@@ -72,9 +72,11 @@ public class EnumOneBasedOrdinalValueType implements ValueType<Object> {
 		if (Enum.class.isAssignableFrom(type) == false) {
 			return false;
 		}
-		Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
-		if(property != null && property.value() == EnumType.ONE_BASED_ORDINAL) {
-			return true;
+		if(propertyDesc != null) {
+			Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
+			if(property != null && property.value() == EnumType.ONE_BASED_ORDINAL) {
+				return true;
+			}
 		}
 		Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
 		if (fieldType != null && fieldType.value() == EnumType.ONE_BASED_ORDINAL) {
