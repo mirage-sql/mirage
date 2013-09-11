@@ -86,16 +86,33 @@ public class DefaultEntityOperator implements EntityOperator {
 			}
 
 			for(int i = 0; i < columnCount; i++){
+				String columnLabel = meta.getColumnLabel(i + 1);
 				String columnName = meta.getColumnName(i + 1);
 				PropertyDesc pd = null;
 
 				for(int j = 0; j < beanDesc.getPropertyDescSize(); j++){
 					PropertyDesc property = beanDesc.getPropertyDesc(j);
 					Column column = property.getAnnotation(Column.class);
-					if(column != null && columnName.equalsIgnoreCase(column.name())){
+					if(column != null && columnLabel.equalsIgnoreCase(column.name())){
 						pd = property;
 						break;
 					}
+				}
+				
+				if(pd == null){
+					for(int j = 0; j < beanDesc.getPropertyDescSize(); j++){
+						PropertyDesc property = beanDesc.getPropertyDesc(j);
+						Column column = property.getAnnotation(Column.class);
+						if(column != null && columnName.equalsIgnoreCase(column.name())){
+							pd = property;
+							break;
+						}
+					}
+				}
+
+				if(pd == null){
+					String propertyName = nameConverter.columnToProperty(columnLabel);
+					pd = beanDesc.getPropertyDesc(propertyName);
 				}
 
 				if(pd == null){
@@ -107,17 +124,17 @@ public class DefaultEntityOperator implements EntityOperator {
 					Class<?> propertyType = pd.getPropertyType();
 					ValueType valueType = MirageUtil.getValueType(propertyType, pd, dialect, valueTypes);
 					if(valueType != null){
-						pd.setValue(entity, valueType.get(propertyType, rs, columnName));
+						pd.setValue(entity, valueType.get(propertyType, rs, columnLabel));
 					} else {
 						if (logger.isLoggable(Level.FINE)) {
 							logger.fine(String.format("column [%s] is ignored because property [%s]'s type is not supported: %s",
-									columnName, pd.getPropertyName(), propertyType.getName()));
+									columnLabel, pd.getPropertyName(), propertyType.getName()));
 						}
 					}
 				} else {
 					if (logger.isLoggable(Level.FINER)) {
 						logger.finer(String.format("column [%s] is ignored because property is not found in the bean",
-								columnName));
+								columnLabel));
 					}
 				}
 			}
