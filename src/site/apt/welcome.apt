@@ -38,7 +38,7 @@ Welcome
 
 --------
 Session session = SessionFactory.getSession();
-SqlManager sqlManager = session.getSqlmanager();
+SqlManager sqlManager = session.getSqlManager();
 session.begin();
 
 try {
