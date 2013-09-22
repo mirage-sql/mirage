@@ -1,12 +1,13 @@
 package jp.sf.amateras.mirage.parser;
 
+import jp.sf.amateras.mirage.bean.BeanDescFactory;
 import junit.framework.TestCase;
 
 public class SqlParserImplTest extends TestCase {
 
 	public void testParse() {
 		SqlParser parser = new SqlParserImpl(
-				"SELECT * FROM USER /*IF user.type == 0*/WHERE USER_ID=/*user.userId*//*END*/");
+				"SELECT * FROM USER /*IF user.type == 0*/WHERE USER_ID=/*user.userId*//*END*/", new BeanDescFactory());
 		Node node = parser.parse();
 
 		UserDto user = new UserDto();
@@ -27,7 +28,8 @@ public class SqlParserImplTest extends TestCase {
 				"WHERE" +
 				" /*IF userId != null*/AND USER_ID=/*userId*//*END*/" +
 				" /*IF userType != null*/AND USER_TYPE=/*userType*//*END*/" +
-				"/*END*/");
+				"/*END*/",
+				new BeanDescFactory());
 		Node node = parser.parse();
 
 		SqlContext context = new SqlContextImpl();

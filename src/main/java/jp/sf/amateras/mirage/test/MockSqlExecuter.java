@@ -8,7 +8,6 @@ import jp.sf.amateras.mirage.SqlExecutor;
 import jp.sf.amateras.mirage.annotation.PrimaryKey;
 import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
 import jp.sf.amateras.mirage.bean.PropertyDesc;
 
 /**
@@ -74,7 +73,7 @@ public class MockSqlExecuter extends SqlExecutor {
 		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entity));
 
 		if(entity != null){
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entity.getClass());
+			BeanDesc beanDesc = getBeanDescFactory().getBeanDesc(entity.getClass());
 			int size = beanDesc.getPropertyDescSize();
 			for(int i=0; i < size; i++){
 				PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
@@ -101,7 +100,7 @@ public class MockSqlExecuter extends SqlExecutor {
 
 		if(entities != null){
 			for(Object entity: entities){
-				BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entity.getClass());
+				BeanDesc beanDesc = getBeanDescFactory().getBeanDesc(entity.getClass());
 				int size = beanDesc.getPropertyDescSize();
 				for(int i=0; i < size; i++){
 					PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);

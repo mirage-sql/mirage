@@ -17,6 +17,7 @@ package jp.sf.amateras.mirage.parser;
 
 import java.util.Stack;
 
+import jp.sf.amateras.mirage.bean.BeanDescFactory;
 import jp.sf.amateras.mirage.exception.TwoWaySQLException;
 import jp.sf.amateras.mirage.parser.SqlTokenizer.TokenType;
 import jp.sf.amateras.mirage.util.StringUtil;
@@ -28,21 +29,25 @@ import jp.sf.amateras.mirage.util.StringUtil;
  */
 public class SqlParserImpl implements SqlParser {
 
+	private BeanDescFactory beanDescFactory;
+	
     private SqlTokenizer tokenizer;
 
     private Stack<Node> nodeStack = new Stack<Node>();
+
 
     /**
      * Constructs.
      *
      * @param sql
      */
-    public SqlParserImpl(String sql) {
-        sql = sql.trim();
+    public SqlParserImpl(String sql, BeanDescFactory beanDescFactory) {
+		sql = sql.trim();
         if (sql.endsWith(";")) {
             sql = sql.substring(0, sql.length() - 1);
         }
         tokenizer = new SqlTokenizerImpl(sql);
+        this.beanDescFactory = beanDescFactory;
     }
 
 //	@Override
@@ -194,11 +199,11 @@ public class SqlParserImpl implements SqlParser {
         if (s.startsWith("(") && s.endsWith(")")) {
             peek().addChild(new ParenBindVariableNode(expr));
         } else if (expr.startsWith("$")) {
-            peek().addChild(new EmbeddedValueNode(expr.substring(1)));
+            peek().addChild(new EmbeddedValueNode(expr.substring(1), beanDescFactory));
         } else if (expr.equals("orderBy")) {
-            peek().addChild(new EmbeddedValueNode(expr));
+            peek().addChild(new EmbeddedValueNode(expr, beanDescFactory));
         } else {
-            peek().addChild(new BindVariableNode(expr));
+            peek().addChild(new BindVariableNode(expr, beanDescFactory));
         }
     }
 
@@ -207,7 +212,7 @@ public class SqlParserImpl implements SqlParser {
      */
     protected void parseBindVariable() {
         String expr = tokenizer.getToken();
-        peek().addChild(new BindVariableNode(expr));
+        peek().addChild(new BindVariableNode(expr, beanDescFactory));
     }
 
     /**

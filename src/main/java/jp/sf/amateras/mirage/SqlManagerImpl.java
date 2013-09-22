@@ -54,6 +54,8 @@ public class SqlManagerImpl implements SqlManager {
 
 //	private static final Logger logger = Logger.getLogger(SqlManagerImpl.class.getName());
 
+	protected BeanDescFactory beanDescFactory;
+	
 	protected ConnectionProvider connectionProvider;
 
 	protected NameConverter nameConverter;
@@ -96,12 +98,19 @@ public class SqlManagerImpl implements SqlManager {
 //		addValueType(new jp.sf.amateras.mirage.type.DefaultValueType());
 
 		setDialect(dialect);
+		setBeanDescFactory(new BeanDescFactory());
 		setNameConverter(new DefaultNameConverter());
 		setEntityOperator(new DefaultEntityOperator());
 	}
 
 	public void setCacheMode(boolean cacheMode){
 		this.cacheMode = cacheMode;
+	}
+	
+	public void setBeanDescFactory(BeanDescFactory beanDescFactory) {
+		this.beanDescFactory = beanDescFactory;
+		this.sqlExecutor.setBeanDescFactory(beanDescFactory);
+		this.callExecutor.setBeanDescFactory(beanDescFactory);
 	}
 
 	public void setNameConverter(NameConverter nameConverter) {
@@ -171,7 +180,7 @@ public class SqlManagerImpl implements SqlManager {
 			sql = sql.substring(0, sql.length() - 1);
 		}
 
-		Node node = new SqlParserImpl(sql).parse();
+		Node node = new SqlParserImpl(sql, beanDescFactory).parse();
 
 		if(cacheMode){
 			nodeCache.put(resource, node);
@@ -181,7 +190,7 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	protected SqlContext prepareSqlContext(Object param){
-		return MirageUtil.getSqlContext(param);
+		return MirageUtil.getSqlContext(beanDescFactory, param);
 	}
 
 	public int executeUpdate(String sqlPath) {
@@ -241,7 +250,7 @@ public class SqlManagerImpl implements SqlManager {
 
 	public int deleteEntity(Object entity) {
 		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
-		String executeSql = MirageUtil.buildDeleteSql(entityOperator, entity.getClass(), nameConverter, propDescs);
+		String executeSql = MirageUtil.buildDeleteSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
 
 		return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
@@ -256,7 +265,7 @@ public class SqlManagerImpl implements SqlManager {
 
 		for(Object entity: entities){
 			List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
-			String sql = MirageUtil.buildDeleteSql(entityOperator, entity.getClass(), nameConverter, propDescs);
+			String sql = MirageUtil.buildDeleteSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
 
 			if(executeSql == null){
 				executeSql = sql;
@@ -283,7 +292,7 @@ public class SqlManagerImpl implements SqlManager {
 			return;
 		}
 
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entity.getClass());
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(entity.getClass());
 		int size = beanDesc.getPropertyDescSize();
 
 		for(int i=0; i < size; i++){
@@ -302,7 +311,7 @@ public class SqlManagerImpl implements SqlManager {
 		fillPrimaryKeysBySequence(entity);
 
 		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
-		String sql = MirageUtil.buildInsertSql(entityOperator, entity.getClass(), nameConverter, propDescs);
+		String sql = MirageUtil.buildInsertSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
 
 		return sqlExecutor.executeUpdateSql(sql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
@@ -319,7 +328,7 @@ public class SqlManagerImpl implements SqlManager {
 			fillPrimaryKeysBySequence(entity);
 
 			List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
-			String sql = MirageUtil.buildInsertSql(entityOperator, entity.getClass(), nameConverter, propDescs);
+			String sql = MirageUtil.buildInsertSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
 
 			if(executeSql == null){
 				executeSql = sql;
@@ -340,7 +349,7 @@ public class SqlManagerImpl implements SqlManager {
 
 	public int updateEntity(Object entity) {
 		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
-		String executeSql = MirageUtil.buildUpdateSql(entityOperator, entity.getClass(), nameConverter, propDescs);
+		String executeSql = MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
 
 		return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
@@ -355,7 +364,7 @@ public class SqlManagerImpl implements SqlManager {
 
 		for(Object entity: entities){
 			List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
-			String sql = MirageUtil.buildUpdateSql(entityOperator, entity.getClass(), nameConverter, propDescs);
+			String sql = MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
 
 			if(executeSql == null){
 				executeSql = sql;
@@ -376,7 +385,7 @@ public class SqlManagerImpl implements SqlManager {
 
 	//	@Override
 	public <T> T findEntity(Class<T> clazz, Object... id) {
-		String executeSql = MirageUtil.buildSelectSQL(entityOperator, clazz, nameConverter);
+		String executeSql = MirageUtil.buildSelectSQL(beanDescFactory, entityOperator, clazz, nameConverter);
 		return sqlExecutor.getSingleResult(clazz, executeSql, id);
 	}
 
@@ -500,7 +509,7 @@ public class SqlManagerImpl implements SqlManager {
 		sb.append("(");
 		if (param != null){
 			StringBuilder p = new StringBuilder();
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(param);
+			BeanDesc beanDesc = beanDescFactory.getBeanDesc(param);
 			int parameterCount = 0;
 			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
 				PropertyDesc pd = beanDesc.getPropertyDesc(i);
