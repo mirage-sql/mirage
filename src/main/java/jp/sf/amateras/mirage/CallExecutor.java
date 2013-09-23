@@ -29,11 +29,17 @@ public class CallExecutor {
 
 	private static final Logger logger = Logger.getLogger(CallExecutor.class.getName());
 
+	private BeanDescFactory beanDescFactory;
 	private NameConverter nameConverter;
 	private ConnectionProvider connectionProvider;
 	private List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
 	private Dialect dialect;
 	private EntityOperator entityOperator;
+	
+	
+	public void setBeanDescFactory(BeanDescFactory beanDescFactory) {
+		this.beanDescFactory = beanDescFactory;
+	}
 
 	public void setConnectionProvider(ConnectionProvider connectionProvider){
 		this.connectionProvider = connectionProvider;
@@ -295,7 +301,7 @@ public class CallExecutor {
 
     protected <T> T handleSingleResult(final Class<T> resultClass, final ResultSet rs) throws SQLException {
     	ResultSetMetaData meta = rs.getMetaData();
-    	BeanDesc beanDesc = BeanDescFactory.getBeanDesc(resultClass);
+    	BeanDesc beanDesc = beanDescFactory.getBeanDesc(resultClass);
 
     	return entityOperator.createEntity(resultClass, rs, meta, meta.getColumnCount(), beanDesc,
     			dialect, valueTypes, nameConverter);
@@ -345,7 +351,7 @@ public class CallExecutor {
 		ResultSetMetaData meta = rs.getMetaData();
 		int columnCount = meta.getColumnCount();
 
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(elementClass);
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(elementClass);
 
 		while(rs.next()){
 			T entity = entityOperator.createEntity(elementClass, rs, meta, columnCount, beanDesc,
@@ -462,7 +468,7 @@ public class CallExecutor {
     }
 
     protected List<ParamDesc> createParamDesc(final Class<?> clazz) {
-        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+        BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
         final List<ParamDesc> paramDescList = new ArrayList<ParamDesc>();
 
         for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {

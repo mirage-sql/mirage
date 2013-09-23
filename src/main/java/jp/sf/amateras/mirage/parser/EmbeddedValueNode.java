@@ -36,13 +36,17 @@ public class EmbeddedValueNode extends AbstractNode {
 
     private String propertyName;
 
+	private BeanDescFactory beanDescFactory;
+
     /**
      * <code>EmbeddedValueNode</code>を作成します。
      *
      * @param expression
+     * @param beanDescFactory 
      */
-    public EmbeddedValueNode(String expression) {
+    public EmbeddedValueNode(String expression, BeanDescFactory beanDescFactory) {
         this.expression = expression;
+		this.beanDescFactory = beanDescFactory;
         String[] array = StringUtil.split(expression, ".");
         this.baseName = array[0];
         if (array.length > 1) {
@@ -64,7 +68,7 @@ public class EmbeddedValueNode extends AbstractNode {
         Object value = ctx.getArg(baseName);
         Class<?> clazz = ctx.getArgType(baseName);
         if (propertyName != null) {
-            BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+            BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
             PropertyDesc pd = beanDesc.getPropertyDesc(propertyName);
             value = pd.getValue(value);
             clazz = pd.getPropertyType();

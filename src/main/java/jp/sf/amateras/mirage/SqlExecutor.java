@@ -29,11 +29,22 @@ public class SqlExecutor {
 
 	private static final Logger logger = Logger.getLogger(SqlExecutor.class.getName());
 
+	private BeanDescFactory beanDescFactory;
 	private NameConverter nameConverter;
 	private ConnectionProvider connectionProvider;
 	private Dialect dialect;
 	private List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
 	private EntityOperator entityOreator;
+
+
+	
+	public void setBeanDescFactory(BeanDescFactory beanDescFactory) {
+		this.beanDescFactory = beanDescFactory;
+	}
+	
+	protected BeanDescFactory getBeanDescFactory() {
+		return beanDescFactory;
+	}
 
 	public void setConnectionProvider(ConnectionProvider connectionProvider){
 		this.connectionProvider = connectionProvider;
@@ -125,7 +136,7 @@ public class SqlExecutor {
 			ResultSetMetaData meta = rs.getMetaData();
 			int columnCount = meta.getColumnCount();
 
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 
 			while(rs.next()){
 				T entity = entityOreator.createEntity(clazz, rs, meta, columnCount, beanDesc,
@@ -169,7 +180,7 @@ public class SqlExecutor {
 			ResultSetMetaData meta = rs.getMetaData();
 			int columnCount = meta.getColumnCount();
 
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 			R result = null;
 
 			while(rs.next()){
@@ -217,7 +228,7 @@ public class SqlExecutor {
 			ResultSetMetaData meta = rs.getMetaData();
 			int columnCount = meta.getColumnCount();
 
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 
 			if(rs.next()){
 				T entity = entityOreator.createEntity(clazz, rs, meta, columnCount, beanDesc,
@@ -401,7 +412,7 @@ public class SqlExecutor {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void fillIdentityPrimaryKeys(Object entity, ResultSet rs) throws SQLException {
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entity.getClass());
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(entity.getClass());
 		int size = beanDesc.getPropertyDescSize();
 
 		for(int i=0; i < size; i++){
