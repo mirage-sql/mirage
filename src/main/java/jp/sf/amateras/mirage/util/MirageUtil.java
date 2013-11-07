@@ -44,11 +44,11 @@ public class MirageUtil {
 	 * @param param the parameter object
 	 * @return {@link SqlContext} instance
 	 */
-	public static SqlContext getSqlContext(Object param) {
+	public static SqlContext getSqlContext(BeanDescFactory beanDescFactory, Object param) {
 		SqlContext context = new SqlContextImpl();
 
 		if (param != null) {
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(param);
+			BeanDesc beanDesc = beanDescFactory.getBeanDesc(param);
 			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
 				PropertyDesc pd = beanDesc.getPropertyDesc(i);
 				context.addArg(pd.getPropertyName(), pd.getValue(param), pd
@@ -105,9 +105,9 @@ public class MirageUtil {
 	 * @return Select SQL
 	 * @throws RuntimeException the entity class has no primary keys
 	 */
-	public static String buildSelectSQL(EntityOperator entityOperator, Class<?> clazz, NameConverter nameConverter){
+	public static String buildSelectSQL(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> clazz, NameConverter nameConverter){
 		StringBuilder sb = new StringBuilder();
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 
 		sb.append("SELECT * FROM ");
 		sb.append(MirageUtil.getTableName(clazz, nameConverter));
@@ -143,10 +143,10 @@ public class MirageUtil {
 	 * @param propDescs the list of parameters
 	 * @return Insert SQL
 	 */
-	public static String buildInsertSql(EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
+	public static String buildInsertSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
 			List<PropertyDesc> propDescs){
 		StringBuilder sb = new StringBuilder();
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entityType);
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(entityType);
 
 		sb.append("INSERT INTO ").append(getTableName(entityType, nameConverter)).append(" (");
 		{
@@ -196,13 +196,13 @@ public class MirageUtil {
 	 * @param params the list of parameters
 	 * @return Update SQL
 	 */
-	public static String buildUpdateSql(EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
+	public static String buildUpdateSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
 			List<PropertyDesc> propDescs){
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("UPDATE ").append(getTableName(entityType, nameConverter)).append(" SET ");
 
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entityType);
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(entityType);
 		{
 			int count = 0;
 			for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
@@ -250,7 +250,7 @@ public class MirageUtil {
 	 * @param params the list of parameters
 	 * @return Delete SQL
 	 */
-	public static String buildDeleteSql(EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
+	public static String buildDeleteSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
 			List<PropertyDesc> propDescs){
 		StringBuilder sb = new StringBuilder();
 		sb.append("DELETE FROM ").append(getTableName(entityType, nameConverter));
@@ -258,7 +258,7 @@ public class MirageUtil {
 
 		boolean hasPrimaryKey = false;
 
-		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(entityType);
+		BeanDesc beanDesc = beanDescFactory.getBeanDesc(entityType);
 
 		for(int i=0;i<beanDesc.getPropertyDescSize();i++){
 			PropertyDesc pd = beanDesc.getPropertyDesc(i);

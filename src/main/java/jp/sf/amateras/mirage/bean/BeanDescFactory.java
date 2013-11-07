@@ -5,24 +5,24 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanDescFactory {
 
-	private static Map<Class<?>, BeanDesc> cacheMap = new ConcurrentHashMap<Class<?>, BeanDesc>();
-	private static boolean cacheEnabled = false;
-	private static PropertyExtractor propertyExtractor = new DefaultPropertyExtractor();
+	private Map<Class<?>, BeanDesc> cacheMap = new ConcurrentHashMap<Class<?>, BeanDesc>();
+	private boolean cacheEnabled = false;
+	private PropertyExtractor propertyExtractor = new DefaultPropertyExtractor();
 
-	public static void setCacheEnabled(boolean cacheEnabled){
-		BeanDescFactory.cacheEnabled = cacheEnabled;
+	public void setCacheEnabled(boolean cacheEnabled){
+		this.cacheEnabled = cacheEnabled;
 	}
 
-	public static boolean isCacheEnabled(){
-		return BeanDescFactory.cacheEnabled;
+	public boolean isCacheEnabled(){
+		return cacheEnabled;
 	}
 
-	public static void setPropertyExtractor(PropertyExtractor propertyExtractor){
-		BeanDescFactory.propertyExtractor = propertyExtractor;
+	public void setPropertyExtractor(PropertyExtractor propertyExtractor){
+		this.propertyExtractor = propertyExtractor;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static BeanDesc getBeanDesc(Object obj){
+	public BeanDesc getBeanDesc(Object obj){
 		if(obj instanceof Map){
 			return new MapBeanDescImpl((Map<String, Object>) obj);
 		} else {
@@ -30,7 +30,7 @@ public class BeanDescFactory {
 		}
 	}
 
-	public static BeanDesc getBeanDesc(Class<?> clazz){
+	public BeanDesc getBeanDesc(Class<?> clazz){
 		if(clazz == Map.class){
 			return new MapBeanDescImpl();
 		}

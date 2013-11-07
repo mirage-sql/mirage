@@ -10,6 +10,7 @@ import java.util.Map;
 import jp.sf.amateras.mirage.DefaultEntityOperator;
 import jp.sf.amateras.mirage.EntityOperator;
 import jp.sf.amateras.mirage.SqlManager;
+import jp.sf.amateras.mirage.bean.BeanDescFactory;
 import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.naming.DefaultNameConverter;
 import jp.sf.amateras.mirage.naming.NameConverter;
@@ -23,6 +24,7 @@ import junit.framework.Assert;
  */
 public class MirageTestContext {
 
+	private static BeanDescFactory beanDescFactory = new BeanDescFactory();
 	private static NameConverter nameConverter = new DefaultNameConverter();
 	private static EntityOperator entityOperator = new DefaultEntityOperator();
 	private static List<Object> resultList = new ArrayList<Object>();
@@ -147,7 +149,7 @@ public class MirageTestContext {
 	 * @param id the values of primary key
 	 */
 	public static void verifyFindSql(int indexOfSql, Class<?> entityClass, Object... id){
-		verifySql(indexOfSql, MirageUtil.buildSelectSQL(entityOperator, entityClass, nameConverter));
+		verifySql(indexOfSql, MirageUtil.buildSelectSQL(beanDescFactory, entityOperator, entityClass, nameConverter));
 		verifyParameters(indexOfSql, id);
 	}
 
@@ -159,7 +161,7 @@ public class MirageTestContext {
 	 */
 	public static void verifyInsertSql(int indexOfSql, Object entity){
 		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
-		verifySql(indexOfSql, MirageUtil.buildInsertSql(entityOperator, entity.getClass(), nameConverter, values));
+		verifySql(indexOfSql, MirageUtil.buildInsertSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
 
@@ -171,7 +173,7 @@ public class MirageTestContext {
 	 */
 	public static void verifyUpdatetSql(int indexOfSql, Object entity){
 		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
-		verifySql(indexOfSql, MirageUtil.buildUpdateSql(entityOperator, entity.getClass(), nameConverter, values));
+		verifySql(indexOfSql, MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
 
@@ -183,7 +185,7 @@ public class MirageTestContext {
 	 */
 	public static void verifyDeleteSql(int indexOfSql, Object entity){
 		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
-		verifySql(indexOfSql, MirageUtil.buildDeleteSql(entityOperator, entity.getClass(), nameConverter, values));
+		verifySql(indexOfSql, MirageUtil.buildDeleteSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
 

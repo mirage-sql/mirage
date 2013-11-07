@@ -34,14 +34,17 @@ public class BindVariableNode extends AbstractNode {
 
 	private String[] names;
 
+	private BeanDescFactory beanDescFactory;
+
 	/**
 	 * <code>BindVariableNode</code>を作成します。
 	 *
 	 * @param expression
 	 */
-	public BindVariableNode(String expression) {
+	public BindVariableNode(String expression, BeanDescFactory beanDescFactory) {
 		this.expression = expression;
 		names = StringUtil.split(expression, ".");
+		this.beanDescFactory = beanDescFactory;
 	}
 
 	/**
@@ -58,7 +61,7 @@ public class BindVariableNode extends AbstractNode {
 		Object value = ctx.getArg(names[0]);
 		Class<?> clazz = ctx.getArgType(names[0]);
 		for (int pos = 1; pos < names.length; pos++) {
-			BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
+			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 			PropertyDesc pd = beanDesc.getPropertyDesc(names[pos]);
 			if (value == null) {
 				break;
