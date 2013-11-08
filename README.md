@@ -1,7 +1,7 @@
 Mirage-SQL
 ======
 
-Mirage is an easy and powerful SQL centric database access library in Java which provides the dynamic SQL template by plain SQL.
+Mirage is an easy and powerful SQL centric database access library for Java which provides the dynamic SQL template by plain SQL.
 
 ```sql
 SELECT * FROM BOOK
@@ -20,4 +20,4 @@ SELECT * FROM BOOK
 ORDER BY BOOK_ID ASC
 ```
 
-See details at the [Wiki](https://github.com/takezoe/mirage/wiki)
+See details at the [Wiki](https://github.com/takezoe/mirage/wiki).
