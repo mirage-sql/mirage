@@ -175,7 +175,7 @@ public class MirageUtil {
 					if(count != 0){
 						sb.append(", ");
 					}
-					sb.append("?");
+					sb.append(placeHolderForInsertAndUpdate(pd));
 
 					propDescs.add(pd);
 
@@ -212,7 +212,8 @@ public class MirageUtil {
 					if (count != 0) {
 						sb.append(", ");
 					}
-					sb.append(getColumnName(entityOperator, entityType, pd, nameConverter)).append(" = ?");
+					sb.append(getColumnName(entityOperator, entityType, pd, nameConverter))
+						.append(" = ").append(placeHolderForInsertAndUpdate(pd));
 					propDescs.add(pd);
 					count++;
 				}
@@ -279,6 +280,10 @@ public class MirageUtil {
 		}
 
 		return sb.toString();
+	}
+	
+	private static String placeHolderForInsertAndUpdate(PropertyDesc desc) {
+		return desc.getAnnotation(Column.class).placeHolder();
 	}
 
 }
