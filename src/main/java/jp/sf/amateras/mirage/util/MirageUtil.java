@@ -283,7 +283,9 @@ public class MirageUtil {
 	}
 	
 	private static String placeHolderForInsertAndUpdate(PropertyDesc desc) {
-		return desc.getAnnotation(Column.class).placeHolder();
+		assert desc != null;
+		Column col = desc.getAnnotation(Column.class);
+		return col != null ? desc.getAnnotation(Column.class).placeHolder() : "?";
 	}
 
 }
