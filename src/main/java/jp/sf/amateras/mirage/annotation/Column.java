@@ -16,6 +16,7 @@ import jp.sf.amateras.mirage.naming.NameConverter;
  * <code>NameConverter</code> conversion.
  *
  * @author Naoki Takezoe
+ * @author SHUJI Watanabe
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD})
@@ -27,4 +28,9 @@ public @interface Column {
 	 */
 	String name();
 
+	/**
+	 * The place holder when generate insert / update SQL.
+	 * default value: ?
+	 */
+	String placeHolder() default "?";
 }
