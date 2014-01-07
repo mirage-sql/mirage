@@ -13,7 +13,7 @@ public class StringSqlResource implements SqlResource {
 	}
 	
 	public InputStream getInputStream() throws IOException {
-		return new ByteArrayInputStream(sql.getBytes());
+		return new ByteArrayInputStream(sql.getBytes("UTF-8"));
 	}
 
 	@Override
