@@ -20,6 +20,14 @@ public class SessionFactory {
 	public synchronized static Session getSession() {
 		if(session == null){
 			Properties properties = IOUtil.loadProperties("jdbc.properties");
+			getSession(properties);
+		}
+		
+		return session;
+	}
+
+	public synchronized static Session getSession(Properties properties) {
+		if(session == null){
 			if(properties == null){
 				throw new ConfigurationException("jdbc.properties is not found!");
 			}
