@@ -16,7 +16,8 @@
 package jp.sf.amateras.mirage.parser;
 
 import java.lang.reflect.Array;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedList;
 
 import jp.sf.amateras.mirage.util.OgnlUtil;
 
@@ -24,7 +25,7 @@ import jp.sf.amateras.mirage.util.OgnlUtil;
  * INのバインド変数用の{@link Node}です。
  *
  * @author higa
- *
+ * @author shuji.w6e
  */
 public class ParenBindVariableNode extends AbstractNode {
 
@@ -54,8 +55,10 @@ public class ParenBindVariableNode extends AbstractNode {
 //	@Override
     public void accept(SqlContext ctx) {
         Object var = OgnlUtil.getValue(parsedExpression, ctx);
-        if (var instanceof List) {
-            bindArray(ctx, List.class.cast(var).toArray());
+		if (var instanceof Collection) {
+			bindArray(ctx, Collection.class.cast(var).toArray());
+		} else if (var instanceof Iterable) {
+			bindArray(ctx, toArray(Iterable.class.cast(var)));
         } else if (var == null) {
             return;
         } else if (var.getClass().isArray()) {
@@ -65,6 +68,14 @@ public class ParenBindVariableNode extends AbstractNode {
         }
 
     }
+
+	private Object[] toArray(Iterable<?> iterable) {
+		LinkedList<Object> list = new LinkedList<Object>();
+		for (Object o : iterable) {
+			list.add(o);
+		}
+		return list.toArray();
+	}
 
     /**
      * @param ctx
