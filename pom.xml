@@ -4,7 +4,7 @@
     <groupId>jp.sf.amateras</groupId>
     <artifactId>mirage</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.3</version>
+    <version>1.2.4-SNAPSHOT</version>
     <name>Mirage</name>
     <url>https://github.com/takezoe/mirage</url>
     <description>
