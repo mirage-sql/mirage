@@ -14,8 +14,9 @@ import javax.sql.DataSource;
 public class JNDIDataSourceConnectionProvider extends DataSourceConnectionProvider {
 
 	public JNDIDataSourceConnectionProvider(String jndiName) throws NamingException {
-		Context context = new InitialContext();
-		DataSource dataSource = (DataSource) context.lookup(jndiName);
+		Context initContext = new InitialContext();
+		Context envContext = (Context) initContext.lookup("java:/comp/env");
+		DataSource dataSource = (DataSource) envContext.lookup(jndiName);
 		setDataSource(dataSource);
 	}
 
