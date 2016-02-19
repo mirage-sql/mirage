@@ -394,7 +394,6 @@ public class SqlManagerImpl implements SqlManager {
 	 * @param valueTypes
 	 * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
 	 * an element in the {@code valueTypes} is {@code null}
-	 * @author daisuke
 	 */
 	public void setValueTypes(List<ValueType<?>> valueTypes) {
 		Validate.noNullElements(valueTypes);

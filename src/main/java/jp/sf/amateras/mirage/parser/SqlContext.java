@@ -91,30 +91,30 @@ public interface SqlContext {
     Class<?>[] getBindVariableTypes();
 
     /**
-     * <code>SQL</code>を追加します。
+     * Adds the <code>SQL</code> the the SqlContext.
      *
-     * @param sql
-     * @return コンテキスト自身
+     * @param sql the SQL to add to the context
+     * @return the SqlContext itself
      */
     SqlContext addSql(String sql);
 
     /**
-     * <code>SQL</code>とバインド変数を追加します。
+     * Adds the <code>SQL</code> with a bind variable and a type the the SqlContext.
      *
-     * @param sql
-     * @param bindVariable
-     * @param bindVariableType
-     * @return
+     * @param sql the SQL to add to the context
+     * @param bindVariable the bind variable
+     * @param bindVariableType the bind variable type
+     * @return the SqlContext itself
      */
     SqlContext addSql(String sql, Object bindVariable, Class<?> bindVariableType);
 
     /**
-     * <code>SQL</code>とバインド変数の配列を追加します。
+     * Adds the <code>SQL</code> with an array of bind variables and their type the the SqlContext.
      *
-     * @param sql
-     * @param bindVariables
-     * @param bindVariableTypes
-     * @return
+     * @param sql the SQL to add to the context
+     * @param bindVariables array of bind variables
+     * @param bindVariableTypes array with types for the bind variables from <code>bindVariables</code>
+     * @return the SqlContext itself
      */
     SqlContext addSql(String sql, Object[] bindVariables,
             Class<?>[] bindVariableTypes);

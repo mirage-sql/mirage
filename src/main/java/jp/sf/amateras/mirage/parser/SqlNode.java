@@ -38,7 +38,7 @@ public class SqlNode extends AbstractNode {
     /**
      * SQLを返します。
      *
-     * @return
+     * @return the sql as string
      */
     public String getSql() {
         return sql;

@@ -28,10 +28,10 @@ public class PrefixSqlNode extends AbstractNode {
 	private String sql;
 
 	/**
-	 * <code>PrefixSqlNode</code>を作成します。
+	 * Creates a <code>PrefixSqlNode</code>
 	 *
-	 * @param prefix
-	 * @param sql
+	 * @param prefix the prefix
+	 * @param sql the SQL
 	 */
 	public PrefixSqlNode(String prefix, String sql) {
 		this.prefix = prefix;
@@ -39,18 +39,14 @@ public class PrefixSqlNode extends AbstractNode {
 	}
 
 	/**
-	 * プレフィックスを返します。
-	 *
-	 * @return
+	 * @return the prefix
 	 */
 	public String getPrefix() {
 		return prefix;
 	}
 
 	/**
-	 * SQLを返します。
-	 *
-	 * @return
+	 * @return the SQL
 	 */
 	public String getSql() {
 		return sql;

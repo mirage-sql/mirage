@@ -59,7 +59,6 @@ public class SqlExecutor {
 	 * @param valueTypes
 	 * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
 	 * an element in the {@code valueTypes} is {@code null}
-	 * @author daisuke
 	 */
 	public void setValueTypes(List<ValueType<?>> valueTypes) {
 		Validate.notNull(valueTypes);
@@ -74,8 +73,8 @@ public class SqlExecutor {
 		this.dialect = dialect;
 	}
 
-	public void setEntityOperator(EntityOperator entityOreator){
-		this.entityOperator = entityOreator;
+	public void setEntityOperator(EntityOperator entityOperator){
+		this.entityOperator = entityOperator;
 	}
 
 	private static void printSql(String sql){
@@ -111,11 +110,12 @@ public class SqlExecutor {
 	}
 
 	/**
+	 * Returns a list of entities from the DB after executing the SQL.
 	 *
-	 * @param clazz
-	 * @param sql
-	 * @param params
-	 * @return
+	 * @param clazz the class of the entity to select
+	 * @param sql the SQL to execute
+	 * @param params parameters required to execute the SQL
+	 * @return a List of entities
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public <T> List<T> getResultList(Class<T> clazz, String sql, Object[] params) {
@@ -156,12 +156,11 @@ public class SqlExecutor {
 	}
 
 	/**
-	 *
-	 * @param clazz
-	 * @param callback
-	 * @param sql
-	 * @param params
-	 * @return
+	 * Iterate over a ResultSet with entities.
+	 * @param clazz the class of the entity
+	 * @param callback callback to execute
+	 * @param sql the SQL to execute
+	 * @param params the parameters of the SQL
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sql, Object[] params) {
@@ -205,11 +204,11 @@ public class SqlExecutor {
 	}
 
 	/**
-	 *
-	 * @param clazz
-	 * @param sql
-	 * @param params
-	 * @return
+	 * Returns a single entity from the first row of an SQL.
+	 * @param clazz the class of the entity
+	 * @param sql the SQL to execute
+	 * @param params the parameters to execute the SQL
+	 * @return the entity from the result set.
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public <T> T getSingleResult(Class<T> clazz, String sql, Object[] params) {
@@ -248,7 +247,7 @@ public class SqlExecutor {
 	}
 
 	/**
-	 * Exceutes the update SQL.
+	 * Executes an update SQL.
 	 *
 	 * @param sql the update SQL to execute
 	 * @param propDescs the array of parameters

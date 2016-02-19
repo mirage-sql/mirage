@@ -50,7 +50,7 @@ public class BindVariableNode extends AbstractNode {
 	/**
 	 * 式を返します。
 	 *
-	 * @return
+	 * @return the bind expression
 	 */
 	public String getExpression() {
 		return expression;

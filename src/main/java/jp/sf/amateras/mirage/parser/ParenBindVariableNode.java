@@ -46,7 +46,7 @@ public class ParenBindVariableNode extends AbstractNode {
     /**
      * 式を返します。
      *
-     * @return
+     * @return the expression
      */
     public String getExpression() {
         return expression;

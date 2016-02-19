@@ -60,7 +60,7 @@ public interface Session {
 	/**
 	 * Returns the instance of <code>SqlManager</code>.
 	 *
-	 * @return
+	 * @return the instance of <code>SqlManager</code>
 	 * @throws SessionException
 	 */
 	public SqlManager getSqlManager();

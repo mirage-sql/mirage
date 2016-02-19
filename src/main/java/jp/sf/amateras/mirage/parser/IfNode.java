@@ -46,7 +46,7 @@ public class IfNode extends ContainerNode {
     /**
      * 式を返します。
      *
-     * @return
+     * @return the IF Expression
      */
     public String getExpression() {
         return expression;
@@ -55,7 +55,7 @@ public class IfNode extends ContainerNode {
     /**
      * {@link ElseNode}を返します。
      *
-     * @return
+     * @return the ElseNode
      */
     public ElseNode getElseNode() {
         return elseNode;

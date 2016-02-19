@@ -16,10 +16,9 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * <code>SQL</code>を構成する個々の要素をあらわします。
+ * Node Interface representing the individual elements that make up an <code>SQL</code>
  * 
  * @author higa
- * 
  */
 public interface Node {
 
@@ -33,15 +32,15 @@ public interface Node {
     /**
      * 指定されたインデックス番号<code>index</code>の<code>Node</code>を返します。
      * 
-     * @param index
-     * @return
+     * @param index the index
+     * @return the child node at the specified index
      */
     Node getChild(int index);
 
     /**
      * 子供の<code>Node</code>を追加します。
      * 
-     * @param node
+     * @param node the node to add as child
      */
     void addChild(Node node);
 

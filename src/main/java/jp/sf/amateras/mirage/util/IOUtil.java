@@ -11,9 +11,9 @@ import jp.sf.amateras.mirage.exception.IORuntimeException;
 public class IOUtil {
 
 	/**
-	 * 
-	 * @param in
-	 * @return
+	 * Reads an InputStream into a byte array
+	 * @param in the InputStream to read from
+	 * @return a byte array red from the InputStream
 	 * @throws IORuntimeException if some other I/O error occurs.
 	 */
 	public static byte[] readStream(InputStream in) {

@@ -16,92 +16,71 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * SQLをトークンに分解するクラスです。
+ * The SQL Tokenizer Interface to decompose a SQL into tokens.
  * 
  * @author higa
- * 
  */
 public interface SqlTokenizer {
 
     /**
-     * トークンを返します。
-     * 
-     * @return
+     * @return a token
      */
     String getToken();
 
     /**
-     * SQLを返します。
-     * 
-     * @return
+     * @return the SQL String
      */
     String getSql();
 
     /**
-     * 現在解析しているポジションより前のSQLを返します。
-     * 
-     * @return
+     * @return the SQL String until the actual position of the Tokenizer.
      */
     String getBefore();
 
     /**
-     * 現在解析しているポジションより後ろのSQLを返します。
-     * 
-     * @return
+     * @return the SQL String after the current position of the Tokenizer.
      */
     String getAfter();
 
     /**
-     * 現在解析しているポジションを返します。
-     * 
-     * @return
+     * @return the position that is currently being analyzed ty the Tokenizer.
      */
     int getPosition();
 
     /**
-     * 現在のトークン種別を返します。
-     * 
-     * @return
+     * @return the current token type.
      */
     TokenType getTokenType();
 
     /**
-     * 次のトークン種別を返します。
-     * 
-     * @return
+     * @return the next token type.
      */
     TokenType getNextTokenType();
 
     /**
-     * 次のトークンに進みます。
-     * 
-     * @return
+     * @return advanced the Tokenizer to the next token.
      */
     TokenType next();
 
     /**
-     * トークンをスキップします。
+     * Skips a token.
      * 
-     * @return スキップしたトークン
+     * @return the token being skipped
      */
     String skipToken();
 
     /**
-     * ホワイトスペースをスキップします。
+     * Skips the whitespace.
      * 
-     * @return
+     * @return the whitespace being skipped
      */
     String skipWhitespace();
     
     public enum TokenType {
     	SQL,
-    	
     	COMMENT,
-    	
     	ELSE,
-    	
     	BIND_VARIABLE,
-    	
     	EOF
     }
 }

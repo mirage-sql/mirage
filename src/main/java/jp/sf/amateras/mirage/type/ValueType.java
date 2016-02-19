@@ -18,7 +18,7 @@ public interface ValueType<T> {
 	 * @param type
 	 * @param rs
 	 * @param index
-	 * @return
+	 * @return T
 	 * @throws SQLException
 	 * @throws UnsupportedOperationException
 	 */
@@ -29,7 +29,7 @@ public interface ValueType<T> {
 	 * @param type
 	 * @param rs
 	 * @param columnName
-	 * @return
+	 * @return T
 	 * @throws SQLException
 	 * @throws UnsupportedOperationException
 	 */
