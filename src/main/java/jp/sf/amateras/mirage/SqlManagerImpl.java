@@ -173,7 +173,7 @@ public class SqlManagerImpl implements SqlManager {
 		} catch (IOException e) {
 			throw new IORuntimeException(e);
 			
-		} finally{}
+		}
 
 		sql = sql.trim();
 		if(sql.endsWith(";")){

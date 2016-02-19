@@ -20,6 +20,9 @@ public @interface PrimaryKey {
 
 	String generator() default "";
 
+    /**
+     * The type of the generated primary key.
+     */
 	public static enum GenerationType {
 		APPLICATION,
 		IDENTITY,

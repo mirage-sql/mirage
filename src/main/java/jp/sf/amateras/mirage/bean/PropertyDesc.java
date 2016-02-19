@@ -12,7 +12,7 @@ import jp.sf.amateras.mirage.exception.BeanDescException;
 public interface PropertyDesc {
 
 	/**
-	 * Returns the value of this prperty which the {@code entity} has.
+	 * Returns the value of this property which the {@code entity} has.
 	 * 
 	 * @param entity entity object
 	 * @return the property value

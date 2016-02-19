@@ -30,8 +30,7 @@ public class ExecutedSQLInfo {
 	 * Constructor.
 	 *
 	 * @param sql the executed SQL
-	 * @param propDescs the array of bound parameters
-	 * @param entity 
+	 * @param params the array of bound parameters
 	 */
 	public ExecutedSQLInfo(String sql, Object[] params){
 		this.sql = sql;

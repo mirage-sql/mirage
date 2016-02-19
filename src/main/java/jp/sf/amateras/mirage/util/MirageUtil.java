@@ -100,7 +100,7 @@ public class MirageUtil {
 	/**
 	 * Builds select (by primary keys) SQL from the entity class.
 	 *
-	 * @param entity the entity class to select
+	 * @param clazz the entity class to select
 	 * @param nameConverter the name converter
 	 * @return Select SQL
 	 * @throws RuntimeException the entity class has no primary keys
@@ -138,7 +138,7 @@ public class MirageUtil {
 	/**
 	 * Builds insert SQL and correct parameters from the entity.
 	 *
-	 * @param entity the entity to insert
+	 * @param entityType the entity class insert
 	 * @param nameConverter the name converter
 	 * @param propDescs the list of parameters
 	 * @return Insert SQL
@@ -191,9 +191,9 @@ public class MirageUtil {
 	/**
 	 * Builds update SQL and correct parameters from the entity.
 	 *
-	 * @param entity the entity to update
+	 * @param entityType the entity class to update
 	 * @param nameConverter the name converter
-	 * @param params the list of parameters
+	 * @param propDescs the list of parameters
 	 * @return Update SQL
 	 */
 	public static String buildUpdateSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
@@ -246,9 +246,9 @@ public class MirageUtil {
 	/**
 	 * Builds delete SQL and correct parameters from the entity.
 	 *
-	 * @param entity the entity to delete
+	 * @param entityType the entity class to delete
 	 * @param nameConverter the name converter
-	 * @param params the list of parameters
+	 * @param propDescs the list of parameters
 	 * @return Delete SQL
 	 */
 	public static String buildDeleteSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,

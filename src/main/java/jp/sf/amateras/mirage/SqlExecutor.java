@@ -34,7 +34,7 @@ public class SqlExecutor {
 	private ConnectionProvider connectionProvider;
 	private Dialect dialect;
 	private List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
-	private EntityOperator entityOreator;
+	private EntityOperator entityOperator;
 
 
 	
@@ -75,7 +75,7 @@ public class SqlExecutor {
 	}
 
 	public void setEntityOperator(EntityOperator entityOreator){
-		this.entityOreator = entityOreator;
+		this.entityOperator = entityOreator;
 	}
 
 	private static void printSql(String sql){
@@ -139,7 +139,7 @@ public class SqlExecutor {
 			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 
 			while(rs.next()){
-				T entity = entityOreator.createEntity(clazz, rs, meta, columnCount, beanDesc,
+				T entity = entityOperator.createEntity(clazz, rs, meta, columnCount, beanDesc,
 						dialect, valueTypes, nameConverter);
 				list.add(entity);
 			}
@@ -184,7 +184,7 @@ public class SqlExecutor {
 			R result = null;
 
 			while(rs.next()){
-				T entity = entityOreator.createEntity(clazz, rs, meta, columnCount, beanDesc,
+				T entity = entityOperator.createEntity(clazz, rs, meta, columnCount, beanDesc,
 						dialect, valueTypes, nameConverter);
 				try {
 					result = callback.iterate(entity);
@@ -231,7 +231,7 @@ public class SqlExecutor {
 			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
 
 			if(rs.next()){
-				T entity = entityOreator.createEntity(clazz, rs, meta, columnCount, beanDesc,
+				T entity = entityOperator.createEntity(clazz, rs, meta, columnCount, beanDesc,
 						dialect, valueTypes, nameConverter);
 				return entity;
 			}
@@ -294,10 +294,10 @@ public class SqlExecutor {
 	}
 
 	/**
-	 * Exceutes the update SQL.
+	 * Executes the update SQL.
 	 *
 	 * @param sql the update SQL to execute
-	 * @param propDescs the array of parameters
+	 * @param params the array of parameters
 	 * @param entity the entity object in insertion, otherwise null
 	 * @return the number of updated rows
 	 * @throws SQLRuntimeException if a database access error occurs
