@@ -19,18 +19,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * WHERE句のための<code>Node</code>です。
+ * {@link Node} representing the <code>WHERE</code> clause of an SQL.
  *
  * @author higa
- *
  */
 public class AddWhereIfNode extends ContainerNode {
 
 	Pattern pat = Pattern.compile("\\s*(order\\sby)|$)");
 
-	/**
-	 * <code>AddWhereIfNode</code>を作成します。
-	 */
 	public AddWhereIfNode() {
 	}
 

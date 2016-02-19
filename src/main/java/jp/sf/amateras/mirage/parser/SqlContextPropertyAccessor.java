@@ -21,10 +21,9 @@ import ognl.ObjectPropertyAccessor;
 import ognl.OgnlException;
 
 /**
- * {@link SqlContext}のためのPropertyAccessorです。
+ * Helper based on OGNL to access properties from the {@link SqlContext}
  *
  * @author higa
- *
  */
 public class SqlContextPropertyAccessor extends ObjectPropertyAccessor {
 

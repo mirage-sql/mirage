@@ -20,10 +20,9 @@ import jp.sf.amateras.mirage.util.OgnlUtil;
 
 
 /**
- * If用の{@link Node}です。
+ * {@link Node} representing an <code>IF</code> comment.
  *
  * @author higa
- *
  */
 public class IfNode extends ContainerNode {
 
@@ -34,9 +33,9 @@ public class IfNode extends ContainerNode {
     private ElseNode elseNode;
 
     /**
-     * <code>IfNode</code>を作成します。
+     * Creates n <code>IfNode</code> from a string expression.
      *
-     * @param expression
+     * @param expression the string expression
      */
     public IfNode(String expression) {
         this.expression = expression;
@@ -44,8 +43,6 @@ public class IfNode extends ContainerNode {
     }
 
     /**
-     * 式を返します。
-     *
      * @return the IF Expression
      */
     public String getExpression() {
@@ -53,7 +50,7 @@ public class IfNode extends ContainerNode {
     }
 
     /**
-     * {@link ElseNode}を返します。
+     * Returns the {@link ElseNode}.
      *
      * @return the ElseNode
      */
@@ -62,9 +59,9 @@ public class IfNode extends ContainerNode {
     }
 
     /**
-     * {@link ElseNode}を設定します。
+     * Sets the {@link ElseNode}
      *
-     * @param elseNode
+     * @param elseNode the ElseNode
      */
     public void setElseNode(ElseNode elseNode) {
         this.elseNode = elseNode;
@@ -92,6 +89,4 @@ public class IfNode extends ContainerNode {
 		return "IfNode [expression=" + expression + ", parsedExpression=" + parsedExpression + ", elseNode=" + elseNode
 				+", children=" + children + "]";
 	}
-
-	
 }

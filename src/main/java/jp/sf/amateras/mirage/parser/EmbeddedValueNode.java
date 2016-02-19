@@ -23,10 +23,9 @@ import jp.sf.amateras.mirage.util.StringUtil;
 
 
 /**
- * 値を埋め込む用の{@link Node}です。
+ * {@link Node} for embedding values.
  *
  * @author higa
- *
  */
 public class EmbeddedValueNode extends AbstractNode {
 
@@ -39,10 +38,10 @@ public class EmbeddedValueNode extends AbstractNode {
 	private BeanDescFactory beanDescFactory;
 
     /**
-     * <code>EmbeddedValueNode</code>を作成します。
+     * Creates a <code>EmbeddedValueNode</code> from a string expression.
      *
-     * @param expression
-     * @param beanDescFactory 
+     * @param expression the string expression to create the node from.
+     * @param beanDescFactory beanDescFactory
      */
     public EmbeddedValueNode(String expression, BeanDescFactory beanDescFactory) {
         this.expression = expression;
@@ -55,8 +54,6 @@ public class EmbeddedValueNode extends AbstractNode {
     }
 
     /**
-     * 式を返します。
-     *
      * @return the expression
      */
     public String getExpression() {
@@ -87,6 +84,4 @@ public class EmbeddedValueNode extends AbstractNode {
 		return "EmbeddedValueNode [expression=" + expression + ", baseName=" + baseName + ", propertyName="
 				+ propertyName + ", children=" + children + "]";
 	}
-    
-    
 }

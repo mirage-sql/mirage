@@ -23,14 +23,12 @@ package jp.sf.amateras.mirage.parser;
 public interface Node {
 
     /**
-     * 子供の要素数を返します。
-     * 
-     * @return 要素数
+     * @return the number of children elements.
      */
     int getChildSize();
 
     /**
-     * 指定されたインデックス番号<code>index</code>の<code>Node</code>を返します。
+     * Returns the child <code>Node</code> at the specified <code>index</code>.
      * 
      * @param index the index
      * @return the child node at the specified index
@@ -38,7 +36,7 @@ public interface Node {
     Node getChild(int index);
 
     /**
-     * 子供の<code>Node</code>を追加します。
+     * Adds a child <code>Node</code>.
      * 
      * @param node the node to add as child
      */

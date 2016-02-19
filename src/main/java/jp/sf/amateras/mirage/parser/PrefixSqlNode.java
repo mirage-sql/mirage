@@ -16,10 +16,9 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * ANDやORのプレフィックスのための{@link Node}です。
+ * Node for <code>AND</code>, <code>OR</code> and <code>','</code> prefix.
  *
  * @author higa
- *
  */
 public class PrefixSqlNode extends AbstractNode {
 

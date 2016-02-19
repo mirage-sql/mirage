@@ -16,16 +16,12 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * {@link Node}のコンテナクラスです。
+ * Base {@link Node} that can contain other nodes.
  *
  * @author higa
- *
  */
 public class ContainerNode extends AbstractNode {
 
-	/**
-	 * <code>ContainerNode</code>を作成します。
-	 */
 	public ContainerNode() {
 	}
 

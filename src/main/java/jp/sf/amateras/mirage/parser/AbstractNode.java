@@ -19,18 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>Node</code>の抽象クラスです。
+ * Abstract {@link Node} implementation.
  *
  * @author higa
- *
  */
 public abstract class AbstractNode implements Node {
 
-    List<Node> children = new ArrayList<Node>();
+    /** List with child nodes.*/
+    List<Node> children = new ArrayList<>();
 
-    /**
-     * <code>AbstractNode</code>を作成します。
-     */
     public AbstractNode() {
     }
 

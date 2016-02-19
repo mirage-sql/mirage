@@ -16,16 +16,12 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * Else用の{@link Node}です。
+ * {@link Node} representing an <code>ELSE</code> comment.
  *
  * @author higa
- *
  */
 public class ElseNode extends ContainerNode {
 
-	/**
-	 * <code>ElseNode</code>を作成します。
-	 */
 	public ElseNode() {
 	}
 

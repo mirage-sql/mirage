@@ -19,10 +19,9 @@ import jp.sf.amateras.mirage.exception.TwoWaySQLException;
 
 
 /**
- * {@link SqlTokenizer}の実装クラスです。
+ * {@link SqlTokenizer} Implementation.
  *
  * @author higa
- *
  */
 public class SqlTokenizerImpl implements SqlTokenizer {
 
@@ -38,11 +37,6 @@ public class SqlTokenizerImpl implements SqlTokenizer {
 
     private int bindVariableNum = 0;
 
-    /**
-     * <code>SqlTokenizerImpl</code>を作成します。
-     *
-     * @param sql
-     */
     public SqlTokenizerImpl(String sql) {
         this.sql = sql;
     }
@@ -111,7 +105,7 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * SQLを解析します。
+     * Parse the SQL.
      */
     protected void parseSql() {
         int commentStartPos = sql.indexOf("/*", position);
@@ -159,15 +153,12 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * 次の開始位置を返します。
+     * Returns the next starting position.
      *
-     * @param commentStartPos
-     *            コメントの開始位置
-     * @param elseCommentStartPos
-     *            ELSEコメントの開始位置
-     * @param bindVariableStartPos
-     *            バインド変数の開始位置
-     * @return 次の開始位置
+     * @param commentStartPos starting position of the comment
+     * @param elseCommentStartPos starting position of the ELSE comment
+     * @param bindVariableStartPos starting position of the bind variable
+     * @return the next starting position.
      */
     protected int getNextStartPos(int commentStartPos, int elseCommentStartPos,
             int bindVariableStartPos) {
@@ -188,7 +179,7 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * コメントを解析します。
+     * Parse the comment.
      */
     protected void parseComment() {
         int commentEndPos = sql.indexOf("*/", position);
@@ -207,7 +198,7 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * バインド変数を解析します。
+     * Parse the bind variable.
      */
     protected void parseBindVariable() {
         token = nextBindVariableName();
@@ -217,7 +208,7 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * ELSEを解析します。
+     * Parse the ELSE comment.
      */
     protected void parseElse() {
         token = null;
@@ -226,7 +217,7 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * SQLの終わりを解析します。
+     * Parse the end of the SQL.
      */
     protected void parseEof() {
         token = null;
@@ -235,9 +226,7 @@ public class SqlTokenizerImpl implements SqlTokenizer {
     }
 
     /**
-     * 位置パラメータ用のバインド変数名を返します。
-     *
-     * @return 位置パラメータ用のバインド変数名
+     * @return the bind variable name for the position parameters.
      */
     protected String nextBindVariableName() {
         return "$" + ++bindVariableNum;

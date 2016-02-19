@@ -23,10 +23,9 @@ import jp.sf.amateras.mirage.bean.PropertyDesc;
 import jp.sf.amateras.mirage.util.StringUtil;
 
 /**
- * バインド変数のための{@link Node}です。
+ * {@link Node} corresponding to bind variables (as comments).
  *
  * @author higa
- *
  */
 public class BindVariableNode extends AbstractNode {
 
@@ -37,9 +36,9 @@ public class BindVariableNode extends AbstractNode {
 	private BeanDescFactory beanDescFactory;
 
 	/**
-	 * <code>BindVariableNode</code>を作成します。
+	 * Creates a <code>BindVariableNode</code> from a string expression.
 	 *
-	 * @param expression
+	 * @param expression string expression
 	 */
 	public BindVariableNode(String expression, BeanDescFactory beanDescFactory) {
 		this.expression = expression;
@@ -48,8 +47,6 @@ public class BindVariableNode extends AbstractNode {
 	}
 
 	/**
-	 * 式を返します。
-	 *
 	 * @return the bind expression
 	 */
 	public String getExpression() {

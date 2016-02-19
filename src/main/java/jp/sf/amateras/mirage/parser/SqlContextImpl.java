@@ -22,10 +22,9 @@ import jp.sf.amateras.mirage.util.CaseInsensitiveMap;
 import ognl.OgnlRuntime;
 
 /**
- * {@link SqlContext}の実装クラスです。
+ * Implementation of the {@link SqlContext} interface.
  *
  * @author higa
- *
  */
 public class SqlContextImpl implements SqlContext {
 
@@ -50,16 +49,13 @@ public class SqlContextImpl implements SqlContext {
 				new SqlContextPropertyAccessor());
 	}
 
-	/**
-	 * <code>SqlContextImpl</code>を作成します。
-	 */
 	public SqlContextImpl() {
 	}
 
 	/**
-	 * <code>SqlContextImpl</code>を作成します。
+	 * Creates a <code>SqlContextImpl</code> with a specific <code>parent</code>
 	 *
-	 * @param parent
+	 * @param parent the parent context.
 	 */
 	public SqlContextImpl(SqlContext parent) {
 		this.parent = parent;

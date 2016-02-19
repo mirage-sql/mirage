@@ -36,11 +36,6 @@ public class SqlParserImpl implements SqlParser {
     private Stack<Node> nodeStack = new Stack<Node>();
 
 
-    /**
-     * Constructs.
-     *
-     * @param sql
-     */
     public SqlParserImpl(String sql, BeanDescFactory beanDescFactory) {
 		sql = sql.trim();
         if (sql.endsWith(";")) {
@@ -59,9 +54,6 @@ public class SqlParserImpl implements SqlParser {
         return pop();
     }
 
-    /**
-     * トークンを解析します。
-     */
     protected void parseToken() {
         switch (tokenizer.getTokenType()) {
         case SQL:
@@ -82,7 +74,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * SQLを解析します。
+     * Parse the SQL.
      */
     protected void parseSql() {
         String sql = tokenizer.getToken();
@@ -115,7 +107,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * コメントを解析します。
+     * Parse an SQL comment.
      */
     protected void parseComment() {
         String comment = tokenizer.getToken();
@@ -135,7 +127,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * IFを解析します。
+     * Parse an IF node.
      */
     protected void parseIf() {
         String condition = tokenizer.getToken().substring(2).trim();
@@ -149,7 +141,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * BEGINを解析します。
+     * Parse a BEGIN node.
      */
     protected void parseBegin() {
         BeginNode beginNode = new BeginNode();
@@ -159,7 +151,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * ENDを解析します。
+     * Parse an END node.
      */
     protected void parseEnd() {
         while (TokenType.EOF != tokenizer.next()) {
@@ -176,7 +168,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * ELSEを解析します。
+     * Parse an ELSE node.
      */
     protected void parseElse() {
         Node parent = peek();
@@ -191,7 +183,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * バインド変数コメントを解析します。
+     * Parse bind variables comment.
      */
     protected void parseCommentBindVariable() {
         String expr = tokenizer.getToken();
@@ -208,7 +200,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * バインド変数を解析します。
+     * Parse the bind variable.
      */
     protected void parseBindVariable() {
         String expr = tokenizer.getToken();
@@ -216,37 +208,34 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * 一番上のノードを取り出します。
+     * Pop (remove from the stack) the top node.
      *
-     * @return 一番上のノード
+     * @return the top node.
      */
     protected Node pop() {
         return nodeStack.pop();
     }
 
     /**
-     * 一番上のノードを返します。
+     * Peek the top node.
      *
-     * @return 一番上のノード
+     * @return the top node.
      */
     protected Node peek() {
         return nodeStack.peek();
     }
 
     /**
-     * ノードを一番上に追加します。
+     * Push a node
      *
-     * @param node
-     *            ノード
+     * @param node the node to push.
      */
     protected void push(Node node) {
         nodeStack.push(node);
     }
 
     /**
-     * ELSEモードかどうかを返します。
-     *
-     * @return ELSEモードかどうか
+     * @return <code>true</code> if in the ELSE branch, <code>false</code> otherwise.
      */
     protected boolean isElseMode() {
         for (int i = 0; i < nodeStack.size(); ++i) {
@@ -258,11 +247,10 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * 対象とするコメントかどうかを返します。
+     * Checks if this comment is a "Mirage SQL" comment, i.e. can be a keyword or a bind variable.
      *
-     * @param comment
-     *            コメント
-     * @return 対象とするコメントかどうか
+     * @param comment the comment to check
+     * @return <code>true</code> if it's a Mirage SQL comment.
      */
     protected static boolean isTargetComment(String comment) {
         return comment != null && comment.length() > 0
@@ -270,48 +258,44 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * IFコメントかどうかを返します。
+     * Checks if this comment is a "Mirage SQL" <code>IF</code> keyword.
      *
-     * @param comment
-     *            コメント
-     * @return IFコメントかどうか
+     * @param comment the comment to check
+     * @return <code>true</code> if this comment is an <code>IF</code> keyword.
      */
     protected static boolean isIfComment(String comment) {
         return comment.startsWith("IF");
     }
 
     /**
-     * BEGINコメントかどうかを返します。
+     * Checks if this comment is a "Mirage SQL" <code>BEGIN</code> keyword.
      *
-     * @param content
-     *            コメント
-     * @return BEGINコメントかどうか
-     */
+     * @param content the comment to check
+     * @return <code>true</code> if this comment is an <code>BEGIN</code> keyword.
+    */
     protected static boolean isBeginComment(String content) {
         return content != null && "BEGIN".equals(content);
     }
 
     /**
-     * ENDコメントかどうかを返します。
+     * Checks if this comment is a "Mirage SQL" <code>END</code> keyword.
      *
-     * @param content
-     *            コメント
-     * @return ENDコメントかどうか
+     * @param content the comment to check
+     * @return <code>true</code> if this comment is an <code>END</code> keyword.
      */
     protected static boolean isEndComment(String content) {
         return content != null && "END".equals(content);
     }
 
     /**
-     * Oracleのヒントコメントかどうかを返します。
+     * Checks if the comment is an Oracle optimizer hint.
      * <p>
      * TODO Oracle専用の処理がここにあるのもちょっと微妙かも…。
      *
-     * @param content コメント
-     * @return Oracleのヒントコメントかどうか
+     * @param content the comment to check
+     * @return <code>true</code> if this comment is an Oracle optimizer hint.
      */
     protected static boolean isHintComment(String content) {
         return content.startsWith("+");
     }
-
 }

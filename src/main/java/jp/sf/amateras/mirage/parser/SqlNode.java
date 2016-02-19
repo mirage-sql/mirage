@@ -17,28 +17,20 @@ package jp.sf.amateras.mirage.parser;
 
 
 /**
- * SQL用の{@link Node}です。
+ * {@link Node} holding the SQL string itself.
  *
  * @author higa
- *
  */
 public class SqlNode extends AbstractNode {
 
     private String sql;
 
-    /**
-     * <code>SqlNode</code>を作成します。
-     *
-     * @param sql
-     */
     public SqlNode(String sql) {
         this.sql = sql;
     }
 
     /**
-     * SQLを返します。
-     *
-     * @return the sql as string
+     * @return the sql string
      */
     public String getSql() {
         return sql;

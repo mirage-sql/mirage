@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import jp.sf.amateras.mirage.util.OgnlUtil;
 
 /**
- * INのバインド変数用の{@link Node}です。
+ * {@link Node} for <code>IN</code> bind variables.
  *
  * @author higa
  * @author shuji.w6e
@@ -33,19 +33,12 @@ public class ParenBindVariableNode extends AbstractNode {
 
     private Object parsedExpression;
 
-    /**
-     * <code>ParenBindVariableNode</code>を作成します。
-     *
-     * @param expression
-     */
     public ParenBindVariableNode(String expression) {
         this.expression = expression;
         this.parsedExpression = OgnlUtil.parseExpression(expression);
     }
 
     /**
-     * 式を返します。
-     *
      * @return the expression
      */
     public String getExpression() {
@@ -78,8 +71,8 @@ public class ParenBindVariableNode extends AbstractNode {
 	}
 
     /**
-     * @param ctx
-     * @param array
+     * @param ctx the SqlContext
+     * @param array the variable array
      */
     protected void bindArray(SqlContext ctx, Object array) {
         int length = Array.getLength(array);

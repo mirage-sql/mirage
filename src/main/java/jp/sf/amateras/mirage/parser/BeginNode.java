@@ -16,16 +16,12 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * BEGINコメントに対応する{@link Node}です。
+ * {@link Node} corresponding to the <code>BEGIN</code> comment.
  *
  * @author higa
- *
  */
 public class BeginNode extends ContainerNode {
 
-	/**
-	 * <code>BeginNode</code>を作成します。
-	 */
 	public BeginNode() {
 	}
 

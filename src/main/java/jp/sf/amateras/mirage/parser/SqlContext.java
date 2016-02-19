@@ -16,77 +16,59 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * ｊ<code>SQL</code>を実行するときのコンテキストです。 コンテキストで<code>SQL</code>を実行するのに必要な情報を組み立てた後、
- * <code>getSql()</code>, <code>getBindVariables()</code>,
- * <code>getBindVariableTypes()</code>で、 情報を取り出して<code>SQL</code>を実行します。
- * <code>SQL</code>で<code>BEGIN</code>コメントと<code>END</code>コメントで囲まれている部分が、
- * 子供のコンテキストになります。 通常は、 <code>WHERE</code>句を<code>BEGIN</code>コメントと<code>END</code>コメントで囲み、
- * <code>WHERE</code>句の中の<code>IF</code>コメントが1つでも成立した場合、<code>enabled</code>になります。
+ * The <code>SqlContext</code> is a hierarchical data structure that holds the required information to execute
+ * an SQL as supported by Mirage SQL. It contains the SQL itself, and the required bind variables.
  *
  * @author higa
- *
  */
 public interface SqlContext {
 
     /**
-     * 名前に応じた引数を返します。
+     * Returns an Argument from the context corresponding to this <code>name</code>.
      *
-     * @param name
-     *            引数名
-     * @return 名前に応じた引数
+     * @param name the name
+     * @return the Argument object corresponding to <code>name</code>
      */
     Object getArg(String name);
 
     /**
-     * 引数が存在するかどうかを返します。
+     * Returns <code>true</code> if for this <code>name</code> there's an Argument object in the context.
      *
-     * @param name
-     *            引数名
-     * @return 引数が存在するか
+     * @param name the name
+     * @return true if there's an Argument for this name, <code>false</code> otherwise.
      */
-
     boolean hasArg(String name);
 
     /**
-     * 名前に応じた引数のクラスを返します。 <code>getArg()</code>が<code>null</code>を返す場合があるので、
-     * このメソッドが用意されています。
+     * Returns the type (class) of the argument for the given <code>name</code>, or <code>null</code>
+     * if the <code>name</code> was not found in the context.
      *
-     * @param name
-     *            引数名
-     * @return 名前に応じた引数のクラスを返します。
+     * @param name the name
+     * @return the type of the argument.
      */
     Class<?> getArgType(String name);
 
     /**
-     * 引数を追加します。
+     * Adds to the context a argument object, with type and name.
      *
-     * @param name
-     *            引数名
-     * @param arg
-     *            引数
-     * @param argType
-     *            引数の型
+     * @param name the name of the argument
+     * @param arg the argument object
+     * @param argType the type (class) of the argument object.
      */
     void addArg(String name, Object arg, Class<?> argType);
 
     /**
-     * 追加されたすべての<code>SQL</code>を返します。
-     *
-     * @return <code>SQL</code>
+     * @return the <code>SQL</code> from the context.
      */
     String getSql();
 
     /**
-     * 追加されたすべてのバインド変数の配列を返します。
-     *
-     * @return バインド変数の配列
+     * @return an array of all added bind variables (arguments) in the context.
      */
     Object[] getBindVariables();
 
     /**
-     * 追加されたすべてのバインド変数の型の配列を返します。
-     *
-     * @return バインド変数の型の配列
+     * @return an array of all added bind variable types (arguments) in the context.
      */
     Class<?>[] getBindVariableTypes();
 

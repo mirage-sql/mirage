@@ -3,7 +3,7 @@ package jp.sf.amateras.mirage.bean;
 import java.lang.annotation.Annotation;
 
 /**
- * Descriptor of the entity.
+ * Bean descriptor interface of an entity.
  */
 public interface BeanDesc {
 

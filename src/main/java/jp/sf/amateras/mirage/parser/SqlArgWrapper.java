@@ -16,16 +16,14 @@
 package jp.sf.amateras.mirage.parser;
 
 /**
- * SQLの引数のラッパーです。
+ * Wrapper interface for SQL arguments.
  * 
  * @author taedium
  */
 public interface SqlArgWrapper {
 
     /**
-     * ラップされた値を返します。
-     * 
-     * @return ラップされた値
+     * @return the wrapped value.
      */
     Object getValue();
 }
