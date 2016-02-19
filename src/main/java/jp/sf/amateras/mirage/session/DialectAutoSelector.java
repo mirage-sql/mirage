@@ -24,6 +24,8 @@ public class DialectAutoSelector {
 			return new DerbyDialect();
 		} else if(url.startsWith("jdbc:sqlite:")){
 			return new SQLiteDialect();
+		} else if(url.startsWith("jdbc:sqlserver:") || url.startsWith("jdbc:jtds:sqlserver:")){
+			return new SQLServerDialect();
 		}
 		return new StandardDialect();
 	}
