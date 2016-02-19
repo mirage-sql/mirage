@@ -18,7 +18,7 @@ public class ExecutedSQLInfo {
 	 *
 	 * @param sql the executed SQL
 	 * @param propDescs the array of bound parameters
-	 * @param entity 
+	 * @param entity the entity
 	 */
 	public ExecutedSQLInfo(String sql, PropertyDesc[] propDescs, Object entity){
 		this.sql = sql;

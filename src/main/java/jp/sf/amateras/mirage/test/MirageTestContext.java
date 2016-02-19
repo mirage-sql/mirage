@@ -171,7 +171,7 @@ public class MirageTestContext {
 	 * @param indexOfSql the index of executed SQL
 	 * @param entity the entity which should be updated
 	 */
-	public static void verifyUpdatetSql(int indexOfSql, Object entity){
+	public static void verifyUpdatedSql(int indexOfSql, Object entity){
 		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
 		verifySql(indexOfSql, MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
