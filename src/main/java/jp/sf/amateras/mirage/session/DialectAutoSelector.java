@@ -22,6 +22,8 @@ public class DialectAutoSelector {
 			return new H2Dialect();
 		} else if(url.startsWith("jdbc:derby:")){
 			return new DerbyDialect();
+		} else if(url.startsWith("jdbc:sqlite:")){
+			return new SQLiteDialect();
 		}
 		return new StandardDialect();
 	}
