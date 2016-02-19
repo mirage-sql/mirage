@@ -1,12 +1,6 @@
 package jp.sf.amateras.mirage.session;
 
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.dialect.H2Dialect;
-import jp.sf.amateras.mirage.dialect.HyperSQLDialect;
-import jp.sf.amateras.mirage.dialect.MySQLDialect;
-import jp.sf.amateras.mirage.dialect.OracleDialect;
-import jp.sf.amateras.mirage.dialect.PostgreSQLDialect;
-import jp.sf.amateras.mirage.dialect.StandardDialect;
+import jp.sf.amateras.mirage.dialect.*;
 
 public class DialectAutoSelector {
 
@@ -21,6 +15,8 @@ public class DialectAutoSelector {
 			return new HyperSQLDialect();
 		} else if(url.startsWith("jdbc:h2:")){
 			return new H2Dialect();
+		} else if(url.startsWith("jdbc:derby:")){
+			return new DerbyDialect();
 		}
 		return new StandardDialect();
 	}
