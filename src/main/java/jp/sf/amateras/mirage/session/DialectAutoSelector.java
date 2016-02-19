@@ -26,6 +26,10 @@ public class DialectAutoSelector {
 			return new SQLiteDialect();
 		} else if(url.startsWith("jdbc:sqlserver:") || url.startsWith("jdbc:jtds:sqlserver:")){
 			return new SQLServerDialect();
+		} else if(url.startsWith("jdbc:db2:") || url.startsWith("jdbc:db2j:")
+				|| url.startsWith("jdbc:db2:ids") || url.startsWith("jdbc:informix-sqli:")
+				|| url.startsWith("jdbc:as400:")){
+			return new DB2Dialect();
 		}
 		return new StandardDialect();
 	}
