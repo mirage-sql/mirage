@@ -36,6 +36,8 @@ import jp.sf.amateras.mirage.type.TimeValueType;
 import jp.sf.amateras.mirage.type.TimestampValueType;
 import jp.sf.amateras.mirage.type.UtilDateValueType;
 import jp.sf.amateras.mirage.type.ValueType;
+import jp.sf.amateras.mirage.util.JdbcUtil;
+import jp.sf.amateras.mirage.util.StringUtil;
 
 // TODO PrimaryKeyのgenerationTypeを指定できるようにする
 
@@ -175,6 +177,7 @@ public class EntityGen {
 
 	/**
 	 * Generates the entity source file into the given source directory.
+     *
 	 * @throws SQLException 
 	 * @throws IOException 
 	 */
@@ -192,6 +195,48 @@ public class EntityGen {
 		out.write(source.getBytes(charset));
 		out.close();
 	}
+
+    /**
+     * Generates the entity source files for all tables in the specified catalog and schema, that respect the specified
+     * pattern, except those ignored.
+     *
+     * @param srcDir the directory where the generated sources will be written
+     * @param charset the used Character set
+     * @param conn the database connection
+     * @param catalogS the catalogue
+     * @param schemaS the String
+     * @param tableNamePattern positive pattern for the tables to generate entities for
+     * @param ignoreTableNamePattern negative pattern for the table NOT to generate entities for
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void saveAllEntitySources(File srcDir, String charset, Connection conn,String catalogS, String schemaS,
+                                     String tableNamePattern, String ignoreTableNamePattern) throws SQLException, IOException {
+
+        DatabaseMetaData meta = conn.getMetaData();
+        ResultSet rs = meta.getTables(catalogS, schemaS, "%", new String[]{"TABLE"});
+        while(rs.next()){
+            String catalog = rs.getString("TABLE_CAT");
+            String schema = rs.getString("TABLE_SCHEM");
+            String tableName = rs.getString("TABLE_NAME");
+
+            if(StringUtil.isNotEmpty(tableNamePattern)){
+                if(!tableName.matches(tableNamePattern)){
+                    continue;
+                }
+            }
+
+            if(StringUtil.isNotEmpty(ignoreTableNamePattern)
+                    && tableName.matches(ignoreTableNamePattern)){
+                continue;
+            }
+
+            this.saveEntitySource(srcDir, charset, conn, tableName, catalog, schema);
+
+            System.out.println(String.format("  %s.%s", schema, tableName));
+        }
+        JdbcUtil.close(rs);
+    }
 
 	private static void createDir(File dir){
 		if(!dir.getParentFile().exists()){

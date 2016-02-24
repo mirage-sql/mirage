@@ -2,9 +2,7 @@ package jp.sf.amateras.mirage.tool;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
@@ -346,30 +344,8 @@ public class EntityGenTask extends Task {
 			try {
 				System.out.println("Generating entities...");
 
-				DatabaseMetaData meta = conn.getMetaData();
-				ResultSet rs = meta.getTables(this.catalog, this.schema, "%", new String[]{"TABLE"});
-				while(rs.next()){
-					String catalog = rs.getString("TABLE_CAT");
-					String schema = rs.getString("TABLE_SCHEM");
-					String tableName = rs.getString("TABLE_NAME");
-
-					if(StringUtil.isNotEmpty(tableNamePattern)){
-						if(!tableName.matches(tableNamePattern)){
-							continue;
-						}
-					}
-
-					if(StringUtil.isNotEmpty(ignoreTableNamePattern)
-							&& tableName.matches(ignoreTableNamePattern)){
-						continue;
-					}
-
-					entityGen.saveEntitySource(new File(outputDir), charset, conn, tableName, catalog, schema);
-
-					System.out.println(String.format("  %s.%s", schema, tableName));
-				}
-				JdbcUtil.close(rs);
-
+				entityGen.saveAllEntitySources(new File(outputDir), charset, conn, this.catalog, this.schema,
+						tableNamePattern, ignoreTableNamePattern);
 			} finally {
 				JdbcUtil.close(conn);
 			}
