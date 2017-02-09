@@ -271,7 +271,9 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <descriptor>src/main/assembly/release.xml</descriptor>
+                    <descriptors>
+                        <descriptor>src/main/assembly/release.xml</descriptor>
+                    </descriptors>
                 </configuration>
             </plugin>
         </plugins>
