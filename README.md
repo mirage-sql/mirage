@@ -9,12 +9,12 @@ You can get Mirage-SQL from the Maven Central Repository. Add the following frag
 <dependency>
     <groupId>jp.sf.amateras</groupId>
     <artifactId>mirage</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
 </dependency>
 ```
 or in a Gradle based project add to your ```build.gradle``` the following line:
 ```groovy
-compile 'jp.sf.amateras:mirage:1.2.3'
+compile 'jp.sf.amateras:mirage:1.2.4'
 ```
 
 This is a simple example of a SQL template:
