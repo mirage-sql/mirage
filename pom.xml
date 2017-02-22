@@ -36,6 +36,13 @@
             <url>http://d.hatena.ne.jp/daisuke-m/</url>
             <timezone>+9</timezone>
         </developer>
+        <developer>
+            <id>aadrian</id>
+            <name>Adrian A.</name>
+            <email>a.adrian.tech_at_gmail.com</email>
+            <url>https://github.com/aadrian</url>
+            <timezone>+1</timezone>
+        </developer>
     </developers>
     <scm>
         <connection>scm:git:https://github.com/takezoe/mirage.git</connection>
@@ -43,32 +50,10 @@
         <url>https://github.com/takezoe/mirage</url>
     </scm>
 
-    <mailingLists>
-        <mailingList>
-            <name>amateras-mirage</name>
-            <archive>http://lists.sourceforge.jp/mailman/listinfo/amateras-mirage</archive>
-        </mailingList>
-    </mailingLists>
-
     <issueManagement>
         <system>GitHub Issues</system>
         <url>https://github.com/takezoe/mirage/issues</url>
     </issueManagement>
-
-    <repositories>
-        <repository>
-            <id>amateras</id>
-            <name>Project Amateras Maven2 Repository</name>
-            <url>http://amateras.sourceforge.jp/mvn/</url>
-        </repository>
-        <!--
-            <repository>
-              <id>maven.seasar.org</id>
-              <name>The Seasar Foundation Maven2 Repository</name>
-              <url>http://maven.seasar.org/maven2</url>
-            </repository>
-        -->
-    </repositories>
 
     <pluginRepositories>
         <pluginRepository>
