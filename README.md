@@ -1,4 +1,4 @@
-Mirage-SQL
+Mirage-SQL [![Build Status](https://travis-ci.org/takezoe/mirage.svg?branch=master)](https://travis-ci.org/takezoe/mirage)
 ======
 
 Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
