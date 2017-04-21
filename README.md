@@ -3,6 +3,7 @@ Mirage-SQL [![Build Status](https://travis-ci.org/mirage-sql/mirage.svg?branch=m
 
 Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
 
+#### Using
 You can get Mirage-SQL from the Maven Central Repository. Add the following fragment into your `pom.xml`.
 
 ```xml
@@ -17,8 +18,9 @@ or in a Gradle based project add to your ```build.gradle``` the following line:
 compile 'jp.sf.amateras:mirage:1.2.5'
 ```
 
-If you are updating your application from a previous Mirage-SQL version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide)
+If you are updating your application from a previous Mirage-SQL version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
 
+#### Example
 
 This is a simple example of a SQL template:
 
@@ -39,6 +41,13 @@ SELECT * FROM BOOK
 ORDER BY BOOK_ID ASC
 ```
 
-In Mirage, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. From this feature, Mirage's SQL template is called [2Way SQL](https://github.com/mirage-sql/mirage/wiki/2WaySQL).
+In Mirage, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. 
+This feature used in the Mirage's SQL template it's called [2Way SQL](https://github.com/mirage-sql/mirage/wiki/2WaySQL).
 
-A detailed documentation is provided in the [Wiki](https://github.com/mirage-sql/mirage/wiki).
+#### Links
+ - A **detailed documentation** is provided in the [Wiki](https://github.com/mirage-sql/mirage/wiki).
+ - Support in English is provided in the [Gitter Chatroom](https://gitter.im/mirage-sql/mirage-sql).
+ - If you find any bugs or issues, please report them in the [GitHub Issue Tracker](https://github.com/mirage-sql/mirage/issues).
+ - Mirage-SQL has integrations with other JVM based languages too:
+   - [Scala Integration](https://github.com/mirage-sql/mirage-scala)
+   - [Groovy Integration](https://github.com/mirage-sql/mirage-groovy)
