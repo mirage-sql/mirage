@@ -1,4 +1,4 @@
-Mirage-SQL [![Build Status](https://travis-ci.org/takezoe/mirage.svg?branch=master)](https://travis-ci.org/takezoe/mirage)
+Mirage-SQL [![Build Status](https://travis-ci.org/mirage-sql/mirage.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage)
 ======
 
 Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
@@ -36,6 +36,6 @@ SELECT * FROM BOOK
 ORDER BY BOOK_ID ASC
 ```
 
-In Mirage, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. From this feature, Mirage's SQL template is called [2Way SQL](https://github.com/takezoe/mirage/wiki/2WaySQL).
+In Mirage, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. From this feature, Mirage's SQL template is called [2Way SQL](https://github.com/mirage-sql/mirage/wiki/2WaySQL).
 
-A detailed documentation is provided in the [Wiki](https://github.com/takezoe/mirage/wiki).
+A detailed documentation is provided in the [Wiki](https://github.com/mirage-sql/mirage/wiki).
