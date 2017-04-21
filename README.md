@@ -17,6 +17,9 @@ or in a Gradle based project add to your ```build.gradle``` the following line:
 compile 'jp.sf.amateras:mirage:1.2.5'
 ```
 
+If you are updating your application from a previous Mirage-SQL version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide)
+
+
 This is a simple example of a SQL template:
 
 ```sql
