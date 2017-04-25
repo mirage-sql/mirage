@@ -8,14 +8,14 @@ You can get Mirage-SQL from the Maven Central Repository. Add the following frag
 
 ```xml
 <dependency>
-    <groupId>jp.sf.amateras</groupId>
-    <artifactId>mirage</artifactId>
-    <version>1.2.5</version>
+    <groupId>com.miragesql</groupId>
+    <artifactId>miragesql</artifactId>
+    <version>1.3.0</version>
 </dependency>
 ```
 or in a Gradle based project add to your ```build.gradle``` the following line:
 ```groovy
-compile 'jp.sf.amateras:mirage:1.2.5'
+compile 'com.miragesql:miragesql:1.3.0'
 ```
 
 If you are updating your application from a previous Mirage-SQL version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
