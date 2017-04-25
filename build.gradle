@@ -11,7 +11,7 @@ apply plugin: 'nebula.provided-base'
 apply plugin: 'nebula.optional-base'
 
 group 'com.miragesql'
-version '1.3.0-SNAPSHOT'
+version '1.3.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
