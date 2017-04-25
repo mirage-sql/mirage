@@ -1,5 +1,7 @@
 target/
+build/
 temp/
+.gradle
 .idea
 *.iml
 *.ipr
@@ -8,3 +10,5 @@ out
 .classpath
 .settings
 .project
+.gradletasknamecache
+gradle-app.setting
