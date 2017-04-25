@@ -1,0 +1,165 @@
+plugins {
+    id 'nebula.optional-base' version '3.0.3' // mvn style optional dependencies
+    id 'nebula.provided-base' version '3.0.3' // mvn style provided dependencies
+}
+
+apply plugin: 'java-library'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+apply plugin: 'nebula.provided-base'
+apply plugin: 'nebula.optional-base'
+
+group 'com.miragesql'
+version '1.3.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+
+dependencies {
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    compile 'org.javassist:javassist:3.21.0-GA'
+    compile 'ognl:ognl:3.2.1'
+
+    compile "org.springframework:spring-core:3.2.5.RELEASE", optional
+    compile "org.springframework:spring-context:3.2.5.RELEASE", optional
+    compile "org.springframework:spring-jdbc:3.2.5.RELEASE", optional
+    compile "com.google.inject:guice:4.1.0", optional
+
+
+    provided 'org.apache.ant:ant:1.10.1'
+    provided 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'
+    provided 'javax.servlet:servlet-api:2.5'
+
+    compile 'junit:junit:4.12'
+    testImplementation 'cglib:cglib:3.2.5'
+    testImplementation 'org.mockito:mockito-core:2.7.22'
+    testImplementation 'com.h2database:h2:1.4.194'
+    testImplementation 'org.hsqldb:hsqldb:2.4.0'
+
+    testImplementation 'org.springframework:spring-aop:3.2.5.RELEASE'
+}
+
+// JavaDoc 8 problems
+javadoc { failOnError false }
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Built-Gradle': gradle.gradleVersion,
+                'Target-JDK': project.targetCompatibility)
+    }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+def getPom(project) {
+    return {
+        name 'Mirage-SQL'
+        packaging 'jar'
+        // optionally artifactId can be defined here
+        description 'Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.'
+        url 'https://github.com/mirage-sql/mirage'
+
+        organization {
+            name 'Mirage-SQL'
+            url 'https://github.com/mirage-sql/'
+        }
+
+        scm {
+            connection 'scm:git:https://github.com/mirage-sql/mirage.git'
+            developerConnection 'scm:git:https://github.com/mirage-sql/mirage.git'
+            url 'https://github.com/mirage-sql/mirage'
+        }
+
+        issueManagement {
+            system 'GitHub Issues'
+            url 'https://github.com/mirage-sql/mirage/issues'
+        }
+        licenses {
+            license {
+                name 'The Apache License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+
+        developers {
+            developer {
+                id 'takezoe'
+                name 'Naoki Takezoe'
+                email 'takezoe_at_gmail.com'
+                url 'http://d.hatena.ne.jp/takezoe/'
+                timezone '+9'
+            }
+            developer {
+                id 'daisuke'
+                name 'Daisuke Miyamoto'
+                email 'dai.0304_at_gmail.com'
+                url 'http://d.hatena.ne.jp/daisuke-m/'
+                timezone '+9'
+            }
+            developer {
+                id 'aadrian'
+                name 'Adrian A.'
+                email 'a.adrian.tech_at_gmail.com'
+                url 'https://github.com/aadrian'
+                timezone '+1'
+            }
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom {
+                project getPom(project)
+            }
+        }
+    }
+}
+
+// note: this task still does not display 'provided' and 'optional' correctly
+task writeNewPom {
+    doLast {
+        pom {
+            project getPom(project)
+        }.writeTo("$buildDir/newpom.xml")
+    }
+}
