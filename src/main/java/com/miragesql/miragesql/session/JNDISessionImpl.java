@@ -1,12 +1,12 @@
-package jp.sf.amateras.mirage.session;
+package com.miragesql.miragesql.session;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.SqlManagerImpl;
-import jp.sf.amateras.mirage.exception.ConfigurationException;
-import jp.sf.amateras.mirage.exception.SessionException;
-import jp.sf.amateras.mirage.provider.DataSourceConnectionProvider;
-import jp.sf.amateras.mirage.provider.DefaultConnectionProvider;
-import jp.sf.amateras.mirage.provider.JNDIDataSourceConnectionProvider;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.SqlManagerImpl;
+import com.miragesql.miragesql.exception.ConfigurationException;
+import com.miragesql.miragesql.exception.SessionException;
+import com.miragesql.miragesql.provider.DataSourceConnectionProvider;
+import com.miragesql.miragesql.provider.DefaultConnectionProvider;
+import com.miragesql.miragesql.provider.JNDIDataSourceConnectionProvider;
 
 import javax.naming.NamingException;
 import java.sql.Connection;
@@ -31,7 +31,7 @@ public class JNDISessionImpl implements Session {
      * <p/>
      * To enable JNDI you need to add the following properties to <code>jdbc.properties</code>:
      * <pre>
-     *  session.class=jp.sf.amateras.mirage.session.JNDISessionImpl
+     *  session.class=com.miragesql.miragesql.session.JNDISessionImpl
      *  jndi.name=jdbc/mydbname
      *  db.dialect=jdbc:mysql:
      *  sql.cache=true

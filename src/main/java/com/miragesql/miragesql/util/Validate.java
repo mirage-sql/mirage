@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jp.sf.amateras.mirage.util;
+package com.miragesql.miragesql.util;
 
 import java.util.Collection;
 import java.util.Iterator;

@@ -1,9 +1,9 @@
-package jp.sf.amateras.mirage.provider;
+package com.miragesql.miragesql.provider;
 
 import java.sql.Connection;
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.util.JdbcUtil;
+import com.miragesql.miragesql.util.JdbcUtil;
 
 /**
  * The simple implementation of {@link ConnectionProvider}.

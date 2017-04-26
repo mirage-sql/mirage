@@ -1,18 +1,18 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import static org.mockito.Mockito.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import jp.sf.amateras.mirage.dialect.HyperSQLDialect;
-import jp.sf.amateras.mirage.provider.ConnectionProvider;
-import jp.sf.amateras.mirage.util.IOUtil;
+import com.miragesql.miragesql.dialect.HyperSQLDialect;
+import com.miragesql.miragesql.provider.ConnectionProvider;
+import com.miragesql.miragesql.util.IOUtil;
 import junit.framework.TestCase;
 
 public abstract class AbstractDatabaseTest extends TestCase {
 
-	protected static final String SQL_PREFIX = "jp/sf/amateras/mirage/";
+	protected static final String SQL_PREFIX = "com/miragesql/miragesql/";
 
 	protected SqlManager sqlManager = new SqlManagerImpl();
 	protected Connection conn;

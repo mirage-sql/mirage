@@ -1,8 +1,8 @@
-package jp.sf.amateras.mirage.dialect;
+package com.miragesql.miragesql.dialect;
 
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.type.OracleResultSetValueType;
-import jp.sf.amateras.mirage.type.ValueType;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.type.OracleResultSetValueType;
+import com.miragesql.miragesql.type.ValueType;
 
 public class OracleDialect extends StandardDialect {
 

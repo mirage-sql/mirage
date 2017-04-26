@@ -1,14 +1,14 @@
-package jp.sf.amateras.mirage.test;
+package com.miragesql.miragesql.test;
 
 import java.util.Collections;
 import java.util.List;
 
-import jp.sf.amateras.mirage.IterationCallback;
-import jp.sf.amateras.mirage.SqlExecutor;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
+import com.miragesql.miragesql.IterationCallback;
+import com.miragesql.miragesql.SqlExecutor;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.bean.PropertyDesc;
 
 /**
  * The mock class of {@link SqlExecutor}. This class is used in the {@link MockSqlManager}.

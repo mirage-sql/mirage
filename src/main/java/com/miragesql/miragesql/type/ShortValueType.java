@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.type;
+package com.miragesql.miragesql.type;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

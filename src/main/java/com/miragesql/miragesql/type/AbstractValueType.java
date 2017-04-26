@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.type;
+package com.miragesql.miragesql.type;
 
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -13,8 +13,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.util.Validate;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.util.Validate;
 
 public abstract class AbstractValueType<T> implements ValueType<T> {
 

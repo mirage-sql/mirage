@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.type;
+package com.miragesql.miragesql.type;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import jp.sf.amateras.mirage.bean.PropertyDesc;
+import com.miragesql.miragesql.bean.PropertyDesc;
 
 public class AbstractResultSetValueType implements ValueType<Object> {
 

@@ -1,19 +1,19 @@
-package jp.sf.amateras.mirage.tool;
+package com.miragesql.miragesql.tool;
 
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.bean.ReflectiveOperationFailedException;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.dialect.StandardDialect;
-import jp.sf.amateras.mirage.naming.DefaultNameConverter;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.type.ValueType;
-import jp.sf.amateras.mirage.util.JdbcUtil;
-import jp.sf.amateras.mirage.util.StringUtil;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.bean.ReflectiveOperationFailedException;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.dialect.StandardDialect;
+import com.miragesql.miragesql.naming.DefaultNameConverter;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.type.ValueType;
+import com.miragesql.miragesql.util.JdbcUtil;
+import com.miragesql.miragesql.util.StringUtil;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
@@ -33,7 +33,7 @@ import org.apache.tools.ant.Task;
  *    &lt;/path&gt;
  *
  *    &lt;taskdef name="entityGen"
- *      classname="jp.sf.amateras.mirage.tool.EntityGenTask"
+ *      classname="com.miragesql.miragesql.tool.EntityGenTask"
  *      classpathref="class.path" /&gt;
  *
  *    &lt;entityGen
@@ -99,13 +99,13 @@ import org.apache.tools.ant.Task;
  *     <td>nameConverter</td>
  *     <td>&nbsp;</td>
  *     <td>Class name of {@link NameConverter}</td>
- *     <td>jp.sf.amateras.mirage.naming.DefaultNameConverter</td>
+ *     <td>com.miragesql.miragesql.naming.DefaultNameConverter</td>
  *   </tr>
  *   <tr>
  *     <td>dialect</td>
  *     <td>&nbsp;</td>
  *     <td>Class name of {@link Dialect}</td>
- *     <td>jp.sf.amateras.mirage.dialect.StandardDialect</td>
+ *     <td>com.miragesql.miragesql.dialect.StandardDialect</td>
  *   </tr>
  *   <tr>
  *     <td>valueTypes</td>
@@ -171,7 +171,7 @@ public class EntityGenTask extends Task {
 
 	/**
 	 * Sets the Dialect class name.
-	 * The default value is "jp.sf.amateras.mirage.dialect.StandardDialect".
+	 * The default value is "com.miragesql.miragesql.dialect.StandardDialect".
 	 *
 	 * @param dialect the dialect class name
 	 */
@@ -190,7 +190,7 @@ public class EntityGenTask extends Task {
 
 	/**
 	 * Sets the NameConverter class name.
-	 * The default value is "jp.sf.amateras.mirage.naming.DefaultNameConverter".
+	 * The default value is "com.miragesql.miragesql.naming.DefaultNameConverter".
 	 *
 	 * @param nameConverter
 	 */

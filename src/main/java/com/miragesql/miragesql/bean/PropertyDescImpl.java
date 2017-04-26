@@ -1,10 +1,10 @@
-package jp.sf.amateras.mirage.bean;
+package com.miragesql.miragesql.bean;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-import jp.sf.amateras.mirage.exception.BeanDescException;
+import com.miragesql.miragesql.exception.BeanDescException;
 
 public class PropertyDescImpl implements PropertyDesc {
 

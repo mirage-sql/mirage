@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.naming;
+package com.miragesql.miragesql.naming;
 
 /**
  * The default implementation of {@link NameConverter}.

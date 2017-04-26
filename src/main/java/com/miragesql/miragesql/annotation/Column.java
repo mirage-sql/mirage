@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.annotation;
+package com.miragesql.miragesql.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -6,7 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import jp.sf.amateras.mirage.naming.NameConverter;
+import com.miragesql.miragesql.naming.NameConverter;
 
 /**
  * Specifies the column name which is mapped to the property.

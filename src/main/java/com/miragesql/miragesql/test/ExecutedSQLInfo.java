@@ -1,6 +1,6 @@
-package jp.sf.amateras.mirage.test;
+package com.miragesql.miragesql.test;
 
-import jp.sf.amateras.mirage.bean.PropertyDesc;
+import com.miragesql.miragesql.bean.PropertyDesc;
 
 /**
  *

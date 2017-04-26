@@ -13,14 +13,14 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.parser;
+package com.miragesql.miragesql.parser;
 
 import java.util.Stack;
 
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
-import jp.sf.amateras.mirage.exception.TwoWaySQLException;
-import jp.sf.amateras.mirage.parser.SqlTokenizer.TokenType;
-import jp.sf.amateras.mirage.util.StringUtil;
+import com.miragesql.miragesql.bean.BeanDescFactory;
+import com.miragesql.miragesql.exception.TwoWaySQLException;
+import com.miragesql.miragesql.parser.SqlTokenizer.TokenType;
+import com.miragesql.miragesql.util.StringUtil;
 
 /**
  * Default {@link SqlParser} implementation.

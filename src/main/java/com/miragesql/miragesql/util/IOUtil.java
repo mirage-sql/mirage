@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.util;
+package com.miragesql.miragesql.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import jp.sf.amateras.mirage.exception.IORuntimeException;
+import com.miragesql.miragesql.exception.IORuntimeException;
 
 public class IOUtil {
 

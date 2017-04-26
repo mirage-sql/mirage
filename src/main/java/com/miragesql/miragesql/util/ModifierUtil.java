@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.util;
+package com.miragesql.miragesql.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

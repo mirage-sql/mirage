@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.integration.guice;
+package com.miragesql.miragesql.integration.guice;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

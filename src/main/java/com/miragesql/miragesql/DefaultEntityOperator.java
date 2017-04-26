@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -11,14 +11,14 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.annotation.Column;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.type.ValueType;
-import jp.sf.amateras.mirage.util.MirageUtil;
+import com.miragesql.miragesql.annotation.Column;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.type.ValueType;
+import com.miragesql.miragesql.util.MirageUtil;
 
 public class DefaultEntityOperator implements EntityOperator {
 

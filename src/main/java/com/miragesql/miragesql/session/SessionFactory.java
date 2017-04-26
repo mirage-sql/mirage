@@ -1,12 +1,12 @@
-package jp.sf.amateras.mirage.session;
+package com.miragesql.miragesql.session;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
-import jp.sf.amateras.mirage.exception.ConfigurationException;
-import jp.sf.amateras.mirage.util.IOUtil;
-import jp.sf.amateras.mirage.util.StringUtil;
+import com.miragesql.miragesql.exception.ConfigurationException;
+import com.miragesql.miragesql.util.IOUtil;
+import com.miragesql.miragesql.util.StringUtil;
 
 public class SessionFactory {
 

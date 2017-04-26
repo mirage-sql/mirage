@@ -13,13 +13,13 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.parser;
+package com.miragesql.miragesql.parser;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import jp.sf.amateras.mirage.util.OgnlUtil;
+import com.miragesql.miragesql.util.OgnlUtil;
 
 /**
  * {@link Node} for <code>IN</code> bind variables.

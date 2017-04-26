@@ -1,6 +1,6 @@
-package jp.sf.amateras.mirage.session;
+package com.miragesql.miragesql.session;
 
-import jp.sf.amateras.mirage.dialect.*;
+import com.miragesql.miragesql.dialect.*;
 
 public class DialectAutoSelector {
 

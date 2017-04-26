@@ -14,7 +14,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.type.enumerate;
+package com.miragesql.miragesql.type.enumerate;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -22,11 +22,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import jp.sf.amateras.mirage.type.ValueType;
-import jp.sf.amateras.mirage.util.AnnotationUtils;
-import jp.sf.amateras.mirage.annotation.Enumerated;
-import jp.sf.amateras.mirage.annotation.Enumerated.EnumType;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
+import com.miragesql.miragesql.type.ValueType;
+import com.miragesql.miragesql.util.AnnotationUtils;
+import com.miragesql.miragesql.annotation.Enumerated;
+import com.miragesql.miragesql.annotation.Enumerated.EnumType;
+import com.miragesql.miragesql.bean.PropertyDesc;
 
 /**
  * {@link Enum}型をordinalの {@code int}型としてDBに保存するための {@link ValueType}実装クラス。

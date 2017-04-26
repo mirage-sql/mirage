@@ -1,10 +1,10 @@
-package jp.sf.amateras.mirage.tool;
+package com.miragesql.miragesql.tool;
 
-import jp.sf.amateras.mirage.AbstractDatabaseTest;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.dialect.StandardDialect;
-import jp.sf.amateras.mirage.naming.DefaultNameConverter;
-import jp.sf.amateras.mirage.util.IOUtil;
+import com.miragesql.miragesql.AbstractDatabaseTest;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.dialect.StandardDialect;
+import com.miragesql.miragesql.naming.DefaultNameConverter;
+import com.miragesql.miragesql.util.IOUtil;
 
 public class EntityGenTest extends AbstractDatabaseTest {
 
@@ -16,7 +16,7 @@ public class EntityGenTest extends AbstractDatabaseTest {
 
 	public void testGetEntitySource() throws Exception {
 		EntityGen gen = new EntityGen();
-		gen.setPackageName("jp.sf.amateras.mirage.entity");
+		gen.setPackageName("com.miragesql.miragesql.entity");
 		gen.setNameConverter(new DefaultNameConverter());
 		gen.setGenerationType(GenerationType.SEQUENCE);
 		gen.setDialect(new StandardDialect());

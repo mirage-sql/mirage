@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.session;
+package com.miragesql.miragesql.session;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,12 +7,12 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.SqlManagerImpl;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.exception.SessionException;
-import jp.sf.amateras.mirage.provider.DefaultConnectionProvider;
-import jp.sf.amateras.mirage.util.StringUtil;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.SqlManagerImpl;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.exception.SessionException;
+import com.miragesql.miragesql.provider.DefaultConnectionProvider;
+import com.miragesql.miragesql.util.StringUtil;
 
 /**
  * The default implementation of {@link Session}.

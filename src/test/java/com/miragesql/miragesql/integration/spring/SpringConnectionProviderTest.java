@@ -1,13 +1,13 @@
-package jp.sf.amateras.mirage.integration.spring;
+package com.miragesql.miragesql.integration.spring;
 
 import java.lang.reflect.Field;
 
-import jp.sf.amateras.mirage.AbstractDatabaseTest;
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.SqlManagerImpl;
-import jp.sf.amateras.mirage.SqlManagerImplTest.Book;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.dialect.HyperSQLDialect;
+import com.miragesql.miragesql.AbstractDatabaseTest;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.SqlManagerImpl;
+import com.miragesql.miragesql.SqlManagerImplTest.Book;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.dialect.HyperSQLDialect;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,7 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringConnectionProviderTest extends AbstractDatabaseTest {
 
 	private static final String APPLICATION_CONTEXT =
-		"jp/sf/amateras/mirage/integration/spring/applicationContext.xml";
+		"com/miragesql/miragesql/integration/spring/applicationContext.xml";
 
 	/**
 	 * Tests dialect configuration.

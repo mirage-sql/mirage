@@ -1,6 +1,6 @@
-package jp.sf.amateras.mirage.parser;
+package com.miragesql.miragesql.parser;
 
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
+import com.miragesql.miragesql.bean.BeanDescFactory;
 import junit.framework.TestCase;
 
 public class SqlParserImplTest extends TestCase {

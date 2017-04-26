@@ -1,10 +1,10 @@
-package jp.sf.amateras.mirage.integration.spring;
+package com.miragesql.miragesql.integration.spring;
 
 import java.sql.Connection;
 
 import javax.sql.DataSource;
 
-import jp.sf.amateras.mirage.provider.ConnectionProvider;
+import com.miragesql.miragesql.provider.ConnectionProvider;
 
 import org.springframework.jdbc.datasource.ConnectionHolder;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;

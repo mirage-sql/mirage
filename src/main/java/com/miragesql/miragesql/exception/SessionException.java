@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.exception;
+package com.miragesql.miragesql.exception;
 
 public class SessionException extends RuntimeException {
 

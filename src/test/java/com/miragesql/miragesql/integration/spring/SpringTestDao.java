@@ -1,8 +1,8 @@
-package jp.sf.amateras.mirage.integration.spring;
+package com.miragesql.miragesql.integration.spring;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.StringSqlResource;
-import jp.sf.amateras.mirage.SqlManagerImplTest.Book;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.StringSqlResource;
+import com.miragesql.miragesql.SqlManagerImplTest.Book;
 
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,20 +10,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.exception.BreakIterationException;
-import jp.sf.amateras.mirage.exception.SQLRuntimeException;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.provider.ConnectionProvider;
-import jp.sf.amateras.mirage.type.ValueType;
-import jp.sf.amateras.mirage.util.JdbcUtil;
-import jp.sf.amateras.mirage.util.MirageUtil;
-import jp.sf.amateras.mirage.util.Validate;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.bean.BeanDescFactory;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.exception.BreakIterationException;
+import com.miragesql.miragesql.exception.SQLRuntimeException;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.provider.ConnectionProvider;
+import com.miragesql.miragesql.type.ValueType;
+import com.miragesql.miragesql.util.JdbcUtil;
+import com.miragesql.miragesql.util.MirageUtil;
+import com.miragesql.miragesql.util.Validate;
 
 public class SqlExecutor {
 

@@ -1,6 +1,6 @@
-package jp.sf.amateras.mirage.naming;
+package com.miragesql.miragesql.naming;
 
-import jp.sf.amateras.mirage.SqlManager;
+import com.miragesql.miragesql.SqlManager;
 
 /**
  * The interface of the converter which converts table / column names and entity / property names.

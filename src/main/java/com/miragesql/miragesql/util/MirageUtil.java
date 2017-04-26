@@ -1,21 +1,21 @@
-package jp.sf.amateras.mirage.util;
+package com.miragesql.miragesql.util;
 
 import java.util.List;
 
-import jp.sf.amateras.mirage.EntityOperator;
-import jp.sf.amateras.mirage.EntityOperator.ColumnInfo;
-import jp.sf.amateras.mirage.EntityOperator.PrimaryKeyInfo;
-import jp.sf.amateras.mirage.annotation.Column;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.annotation.Table;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.parser.SqlContext;
-import jp.sf.amateras.mirage.parser.SqlContextImpl;
-import jp.sf.amateras.mirage.type.ValueType;
+import com.miragesql.miragesql.EntityOperator;
+import com.miragesql.miragesql.EntityOperator.ColumnInfo;
+import com.miragesql.miragesql.EntityOperator.PrimaryKeyInfo;
+import com.miragesql.miragesql.annotation.Column;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.annotation.Table;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.bean.BeanDescFactory;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.parser.SqlContext;
+import com.miragesql.miragesql.parser.SqlContextImpl;
+import com.miragesql.miragesql.type.ValueType;
 
 public class MirageUtil {
 

@@ -1,10 +1,10 @@
-package jp.sf.amateras.mirage.bean;
+package com.miragesql.miragesql.bean;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import jp.sf.amateras.mirage.annotation.Transient;
-import jp.sf.amateras.mirage.exception.BeanDescException;
+import com.miragesql.miragesql.annotation.Transient;
+import com.miragesql.miragesql.exception.BeanDescException;
 
 /**
  * Descriptor of the property of entity.

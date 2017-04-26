@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.session;
+package com.miragesql.miragesql.session;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,12 +8,12 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.SqlManagerImpl;
-import jp.sf.amateras.mirage.exception.ConfigurationException;
-import jp.sf.amateras.mirage.exception.SessionException;
-import jp.sf.amateras.mirage.provider.DefaultConnectionProvider;
-import jp.sf.amateras.mirage.util.StringUtil;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.SqlManagerImpl;
+import com.miragesql.miragesql.exception.ConfigurationException;
+import com.miragesql.miragesql.exception.SessionException;
+import com.miragesql.miragesql.provider.DefaultConnectionProvider;
+import com.miragesql.miragesql.util.StringUtil;
 
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.dbcp.DriverManagerConnectionFactory;
@@ -28,7 +28,7 @@ import org.apache.commons.pool.impl.StackKeyedObjectPoolFactory;
  * <p>
  * To enable DBCP, you have to make jdbc.properties as follows:
  * <pre>
- * session.class=jp.sf.amateras.mirage.session.DBCPSessionImpl
+ * session.class=com.miragesql.miragesql.session.DBCPSessionImpl
  * jdbc.driver=com.mysql.jdbc.Driver
  * jdbc.url=jdbc:mysql://localhost/test
  * jdbc.user=root

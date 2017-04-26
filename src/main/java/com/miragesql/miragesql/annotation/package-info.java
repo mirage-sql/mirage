@@ -1,4 +1,4 @@
 /**
  * Provides the Mirage SQL Annotations
  */
-package jp.sf.amateras.mirage.annotation;
+package com.miragesql.miragesql.annotation;

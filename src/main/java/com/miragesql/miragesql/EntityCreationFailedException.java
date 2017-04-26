@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 
 /**

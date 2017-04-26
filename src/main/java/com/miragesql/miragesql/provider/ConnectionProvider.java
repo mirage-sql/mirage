@@ -1,9 +1,9 @@
-package jp.sf.amateras.mirage.provider;
+package com.miragesql.miragesql.provider;
 
 import java.sql.Connection;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.exception.SQLRuntimeException;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.exception.SQLRuntimeException;
 
 /**
  * The interface of the connection provider.

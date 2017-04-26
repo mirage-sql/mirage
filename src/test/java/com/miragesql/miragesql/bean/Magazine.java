@@ -1,7 +1,7 @@
-package jp.sf.amateras.mirage.bean;
+package com.miragesql.miragesql.bean;
 
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
 
 public class Magazine {
 	public static final String CONSTANT = "foobar";

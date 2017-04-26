@@ -1,15 +1,15 @@
-package jp.sf.amateras.mirage.updater;
+package com.miragesql.miragesql.updater;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.SqlManagerImpl;
-import jp.sf.amateras.mirage.StringSqlResource;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.exception.SQLRuntimeException;
-import jp.sf.amateras.mirage.util.IOUtil;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.SqlManagerImpl;
+import com.miragesql.miragesql.StringSqlResource;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.exception.SQLRuntimeException;
+import com.miragesql.miragesql.util.IOUtil;
 
 /**
  * Execute SQL files which located a specific package to update database schema.

@@ -1,20 +1,20 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jp.sf.amateras.mirage.SqlManagerImplTest.Magazine.MagazineType;
-import jp.sf.amateras.mirage.annotation.Column;
-import jp.sf.amateras.mirage.annotation.Enumerated;
-import jp.sf.amateras.mirage.annotation.Enumerated.EnumType;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.exception.BreakIterationException;
-import jp.sf.amateras.mirage.test.ExecutedSQLInfo;
-import jp.sf.amateras.mirage.test.MirageTestContext;
-import jp.sf.amateras.mirage.test.MockSqlManager;
+import com.miragesql.miragesql.SqlManagerImplTest.Magazine.MagazineType;
+import com.miragesql.miragesql.annotation.Column;
+import com.miragesql.miragesql.annotation.Enumerated;
+import com.miragesql.miragesql.annotation.Enumerated.EnumType;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.exception.BreakIterationException;
+import com.miragesql.miragesql.test.ExecutedSQLInfo;
+import com.miragesql.miragesql.test.MirageTestContext;
+import com.miragesql.miragesql.test.MockSqlManager;
 
 public class SqlManagerImplTest extends AbstractDatabaseTest {
 

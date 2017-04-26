@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import java.lang.reflect.Field;
 import java.sql.CallableStatement;
@@ -10,20 +10,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.annotation.InOut;
-import jp.sf.amateras.mirage.annotation.Out;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.exception.SQLRuntimeException;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.provider.ConnectionProvider;
-import jp.sf.amateras.mirage.type.ValueType;
-import jp.sf.amateras.mirage.util.JdbcUtil;
-import jp.sf.amateras.mirage.util.ModifierUtil;
-import jp.sf.amateras.mirage.util.ReflectionUtil;
-import jp.sf.amateras.mirage.util.Validate;
+import com.miragesql.miragesql.annotation.InOut;
+import com.miragesql.miragesql.annotation.Out;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.bean.BeanDescFactory;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.exception.SQLRuntimeException;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.provider.ConnectionProvider;
+import com.miragesql.miragesql.type.ValueType;
+import com.miragesql.miragesql.util.JdbcUtil;
+import com.miragesql.miragesql.util.ModifierUtil;
+import com.miragesql.miragesql.util.ReflectionUtil;
+import com.miragesql.miragesql.util.Validate;
 
 public class CallExecutor {
 
@@ -485,7 +485,7 @@ public class CallExecutor {
             paramDesc.paramClass = field.getType();
 			paramDesc.valueType = getValueType(paramDesc.paramClass, pd);
 
-            if (pd.getAnnotation(jp.sf.amateras.mirage.annotation.ResultSet.class) != null) {
+            if (pd.getAnnotation(com.miragesql.miragesql.annotation.ResultSet.class) != null) {
                 paramDesc.paramType = ParameterType.RESULT_SET;
             } else if (pd.getAnnotation(Out.class) != null) {
                 paramDesc.paramType = ParameterType.OUT;

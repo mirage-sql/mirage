@@ -1,8 +1,8 @@
-package jp.sf.amateras.mirage.session;
+package com.miragesql.miragesql.session;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.exception.SessionException;
-import jp.sf.amateras.mirage.filter.OpenSessionInViewFilter;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.exception.SessionException;
+import com.miragesql.miragesql.filter.OpenSessionInViewFilter;
 
 /**
  * The entry point of Mirage in stand-alone use.

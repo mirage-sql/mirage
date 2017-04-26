@@ -13,11 +13,11 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.util;
+package com.miragesql.miragesql.util;
 
 import java.util.Map;
 
-import jp.sf.amateras.mirage.exception.OgnlRuntimeException;
+import com.miragesql.miragesql.exception.OgnlRuntimeException;
 import ognl.ClassResolver;
 import ognl.Ognl;
 import ognl.OgnlException;

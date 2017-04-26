@@ -1,9 +1,9 @@
-package jp.sf.amateras.mirage.integration.guice;
+package com.miragesql.miragesql.integration.guice;
 
 import java.util.logging.Logger;
 
-import jp.sf.amateras.mirage.session.SessionFactory;
-import jp.sf.amateras.mirage.util.ExceptionUtil;
+import com.miragesql.miragesql.session.SessionFactory;
+import com.miragesql.miragesql.util.ExceptionUtil;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;

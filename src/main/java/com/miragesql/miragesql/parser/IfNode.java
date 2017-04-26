@@ -13,10 +13,10 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.parser;
+package com.miragesql.miragesql.parser;
 
-import jp.sf.amateras.mirage.exception.TwoWaySQLException;
-import jp.sf.amateras.mirage.util.OgnlUtil;
+import com.miragesql.miragesql.exception.TwoWaySQLException;
+import com.miragesql.miragesql.util.OgnlUtil;
 
 
 /**

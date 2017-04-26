@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.bean;
+package com.miragesql.miragesql.bean;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

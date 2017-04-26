@@ -1,15 +1,15 @@
-package jp.sf.amateras.mirage.integration.guice;
+package com.miragesql.miragesql.integration.guice;
 
 import static org.mockito.Mockito.*;
 
 import java.lang.reflect.Field;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.StringSqlResource;
-import jp.sf.amateras.mirage.session.Session;
-import jp.sf.amateras.mirage.session.SessionFactory;
-import jp.sf.amateras.mirage.test.MirageTestContext;
-import jp.sf.amateras.mirage.test.MockSqlManager;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.StringSqlResource;
+import com.miragesql.miragesql.session.Session;
+import com.miragesql.miragesql.session.SessionFactory;
+import com.miragesql.miragesql.test.MirageTestContext;
+import com.miragesql.miragesql.test.MockSqlManager;
 import junit.framework.TestCase;
 
 import org.mockito.Mock;

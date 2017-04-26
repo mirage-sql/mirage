@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.dialect;
+package com.miragesql.miragesql.dialect;
 
 public class SQLServerDialect extends StandardDialect {
 

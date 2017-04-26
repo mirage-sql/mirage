@@ -1,7 +1,7 @@
-package jp.sf.amateras.mirage.test;
+package com.miragesql.miragesql.test;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.SqlManagerImpl;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.SqlManagerImpl;
 
 /**
  * The mock class of {@link SqlManager} for unit testing.

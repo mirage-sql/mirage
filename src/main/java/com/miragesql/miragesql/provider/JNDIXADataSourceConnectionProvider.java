@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.provider;
+package com.miragesql.miragesql.provider;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

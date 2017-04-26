@@ -13,12 +13,12 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.parser;
+package com.miragesql.miragesql.parser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.sf.amateras.mirage.util.CaseInsensitiveMap;
+import com.miragesql.miragesql.util.CaseInsensitiveMap;
 import ognl.OgnlRuntime;
 
 /**

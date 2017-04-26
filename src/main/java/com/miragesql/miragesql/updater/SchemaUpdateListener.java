@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.updater;
+package com.miragesql.miragesql.updater;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import jp.sf.amateras.mirage.SqlManagerImpl;
-import jp.sf.amateras.mirage.session.Session;
-import jp.sf.amateras.mirage.session.SessionFactory;
-import jp.sf.amateras.mirage.util.ExceptionUtil;
-import jp.sf.amateras.mirage.util.StringUtil;
+import com.miragesql.miragesql.SqlManagerImpl;
+import com.miragesql.miragesql.session.Session;
+import com.miragesql.miragesql.session.SessionFactory;
+import com.miragesql.miragesql.util.ExceptionUtil;
+import com.miragesql.miragesql.util.StringUtil;
 
 /**
  * This is a ServletContextListener to execute {@link SchemaUpdater} when the servlet context is initialized.

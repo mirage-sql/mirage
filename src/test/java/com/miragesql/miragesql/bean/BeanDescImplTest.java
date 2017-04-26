@@ -1,8 +1,8 @@
-package jp.sf.amateras.mirage.bean;
+package com.miragesql.miragesql.bean;
 
-import jp.sf.amateras.mirage.annotation.Enumerated;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.Transient;
+import com.miragesql.miragesql.annotation.Enumerated;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.Transient;
 import junit.framework.TestCase;
 
 public class BeanDescImplTest extends TestCase {

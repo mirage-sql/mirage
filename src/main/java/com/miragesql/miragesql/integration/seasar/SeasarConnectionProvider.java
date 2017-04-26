@@ -1,12 +1,12 @@
-package jp.sf.amateras.mirage.integration.seasar;
+package com.miragesql.miragesql.integration.seasar;
 
 import java.sql.Connection;
 
 import javax.transaction.Synchronization;
 import javax.transaction.TransactionSynchronizationRegistry;
 
-import jp.sf.amateras.mirage.provider.ConnectionProvider;
-import jp.sf.amateras.mirage.provider.XADataSourceConnectionProvider;
+import com.miragesql.miragesql.provider.ConnectionProvider;
+import com.miragesql.miragesql.provider.XADataSourceConnectionProvider;
 
 /**
  * {@link ConnectionProvider} implementation to user Mirage with Seasar2.

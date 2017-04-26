@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.provider;
+package com.miragesql.miragesql.provider;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 import javax.sql.XADataSource;
 
-import jp.sf.amateras.mirage.exception.SQLRuntimeException;
-import jp.sf.amateras.mirage.util.JdbcUtil;
+import com.miragesql.miragesql.exception.SQLRuntimeException;
+import com.miragesql.miragesql.util.JdbcUtil;
 
 /**
  * {@link ConnectionProvider} implementation which gets a connection from <code>javax.sql.XADataSource</code>.

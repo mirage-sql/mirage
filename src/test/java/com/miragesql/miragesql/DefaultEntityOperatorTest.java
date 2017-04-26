@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import static org.mockito.Mockito.*;
 
@@ -8,34 +8,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.type.BigDecimalValueType;
-import jp.sf.amateras.mirage.type.BooleanPrimitiveValueType;
-import jp.sf.amateras.mirage.type.BooleanValueType;
-import jp.sf.amateras.mirage.type.ByteArrayValueType;
-import jp.sf.amateras.mirage.type.DoublePrimitiveValueType;
-import jp.sf.amateras.mirage.type.DoubleValueType;
-import jp.sf.amateras.mirage.type.FloatPrimitiveValueType;
-import jp.sf.amateras.mirage.type.FloatValueType;
-import jp.sf.amateras.mirage.type.IntegerPrimitiveValueType;
-import jp.sf.amateras.mirage.type.IntegerValueType;
-import jp.sf.amateras.mirage.type.LongPrimitiveValueType;
-import jp.sf.amateras.mirage.type.LongValueType;
-import jp.sf.amateras.mirage.type.ShortPrimitiveValueType;
-import jp.sf.amateras.mirage.type.ShortValueType;
-import jp.sf.amateras.mirage.type.SqlDateValueType;
-import jp.sf.amateras.mirage.type.StringValueType;
-import jp.sf.amateras.mirage.type.TimeValueType;
-import jp.sf.amateras.mirage.type.TimestampValueType;
-import jp.sf.amateras.mirage.type.UtilDateValueType;
-import jp.sf.amateras.mirage.type.ValueType;
-import jp.sf.amateras.mirage.type.enumerate.EnumOneBasedOrdinalValueType;
-import jp.sf.amateras.mirage.type.enumerate.EnumOrdinalValueType;
-import jp.sf.amateras.mirage.type.enumerate.EnumStringValueType;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.type.BigDecimalValueType;
+import com.miragesql.miragesql.type.BooleanPrimitiveValueType;
+import com.miragesql.miragesql.type.BooleanValueType;
+import com.miragesql.miragesql.type.ByteArrayValueType;
+import com.miragesql.miragesql.type.DoublePrimitiveValueType;
+import com.miragesql.miragesql.type.DoubleValueType;
+import com.miragesql.miragesql.type.FloatPrimitiveValueType;
+import com.miragesql.miragesql.type.FloatValueType;
+import com.miragesql.miragesql.type.IntegerPrimitiveValueType;
+import com.miragesql.miragesql.type.IntegerValueType;
+import com.miragesql.miragesql.type.LongPrimitiveValueType;
+import com.miragesql.miragesql.type.LongValueType;
+import com.miragesql.miragesql.type.ShortPrimitiveValueType;
+import com.miragesql.miragesql.type.ShortValueType;
+import com.miragesql.miragesql.type.SqlDateValueType;
+import com.miragesql.miragesql.type.StringValueType;
+import com.miragesql.miragesql.type.TimeValueType;
+import com.miragesql.miragesql.type.TimestampValueType;
+import com.miragesql.miragesql.type.UtilDateValueType;
+import com.miragesql.miragesql.type.ValueType;
+import com.miragesql.miragesql.type.enumerate.EnumOneBasedOrdinalValueType;
+import com.miragesql.miragesql.type.enumerate.EnumOrdinalValueType;
+import com.miragesql.miragesql.type.enumerate.EnumStringValueType;
 import junit.framework.TestCase;
 
 

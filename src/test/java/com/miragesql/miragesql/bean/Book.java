@@ -1,10 +1,10 @@
-package jp.sf.amateras.mirage.bean;
+package com.miragesql.miragesql.bean;
 
-import jp.sf.amateras.mirage.annotation.Enumerated;
-import jp.sf.amateras.mirage.annotation.Enumerated.EnumType;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.Transient;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.annotation.Enumerated;
+import com.miragesql.miragesql.annotation.Enumerated.EnumType;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.Transient;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
 
 public class Book {
 	@PrimaryKey(generationType=GenerationType.IDENTITY)

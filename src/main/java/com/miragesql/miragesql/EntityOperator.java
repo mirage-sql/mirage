@@ -1,17 +1,17 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.List;
 
-import jp.sf.amateras.mirage.annotation.Column;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.bean.BeanDesc;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.type.ValueType;
+import com.miragesql.miragesql.annotation.Column;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.bean.BeanDesc;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.type.ValueType;
 
 /**
  * An interface for operation for the entity. This interface is used for the following operations:

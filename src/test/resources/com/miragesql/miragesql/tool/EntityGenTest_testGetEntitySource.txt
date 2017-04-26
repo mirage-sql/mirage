@@ -1,9 +1,9 @@
-package jp.sf.amateras.mirage.entity;
+package com.miragesql.miragesql.entity;
 
-import jp.sf.amateras.mirage.annotation.Table;
-import jp.sf.amateras.mirage.annotation.Column;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.annotation.Table;
+import com.miragesql.miragesql.annotation.Column;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
 
 @Table(name="BOOK")
 public class Book {

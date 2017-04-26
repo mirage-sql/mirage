@@ -1,11 +1,11 @@
-package jp.sf.amateras.mirage.test;
+package com.miragesql.miragesql.test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.sf.amateras.mirage.CallExecutor;
-import jp.sf.amateras.mirage.exception.SQLRuntimeException;
+import com.miragesql.miragesql.CallExecutor;
+import com.miragesql.miragesql.exception.SQLRuntimeException;
 
 /**
  * The mock class of {@link CallExecutor}.

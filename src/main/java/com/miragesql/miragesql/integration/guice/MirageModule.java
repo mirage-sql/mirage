@@ -1,8 +1,8 @@
-package jp.sf.amateras.mirage.integration.guice;
+package com.miragesql.miragesql.integration.guice;
 
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.session.Session;
-import jp.sf.amateras.mirage.session.SessionFactory;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.session.Session;
+import com.miragesql.miragesql.session.SessionFactory;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;

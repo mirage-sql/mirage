@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.filter;
+package com.miragesql.miragesql.filter;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -10,9 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import jp.sf.amateras.mirage.session.Session;
-import jp.sf.amateras.mirage.session.SessionFactory;
-import jp.sf.amateras.mirage.util.ExceptionUtil;
+import com.miragesql.miragesql.session.Session;
+import com.miragesql.miragesql.session.SessionFactory;
+import com.miragesql.miragesql.util.ExceptionUtil;
 
 /**
  * This filter makes Open Session in View pattern in Mirage.

@@ -1,6 +1,6 @@
-package jp.sf.amateras.mirage.dialect;
+package com.miragesql.miragesql.dialect;
 
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
 
 // TODO stored procedure / function and sequence support
 public class MySQLDialect extends StandardDialect {

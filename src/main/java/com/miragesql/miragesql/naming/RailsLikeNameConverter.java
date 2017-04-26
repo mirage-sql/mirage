@@ -14,7 +14,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.sf.amateras.mirage.naming;
+package com.miragesql.miragesql.naming;
 
 /**
  * An implementation of {@link NameConverter} which provides naming convention like Ruby on Rails.

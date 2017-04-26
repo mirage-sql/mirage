@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.test;
+package com.miragesql.miragesql.test;
 
 import static junit.framework.Assert.*;
 
@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jp.sf.amateras.mirage.DefaultEntityOperator;
-import jp.sf.amateras.mirage.EntityOperator;
-import jp.sf.amateras.mirage.SqlManager;
-import jp.sf.amateras.mirage.bean.BeanDescFactory;
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.naming.DefaultNameConverter;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.util.MirageUtil;
+import com.miragesql.miragesql.DefaultEntityOperator;
+import com.miragesql.miragesql.EntityOperator;
+import com.miragesql.miragesql.SqlManager;
+import com.miragesql.miragesql.bean.BeanDescFactory;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.naming.DefaultNameConverter;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.util.MirageUtil;
 import junit.framework.Assert;
 
 /**

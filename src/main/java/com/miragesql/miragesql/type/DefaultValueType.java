@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.type;
+package com.miragesql.miragesql.type;
 
 import java.io.ByteArrayInputStream;
 import java.io.StringWriter;
@@ -18,8 +18,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import jp.sf.amateras.mirage.bean.PropertyDesc;
-import jp.sf.amateras.mirage.util.IOUtil;
+import com.miragesql.miragesql.bean.PropertyDesc;
+import com.miragesql.miragesql.util.IOUtil;
 
 @Deprecated
 public class DefaultValueType implements ValueType<Object> {

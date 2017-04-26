@@ -1,11 +1,11 @@
-package jp.sf.amateras.mirage;
+package com.miragesql.miragesql;
 
 import java.util.List;
 
-import jp.sf.amateras.mirage.dialect.Dialect;
-import jp.sf.amateras.mirage.naming.NameConverter;
-import jp.sf.amateras.mirage.provider.ConnectionProvider;
-import jp.sf.amateras.mirage.type.ValueType;
+import com.miragesql.miragesql.dialect.Dialect;
+import com.miragesql.miragesql.naming.NameConverter;
+import com.miragesql.miragesql.provider.ConnectionProvider;
+import com.miragesql.miragesql.type.ValueType;
 
 public interface SqlManager {
 

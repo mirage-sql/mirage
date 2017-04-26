@@ -1,8 +1,8 @@
-package jp.sf.amateras.mirage.exception;
+package com.miragesql.miragesql.exception;
 
 import java.lang.reflect.InvocationTargetException;
 
-import jp.sf.amateras.mirage.bean.ReflectiveOperationFailedException;
+import com.miragesql.miragesql.bean.ReflectiveOperationFailedException;
 
 public class BeanDescException extends ReflectiveOperationFailedException {
 

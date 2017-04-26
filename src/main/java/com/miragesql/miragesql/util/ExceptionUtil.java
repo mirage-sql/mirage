@@ -1,4 +1,4 @@
-package jp.sf.amateras.mirage.util;
+package com.miragesql.miragesql.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

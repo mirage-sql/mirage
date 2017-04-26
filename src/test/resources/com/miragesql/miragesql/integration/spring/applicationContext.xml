@@ -23,18 +23,18 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="connectionProvider" class="jp.sf.amateras.mirage.integration.spring.SpringConnectionProvider">
+	<bean id="connectionProvider" class="com.miragesql.miragesql.integration.spring.SpringConnectionProvider">
 		<property name="transactionManager" ref="transactionManager" />
 	</bean>
 
-	<bean id="dialect" class="jp.sf.amateras.mirage.dialect.HyperSQLDialect" />
+	<bean id="dialect" class="com.miragesql.miragesql.dialect.HyperSQLDialect" />
 
-	<bean id="sqlManager" class="jp.sf.amateras.mirage.SqlManagerImpl">
+	<bean id="sqlManager" class="com.miragesql.miragesql.SqlManagerImpl">
 		<property name="connectionProvider" ref="connectionProvider" />
 		<property name="dialect" ref="dialect" />
 	</bean>
 
-	<bean id="springTestDao" class="jp.sf.amateras.mirage.integration.spring.SpringTestDao">
+	<bean id="springTestDao" class="com.miragesql.miragesql.integration.spring.SpringTestDao">
 		<property name="sqlManager" ref="sqlManager" />
 	</bean>
 </beans>
