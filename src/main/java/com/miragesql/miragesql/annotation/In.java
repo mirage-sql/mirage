@@ -7,8 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicates that the property is IN parameter of the parameter class
- * which is used for store procedure / function invocation.
+ * Annotation that indicates that the property is an IN parameter of the parameter class
+ * which is used for DB store procedure / function invocation.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD})

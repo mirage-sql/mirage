@@ -247,10 +247,10 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * Checks if this comment is a "Mirage SQL" comment, i.e. can be a keyword or a bind variable.
+     * Checks if this comment is a "Mirage-SQL" comment, i.e. can be a keyword or a bind variable.
      *
      * @param comment the comment to check
-     * @return <code>true</code> if it's a Mirage SQL comment.
+     * @return <code>true</code> if it's a Mirage-SQL comment.
      */
     protected static boolean isTargetComment(String comment) {
         return comment != null && comment.length() > 0
@@ -258,7 +258,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * Checks if this comment is a "Mirage SQL" <code>IF</code> keyword.
+     * Checks if this comment is a "Mirage-SQL" <code>IF</code> keyword.
      *
      * @param comment the comment to check
      * @return <code>true</code> if this comment is an <code>IF</code> keyword.
@@ -268,7 +268,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * Checks if this comment is a "Mirage SQL" <code>BEGIN</code> keyword.
+     * Checks if this comment is a "Mirage-SQL" <code>BEGIN</code> keyword.
      *
      * @param content the comment to check
      * @return <code>true</code> if this comment is an <code>BEGIN</code> keyword.
@@ -278,7 +278,7 @@ public class SqlParserImpl implements SqlParser {
     }
 
     /**
-     * Checks if this comment is a "Mirage SQL" <code>END</code> keyword.
+     * Checks if this comment is a "Mirage-SQL" <code>END</code> keyword.
      *
      * @param content the comment to check
      * @return <code>true</code> if this comment is an <code>END</code> keyword.

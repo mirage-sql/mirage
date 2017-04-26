@@ -9,10 +9,10 @@ import java.lang.annotation.Target;
 import com.miragesql.miragesql.naming.NameConverter;
 
 /**
- * Specifies the column name which is mapped to the property.
+ * Annotation that specifies the DB column name which is mapped to the annotated property.
  * <p>
- * By the default, Mirage converts the property name to the column name using {@link NameConverter}.
- * However if the entity property has this annotation, Mirage uses the specified column name instead of
+ * By the default, Mirage-SQL converts the property name to the column name using {@link NameConverter}.
+ * However if the entity property has this annotation, Mirage-SQL uses the specified column name instead of
  * <code>NameConverter</code> conversion.
  *
  * @author Naoki Takezoe
@@ -30,7 +30,7 @@ public @interface Column {
 
 	/**
 	 * The place holder when generate insert / update SQL.
-	 * default value: ?
+	 * Defaults to value: ?
 	 */
 	String placeHolder() default "?";
 }

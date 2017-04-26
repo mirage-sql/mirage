@@ -2,12 +2,14 @@ package com.miragesql.miragesql.dialect;
 
 public class H2Dialect extends StandardDialect {
 	
-	@Override /**{@inheritDoc}**/
+	/**{@inheritDoc}**/
+	@Override
 	public String getName() {
 		return "h2";
 	}
 	
-	@Override /**{@inheritDoc}**/
+	/**{@inheritDoc}**/
+    @Override
 	public String getSequenceSql(String sequenceName) {
 		return String.format("SELECT NEXTVAL('%s')", sequenceName);
 	}

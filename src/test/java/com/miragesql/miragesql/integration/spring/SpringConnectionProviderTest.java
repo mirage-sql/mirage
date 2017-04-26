@@ -33,7 +33,7 @@ public class SpringConnectionProviderTest extends AbstractDatabaseTest {
 	}
 
 	/**
-	 * Tests SQL execusion (commit).
+	 * Tests SQL execution (commit).
 	 */
 	public void testSpringSpringConnectionProvider2() throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT);
@@ -50,7 +50,7 @@ public class SpringConnectionProviderTest extends AbstractDatabaseTest {
 	}
 
 	/**
-	 * Tests SQL execusion (rollback).
+	 * Tests SQL execution (rollback).
 	 */
 	public void testSpringSpringConnectionProvider3() throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT);

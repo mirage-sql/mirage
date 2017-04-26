@@ -8,7 +8,7 @@ import com.miragesql.miragesql.exception.SQLRuntimeException;
 /**
  * The interface of the connection provider.
  * <p>
- * Mirage uses this interface to get the connection to the database.
+ * Mirage-SQL uses this interface to get the connection to the database.
  *
  * @author Naoki Takezoe
  * @see SqlManager#setConnectionProvider(ConnectionProvider)

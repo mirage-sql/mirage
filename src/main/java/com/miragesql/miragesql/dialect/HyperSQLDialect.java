@@ -2,12 +2,14 @@ package com.miragesql.miragesql.dialect;
 
 public class HyperSQLDialect extends StandardDialect {
 
-	@Override /**{@inheritDoc}**/
+	/**{@inheritDoc}**/
+	@Override
 	public String getName() {
 		return "hsqldb";
 	}
 	
-	@Override /**{@inheritDoc}**/
+	/**{@inheritDoc}**/
+	@Override
 	public String getSequenceSql(String sequenceName) {
 		return String.format("SELECT NEXT VALUE FOR %s " +
 				"FROM INFORMATION_SCHEMA.SYSTEM_TABLES " +

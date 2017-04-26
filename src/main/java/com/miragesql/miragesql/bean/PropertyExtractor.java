@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
- * An interface for extracting properties information from a class object.
+ * An interface for extracting property information from a class object.
  * <p>
  * You can implement your own PropertyExtractor and enable it by {@link BeanDescFactory#setPropertyExtractor(PropertyExtractor)}.
  *

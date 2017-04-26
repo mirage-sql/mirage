@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicates that the property corresponds to the primary key column.
+ * Annotation that indicates that the property corresponds to the DB primary key column.
  *
  * @author Naoki Takezoe
  */
@@ -21,7 +21,8 @@ public @interface PrimaryKey {
 	String generator() default "";
 
     /**
-     * The type of the generated primary key.
+     * The type of the generated primary key. Supported types are: <code>APPLICATION</code>, <code>IDENTITY</code> and
+	 * <code>SEQUENCE</code>.
      */
 	public static enum GenerationType {
 		APPLICATION,

@@ -8,14 +8,14 @@ import java.lang.annotation.Annotation;
 public interface BeanDesc {
 
 	/**
-	 * Returns class of entity.
+	 * Returns the class of entity.
 	 * 
 	 * @return class of entity
 	 */
 	public Class<?> getType();
 
 	/**
-	 * Returns {@link PropertyDesc} of this bean.
+	 * Returns the {@link PropertyDesc} of this bean.
 	 * 
 	 * <p>The {@code name} parameter is a {@link String} specifying the simple name of the desired property.</p>
 	 * 
@@ -36,12 +36,11 @@ public interface BeanDesc {
 	 * 
 	 * @param i index number
 	 * @return the {@link PropertyDesc}
-	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	public PropertyDesc getPropertyDesc(int i);
 
 	/**
-	 * Returns {@link Annotation} which declared at this entity.
+	 * Returns the {@link Annotation} declared at this entity.
 	 * 
 	 * @param type type of {@link Annotation}
 	 * @return {@link Annotation} or {@code null} if no {@link Annotation} with this {@code type} is found

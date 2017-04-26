@@ -16,9 +16,9 @@ import com.miragesql.miragesql.util.StringUtil;
 /**
  * This is a ServletContextListener to execute {@link SchemaUpdater} when the servlet context is initialized.
  * <p>
- * This listener is only available when Mirage is working standalone.
+ * This listener is only available when Mirage-SQL is working standalone.
  * Because this listener get connection configurations from jdbc.properties using {@link SessionFactory}.
- * If you want to use Mirage with DI containers such as Spring or etc, you can't use this listener.
+ * If you want to use Mirage-SQL with DI containers such as Spring or etc, you can't use this listener.
  * </p>
  *
  * @author Naoki Takezoe

@@ -41,7 +41,7 @@ SELECT * FROM BOOK
 ORDER BY BOOK_ID ASC
 ```
 
-In Mirage, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. 
+In Mirage-SQL, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. 
 This feature used in the Mirage's SQL template it's called [2Way SQL](https://github.com/mirage-sql/mirage/wiki/2WaySQL).
 
 #### Links

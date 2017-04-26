@@ -8,27 +8,32 @@ public class OracleDialect extends StandardDialect {
 
 	private OracleResultSetValueType valueType = new OracleResultSetValueType();
 
-    @Override /**{@inheritDoc}**/
+    /**{@inheritDoc}**/
+	@Override
     public String getName() {
         return "oracle";
     }
 
-    @Override /**{@inheritDoc}**/
+    /**{@inheritDoc}**/
+    @Override
     public boolean needsParameterForResultSet() {
         return true;
     }
 
-    @Override /**{@inheritDoc}**/
+    /**{@inheritDoc}**/
+    @Override
 	public ValueType<?> getValueType() {
 		return valueType;
 	}
 
-	@Override /**{@inheritDoc}**/
+	/**{@inheritDoc}**/
+    @Override
 	public String getSequenceSql(String sequenceName) {
 		return String.format("SELECT %s.NEXTVAL FROM DUAL", sequenceName);
 	}
 
-	@Override /**{@inheritDoc}**/
+	/**{@inheritDoc}**/
+    @Override
 	public boolean supportsGenerationType(GenerationType generationType) {
 		if(generationType == GenerationType.IDENTITY){
 			return false;

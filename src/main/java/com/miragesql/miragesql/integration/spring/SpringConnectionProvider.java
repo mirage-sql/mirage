@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
- * {@link ConnectionProvider} implementation to integrate Mirage to Spring Framework.
+ * {@link ConnectionProvider} implementation to integrate Mirage-SQL with Spring Framework.
  *
  * @author Naoki Takezoe
  */

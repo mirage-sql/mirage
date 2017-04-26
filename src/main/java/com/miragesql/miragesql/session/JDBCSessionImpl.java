@@ -87,9 +87,7 @@ public class JDBCSessionImpl implements Session {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/**{@inheritDoc}*/
 	public void commit() {
 		if(logger.isLoggable(Level.INFO)){
 			logger.info("Commit transaction.");

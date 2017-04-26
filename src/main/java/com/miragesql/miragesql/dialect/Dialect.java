@@ -13,7 +13,7 @@ public interface Dialect {
     String getName();
 
     /**
-     * Returns true if the result set of procedure invocation requires parameter or not.
+     * Returns true if the ResultSet of the procedure invocation requires parameter or not.
      *
      * @return true then required, false then not required
      */
@@ -27,7 +27,7 @@ public interface Dialect {
     boolean supportsGenerationType(GenerationType generationType);
 
     /**
-     * Returns an SQL select to execute the sequence.
+     * Returns an SQL select (String) to execute the sequence.
      *
      * @param sequenceName the name of the DB Sequence
      * @return an SQL select to execute the sequence
@@ -35,7 +35,7 @@ public interface Dialect {
     String getSequenceSql(String sequenceName);
 
     /**
-     * Wraps a select with another to count the rows.
+     * Wraps a select statement with another in order to count the rows.
      * @param sql the select to wrap with count
      * @return a select to count the rows
      */

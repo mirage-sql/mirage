@@ -2,7 +2,8 @@ package com.miragesql.miragesql.dialect;
 
 public class DerbyDialect extends StandardDialect {
 
-    @Override /**{@inheritDoc}**/
+    /**{@inheritDoc}**/
+    @Override
     public String getName() {
         return "derby";
     }

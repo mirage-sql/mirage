@@ -5,7 +5,7 @@ import com.miragesql.miragesql.exception.SessionException;
 import com.miragesql.miragesql.filter.OpenSessionInViewFilter;
 
 /**
- * The entry point of Mirage in stand-alone use.
+ * The entry point of Mirage-SQL in stand-alone use.
  * <p>
  * You can control transaction and access {@link SqlManager} through this interface.
  * <p>

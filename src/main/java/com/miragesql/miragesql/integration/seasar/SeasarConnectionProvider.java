@@ -9,7 +9,7 @@ import com.miragesql.miragesql.provider.ConnectionProvider;
 import com.miragesql.miragesql.provider.XADataSourceConnectionProvider;
 
 /**
- * {@link ConnectionProvider} implementation to user Mirage with Seasar2.
+ * {@link ConnectionProvider} implementation to user Mirage-SQL with Seasar2.
  *
  * @author Naoki Takezoe
  */

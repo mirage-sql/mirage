@@ -22,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Specifies that a persistent property or field should be persisted as a enumerated type.
+ * Annotation that specifies that a persistent property or field should be persisted as an enumerated type.
  * 
  * <p>It may be used in conjunction with the Basic annotation.</p> 
  * 
@@ -42,7 +42,7 @@ public @interface Enumerated {
 	
 	
 	/**
-	 * Defines mapping for the enumerated types. The constants of this enumerated type specify how persistent property
+	 * Defines a mapping for the enumerated types. The constants of this enumerated type specify how persistent the property
 	 * or field should be persisted as a enumerated type. 
 	 * 
 	 * @since 1.0

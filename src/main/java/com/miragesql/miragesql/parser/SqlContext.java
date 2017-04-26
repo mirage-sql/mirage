@@ -17,7 +17,7 @@ package com.miragesql.miragesql.parser;
 
 /**
  * The <code>SqlContext</code> is a hierarchical data structure that holds the required information to execute
- * an SQL as supported by Mirage SQL. It contains the SQL itself, and the required bind variables.
+ * an SQL as supported by Mirage-SQL. It contains the SQL itself, and the required bind variables.
  *
  * @author higa
  */

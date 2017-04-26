@@ -15,9 +15,9 @@ import com.miragesql.miragesql.session.SessionFactory;
 import com.miragesql.miragesql.util.ExceptionUtil;
 
 /**
- * This filter makes Open Session in View pattern in Mirage.
+ * This filter implements the  <em>Open Session in View</em> pattern in Mirage-SQL.
  * <p>
- * This filter have to used with {@link Session} and manages transaction automatically through methods of that.
+ * This filter has to be used with {@link Session} and manages transaction automatically through methods of that.
  *
  * @author Naoki Takezoe
  */

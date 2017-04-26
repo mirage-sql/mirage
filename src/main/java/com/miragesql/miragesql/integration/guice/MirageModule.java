@@ -10,7 +10,7 @@ import com.google.inject.Singleton;
 import com.google.inject.matcher.Matchers;
 
 /**
- * The Module implementation to use Mirage with Google Guice.
+ * The Module implementation to use Mirage-SQL with Google Guice.
  *
  * @author Naoki Takezoe
  */

@@ -22,7 +22,7 @@ import org.apache.tools.ant.Task;
  * Ant task to generate entity source files from database schema.
  * <p>
  * This is an example of build.xml:
- * <pre>&lt;project name="Mirage EntityGen" basedir="." default="gen_entity"&gt;
+ * <pre>&lt;project name="Mirage-SQL EntityGen" basedir="." default="gen_entity"&gt;
  *
  *  &lt;target name="gen_entity"&gt;
  *

@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicates that the property is not persisted.
+ * Annotation that indicates that the property is transient, so it won't be persisted.
  *
  * @author Naoki Takezoe
  */

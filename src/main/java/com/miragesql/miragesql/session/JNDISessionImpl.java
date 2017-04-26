@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * JNDI based (Mirage) Session implementation.
+ * JNDI based (Mirage-SQL) Session implementation.
  */
 public class JNDISessionImpl implements Session {
 
