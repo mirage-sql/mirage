@@ -19,7 +19,7 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 
 /**
- * Ant task to generate entity source files from database schema.
+ * Ant task to generate entity source files from a database schema.
  * <p>
  * This is an example of build.xml:
  * <pre>&lt;project name="Mirage-SQL EntityGen" basedir="." default="gen_entity"&gt;
@@ -192,7 +192,7 @@ public class EntityGenTask extends Task {
 	 * Sets the NameConverter class name.
 	 * The default value is "com.miragesql.miragesql.naming.DefaultNameConverter".
 	 *
-	 * @param nameConverter
+	 * @param nameConverter the name converter
 	 */
 	public void setNameConverter(String nameConverter) {
 		this.nameConverter = nameConverter;

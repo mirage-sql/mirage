@@ -52,7 +52,7 @@ import com.miragesql.miragesql.util.StringUtil;
  * // generate
  * String source = gen.getEntitySource(conn, "BOOK", null, null); </pre>
  * <ul>
- *   <li>TODO - Generates Javadoc</li>
+ *   <li>TODO - Generate Javadoc from DB Comments</li>
  * </ul>
  * @author Naoki Takezoe
  */
@@ -110,14 +110,14 @@ public class EntityGen {
 
 	/**
 	 * Returns the source code of the entity class which corresponds to the specified table.
-	 * @throws SQLException 
+	 * @throws SQLException if a something goes wrong when working with the database
 	 */
 	public String getEntitySource(Connection conn,
 			String tableName, String catalog, String schema) throws SQLException {
 
 		StringBuilder sb = new StringBuilder();
 
-		// package decl
+		// package declaration
 		sb.append("package ").append(packageName).append(";").append(LINE_SEPARATOR);
 		sb.append(LINE_SEPARATOR);
 
@@ -128,12 +128,12 @@ public class EntityGen {
 		appendImport(sb, GenerationType.class);
 		sb.append(LINE_SEPARATOR);
 
-		// class decl
+		// class declaration
 		sb.append("@Table(name=\"").append(tableName).append("\")").append(LINE_SEPARATOR);
 		sb.append("public class ").append(tableToEntity(tableName)).append(" {").append(LINE_SEPARATOR);
 		sb.append(LINE_SEPARATOR);
 
-		// properties
+		// Entity properties
 		DatabaseMetaData meta = conn.getMetaData();
 		List<String> primaryKeys = new ArrayList<String>();
 
@@ -178,8 +178,8 @@ public class EntityGen {
 	/**
 	 * Generates the entity source file into the given source directory.
      *
-	 * @throws SQLException 
-	 * @throws IOException 
+	 * @throws SQLException if a something goes wrong when working with the database
+	 * @throws IOException if the java file can't be written
 	 */
 	public void saveEntitySource(File srcDir, String charset, Connection conn,
 			String tableName, String catalog, String schema) throws SQLException, IOException {
@@ -207,8 +207,8 @@ public class EntityGen {
      * @param schemaS the String
      * @param tableNamePattern positive pattern for the tables to generate entities for
      * @param ignoreTableNamePattern negative pattern for the table NOT to generate entities for
-     * @throws SQLException
-     * @throws IOException
+     * @throws SQLException if a something goes wrong when working with the database
+     * @throws IOException if the Java files can't be written
      */
     public void saveAllEntitySources(File srcDir, String charset, Connection conn,String catalogS, String schemaS,
                                      String tableNamePattern, String ignoreTableNamePattern) throws SQLException, IOException {

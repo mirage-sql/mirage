@@ -122,6 +122,7 @@ public class DBCPSessionImpl implements Session {
 		dataSource = new PoolingDataSource(poolFactory.getPool());
 	}
 
+	/**{@inheritDoc}*/
 	public void begin() {
 		if(logger.isInfoEnabled()){
 			logger.info("Begin transaction.");
@@ -135,6 +136,7 @@ public class DBCPSessionImpl implements Session {
 		}
 	}
 
+    /**{@inheritDoc}*/
 	public void commit() {
 		if(logger.isInfoEnabled()){
 			logger.info("Commit transaction.");
@@ -146,6 +148,7 @@ public class DBCPSessionImpl implements Session {
 		}
 	}
 
+    /**{@inheritDoc}*/
 	public void rollback() {
 		if(logger.isInfoEnabled()){
 			logger.info("Rollback transaction.");
@@ -157,6 +160,7 @@ public class DBCPSessionImpl implements Session {
 		}
 	}
 
+    /**{@inheritDoc}*/
 	public void release() {
 		this.rollbackOnly.remove();
 
@@ -165,14 +169,17 @@ public class DBCPSessionImpl implements Session {
 		}
 	}
 
+    /**{@inheritDoc}*/
 	public SqlManager getSqlManager() {
 		return sqlManager;
 	}
 
+    /**{@inheritDoc}*/
 	public void setRollbackOnly() {
 		this.rollbackOnly.set(true);
 	}
 
+    /**{@inheritDoc}*/
 	public boolean isRollbackOnly() {
 		return this.rollbackOnly.get() != null;
 	}

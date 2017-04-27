@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * JNDI based (Mirage-SQL) Session implementation.
+ * JNDI based Mirage-SQL Session implementation.
  */
 public class JNDISessionImpl implements Session {
 

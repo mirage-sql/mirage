@@ -7,11 +7,12 @@ import com.miragesql.miragesql.filter.OpenSessionInViewFilter;
 /**
  * The entry point of Mirage-SQL in stand-alone use.
  * <p>
- * You can control transaction and access {@link SqlManager} through this interface.
+ * You can control transactions and access to {@link SqlManager} through this interface.
  * <p>
- * In addition, you can manage transaction automatically using this interface with {@link OpenSessionInViewFilter}.
- * <code>OpenSessionInViewFilter</code> begin and commit transaction per request.
- * It rollback transaction if it catches exception. So you can focus on operation of <code>SqlManager</code>.
+ * In addition, you can manage transactions automatically using this interface with {@link OpenSessionInViewFilter}.
+ * <code>OpenSessionInViewFilter</code> begin and commit transaction per request in web applications.
+ *
+ * It rollbacks it transaction if it catches an exception. So you can focus on operation of <code>SqlManager</code>.
  *
  * @author Naoki Takezoe
  */
@@ -32,14 +33,14 @@ public interface Session {
 	public void commit();
 
 	/**
-	 * Roolbacks the transaction.
+	 * Rollbacks the transaction.
 	 *
 	 * @throws SessionException
 	 */
 	public void rollback();
 
 	/**
-	 * Releases this session.
+	 * Releases this transaction.
 	 *
 	 * @throws SessionException
 	 */

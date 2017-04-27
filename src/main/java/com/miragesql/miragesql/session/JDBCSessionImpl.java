@@ -64,9 +64,7 @@ public class JDBCSessionImpl implements Session {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+    /**{@inheritDoc}*/
 	public void begin() {
 		if(logger.isInfoEnabled()){
 			logger.info("Begin transaction.");
@@ -99,6 +97,7 @@ public class JDBCSessionImpl implements Session {
 		}
 	}
 
+	/**{@inheritDoc}*/
 	public SqlManager getSqlManager() {
 		return sqlManager;
 	}
@@ -111,6 +110,7 @@ public class JDBCSessionImpl implements Session {
 		}
 	}
 
+	/**{@inheritDoc}*/
 	public void rollback() {
 		if(logger.isInfoEnabled()){
 			logger.info("Rollback transaction.");
@@ -122,10 +122,12 @@ public class JDBCSessionImpl implements Session {
 		}
 	}
 
+	/**{@inheritDoc}*/
 	public void setRollbackOnly() {
 		this.rollbackOnly.set(true);
 	}
 
+	/**{@inheritDoc}*/
 	public boolean isRollbackOnly() {
 		return this.rollbackOnly.get() != null;
 	}
