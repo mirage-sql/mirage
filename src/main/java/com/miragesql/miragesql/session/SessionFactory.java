@@ -13,19 +13,29 @@ public class SessionFactory {
 	private static Session session;
 
 	/**
-	 * 
+	 * Returns a session configured with the properties specified in the "jdbc.properties" file.
+     *
 	 * @return {@link Session}
-	 * @throws ConfigurationException
+     *
+	 * @throws ConfigurationException if the configuration can't be loaded
 	 */
 	public synchronized static Session getSession() {
 		if(session == null){
 			Properties properties = IOUtil.loadProperties("jdbc.properties");
-			getSession(properties);
+			session = getSession(properties);
 		}
 		
 		return session;
 	}
 
+    /**
+     * Returns a session configured with the properties specified by the properties parameter.
+     * If no <code>session.class</code> key is present in the properties, the session will use the {@link JDBCSessionImpl}.
+     *
+     * @param properties properties with settings to create a {@link Session} with.
+     *
+     * @return {@link Session}
+     */
 	public synchronized static Session getSession(Properties properties) {
 		if(session == null){
 			if(properties == null){
@@ -52,20 +62,10 @@ public class SessionFactory {
 			} catch (ClassCastException e) {
 				throw new ConfigurationException("sessionClass does not implements Session interface ", e);
 				
-			} catch (InstantiationException e) {
+			} catch (InstantiationException | IllegalAccessException | InvocationTargetException | SecurityException e) {
 				throw new ConfigurationException(e);
-				
-			} catch (IllegalAccessException e) {
-				throw new ConfigurationException(e);
-				
-			} catch (InvocationTargetException e) {
-				throw new ConfigurationException(e);
-				
-			} catch (SecurityException e) {
-				throw new ConfigurationException(e);
-				
 			}
-		}
+        }
 
 		return session;
 	}
