@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.miragesql.miragesql.annotation.Column;
 import com.miragesql.miragesql.annotation.PrimaryKey;
@@ -22,7 +22,7 @@ import com.miragesql.miragesql.util.MirageUtil;
 
 public class DefaultEntityOperator implements EntityOperator {
 
-	private static final Logger logger = Logger.getLogger(DefaultEntityOperator.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(DefaultEntityOperator.class);
 
 	/**
 	 * Creates and returns one entity instance from the ResultSet.
@@ -126,14 +126,14 @@ public class DefaultEntityOperator implements EntityOperator {
 					if(valueType != null){
 						pd.setValue(entity, valueType.get(propertyType, rs, columnLabel));
 					} else {
-						if (logger.isLoggable(Level.FINE)) {
-							logger.fine(String.format("column [%s] is ignored because property [%s]'s type is not supported: %s",
+						if (logger.isDebugEnabled()) {
+							logger.debug(String.format("column [%s] is ignored because property [%s]'s type is not supported: %s",
 									columnLabel, pd.getPropertyName(), propertyType.getName()));
 						}
 					}
 				} else {
-					if (logger.isLoggable(Level.FINER)) {
-						logger.finer(String.format("column [%s] is ignored because property is not found in the bean",
+					if (logger.isDebugEnabled()) {
+						logger.debug(String.format("column [%s] is ignored because property is not found in the bean",
 								columnLabel));
 					}
 				}

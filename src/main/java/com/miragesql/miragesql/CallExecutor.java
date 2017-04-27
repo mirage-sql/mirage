@@ -7,8 +7,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import com.miragesql.miragesql.annotation.InOut;
 import com.miragesql.miragesql.annotation.Out;
@@ -27,7 +28,7 @@ import com.miragesql.miragesql.util.Validate;
 
 public class CallExecutor {
 
-	private static final Logger logger = Logger.getLogger(CallExecutor.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(CallExecutor.class);
 
 	private BeanDescFactory beanDescFactory;
 	private NameConverter nameConverter;
@@ -238,7 +239,7 @@ public class CallExecutor {
     }
 
     protected boolean execute(CallableStatement stmt, String sql, List<Param> paramList) throws SQLException{
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info(sql);
 			printParameters(paramList);
 		}

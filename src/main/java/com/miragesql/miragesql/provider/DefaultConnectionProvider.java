@@ -1,7 +1,8 @@
 package com.miragesql.miragesql.provider;
 
 import java.sql.Connection;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.miragesql.miragesql.util.JdbcUtil;
 
@@ -12,7 +13,7 @@ import com.miragesql.miragesql.util.JdbcUtil;
  */
 public class DefaultConnectionProvider implements ConnectionProvider {
 
-	private static final Logger logger = Logger.getLogger(DefaultConnectionProvider.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(DefaultConnectionProvider.class);
 
 	private ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 

@@ -1,7 +1,8 @@
 package com.miragesql.miragesql.filter;
 
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -23,7 +24,7 @@ import com.miragesql.miragesql.util.ExceptionUtil;
  */
 public class OpenSessionInViewFilter implements Filter {
 
-	private static final Logger logger = Logger.getLogger(OpenSessionInViewFilter.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(OpenSessionInViewFilter.class);
 
 //	@Override
 	public void destroy() {
@@ -40,8 +41,8 @@ public class OpenSessionInViewFilter implements Filter {
 			session.begin();
 
 		} catch(Exception ex){
-			logger.severe("Failed to begin Session.");
-			logger.severe(ExceptionUtil.toString(ex));
+			logger.error("Failed to begin Session.");
+			logger.error(ExceptionUtil.toString(ex));
 			throw new RuntimeException(ex);
 		}
 
@@ -54,8 +55,8 @@ public class OpenSessionInViewFilter implements Filter {
 					session.commit();
 
 				} catch(Exception ex){
-					logger.severe("Failed to commit Session.");
-					logger.severe(ExceptionUtil.toString(ex));
+					logger.error("Failed to commit Session.");
+					logger.error(ExceptionUtil.toString(ex));
 
 					if(ex instanceof RuntimeException){
 						throw (RuntimeException) ex;
@@ -74,8 +75,8 @@ public class OpenSessionInViewFilter implements Filter {
 					session.rollback();
 
 				} catch (Exception e) {
-					logger.severe("Failed to rollback Session.");
-					logger.severe(ExceptionUtil.toString(e));
+					logger.error("Failed to rollback Session.");
+					logger.error(ExceptionUtil.toString(e));
 
 					if (e instanceof RuntimeException) {
 						throw (RuntimeException) e;
@@ -90,8 +91,8 @@ public class OpenSessionInViewFilter implements Filter {
 				session.release();
 
 			} catch(Exception ex){
-				logger.severe("Failed to release Session.");
-				logger.severe(ExceptionUtil.toString(ex));
+				logger.error("Failed to release Session.");
+				logger.error(ExceptionUtil.toString(ex));
 
 				if(ex instanceof RuntimeException){
 					throw (RuntimeException) ex;

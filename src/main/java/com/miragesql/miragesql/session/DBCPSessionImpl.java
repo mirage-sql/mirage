@@ -3,8 +3,8 @@ package com.miragesql.miragesql.session;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 
@@ -42,7 +42,7 @@ import org.apache.commons.pool.impl.StackKeyedObjectPoolFactory;
  */
 public class DBCPSessionImpl implements Session {
 
-	private static final Logger logger = Logger.getLogger(DBCPSessionImpl.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(DBCPSessionImpl.class);
 
 	private SqlManager sqlManager;
 	private DefaultConnectionProvider provider;
@@ -123,7 +123,7 @@ public class DBCPSessionImpl implements Session {
 	}
 
 	public void begin() {
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info("Begin transaction.");
 		}
 		try {
@@ -136,7 +136,7 @@ public class DBCPSessionImpl implements Session {
 	}
 
 	public void commit() {
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info("Commit transaction.");
 		}
 		try {
@@ -147,7 +147,7 @@ public class DBCPSessionImpl implements Session {
 	}
 
 	public void rollback() {
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info("Rollback transaction.");
 		}
 		try {

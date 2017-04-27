@@ -12,15 +12,15 @@ import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * JNDI based (Mirage-SQL) Session implementation.
  */
 public class JNDISessionImpl implements Session {
 
-    private static final Logger logger = Logger.getLogger(JNDISessionImpl.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(JNDISessionImpl.class);
 
     private SqlManager sqlManager;
     JNDIDataSourceConnectionProvider provider;
@@ -62,7 +62,7 @@ public class JNDISessionImpl implements Session {
 
     /** {@inheritDoc}*/
     public void begin() {
-        if(logger.isLoggable(Level.INFO)){
+        if(logger.isInfoEnabled()){
             logger.info("Begin transaction.");
         }
         try {
@@ -77,7 +77,7 @@ public class JNDISessionImpl implements Session {
 
     /** {@inheritDoc}*/
     public void commit() {
-        if(logger.isLoggable(Level.INFO)){
+        if(logger.isInfoEnabled()){
             logger.info("Commit transaction.");
         }
         try {
@@ -89,7 +89,7 @@ public class JNDISessionImpl implements Session {
 
     /** {@inheritDoc}*/
     public void rollback() {
-        if(logger.isLoggable(Level.INFO)){
+        if(logger.isInfoEnabled()){
             logger.info("Rollback transaction.");
         }
         try {

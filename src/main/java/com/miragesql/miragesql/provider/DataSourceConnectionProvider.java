@@ -2,7 +2,8 @@ package com.miragesql.miragesql.provider;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 
@@ -16,7 +17,7 @@ import com.miragesql.miragesql.util.JdbcUtil;
  */
 public class DataSourceConnectionProvider implements ConnectionProvider {
 
-	private static final Logger logger = Logger.getLogger(DataSourceConnectionProvider.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(DataSourceConnectionProvider.class);
 
 	private DataSource dataSource;
 

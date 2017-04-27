@@ -7,8 +7,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.miragesql.miragesql.annotation.PrimaryKey;
 import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
@@ -27,7 +27,7 @@ import com.miragesql.miragesql.util.Validate;
 
 public class SqlExecutor {
 
-	private static final Logger logger = Logger.getLogger(SqlExecutor.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(SqlExecutor.class);
 
 	private BeanDescFactory beanDescFactory;
 	private NameConverter nameConverter;
@@ -127,7 +127,7 @@ public class SqlExecutor {
 
 			List<T> list = new ArrayList<T>();
 
-			if(logger.isLoggable(Level.INFO)){
+			if(logger.isInfoEnabled()){
 				printSql(sql);
 				printParameters(params);
 			}
@@ -170,7 +170,7 @@ public class SqlExecutor {
 			stmt = connectionProvider.getConnection().prepareStatement(sql);
 			setParameters(stmt, params);
 
-			if(logger.isLoggable(Level.INFO)){
+			if(logger.isInfoEnabled()){
 				printSql(sql);
 				printParameters(params);
 			}
@@ -218,7 +218,7 @@ public class SqlExecutor {
 			stmt = connectionProvider.getConnection().prepareStatement(sql);
 			setParameters(stmt, params);
 
-			if(logger.isLoggable(Level.INFO)){
+			if(logger.isInfoEnabled()){
 				printSql(sql);
 				printParameters(params);
 			}
@@ -261,7 +261,7 @@ public class SqlExecutor {
 		try {
 			Connection conn = connectionProvider.getConnection();
 
-			if(logger.isLoggable(Level.INFO)){
+			if(logger.isInfoEnabled()){
 				printSql(sql);
  				printParameters(propDescs);
 			}
@@ -307,7 +307,7 @@ public class SqlExecutor {
 		try {
 			Connection conn = connectionProvider.getConnection();
 
-			if(logger.isLoggable(Level.INFO)){
+			if(logger.isInfoEnabled()){
 				printSql(sql);
  				printParameters(params);
 			}
@@ -353,7 +353,7 @@ public class SqlExecutor {
 		try {
 			Connection conn = connectionProvider.getConnection();
 
-			if(logger.isLoggable(Level.INFO)){
+			if(logger.isInfoEnabled()){
 				printSql(sql);
 				for(int i=0; i < propDescsList.size(); i++){
 					PropertyDesc[] propDescs = propDescsList.get(i);
@@ -447,8 +447,8 @@ public class SqlExecutor {
 				if(valueType != null){
 					valueType.set(propertType, stmt, propertyDesc.getValue(entity), i + 1);
 				} else {
-					if(logger.isLoggable(Level.INFO)) {
-						logger.warning("valueType for " + propertType.getName() + " not found.");
+					if(logger.isWarnEnabled()) {
+						logger.warn("valueType for " + propertType.getName() + " not found.");
 					}
 				}
 			}
@@ -470,8 +470,8 @@ public class SqlExecutor {
 				if(valueType != null){
 					valueType.set(propertType, stmt, params[i], i + 1);
 				} else {
-					if(logger.isLoggable(Level.INFO)) {
-						logger.warning("valueType for " + propertType.getName() + " not found.");
+					if(logger.isWarnEnabled()) {
+						logger.warn("valueType for " + propertType.getName() + " not found.");
 					}
 				}
 			}

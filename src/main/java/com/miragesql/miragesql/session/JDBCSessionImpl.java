@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.miragesql.miragesql.SqlManager;
 import com.miragesql.miragesql.SqlManagerImpl;
@@ -23,7 +23,7 @@ import com.miragesql.miragesql.util.StringUtil;
  */
 public class JDBCSessionImpl implements Session {
 
-	private static final Logger logger = Logger.getLogger(JDBCSessionImpl.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(JDBCSessionImpl.class);
 
 	private SqlManager sqlManager;
 	private DefaultConnectionProvider provider;
@@ -68,7 +68,7 @@ public class JDBCSessionImpl implements Session {
 	 * {@inheritDoc}
 	 */
 	public void begin() {
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info("Begin transaction.");
 		}
 		try {
@@ -89,7 +89,7 @@ public class JDBCSessionImpl implements Session {
 
 	/**{@inheritDoc}*/
 	public void commit() {
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info("Commit transaction.");
 		}
 		try {
@@ -112,7 +112,7 @@ public class JDBCSessionImpl implements Session {
 	}
 
 	public void rollback() {
-		if(logger.isLoggable(Level.INFO)){
+		if(logger.isInfoEnabled()){
 			logger.info("Rollback transaction.");
 		}
 		try {

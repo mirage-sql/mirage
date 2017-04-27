@@ -1,6 +1,7 @@
 package com.miragesql.miragesql.integration.guice;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.miragesql.miragesql.session.SessionFactory;
 import com.miragesql.miragesql.util.ExceptionUtil;
@@ -16,15 +17,15 @@ import org.aopalliance.intercept.MethodInvocation;
  */
 public class TransactionInterceptor implements MethodInterceptor {
 
-	private static final Logger logger = Logger.getLogger(TransactionInterceptor.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(TransactionInterceptor.class);
 
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 
 		try {
 			SessionFactory.getSession().begin();
 		} catch(Exception ex){
-			logger.severe("Failed to begin Session.");
-			logger.severe(ExceptionUtil.toString(ex));
+			logger.error("Failed to begin Session.");
+			logger.error(ExceptionUtil.toString(ex));
 			throw ex;
 		}
 
@@ -34,8 +35,8 @@ public class TransactionInterceptor implements MethodInterceptor {
 				SessionFactory.getSession().commit();
 
 			} catch(Exception ex){
-				logger.severe("Failed to commit Session.");
-				logger.severe(ExceptionUtil.toString(ex));
+				logger.error("Failed to commit Session.");
+				logger.error(ExceptionUtil.toString(ex));
 				throw ex;
 			}
 
@@ -46,8 +47,8 @@ public class TransactionInterceptor implements MethodInterceptor {
 				SessionFactory.getSession().rollback();
 
 			} catch(Exception e){
-				logger.severe("Failed to rollback Session.");
-				logger.severe(ExceptionUtil.toString(e));
+				logger.error("Failed to rollback Session.");
+				logger.error(ExceptionUtil.toString(e));
 				throw e;
 			}
 			throw ex;
@@ -57,8 +58,8 @@ public class TransactionInterceptor implements MethodInterceptor {
 				SessionFactory.getSession().release();
 
 			} catch (Exception ex) {
-				logger.severe("Failed to release Session.");
-				logger.severe(ExceptionUtil.toString(ex));
+				logger.error("Failed to release Session.");
+				logger.error(ExceptionUtil.toString(ex));
 				throw ex;
 			}
 		}

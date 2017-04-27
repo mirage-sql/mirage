@@ -2,7 +2,8 @@ package com.miragesql.miragesql.updater;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -25,7 +26,7 @@ import com.miragesql.miragesql.util.StringUtil;
  */
 public class SchemaUpdateListener implements ServletContextListener {
 
-	private static final Logger logger = Logger.getLogger(SchemaUpdateListener.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(SchemaUpdateListener.class);
 
 	public void contextInitialized(ServletContextEvent sce) {
 
@@ -52,14 +53,14 @@ public class SchemaUpdateListener implements ServletContextListener {
 
 
 			} catch (SQLException ex){
-				logger.severe("Failed to update schema.");
-				logger.severe(ExceptionUtil.toString(ex));
+				logger.error("Failed to update schema.");
+				logger.error(ExceptionUtil.toString(ex));
 
 			} finally {
 				try {
 					conn.setAutoCommit(false);
 				} catch (SQLException ex) {
-					logger.severe(ExceptionUtil.toString(ex));
+					logger.error(ExceptionUtil.toString(ex));
 				}
 			}
 		} finally {

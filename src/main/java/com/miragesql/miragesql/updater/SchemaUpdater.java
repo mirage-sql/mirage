@@ -2,7 +2,8 @@ package com.miragesql.miragesql.updater;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.miragesql.miragesql.SqlManager;
 import com.miragesql.miragesql.SqlManagerImpl;
@@ -38,7 +39,7 @@ import com.miragesql.miragesql.util.IOUtil;
  */
 public class SchemaUpdater {
 
-	private static final Logger logger = Logger.getLogger(SchemaUpdater.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(SchemaUpdater.class);
 
 	protected SqlManager sqlManager;
 
