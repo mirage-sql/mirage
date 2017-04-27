@@ -29,6 +29,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.25'
 
     compile 'commons-dbcp:commons-dbcp:1.4', optional
+    compile 'com.zaxxer:HikariCP:2.6.1', optional
 
     compile "org.springframework:spring-core:3.2.5.RELEASE", optional
     compile "org.springframework:spring-context:3.2.5.RELEASE", optional
