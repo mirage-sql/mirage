@@ -289,8 +289,6 @@ public class SqlParserImpl implements SqlParser {
 
     /**
      * Checks if the comment is an Oracle optimizer hint.
-     * <p>
-     * TODO Oracle専用の処理がここにあるのもちょっと微妙かも…。
      *
      * @param content the comment to check
      * @return <code>true</code> if this comment is an Oracle optimizer hint.

@@ -39,7 +39,6 @@ import com.miragesql.miragesql.type.ValueType;
 import com.miragesql.miragesql.util.JdbcUtil;
 import com.miragesql.miragesql.util.StringUtil;
 
-// TODO PrimaryKeyのgenerationTypeを指定できるようにする
 
 /**
  * Entity Generation Tool.

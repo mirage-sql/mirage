@@ -9,7 +9,7 @@ import com.miragesql.miragesql.provider.ConnectionProvider;
 import com.miragesql.miragesql.provider.XADataSourceConnectionProvider;
 
 /**
- * {@link ConnectionProvider} implementation to user Mirage-SQL with Seasar2.
+ * {@link ConnectionProvider} implementation to use Mirage-SQL with Seasar2.
  *
  * @author Naoki Takezoe
  */
@@ -27,7 +27,7 @@ public class SeasarConnectionProvider extends XADataSourceConnectionProvider {
 		// If TransactionSynchronizationRegistry exists,
 		// register Synchronization to release connection automatically
 		// at the first invocation of this method in the current thread.
-		// TODO スレッドごとに登録していいのかなぁ…
+		// TODO: I wonder if I can register for each thread ...
 		if(syncRegistry != null && registered.get() == null){
 			syncRegistry.registerInterposedSynchronization(new Synchronization() {
 				//@Override

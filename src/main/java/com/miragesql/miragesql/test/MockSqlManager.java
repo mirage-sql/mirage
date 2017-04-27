@@ -29,6 +29,6 @@ public class MockSqlManager extends SqlManagerImpl {
 		this.callExecutor.setDialect(this.dialect);
 	}
 
-	// TODO GenerationType.SEQUENCEだったときの処理
+	// TODO GenerationType.SEQUENCE processing
 
 }
