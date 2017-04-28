@@ -272,21 +272,6 @@ public class StringUtil {
     }
 
     /**
-     * ケースインセンシティブで特定の文字列で開始されているかどうかを返します。
-     *
-     * @param text
-     *            テキスト
-     * @param fragment
-     *            特定の文字列
-     * @return ケースインセンシティブで特定の文字列で開始されているかどうか
-     * @see #startsWithIgnoreCase(String, String)
-     * @deprecated
-     */
-    public static boolean startsWith(final String text, final String fragment) {
-        return startsWithIgnoreCase(text, fragment);
-    }
-
-    /**
      * ブランクかどうか返します。
      *
      * @param str

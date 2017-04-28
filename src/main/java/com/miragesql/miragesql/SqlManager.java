@@ -7,30 +7,27 @@ import com.miragesql.miragesql.naming.NameConverter;
 import com.miragesql.miragesql.provider.ConnectionProvider;
 import com.miragesql.miragesql.type.ValueType;
 
+/**
+ * SqlManager is the main interface to interact with MirageSQL. See the docs for examples on how to use it at
+ * <a href="https://github.com/mirage-sql/mirage/wiki">https://github.com/mirage-sql/mirage/wiki</a>.
+ */
 public interface SqlManager {
 
 	/**
-	 * Sets the implementation of {@link NameConverter}.
+	 * Sets the implementation of the {@link NameConverter}.
+     * Available name converters are in the {@link com.miragesql.miragesql} package, but custom name converters can also
+     * be easily implemented (to follow corporate internal naming conventions).
 	 *
 	 * @param converter the name converter
 	 */
 	public void setNameConverter(NameConverter converter);
 
 	/**
-	 * Sets the implementation of {@link ConnectionProvider}.
+	 * Sets the implementation of the {@link ConnectionProvider}.
 	 *
 	 * @param connectionProvider the connection provider
 	 */
 	public void setConnectionProvider(ConnectionProvider connectionProvider);
-
-//	/**
-//	 * Returns the next value of the sequence.
-//	 *
-//	 * @param sequenceName the sequence name
-//	 * @return the next value of the sequence
-//	 * @throws UnsupportedOperationException When the dialect does not support sequence.
-//	 */
-//	public long getSequenceNextValue(String sequenceName);
 
 	/**
 	 * Sets the implementation of the {@link Dialect}.
@@ -56,91 +53,102 @@ public interface SqlManager {
 	/**
 	 * Returns the row count of the result of the given SQL.
 	 *
-	 * @param sqlPath the SQL file path
+	 * @param resource the {@link SqlResource} that identifies the SQL
 	 * @return the row count
 	 */
-	@Deprecated
-	public int getCount(String sqlPath);
 	public int getCount(SqlResource resource);
 	
 
 	/**
 	 * Returns the row count of the result of the given SQL.
 	 *
-	 * @param sqlPath the SQL file path
+	 * @param resource the {@link SqlResource} that identifies the SQL
 	 * @param param the parameter object
 	 * @return the row count
 	 */
-	@Deprecated
-	public int getCount(String sqlPath, Object param);
 	public int getCount(SqlResource resource, Object param);
 	
-	/**
-	 * @deprecated use {@link #getCount(SqlResource)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public int getCountBySql(String sql);
 
 	/**
-	 * @deprecated use {@link #getCount(SqlResource, Object)} and {@link StringSqlResource}
+	 * Returns a list of Objects from the result set for a given SQL.
+     *
+     * @param clazz the type
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @return a List of Objects of type T
 	 */
-	@Deprecated
-	public int getCountBySql(String sql, Object... params);
-
-	/**
-	 * @deprecated use {@link #getResultList(Class, SqlResource)}
-	 */
-	@Deprecated
-	public <T> List<T> getResultList(Class<T> clazz, String sqlPath);
 	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
 
-	/**
-	 * @deprecated use {@link #getResultList(Class, SqlResource, Object)}
-	 */
-	@Deprecated
-	public <T> List<T> getResultList(Class<T> clazz, String sqlPath, Object param);
+    /**
+     * Returns a list of Objects from the result set for a given SQL.
+     *
+     * @param clazz the type
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @param param the parameters for the query
+     * @return a List of Objects of type T
+     */
 	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
 
 	/**
-	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource)}
+	 * Iterates over over a list of Entities produced from a result set, and calls a callback on each.
+     *
+     * @param clazz the type
+     * @param callback the callback to execute
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @param <T> the entity type
+     * @param <R> the return type
+     * @return the result of the iteration callbacks
 	 */
-	@Deprecated
-	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath);
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
 
-	/**
-	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource, Object)}
-	 */
-	@Deprecated
-	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath, Object param);
+    /**
+     * Iterates over over a list of Entities produced from a result set, and calls a callback on each using parameters.
+     *
+     * @param clazz the type
+     * @param callback the callback to execute
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @param param the parameters for the query
+     * @param <T> the entity type
+     * @param <R> the return type
+     * @return the result of the iteration callbacks
+     */
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
 
-	/**
-	 * @deprecated use {@link #getSingleResult(Class, SqlResource)}
-	 */
-	@Deprecated
-	public <T> T getSingleResult(Class<T> clazz, String sqlPath);
+    /**
+     * Executes an SQL and returns only the first row as an entity, or null if nothing is returned.
+     *
+     * @param clazz the type
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @param <T> the entity type
+     * @return an entity
+     */
 	public <T> T getSingleResult(Class<T> clazz, SqlResource resource);
 
-	/**
-	 * @deprecated use {@link #getSingleResult(Class, SqlResource, Object)}
-	 */
-	@Deprecated
-	public <T> T getSingleResult(Class<T> clazz, String sqlPath, Object param);
+    /**
+     * Executes an SQL using parameters, and returns only the first row as an entity, or null if nothing is returned.
+     *
+     * @param clazz the type
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @param param the parameters for the query
+     * @param <T> the entity type
+     * @return an entity
+     */
 	public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
 
-	/**
-	 * @deprecated use {@link #executeUpdate(SqlResource)}
-	 */
-	@Deprecated
-	public int executeUpdate(String sqlPath);
+    /**
+     * Executes the SQL identified by the {@link SqlResource}. E.g.
+     *
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @return the number of updated rows
+     */
 	public int executeUpdate(SqlResource resource);
 
-	/**
-	 * @deprecated use {@link #executeUpdate(SqlResource, Object)}
-	 */
-	@Deprecated
-	public int executeUpdate(String sqlPath, Object param);
+    /**
+     * Executes the SQL identified by the {@link SqlResource} using parameters. E.g.
+     *
+     * @param resource the {@link SqlResource} that identifies the SQL
+     * @param param the parameters which are set to the placeholder
+     * @return the number of updated rows
+     */
 	public int executeUpdate(SqlResource resource, Object param);
 
 	/**
@@ -240,81 +248,53 @@ public interface SqlManager {
 	public void call(String procedureName);
 
 	/**
-	 * Invokes the stored procedure.
+	 * Invokes the stored procedure using parameters.
 	 *
 	 * @param procedureName the procedure name
 	 * @param parameter the parameter object
 	 */
 	public void call(String procedureName, Object parameter);
 
+    /**
+     * Invokes the function.
+     *
+     * @param resultClass the type
+     * @param functionName the function name
+     * @param <T> the entity type
+     * @return the entity
+     */
 	public <T> T call(Class<T> resultClass, String functionName);
 
+    /**
+     * Invokes the function using parameters.
+     *
+     * @param resultClass the type
+     * @param functionName the function name
+     * @param param the parameter object
+     * @param <T> the entity type
+     * @return the entity
+     */
 	public <T> T call(Class<T> resultClass, String functionName, Object param);
 
+    /**
+     * Invokes a function that returns a list of entities.
+     *
+     * @param resultClass the type
+     * @param functionName the function name
+     * @param <T> the entity type
+     * @return a list of entities
+     */
 	public <T> List<T> callForList(Class<T> resultClass, String functionName);
 
+    /**
+     * Invokes a function that returns a list of entities, using parameters.
+     *
+     * @param resultClass the type
+     * @param functionName the function name
+     * @param param the parameter object
+     * @param <T> the entity type
+     * @return a list of entities
+     */
 	public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);
-
-	/**
-	 * @deprecated use {@link #getResultList(Class, SqlResource)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public <T> List<T> getResultListBySql(Class<T> clazz, String sql);
-
-	/**
-	 * @deprecated use {@link #getResultList(Class, SqlResource, Object)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public <T> List<T> getResultListBySql(Class<T> clazz, String sql, Object... params);
-
-	/**
-	 * @deprecated use {@link #getSingleResult(Class, SqlResource)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public <T> T getSingleResultBySql(Class<T> clazz, String sql);
-
-	/**
-	 * @deprecated use {@link #getSingleResult(Class, SqlResource, Object)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public <T> T getSingleResultBySql(Class<T> clazz, String sql, Object... params);
-
-	/**
-	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql);
-
-	/**
-	 * @deprecated use {@link #iterate(Class, IterationCallback, SqlResource, Object)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql, Object... params);
-
-	/**
-	 * Executes the given SQL.
-	 * <pre>
-	 * int rows = sqlManager.executeUpdateBySql("DELETE FROM EMPLOYEE");
-	 * </pre>
-	 *
-	 * @param sql the SQL to execute
-	 * @return the number of updated rows
-	 * @deprecated use {@link #executeUpdate(SqlResource)} and {@link StringSqlResource}
-	 */
-	@Deprecated
-	public int executeUpdateBySql(String sql);
-
-	/**
-	 * Executes the given SQL with parameters.
-	 * <pre>
-	 * int rows = sqlManager.executeUpdateBySql("DELETE FROM EMPLOYEE WHERE ID=?", id);
-	 * </pre>
-	 *
-	 * @param sql the SQL to execute which contains placeholder (This is not a 2waySQL)
-	 * @param params the parameters which are set to the placeholder
-	 * @return the number of updated rows
-	 * @deprecated use {@link #executeUpdate(SqlResource, Object)} and {@link StringSqlResource}
-	 */
-	public int executeUpdateBySql(String sql, Object... params);
 
 }

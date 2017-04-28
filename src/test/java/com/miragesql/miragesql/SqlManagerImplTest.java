@@ -246,7 +246,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		List<Magazine> bookList = sqlManager.getResultList(
 				Magazine.class,
-				SQL_PREFIX + "SqlManagerImplTest_selectMagazineByBookName.sql",
+				new ClasspathSqlResource(SQL_PREFIX + "SqlManagerImplTest_selectMagazineByBookName.sql"),
 				param);
 
 		assertEquals(1, bookList.size());

@@ -8,8 +8,8 @@ package com.miragesql.miragesql;
  * @param <T> the entity type
  * @param <R> the return type
  * 
- * @see SqlManager#iterate(Class, IterationCallback, String)
- * @see SqlManager#iterate(Class, IterationCallback, String, Object)
+ * @see SqlManager#iterate(Class, IterationCallback, SqlResource)
+ * @see SqlManager#iterate(Class, IterationCallback, SqlResource, Object)
  */
 public interface IterationCallback<T, R> {
 

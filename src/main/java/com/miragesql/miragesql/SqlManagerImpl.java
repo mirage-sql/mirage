@@ -113,6 +113,7 @@ public class SqlManagerImpl implements SqlManager {
 		this.callExecutor.setBeanDescFactory(beanDescFactory);
 	}
 
+	/**{@inheritDoc}**/
 	public void setNameConverter(NameConverter nameConverter) {
 		this.nameConverter = nameConverter;
 		this.sqlExecutor.setNameConverter(nameConverter);
@@ -123,12 +124,14 @@ public class SqlManagerImpl implements SqlManager {
 		return this.nameConverter;
 	}
 
+    /**{@inheritDoc}**/
 	public void setConnectionProvider(ConnectionProvider connectionProvider) {
 		this.connectionProvider = connectionProvider;
 		this.sqlExecutor.setConnectionProvider(connectionProvider);
 		this.callExecutor.setConnectionProvider(connectionProvider);
 	}
 
+    /**{@inheritDoc}**/
 	public void setEntityOperator(EntityOperator entityOperator){
 		this.entityOperator = entityOperator;
 		this.sqlExecutor.setEntityOperator(entityOperator);
@@ -139,6 +142,7 @@ public class SqlManagerImpl implements SqlManager {
 		return this.connectionProvider;
 	}
 
+    /**{@inheritDoc}**/
 	public void setDialect(Dialect dialect){
 		this.dialect = dialect;
 		this.sqlExecutor.setDialect(dialect);
@@ -193,16 +197,12 @@ public class SqlManagerImpl implements SqlManager {
 		return MirageUtil.getSqlContext(beanDescFactory, param);
 	}
 
-	public int executeUpdate(String sqlPath) {
-		return executeUpdate(new ClasspathSqlResource(sqlPath));
-	}
+    /**{@inheritDoc}**/
 	public int executeUpdate(SqlResource resource) {
 		return executeUpdate(resource, null);
 	}
 
-	public int executeUpdate(String sqlPath, Object param) {
-		return executeUpdate(new ClasspathSqlResource(sqlPath), param);
-	}
+    /**{@inheritDoc}**/
 	public int executeUpdate(SqlResource resource, Object param) {
 		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
@@ -212,16 +212,12 @@ public class SqlManagerImpl implements SqlManager {
 
 	}
 
-	public <T> List<T> getResultList(Class<T> clazz, String sqlPath) {
-		return getResultList(clazz, new ClasspathSqlResource(sqlPath));
-	}
+    /**{@inheritDoc}**/
 	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource) {
 		return getResultList(clazz, resource, null);
 	}
 
-	public <T> List<T> getResultList(Class<T> clazz, String sqlPath, Object param) {
-		return getResultList(clazz, new ClasspathSqlResource(sqlPath), param);
-	}
+    /**{@inheritDoc}**/
 	public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param) {
 		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
@@ -230,16 +226,12 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.getResultList(clazz, context.getSql(), context.getBindVariables());
 	}
 
-	public <T> T getSingleResult(Class<T> clazz, String sqlPath) {
-		return getSingleResult(clazz, new ClasspathSqlResource(sqlPath));
-	}
+    /**{@inheritDoc}**/
 	public <T> T getSingleResult(Class<T> clazz, SqlResource resource) {
 		return getSingleResult(clazz, resource, null);
 	}
 
-	public <T> T getSingleResult(Class<T> clazz, String sqlPath, Object param) {
-		return getSingleResult(clazz, new ClasspathSqlResource(sqlPath), param);
-	}
+    /**{@inheritDoc}**/
 	public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param) {
 		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
@@ -248,6 +240,7 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.getSingleResult(clazz, context.getSql(), context.getBindVariables());
 	}
 
+    /**{@inheritDoc}**/
 	public int deleteEntity(Object entity) {
 		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
 		String executeSql = MirageUtil.buildDeleteSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
@@ -255,6 +248,7 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> int deleteBatch(T... entities) {
 		if(entities.length == 0){
 			return 0;
@@ -280,6 +274,7 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, entities);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> int deleteBatch(List<T> entities) {
 		return deleteBatch(entities.toArray());
 	}
@@ -307,6 +302,7 @@ public class SqlManagerImpl implements SqlManager {
 		}
 	}
 
+    /**{@inheritDoc}**/
 	public int insertEntity(Object entity) {
 		fillPrimaryKeysBySequence(entity);
 
@@ -316,6 +312,7 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.executeUpdateSql(sql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> int insertBatch(T... entities){
 		if(entities.length == 0){
 			return 0;
@@ -343,10 +340,12 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> int insertBatch(List<T> entities){
 		return insertBatch(entities.toArray());
 	}
 
+    /**{@inheritDoc}**/
 	public int updateEntity(Object entity) {
 		List<PropertyDesc> propDescs = new ArrayList<PropertyDesc>();
 		String executeSql = MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
@@ -354,6 +353,7 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> int updateBatch(T... entities) {
 		if(entities.length == 0){
 			return 0;
@@ -379,11 +379,12 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> int updateBatch(List<T> entities) {
 		return updateBatch(entities.toArray());
 	}
 
-	//	@Override
+    /**{@inheritDoc}**/
 	public <T> T findEntity(Class<T> clazz, Object... id) {
 		String executeSql = MirageUtil.buildSelectSQL(beanDescFactory, entityOperator, clazz, nameConverter);
 		return sqlExecutor.getSingleResult(clazz, executeSql, id);
@@ -401,24 +402,18 @@ public class SqlManagerImpl implements SqlManager {
 		this.callExecutor.setValueTypes(valueTypes);
 	}
 
-//	@Override
+    /**{@inheritDoc}**/
 	public void addValueType(ValueType<?> valueType) {
 		this.sqlExecutor.addValueType(valueType);
 		this.callExecutor.addValueType(valueType);
 	}
 
-//	@Override
-	public int getCount(String sqlPath) {
-		return getCount(new ClasspathSqlResource(sqlPath), null);
-	}
+    /**{@inheritDoc}**/
 	public int getCount(SqlResource resource) {
 		return getCount(resource, null);
 	}
 
-//	@Override
-	public int getCount(String sqlPath, Object param) {
-		return getCount(new ClasspathSqlResource(sqlPath), param);
-	}
+    /**{@inheritDoc}**/
 	public int getCount(SqlResource resource, Object param) {
 		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
@@ -432,28 +427,13 @@ public class SqlManagerImpl implements SqlManager {
 		return result.intValue();
 	}
 
-	public int getCountBySql(String sql) {
-		return getCountBySql(sql, new Object[0]);
-	}
-
-	public int getCountBySql(String sql, Object... params) {
-		return getSingleResultBySql(Integer.class, sql, params);
-	}
-
-//	@Override
-	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath) {
-		return iterate(clazz, callback, new ClasspathSqlResource(sqlPath));
-	}
+    /**{@inheritDoc}**/
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource) {
 		return this.<T, R> iterate(clazz, callback, resource, null);
 	}
 
-//	@Override
-	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sqlPath, Object param) {
-		return iterate(clazz, callback, new ClasspathSqlResource(sqlPath), param);
-	}
+    /**{@inheritDoc}**/
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param) {
-
 		Node node = prepareNode(resource);
 		SqlContext context = prepareSqlContext(param);
 		node.accept(context);
@@ -461,31 +441,37 @@ public class SqlManagerImpl implements SqlManager {
 		return sqlExecutor.<T, R> iterate(clazz, callback, context.getSql(), context.getBindVariables());
 	}
 
+    /**{@inheritDoc}**/
 	public void call(String procedureName){
 		String sql = toCallString(procedureName, false);
 		callExecutor.call(sql);
 	}
 
+    /**{@inheritDoc}**/
 	public void call(String procedureName, Object parameter){
 		String sql = toCallString(procedureName, parameter, false);
 		callExecutor.call(sql, parameter);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> T call(Class<T> resultClass, String functionName){
 		String sql = toCallString(functionName, true);
 		return callExecutor.call(resultClass, sql);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> T call(Class<T> resultClass, String functionName, Object param){
 		String sql = toCallString(functionName, param, true);
 		return callExecutor.call(resultClass, sql, param);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> List<T> callForList(Class<T> resultClass, String functionName){
 		String sql = toCallString(functionName, true);
 		return callExecutor.callForList(resultClass, sql);
 	}
 
+    /**{@inheritDoc}**/
 	public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param){
 		String sql = toCallString(functionName, param, true);
 		return callExecutor.callForList(resultClass, sql, param);
@@ -542,45 +528,4 @@ public class SqlManagerImpl implements SqlManager {
 			return true;
 		}
 	}
-
-	public <T> List<T> getResultListBySql(Class<T> clazz, String sql) {
-		return getResultListBySql(clazz, sql, new Object[0]);
-	}
-
-	public <T> List<T> getResultListBySql(Class<T> clazz, String sql, Object... params) {
-		return sqlExecutor.getResultList(clazz, sql, params);
-	}
-
-	public <T> T getSingleResultBySql(Class<T> clazz, String sql) {
-		return getSingleResultBySql(clazz, sql, new Object[0]);
-	}
-
-	public <T> T getSingleResultBySql(Class<T> clazz, String sql, Object... params) {
-		return sqlExecutor.getSingleResult(clazz, sql, params);
-	}
-
-	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql) {
-		return this.<T, R> iterateBySql(clazz, callback, sql, new Object[0]);
-	}
-
-	public <T, R> R iterateBySql(Class<T> clazz, IterationCallback<T, R> callback, String sql, Object... params) {
-		return sqlExecutor.<T, R> iterate(clazz, callback, sql, params);
-	}
-
-	public int executeUpdateBySql(String sql) {
-		return executeUpdateBySql(sql, new Object[0]);
-	}
-
-	public int executeUpdateBySql(String sql, Object... params) {
-		return sqlExecutor.executeUpdateSql(sql, params, null);
-	}
-
-//	public long getSequenceNextValue(String sequenceName) {
-//		String sql = dialect.getSequenceSql(sequenceName);
-//		if(sql == null){
-//			throw new UnsupportedOperationException();
-//		}
-//		return getSingleResultBySql(Long.class, sql);
-//	}
-
 }
