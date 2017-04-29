@@ -1,6 +1,6 @@
 package com.miragesql.miragesql.test;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import com.miragesql.miragesql.bean.PropertyDesc;
 import com.miragesql.miragesql.naming.DefaultNameConverter;
 import com.miragesql.miragesql.naming.NameConverter;
 import com.miragesql.miragesql.util.MirageUtil;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 /**
  *
@@ -74,7 +74,7 @@ public class MirageTestContext {
 		String key = entity.getClass().getName() + "#" + propertyName;
 		Long value = sequenceMap.get(key);
 		if(value == null){
-			value = -1l;
+			value = -1L;
 		}
 		value = value + 1;
 		sequenceMap.put(key, value);
