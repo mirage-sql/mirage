@@ -28,152 +28,152 @@ import com.miragesql.miragesql.util.Validate;
 
 public class CallExecutor {
 
-	private static final Logger logger = LoggerFactory.getLogger(CallExecutor.class);
+    private static final Logger logger = LoggerFactory.getLogger(CallExecutor.class);
 
-	private BeanDescFactory beanDescFactory;
-	private NameConverter nameConverter;
-	private ConnectionProvider connectionProvider;
-	private List<ValueType<?>> valueTypes = new ArrayList<>();
-	private Dialect dialect;
-	private EntityOperator entityOperator;
-	
-	
-	public void setBeanDescFactory(BeanDescFactory beanDescFactory) {
-		this.beanDescFactory = beanDescFactory;
-	}
+    private BeanDescFactory beanDescFactory;
+    private NameConverter nameConverter;
+    private ConnectionProvider connectionProvider;
+    private List<ValueType<?>> valueTypes = new ArrayList<>();
+    private Dialect dialect;
+    private EntityOperator entityOperator;
 
-	public void setConnectionProvider(ConnectionProvider connectionProvider){
-		this.connectionProvider = connectionProvider;
-	}
 
-	public void setNameConverter(NameConverter nameConverter){
-		this.nameConverter = nameConverter;
-	}
+    public void setBeanDescFactory(BeanDescFactory beanDescFactory) {
+        this.beanDescFactory = beanDescFactory;
+    }
 
-	public void setDialect(Dialect dialect){
-		this.dialect = dialect;
-	}
+    public void setConnectionProvider(ConnectionProvider connectionProvider){
+        this.connectionProvider = connectionProvider;
+    }
 
-	/**
-	 *
-	 * @param valueTypes
-	 * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
-	 * an element in the {@code valueTypes} is {@code null}
-	 */
-	public void setValueTypes(List<ValueType<?>> valueTypes) {
-		Validate.notNull(valueTypes);
-		this.valueTypes = valueTypes;
-	}
+    public void setNameConverter(NameConverter nameConverter){
+        this.nameConverter = nameConverter;
+    }
 
-	public void addValueType(ValueType<?> valueType){
-		this.valueTypes.add(valueType);
-	}
+    public void setDialect(Dialect dialect){
+        this.dialect = dialect;
+    }
 
-	public void setEntityOperator(EntityOperator entityOperator){
-		this.entityOperator = entityOperator;
-	}
+    /**
+     *
+     * @param valueTypes
+     * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
+     * an element in the {@code valueTypes} is {@code null}
+     */
+    public void setValueTypes(List<ValueType<?>> valueTypes) {
+        Validate.notNull(valueTypes);
+        this.valueTypes = valueTypes;
+    }
 
-	public void call(String sql){
-		call(sql, null);
-	}
+    public void addValueType(ValueType<?> valueType){
+        this.valueTypes.add(valueType);
+    }
 
-	public void call(String sql, Object parameter){
-		CallableStatement stmt = null;
-		boolean functionCall = false;
-		try {
-			List<Param> paramList = new ArrayList<>();
-			List<Param> nonParamList = new ArrayList<>();
+    public void setEntityOperator(EntityOperator entityOperator){
+        this.entityOperator = entityOperator;
+    }
 
-			stmt = connectionProvider.getConnection().prepareCall(sql);
+    public void call(String sql){
+        call(sql, null);
+    }
 
-			prepareParameters(paramList, nonParamList, stmt, parameter);
+    public void call(String sql, Object parameter){
+        CallableStatement stmt = null;
+        boolean functionCall = false;
+        try {
+            List<Param> paramList = new ArrayList<>();
+            List<Param> nonParamList = new ArrayList<>();
 
-			setParameter(paramList, stmt);
+            stmt = connectionProvider.getConnection().prepareCall(sql);
 
-			boolean resultSetGettable = execute(stmt, sql, paramList);
+            prepareParameters(paramList, nonParamList, stmt, parameter);
 
-			handleNonParamResultSets(nonParamList, stmt, parameter, resultSetGettable);
-			handleOutParams(paramList, stmt, parameter, functionCall);
+            setParameter(paramList, stmt);
 
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
+            boolean resultSetGettable = execute(stmt, sql, paramList);
 
-		} finally{
-			JdbcUtil.close(stmt);
-		}
-	}
+            handleNonParamResultSets(nonParamList, stmt, parameter, resultSetGettable);
+            handleOutParams(paramList, stmt, parameter, functionCall);
 
-	public <T> T call(Class<T> resultClass, String sql){
-		return call(resultClass, sql, null);
-	}
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
 
-	public <T> T call(Class<T> resultClass, String sql, Object parameter){
-		CallableStatement stmt = null;
-		boolean functionCall = true;
-		try {
-			List<Param> paramList = new ArrayList<>();
-			List<Param> nonParamList = new ArrayList<>();
+        } finally{
+            JdbcUtil.close(stmt);
+        }
+    }
 
-			stmt = connectionProvider.getConnection().prepareCall(sql);
+    public <T> T call(Class<T> resultClass, String sql){
+        return call(resultClass, sql, null);
+    }
 
-			prepareReturnParameter(paramList, false, resultClass);
-			prepareParameters(paramList, nonParamList, stmt, parameter);
-			setParameter(paramList, stmt);
+    public <T> T call(Class<T> resultClass, String sql, Object parameter){
+        CallableStatement stmt = null;
+        boolean functionCall = true;
+        try {
+            List<Param> paramList = new ArrayList<>();
+            List<Param> nonParamList = new ArrayList<>();
 
-			boolean resultSetGettable = execute(stmt, sql, paramList);
+            stmt = connectionProvider.getConnection().prepareCall(sql);
 
-			handleNonParamResultSets(nonParamList, stmt, parameter, resultSetGettable);
+            prepareReturnParameter(paramList, false, resultClass);
+            prepareParameters(paramList, nonParamList, stmt, parameter);
+            setParameter(paramList, stmt);
 
-			final T result = this.<T> handleSingleResult(stmt, paramList);
-			handleOutParams(paramList, stmt, parameter, functionCall);
+            boolean resultSetGettable = execute(stmt, sql, paramList);
 
-			return result;
+            handleNonParamResultSets(nonParamList, stmt, parameter, resultSetGettable);
 
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally{
-			JdbcUtil.close(stmt);
-		}
-	}
+            final T result = this.<T> handleSingleResult(stmt, paramList);
+            handleOutParams(paramList, stmt, parameter, functionCall);
 
-	public <T> List<T> callForList(Class<T> resultClass, String sql){
-		return callForList(resultClass, sql, null);
-	}
+            return result;
 
-	public <T> List<T> callForList(Class<T> resultClass, String sql, Object parameter){
-		CallableStatement stmt = null;
-		boolean functionCall = true;
-		try {
-			List<Param> paramList = new ArrayList<>();
-			List<Param> nonParamList = new ArrayList<>();
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        } finally{
+            JdbcUtil.close(stmt);
+        }
+    }
 
-			stmt = connectionProvider.getConnection().prepareCall(sql);
+    public <T> List<T> callForList(Class<T> resultClass, String sql){
+        return callForList(resultClass, sql, null);
+    }
 
-			prepareReturnParameter(paramList, true, resultClass);
-			prepareParameters(paramList, nonParamList, stmt, parameter);
-			setParameter(paramList, stmt);
+    public <T> List<T> callForList(Class<T> resultClass, String sql, Object parameter){
+        CallableStatement stmt = null;
+        boolean functionCall = true;
+        try {
+            List<Param> paramList = new ArrayList<>();
+            List<Param> nonParamList = new ArrayList<>();
 
-			boolean resultSetGettable = execute(stmt, sql, paramList);
+            stmt = connectionProvider.getConnection().prepareCall(sql);
 
-			handleNonParamResultSets(nonParamList, stmt, parameter, resultSetGettable);
-			final List<T> result = handleResultList(paramList, resultClass, stmt);
-			handleOutParams(paramList, stmt, parameter, functionCall);
+            prepareReturnParameter(paramList, true, resultClass);
+            prepareParameters(paramList, nonParamList, stmt, parameter);
+            setParameter(paramList, stmt);
 
-			return result;
+            boolean resultSetGettable = execute(stmt, sql, paramList);
 
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally{
-			JdbcUtil.close(stmt);
-		}
-	}
+            handleNonParamResultSets(nonParamList, stmt, parameter, resultSetGettable);
+            final List<T> result = handleResultList(paramList, resultClass, stmt);
+            handleOutParams(paramList, stmt, parameter, functionCall);
 
-	protected void prepareParameters(List<Param> paramList, List<Param> nonParamList, CallableStatement stmt, Object parameter) throws SQLException {
-		if (parameter == null){
-			return;
-		}
-		Class<?> paramClass = parameter.getClass();
-		// TODO SqlManagerの他のメソッドもシンプル型のパラメータには対応していないのでとりあえず。
+            return result;
+
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        } finally{
+            JdbcUtil.close(stmt);
+        }
+    }
+
+    protected void prepareParameters(List<Param> paramList, List<Param> nonParamList, CallableStatement stmt, Object parameter) throws SQLException {
+        if (parameter == null){
+            return;
+        }
+        Class<?> paramClass = parameter.getClass();
+        // TODO SqlManagerの他のメソッドもシンプル型のパラメータには対応していないのでとりあえず。
 //        if (ValueTypes.isSimpleType(paramClass)) {
 //            addParam(paramList, parameter, paramClass);
 //            return;
@@ -184,27 +184,27 @@ public class CallExecutor {
             final ValueType<?> valueType = paramDesc.valueType;
 
             switch (paramDesc.paramType) {
-	            case RESULT_SET:
-	                if (dialect.needsParameterForResultSet()) {
-	                    addParam(paramList, paramDesc.propertyDesc, null, clazz, valueType, ParameterType.OUT);
-	                } else {
-	                    addNonParam(nonParamList, paramDesc.propertyDesc);
-	                }
-	                break;
-	            case IN:
-	            	Object inValue = paramDesc.propertyDesc.getValue(parameter);
-	                addParam(paramList, paramDesc.propertyDesc, inValue, clazz, valueType, ParameterType.IN);
-	                break;
-	            case OUT:
-	                addParam(paramList, paramDesc.propertyDesc, null, clazz, valueType, ParameterType.OUT);
-	                break;
-	            case IN_OUT:
-	            	Object inOutValue = paramDesc.propertyDesc.getValue(parameter);
-	                addParam(paramList, paramDesc.propertyDesc, inOutValue, clazz, valueType, ParameterType.IN_OUT);
-	                break;
+                case RESULT_SET:
+                    if (dialect.needsParameterForResultSet()) {
+                        addParam(paramList, paramDesc.propertyDesc, null, clazz, valueType, ParameterType.OUT);
+                    } else {
+                        addNonParam(nonParamList, paramDesc.propertyDesc);
+                    }
+                    break;
+                case IN:
+                    Object inValue = paramDesc.propertyDesc.getValue(parameter);
+                    addParam(paramList, paramDesc.propertyDesc, inValue, clazz, valueType, ParameterType.IN);
+                    break;
+                case OUT:
+                    addParam(paramList, paramDesc.propertyDesc, null, clazz, valueType, ParameterType.OUT);
+                    break;
+                case IN_OUT:
+                    Object inOutValue = paramDesc.propertyDesc.getValue(parameter);
+                    addParam(paramList, paramDesc.propertyDesc, inOutValue, clazz, valueType, ParameterType.IN_OUT);
+                    break;
             }
         }
-	}
+    }
 
     protected void prepareReturnParameter(List<Param> paramList, boolean resultList, Class<?> resultClass) {
         final ValueType<?> valueType = getValueType(resultList ? List.class : resultClass, null);
@@ -213,24 +213,24 @@ public class CallExecutor {
     }
 
     @SuppressWarnings("unchecked")
-	protected void setParameter(List<Param> paramList, CallableStatement cs) {
+    protected void setParameter(List<Param> paramList, CallableStatement cs) {
         int size = paramList.size();
         try {
             for (int i = 0; i < size; i++) {
                 Param param = paramList.get(i);
                 switch (param.paramType) {
-	                case IN:
-	                	param.valueType.set(param.paramClass, cs, param.value, i + 1);
-	                    break;
-	                case OUT:
-	                	param.valueType.registerOutParameter(param.paramClass, cs, i + 1);
-	                    break;
-	                case IN_OUT:
-	                	param.valueType.set(param.paramClass, cs, param.value, i + 1);
-	                	param.valueType.registerOutParameter(param.paramClass, cs, i + 1);
-	                    break;
-	                default:
-	                	// no op
+                    case IN:
+                        param.valueType.set(param.paramClass, cs, param.value, i + 1);
+                        break;
+                    case OUT:
+                        param.valueType.registerOutParameter(param.paramClass, cs, i + 1);
+                        break;
+                    case IN_OUT:
+                        param.valueType.set(param.paramClass, cs, param.value, i + 1);
+                        param.valueType.registerOutParameter(param.paramClass, cs, i + 1);
+                        break;
+                    default:
+                        // no op
                 }
             }
         } catch (SQLException e) {
@@ -239,34 +239,34 @@ public class CallExecutor {
     }
 
     protected boolean execute(CallableStatement stmt, String sql, List<Param> paramList) throws SQLException{
-		if(logger.isInfoEnabled()){
-			logger.info(sql);
-			printParameters(paramList);
-		}
-    	return stmt.execute();
+        if(logger.isInfoEnabled()){
+            logger.info(sql);
+            printParameters(paramList);
+        }
+        return stmt.execute();
     }
 
-	private void printParameters(List<Param> paramList){
-		if(paramList == null){
-			return;
-		}
-		for (Param param : paramList) {
-			if (param.paramType == ParameterType.IN || param.paramType == ParameterType.IN_OUT){
-				PropertyDesc pd = param.propertyDesc;
-				if (pd != null){
-					logger.info(String.format("paramName=%s, value=%s", pd.getPropertyName(), param.value));
-				} else {
-					logger.info(String.format("paramClass=%s, value=%s", param.paramClass, param.value));
-				}
-			}
-		}
-	}
+    private void printParameters(List<Param> paramList){
+        if(paramList == null){
+            return;
+        }
+        for (Param param : paramList) {
+            if (param.paramType == ParameterType.IN || param.paramType == ParameterType.IN_OUT){
+                PropertyDesc pd = param.propertyDesc;
+                if (pd != null){
+                    logger.info(String.format("paramName=%s, value=%s", pd.getPropertyName(), param.value));
+                } else {
+                    logger.info(String.format("paramClass=%s, value=%s", param.paramClass, param.value));
+                }
+            }
+        }
+    }
 
     protected void handleNonParamResultSets(List<Param> nonParamList, final CallableStatement cs,
             Object parameter, final boolean resultSetGettable) {
-		if (parameter == null){
-			return;
-		}
+        if (parameter == null){
+            return;
+        }
         try {
             if (!resultSetGettable) {
                 cs.getMoreResults();
@@ -288,8 +288,8 @@ public class CallExecutor {
     }
 
     protected Object handleResultSet(PropertyDesc pd, final ResultSet rs) throws SQLException {
-    	// TODO なんかこのへんのロジックがSqlExecuterと違う？
-    	// TODO 複数件取得する場合はgetResultList()するんじゃなくてListを渡すのか
+        // TODO なんかこのへんのロジックがSqlExecuterと違う？
+        // TODO 複数件取得する場合はgetResultList()するんじゃなくてListを渡すのか
         if (!List.class.isAssignableFrom(pd.getField().getType())) {
             return handleSingleResult(pd.getField().getType(), rs);
         }
@@ -301,11 +301,11 @@ public class CallExecutor {
     }
 
     protected <T> T handleSingleResult(final Class<T> resultClass, final ResultSet rs) throws SQLException {
-    	ResultSetMetaData meta = rs.getMetaData();
-    	BeanDesc beanDesc = beanDescFactory.getBeanDesc(resultClass);
+        ResultSetMetaData meta = rs.getMetaData();
+        BeanDesc beanDesc = beanDescFactory.getBeanDesc(resultClass);
 
-    	return entityOperator.createEntity(resultClass, rs, meta, meta.getColumnCount(), beanDesc,
-    			dialect, valueTypes, nameConverter);
+        return entityOperator.createEntity(resultClass, rs, meta, meta.getColumnCount(), beanDesc,
+                dialect, valueTypes, nameConverter);
     }
 
     @SuppressWarnings("unchecked")
@@ -326,14 +326,14 @@ public class CallExecutor {
             Class<?> elementClass = null;
             final PropertyDesc pd = param.propertyDesc;
             if (pd == null){
-            	elementClass = resultClass;
+                elementClass = resultClass;
 
             } else {
                 final Field field = pd.getField();
                 if (field == null){
-                	elementClass = resultClass;
+                    elementClass = resultClass;
                 } else {
-                	elementClass = ReflectionUtil.getElementTypeOfListFromFieldType(field);
+                    elementClass = ReflectionUtil.getElementTypeOfListFromFieldType(field);
                 }
             }
             return (List<T>) handleResultList(elementClass, rs);
@@ -347,20 +347,20 @@ public class CallExecutor {
 
     protected <T> List<T> handleResultList(final Class<T> elementClass, final ResultSet rs) throws SQLException {
 
-		List<T> list = new ArrayList<>();
+        List<T> list = new ArrayList<>();
 
-		ResultSetMetaData meta = rs.getMetaData();
-		int columnCount = meta.getColumnCount();
+        ResultSetMetaData meta = rs.getMetaData();
+        int columnCount = meta.getColumnCount();
 
-		BeanDesc beanDesc = beanDescFactory.getBeanDesc(elementClass);
+        BeanDesc beanDesc = beanDescFactory.getBeanDesc(elementClass);
 
-		while(rs.next()){
-			T entity = entityOperator.createEntity(elementClass, rs, meta, columnCount, beanDesc,
-					dialect, valueTypes, nameConverter);
-			list.add(entity);
-		}
+        while(rs.next()){
+            T entity = entityOperator.createEntity(elementClass, rs, meta, columnCount, beanDesc,
+                    dialect, valueTypes, nameConverter);
+            list.add(entity);
+        }
 
-		return list;
+        return list;
     }
 
 //	protected Object handleResultSet(ResultSetHandler handler, ResultSet rs) {
@@ -378,10 +378,10 @@ public class CallExecutor {
 //	}
 
     protected void handleOutParams(List<Param> paramList, final CallableStatement cs, Object parameter,
-    		boolean functionCall) {
-    	if (parameter == null){
-    		return;
-    	}
+            boolean functionCall) {
+        if (parameter == null){
+            return;
+        }
         try {
             final int start = functionCall ? 1 : 0;
             for (int i = start; i < paramList.size(); i++) {
@@ -391,7 +391,7 @@ public class CallExecutor {
                 }
                 PropertyDesc pd = param.propertyDesc;
                 @SuppressWarnings("unchecked")
-				Object value = param.valueType.get(param.paramClass, cs, i + 1);
+                Object value = param.valueType.get(param.paramClass, cs, i + 1);
                 if (value instanceof ResultSet) {
                     value = handleResultSet(pd, (ResultSet) value);
                 }
@@ -420,18 +420,18 @@ public class CallExecutor {
     }
 
     protected ValueType<?> getValueType(Class<?> type, PropertyDesc propertyDesc){
-    	if(dialect.getValueType() != null){
-    		ValueType<?> valueType = dialect.getValueType();
-    		if(valueType.isSupport(type, propertyDesc)){
-    			return valueType;
-    		}
-    	}
-    	for(ValueType<?> valueType: valueTypes){
-    		if(valueType.isSupport(type, propertyDesc)){
-    			return valueType;
-    		}
-    	}
-    	return null;
+        if(dialect.getValueType() != null){
+            ValueType<?> valueType = dialect.getValueType();
+            if(valueType.isSupport(type, propertyDesc)){
+                return valueType;
+            }
+        }
+        for(ValueType<?> valueType: valueTypes){
+            if(valueType.isSupport(type, propertyDesc)){
+                return valueType;
+            }
+        }
+        return null;
     }
 
     protected void addParam(final List<Param> paramList, final PropertyDesc pd, final Object value, final Class<?> paramClass,
@@ -473,8 +473,8 @@ public class CallExecutor {
         final List<ParamDesc> paramDescList = new ArrayList<>();
 
         for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {
-        	PropertyDesc pd = beanDesc.getPropertyDesc(i);
-        	Field field = pd.getField();
+            PropertyDesc pd = beanDesc.getPropertyDesc(i);
+            Field field = pd.getField();
 
             if (!ModifierUtil.isInstanceField(field)) {
                 continue;
@@ -484,7 +484,7 @@ public class CallExecutor {
             paramDesc.propertyDesc = pd;
             paramDesc.name = field.getName();
             paramDesc.paramClass = field.getType();
-			paramDesc.valueType = getValueType(paramDesc.paramClass, pd);
+            paramDesc.valueType = getValueType(paramDesc.paramClass, pd);
 
             if (pd.getAnnotation(com.miragesql.miragesql.annotation.ResultSet.class) != null) {
                 paramDesc.paramType = ParameterType.RESULT_SET;
@@ -497,7 +497,7 @@ public class CallExecutor {
             }
 
             if (paramDesc.paramType != null){
-            	paramDescList.add(paramDesc);
+                paramDescList.add(paramDesc);
             }
         }
 
@@ -522,7 +522,7 @@ public class CallExecutor {
         public ParameterType paramType;
 
         @SuppressWarnings("rawtypes")
-		public ValueType valueType;
+        public ValueType valueType;
     }
 
     protected static class Param {
@@ -534,7 +534,7 @@ public class CallExecutor {
         public ParameterType paramType = ParameterType.IN;
 
         @SuppressWarnings("rawtypes")
-		public ValueType valueType;
+        public ValueType valueType;
 
         public PropertyDesc propertyDesc;
 

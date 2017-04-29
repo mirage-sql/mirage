@@ -8,17 +8,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanDescImpl implements BeanDesc {
 
-	private Class<?> clazz;
-	private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<>();
-	private PropertyDesc[] propertyArray;
+    private Class<?> clazz;
+    private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<>();
+    private PropertyDesc[] propertyArray;
 
-	public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){
-		this.clazz = clazz;
+    public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){
+        this.clazz = clazz;
 
-		List<PropertyDesc> list = new ArrayList<PropertyDesc>();
+        List<PropertyDesc> list = new ArrayList<PropertyDesc>();
 
-		for(PropertyWrapper propertyWrapper: map.values()){
-			PropertyDesc pd = new PropertyDescImpl(propertyWrapper);
+        for(PropertyWrapper propertyWrapper: map.values()){
+            PropertyDesc pd = new PropertyDescImpl(propertyWrapper);
 
 //			if(info.field == null){
 //				pd = new PropertyDescImpl(this, info.name, info.type, null, info.getterMethod, info.setterMethod);
@@ -26,9 +26,9 @@ public class BeanDescImpl implements BeanDesc {
 //				pd = new PropertyDescImpl(this, info.name, info.type, info.propertyWrapper);
 //			}
 
-			list.add(pd);
-			this.propertyMap.put(pd.getPropertyName(), pd);
-		}
+            list.add(pd);
+            this.propertyMap.put(pd.getPropertyName(), pd);
+        }
 
 //		// for Scala classes
 //		while(clazz != null){
@@ -70,38 +70,38 @@ public class BeanDescImpl implements BeanDesc {
 //			clazz = clazz.getSuperclass();
 //		}
 
-		this.propertyArray = list.toArray(new PropertyDesc[list.size()]);
-	}
+        this.propertyArray = list.toArray(new PropertyDesc[list.size()]);
+    }
 
 //	@Override
-	public Class<?> getType(){
-		return clazz;
-	}
+    public Class<?> getType(){
+        return clazz;
+    }
 
 //	@Override
-	public PropertyDesc getPropertyDesc(String name){
-		return propertyMap.get(name);
-	}
+    public PropertyDesc getPropertyDesc(String name){
+        return propertyMap.get(name);
+    }
 
 //	@Override
-	public int getPropertyDescSize(){
-		return propertyArray.length;
-	}
+    public int getPropertyDescSize(){
+        return propertyArray.length;
+    }
 
 //	@Override
-	public PropertyDesc getPropertyDesc(int i){
-		return propertyArray[i];
-	}
+    public PropertyDesc getPropertyDesc(int i){
+        return propertyArray[i];
+    }
 
 //	@Override
-	public <T extends Annotation> T getAnnotation(Class<T> type) {
-		return clazz.getAnnotation(type);
-	}
+    public <T extends Annotation> T getAnnotation(Class<T> type) {
+        return clazz.getAnnotation(type);
+    }
 
-	@Override
-	public String toString() {
-		return new StringBuilder(super.toString())
-			.append("[").append(clazz == null ? null : clazz.getSimpleName()).append("]")
-			.toString();
-	}
+    @Override
+    public String toString() {
+        return new StringBuilder(super.toString())
+            .append("[").append(clazz == null ? null : clazz.getSimpleName()).append("]")
+            .toString();
+    }
 }

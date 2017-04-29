@@ -23,14 +23,14 @@ import com.miragesql.miragesql.naming.NameConverter;
 @Documented
 public @interface Column {
 
-	/**
-	 * The column name which is mapped to the annotated property.
-	 */
-	String name();
+    /**
+     * The column name which is mapped to the annotated property.
+     */
+    String name();
 
-	/**
-	 * The place holder when generate insert / update SQL.
-	 * Defaults to value: ?
-	 */
-	String placeHolder() default "?";
+    /**
+     * The place holder when generate insert / update SQL.
+     * Defaults to value: ?
+     */
+    String placeHolder() default "?";
 }

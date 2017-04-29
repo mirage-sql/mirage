@@ -16,18 +16,18 @@ import java.lang.annotation.Target;
 @Documented
 public @interface PrimaryKey {
 
-	GenerationType generationType();
+    GenerationType generationType();
 
-	String generator() default "";
+    String generator() default "";
 
     /**
      * The type of the generated primary key. Supported types are: <code>APPLICATION</code>, <code>IDENTITY</code> and
-	 * <code>SEQUENCE</code>.
+     * <code>SEQUENCE</code>.
      */
-	public static enum GenerationType {
-		APPLICATION,
-		IDENTITY,
-		SEQUENCE
-	}
+    public static enum GenerationType {
+        APPLICATION,
+        IDENTITY,
+        SEQUENCE
+    }
 
 }

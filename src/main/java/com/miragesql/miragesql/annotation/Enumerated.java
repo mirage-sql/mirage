@@ -30,33 +30,33 @@ import java.lang.annotation.Target;
  * @author daisuke
  */
 @Target({
-	ElementType.METHOD,
-	ElementType.FIELD,
-	ElementType.TYPE
+    ElementType.METHOD,
+    ElementType.FIELD,
+    ElementType.TYPE
 })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Enumerated {
-	
-	/** (Optional) The type used in mapping an enum type. */
-	EnumType value() default EnumType.ORDINAL;
-	
-	
-	/**
-	 * Defines a mapping for the enumerated types. The constants of this enumerated type specify how persistent the property
-	 * or field should be persisted as a enumerated type. 
-	 * 
-	 * @since 1.0
-	 * @version $Id$
-	 * @author daisuke
-	 */
-	enum EnumType {
-		/** Persist enumerated type property or field as an integer */
-		ORDINAL,
-		
-		/** Persist enumerated type property or field as an integer */
-		ONE_BASED_ORDINAL,
-		
-		/** Persist enumerated type property or field as a string */
-		STRING,
-	}
+
+    /** (Optional) The type used in mapping an enum type. */
+    EnumType value() default EnumType.ORDINAL;
+
+
+    /**
+     * Defines a mapping for the enumerated types. The constants of this enumerated type specify how persistent the property
+     * or field should be persisted as a enumerated type.
+     *
+     * @since 1.0
+     * @version $Id$
+     * @author daisuke
+     */
+    enum EnumType {
+        /** Persist enumerated type property or field as an integer */
+        ORDINAL,
+
+        /** Persist enumerated type property or field as an integer */
+        ONE_BASED_ORDINAL,
+
+        /** Persist enumerated type property or field as a string */
+        STRING,
+    }
 }

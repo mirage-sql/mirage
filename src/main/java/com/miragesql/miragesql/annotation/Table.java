@@ -22,9 +22,9 @@ import com.miragesql.miragesql.naming.NameConverter;
 @Documented
 public @interface Table {
 
-	/**
-	 * The table name which is mapped to the annotated entity class.
-	 */
-	String name();
+    /**
+     * The table name which is mapped to the annotated entity class.
+     */
+    String name();
 
 }
