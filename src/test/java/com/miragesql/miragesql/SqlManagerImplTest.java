@@ -26,7 +26,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
 		sqlManager.insertEntity(book);
 
-		Map<String, String> param = new HashMap<String, String>();
+		Map<String, String> param = new HashMap<>();
 		param.put("bookName", "Mirage in Action");
 
 		@SuppressWarnings("unchecked")
@@ -104,7 +104,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		assertEquals(new Long(0), book1.bookId);
 		assertEquals(new Long(1), book2.bookId);
 
-		Map<String, String> param = new HashMap<String, String>();
+		Map<String, String> param = new HashMap<>();
 		param.put("bookName", "Mirage in Action");
 
 		int count = sqlManager.getCount(
@@ -299,7 +299,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 		book2.author = "Naoki Takezoe";
 		book2.price = 25;
 
-		List<Book> books = new ArrayList<Book>();
+		List<Book> books = new ArrayList<>();
 		books.add(book1);
 		books.add(book2);
 
@@ -465,7 +465,7 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 	}
 
 	public static class BookNamesParam {
-		public List<String> bookNames = new ArrayList<String>();
+		public List<String> bookNames = new ArrayList<>();
 	}
 
 	public static class Book {

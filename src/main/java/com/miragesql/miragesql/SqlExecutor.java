@@ -33,7 +33,7 @@ public class SqlExecutor {
 	private NameConverter nameConverter;
 	private ConnectionProvider connectionProvider;
 	private Dialect dialect;
-	private List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
+	private List<ValueType<?>> valueTypes = new ArrayList<>();
 	private EntityOperator entityOperator;
 
 
@@ -125,7 +125,7 @@ public class SqlExecutor {
 			stmt = connectionProvider.getConnection().prepareStatement(sql);
 			setParameters(stmt, params);
 
-			List<T> list = new ArrayList<T>();
+			List<T> list = new ArrayList<>();
 
 			if(logger.isInfoEnabled()){
 				printSql(sql);

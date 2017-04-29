@@ -64,7 +64,7 @@ public class SpringConnectionProviderTest extends AbstractDatabaseTest {
 		try {
 			springTestDao.insert(book, true);
 			fail();
-		} catch(RuntimeException ex){
+		} catch(RuntimeException ignored){
 		}
 
 		assertEquals(0, springTestDao.getCount());

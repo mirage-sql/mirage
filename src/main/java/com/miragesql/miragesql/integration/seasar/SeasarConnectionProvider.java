@@ -15,7 +15,7 @@ import com.miragesql.miragesql.provider.XADataSourceConnectionProvider;
  */
 public class SeasarConnectionProvider extends XADataSourceConnectionProvider {
 
-	private ThreadLocal<Boolean> registered= new ThreadLocal<Boolean>();
+	private ThreadLocal<Boolean> registered= new ThreadLocal<>();
 	private TransactionSynchronizationRegistry syncRegistry;
 
 	public void setTransactionSynchronizationRegistry(TransactionSynchronizationRegistry syncRegistry) {

@@ -27,9 +27,9 @@ public class MirageTestContext {
 	private static BeanDescFactory beanDescFactory = new BeanDescFactory();
 	private static NameConverter nameConverter = new DefaultNameConverter();
 	private static EntityOperator entityOperator = new DefaultEntityOperator();
-	private static List<Object> resultList = new ArrayList<Object>();
-	private static List<ExecutedSQLInfo> executedSqlList = new ArrayList<ExecutedSQLInfo>();
-	private static Map<String, Long> sequenceMap = new HashMap<String, Long>();
+	private static List<Object> resultList = new ArrayList<>();
+	private static List<ExecutedSQLInfo> executedSqlList = new ArrayList<>();
+	private static Map<String, Long> sequenceMap = new HashMap<>();
 
 	/**
 	 * Initializes the MirageTestContext.
@@ -160,7 +160,7 @@ public class MirageTestContext {
 	 * @param entity the entity which should be inserted
 	 */
 	public static void verifyInsertSql(int indexOfSql, Object entity){
-		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
+		List<PropertyDesc> values = new ArrayList<>();
 		verifySql(indexOfSql, MirageUtil.buildInsertSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
@@ -172,7 +172,7 @@ public class MirageTestContext {
 	 * @param entity the entity which should be updated
 	 */
 	public static void verifyUpdatedSql(int indexOfSql, Object entity){
-		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
+		List<PropertyDesc> values = new ArrayList<>();
 		verifySql(indexOfSql, MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}
@@ -184,7 +184,7 @@ public class MirageTestContext {
 	 * @param entity the entity which should be deleted
 	 */
 	public static void verifyDeleteSql(int indexOfSql, Object entity){
-		List<PropertyDesc> values = new ArrayList<PropertyDesc>();
+		List<PropertyDesc> values = new ArrayList<>();
 		verifySql(indexOfSql, MirageUtil.buildDeleteSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, values));
 		verifyParameters(indexOfSql, entity, values.toArray(new PropertyDesc[values.size()]));
 	}

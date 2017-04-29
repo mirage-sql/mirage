@@ -36,9 +36,9 @@ public class SqlContextImpl implements SqlContext {
 
 	private StringBuffer sqlBuf = new StringBuffer(255);
 
-	private List<Object> bindVariables = new ArrayList<Object>();
+	private List<Object> bindVariables = new ArrayList<>();
 
-	private List<Class<?>> bindVariableTypes = new ArrayList<Class<?>>();
+	private List<Class<?>> bindVariableTypes = new ArrayList<>();
 
 	private boolean enabled = true;
 

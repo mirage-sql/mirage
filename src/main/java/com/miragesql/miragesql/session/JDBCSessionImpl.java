@@ -31,7 +31,7 @@ public class JDBCSessionImpl implements Session {
 	private String url;
 	private String user;
 	private String password;
-	private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<Boolean>();
+	private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
 	/**
 	 * The constructor.

@@ -5,7 +5,6 @@ import com.miragesql.miragesql.SqlManagerImpl;
 import com.miragesql.miragesql.exception.ConfigurationException;
 import com.miragesql.miragesql.exception.SessionException;
 import com.miragesql.miragesql.provider.DataSourceConnectionProvider;
-import com.miragesql.miragesql.provider.DefaultConnectionProvider;
 import com.miragesql.miragesql.provider.JNDIDataSourceConnectionProvider;
 
 import javax.naming.NamingException;
@@ -24,7 +23,7 @@ public class JNDISessionImpl implements Session {
 
     private SqlManager sqlManager;
     JNDIDataSourceConnectionProvider provider;
-    private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<Boolean>();
+    private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
     /**
      * The implementation of {@link Session} which gets the connection from a JNDI Data Source.

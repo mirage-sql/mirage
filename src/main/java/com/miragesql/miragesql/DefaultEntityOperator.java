@@ -70,13 +70,7 @@ public class DefaultEntityOperator implements EntityOperator {
 							}
 						}
 						entity = constructor.newInstance(params);
-					} catch (InstantiationException e) {
-						// ignore
-					} catch (IllegalAccessException e) {
-						// ignore
-					} catch (IllegalArgumentException e) {
-						// ignore
-					} catch (InvocationTargetException e) {
+					} catch (InstantiationException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
 						// ignore
 					}
 				}
@@ -140,18 +134,8 @@ public class DefaultEntityOperator implements EntityOperator {
 			}
 
 			return entity;
-		} catch (SQLException e) {
+		} catch (SQLException | SecurityException | IllegalArgumentException e) {
 			throw new EntityCreationFailedException(e);
-
-		} catch (SecurityException e) {
-			throw new EntityCreationFailedException(e);
-
-//		} catch (NoSuchMethodException e) {
-//			throw new EntityCreationFailedException(e);
-
-		} catch (IllegalArgumentException e) {
-			throw new EntityCreationFailedException(e);
-
 		}
 	}
 

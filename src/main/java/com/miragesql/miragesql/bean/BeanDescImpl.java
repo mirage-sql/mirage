@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BeanDescImpl implements BeanDesc {
 
 	private Class<?> clazz;
-	private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<String, PropertyDesc>();
+	private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<>();
 	private PropertyDesc[] propertyArray;
 
 	public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){

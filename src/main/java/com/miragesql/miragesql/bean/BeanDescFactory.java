@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanDescFactory {
 
-	private Map<Class<?>, BeanDesc> cacheMap = new ConcurrentHashMap<Class<?>, BeanDesc>();
+	private Map<Class<?>, BeanDesc> cacheMap = new ConcurrentHashMap<>();
 	private boolean cacheEnabled = false;
 	private PropertyExtractor propertyExtractor = new DefaultPropertyExtractor();
 

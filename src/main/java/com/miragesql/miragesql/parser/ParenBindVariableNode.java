@@ -63,7 +63,7 @@ public class ParenBindVariableNode extends AbstractNode {
     }
 
 	private Object[] toArray(Iterable<?> iterable) {
-		LinkedList<Object> list = new LinkedList<Object>();
+		LinkedList<Object> list = new LinkedList<>();
 		for (Object o : iterable) {
 			list.add(o);
 		}

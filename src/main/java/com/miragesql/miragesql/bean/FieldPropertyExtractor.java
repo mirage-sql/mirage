@@ -32,7 +32,7 @@ import java.util.Map;
 public class FieldPropertyExtractor implements PropertyExtractor {
 
 	public Map<String, PropertyWrapper> extractProperties(Class<?> clazz) {
-		Map<String, PropertyWrapper> map = new LinkedHashMap<String, PropertyWrapper>();
+		Map<String, PropertyWrapper> map = new LinkedHashMap<>();
 		extractProperties0(clazz, map);
 		return map;
 	}

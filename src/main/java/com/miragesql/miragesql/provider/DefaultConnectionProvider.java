@@ -15,7 +15,7 @@ public class DefaultConnectionProvider implements ConnectionProvider {
 
 	private static final Logger logger = LoggerFactory.getLogger(DefaultConnectionProvider.class);
 
-	private ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
+	private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
 	public void setConnection(Connection conn){
 		threadLocal.set(conn);

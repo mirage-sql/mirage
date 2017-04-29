@@ -14,7 +14,7 @@ import java.util.Map;
 public class DefaultPropertyExtractor implements PropertyExtractor {
 
 	public Map<String, PropertyWrapper> extractProperties(Class<?> clazz) {
-		Map<String, PropertyInfo> map = new LinkedHashMap<String, PropertyInfo>();
+		Map<String, PropertyInfo> map = new LinkedHashMap<>();
 
 		Method[] methods = clazz.getMethods();
 		for(Method method: methods){
@@ -67,7 +67,7 @@ public class DefaultPropertyExtractor implements PropertyExtractor {
 			}
 		}
 
-		Map<String, PropertyWrapper> result = new LinkedHashMap<String, PropertyWrapper>();
+		Map<String, PropertyWrapper> result = new LinkedHashMap<>();
 		for(Map.Entry<String, PropertyInfo> e: map.entrySet()){
 			PropertyInfo info = e.getValue();
 			if(info.field != null){

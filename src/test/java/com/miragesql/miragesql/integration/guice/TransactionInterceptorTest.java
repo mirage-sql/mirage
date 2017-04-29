@@ -69,7 +69,7 @@ public class TransactionInterceptorTest extends TestCase {
 		try {
 			dao.getCount();
 			fail();
-		} catch(RuntimeException ex){
+		} catch(RuntimeException ignored){
 		}
 
 		verify(session, times(1)).begin();

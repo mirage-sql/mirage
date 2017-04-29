@@ -33,7 +33,7 @@ public class CallExecutor {
 	private BeanDescFactory beanDescFactory;
 	private NameConverter nameConverter;
 	private ConnectionProvider connectionProvider;
-	private List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
+	private List<ValueType<?>> valueTypes = new ArrayList<>();
 	private Dialect dialect;
 	private EntityOperator entityOperator;
 	
@@ -81,8 +81,8 @@ public class CallExecutor {
 		CallableStatement stmt = null;
 		boolean functionCall = false;
 		try {
-			List<Param> paramList = new ArrayList<Param>();
-			List<Param> nonParamList = new ArrayList<Param>();
+			List<Param> paramList = new ArrayList<>();
+			List<Param> nonParamList = new ArrayList<>();
 
 			stmt = connectionProvider.getConnection().prepareCall(sql);
 
@@ -111,8 +111,8 @@ public class CallExecutor {
 		CallableStatement stmt = null;
 		boolean functionCall = true;
 		try {
-			List<Param> paramList = new ArrayList<Param>();
-			List<Param> nonParamList = new ArrayList<Param>();
+			List<Param> paramList = new ArrayList<>();
+			List<Param> nonParamList = new ArrayList<>();
 
 			stmt = connectionProvider.getConnection().prepareCall(sql);
 
@@ -144,8 +144,8 @@ public class CallExecutor {
 		CallableStatement stmt = null;
 		boolean functionCall = true;
 		try {
-			List<Param> paramList = new ArrayList<Param>();
-			List<Param> nonParamList = new ArrayList<Param>();
+			List<Param> paramList = new ArrayList<>();
+			List<Param> nonParamList = new ArrayList<>();
 
 			stmt = connectionProvider.getConnection().prepareCall(sql);
 
@@ -347,7 +347,7 @@ public class CallExecutor {
 
     protected <T> List<T> handleResultList(final Class<T> elementClass, final ResultSet rs) throws SQLException {
 
-		List<T> list = new ArrayList<T>();
+		List<T> list = new ArrayList<>();
 
 		ResultSetMetaData meta = rs.getMetaData();
 		int columnCount = meta.getColumnCount();
@@ -470,7 +470,7 @@ public class CallExecutor {
 
     protected List<ParamDesc> createParamDesc(final Class<?> clazz) {
         BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
-        final List<ParamDesc> paramDescList = new ArrayList<ParamDesc>();
+        final List<ParamDesc> paramDescList = new ArrayList<>();
 
         for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {
         	PropertyDesc pd = beanDesc.getPropertyDesc(i);

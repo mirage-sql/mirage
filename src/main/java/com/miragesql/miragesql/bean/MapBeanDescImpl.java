@@ -11,7 +11,7 @@ public class MapBeanDescImpl implements BeanDesc {
 
 	private Map<String, Object> map;
 	private PropertyDesc[] propertyArray;
-	private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<String, PropertyDesc>();
+	private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<>();
 
 	public MapBeanDescImpl(){
 	}
@@ -19,7 +19,7 @@ public class MapBeanDescImpl implements BeanDesc {
 	public MapBeanDescImpl(Map<String, Object> map){
 		this.map = map;
 
-		List<PropertyDesc> properties = new ArrayList<PropertyDesc>();
+		List<PropertyDesc> properties = new ArrayList<>();
 
 		for(Entry<String, Object> entry: map.entrySet()){
 			String propertyName = entry.getKey();

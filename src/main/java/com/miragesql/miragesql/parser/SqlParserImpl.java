@@ -33,7 +33,7 @@ public class SqlParserImpl implements SqlParser {
 	
     private SqlTokenizer tokenizer;
 
-    private Stack<Node> nodeStack = new Stack<Node>();
+    private Stack<Node> nodeStack = new Stack<>();
 
 
     public SqlParserImpl(String sql, BeanDescFactory beanDescFactory) {

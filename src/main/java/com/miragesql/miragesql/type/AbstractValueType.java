@@ -20,7 +20,7 @@ public abstract class AbstractValueType<T> implements ValueType<T> {
 
 	protected static final int TYPE_UNKNOWN = Integer.MIN_VALUE;
 
-	private static Map<Class<?>, Integer> javaTypeToSqlTypeMap = new HashMap<Class<?>, Integer>(32);
+	private static Map<Class<?>, Integer> javaTypeToSqlTypeMap = new HashMap<>(32);
 
 	static {
 		javaTypeToSqlTypeMap.put(byte.class, new Integer(Types.TINYINT));

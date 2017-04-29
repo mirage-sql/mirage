@@ -45,7 +45,7 @@ public class HikariCPSessionImpl implements Session {
     private SqlManager sqlManager;
     private DefaultConnectionProvider provider;
     private DataSource dataSource;
-    private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<Boolean>();
+    private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
     /**
      * The constructor.

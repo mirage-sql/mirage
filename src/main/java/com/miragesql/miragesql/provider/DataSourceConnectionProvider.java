@@ -21,7 +21,7 @@ public class DataSourceConnectionProvider implements ConnectionProvider {
 
 	private DataSource dataSource;
 
-	private ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
+	private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
 	public void setDataSource(DataSource dataSource){
 		this.dataSource = dataSource;

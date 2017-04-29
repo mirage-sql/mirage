@@ -74,7 +74,7 @@ public class DefaultEntityOperatorTest extends TestCase {
 	}
 
 	private List<ValueType<?>> getDefaultValueTypes(){
-		List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
+		List<ValueType<?>> valueTypes = new ArrayList<>();
 		valueTypes.add(new StringValueType());
 		valueTypes.add(new IntegerValueType());
 		valueTypes.add(new IntegerPrimitiveValueType());

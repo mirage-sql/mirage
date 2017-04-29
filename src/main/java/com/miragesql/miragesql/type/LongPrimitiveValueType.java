@@ -52,7 +52,7 @@ public class LongPrimitiveValueType extends AbstractValueType<Long> {
 
 	@Override
 	public Long getDefaultValue(){
-		return 0l;
+		return 0L;
 	}
 
 }

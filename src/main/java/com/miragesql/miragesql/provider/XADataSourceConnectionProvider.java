@@ -21,7 +21,7 @@ public class XADataSourceConnectionProvider implements ConnectionProvider {
 
 	private XADataSource xaDataSource;
 
-	private ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
+	private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
 	public void setDataSource(XADataSource xaDataSource){
 		this.xaDataSource = xaDataSource;

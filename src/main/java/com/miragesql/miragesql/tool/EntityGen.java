@@ -59,7 +59,7 @@ public class EntityGen {
 
 	private String packageName;
 	private NameConverter nameConverter;
-	private List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
+	private List<ValueType<?>> valueTypes = new ArrayList<>();
 	private Dialect dialect;
 	private GenerationType generationType;
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
@@ -134,7 +134,7 @@ public class EntityGen {
 
 		// Entity properties
 		DatabaseMetaData meta = conn.getMetaData();
-		List<String> primaryKeys = new ArrayList<String>();
+		List<String> primaryKeys = new ArrayList<>();
 
 		ResultSet keys = meta.getPrimaryKeys(catalog, schema, tableName);
 		while(keys.next()){
@@ -259,7 +259,7 @@ public class EntityGen {
 	}
 
 	private List<ValueType<?>> getValueTypes(){
-		List<ValueType<?>> valueTypes = new ArrayList<ValueType<?>>();
+		List<ValueType<?>> valueTypes = new ArrayList<>();
 
 		if(this.dialect.getValueType() != null){
 			valueTypes.add(this.dialect.getValueType());

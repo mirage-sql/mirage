@@ -19,12 +19,12 @@ public class MockCallExecuter extends CallExecutor {
 	@Override
 	public void call(String sql, Object parameter){
 		try {
-			List<Param> paramList = new ArrayList<Param>();
-			List<Param> nonParamList = new ArrayList<Param>();
+			List<Param> paramList = new ArrayList<>();
+			List<Param> nonParamList = new ArrayList<>();
 
 			prepareParameters(paramList, nonParamList, null, parameter);
 
-			List<Object> params = new ArrayList<Object>();
+			List<Object> params = new ArrayList<>();
 			for(Param param: paramList){
 				params.add(param.value);
 			}
@@ -39,12 +39,12 @@ public class MockCallExecuter extends CallExecutor {
 	@SuppressWarnings("unchecked")
 	public <T> T call(Class<T> resultClass, String sql, Object parameter){
 		try {
-			List<Param> paramList = new ArrayList<Param>();
-			List<Param> nonParamList = new ArrayList<Param>();
+			List<Param> paramList = new ArrayList<>();
+			List<Param> nonParamList = new ArrayList<>();
 
 			prepareParameters(paramList, nonParamList, null, parameter);
 
-			List<Object> params = new ArrayList<Object>();
+			List<Object> params = new ArrayList<>();
 			for(Param param: paramList){
 				params.add(param.value);
 			}
@@ -64,12 +64,12 @@ public class MockCallExecuter extends CallExecutor {
 	@SuppressWarnings("unchecked")
 	public <T> List<T> callForList(Class<T> resultClass, String sql, Object parameter){
 		try {
-			List<Param> paramList = new ArrayList<Param>();
-			List<Param> nonParamList = new ArrayList<Param>();
+			List<Param> paramList = new ArrayList<>();
+			List<Param> nonParamList = new ArrayList<>();
 
 			prepareParameters(paramList, nonParamList, null, parameter);
 
-			List<Object> params = new ArrayList<Object>();
+			List<Object> params = new ArrayList<>();
 			for(Param param: paramList){
 				params.add(param.value);
 			}

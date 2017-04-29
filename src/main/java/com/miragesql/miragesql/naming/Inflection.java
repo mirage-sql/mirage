@@ -29,11 +29,11 @@ import java.util.regex.Pattern;
  */
 public class Inflection {
 
-	private static final List<Inflection> PLURAL = new ArrayList<Inflection>();
+	private static final List<Inflection> PLURAL = new ArrayList<>();
 
-	private static final List<Inflection> SINGULAR = new ArrayList<Inflection>();
+	private static final List<Inflection> SINGULAR = new ArrayList<>();
 
-	private static final List<String> UNCOUNTABLE = new ArrayList<String>();
+	private static final List<String> UNCOUNTABLE = new ArrayList<>();
 
 	// CHECKSTYLE:OFF
 	static {
