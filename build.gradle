@@ -25,11 +25,11 @@ repositories {
 
 dependencies {
     compile 'org.javassist:javassist:3.21.0-GA'
-    compile 'ognl:ognl:3.2.1'
+    compile 'ognl:ognl:3.2.2'
     compile 'org.slf4j:slf4j-api:1.7.25'
 
     compile 'commons-dbcp:commons-dbcp:1.4', optional
-    compile 'com.zaxxer:HikariCP:2.6.1', optional
+    compile 'com.zaxxer:HikariCP:2.6.3', optional
 
     compile "org.springframework:spring-core:3.2.5.RELEASE", optional
     compile "org.springframework:spring-context:3.2.5.RELEASE", optional
@@ -45,7 +45,7 @@ dependencies {
     compile 'junit:junit:4.12'
     testImplementation 'cglib:cglib:3.2.5'
     testImplementation 'org.mockito:mockito-core:2.7.22'
-    testImplementation 'com.h2database:h2:1.4.194'
+    testImplementation 'com.h2database:h2:1.4.196'
     testImplementation 'org.hsqldb:hsqldb:2.4.0'
 
     testImplementation 'org.springframework:spring-aop:3.2.5.RELEASE'
