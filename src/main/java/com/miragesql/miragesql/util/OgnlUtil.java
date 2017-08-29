@@ -15,12 +15,13 @@
  */
 package com.miragesql.miragesql.util;
 
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Member;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 
 import com.miragesql.miragesql.exception.OgnlRuntimeException;
-import ognl.ClassResolver;
-import ognl.Ognl;
-import ognl.OgnlException;
+import ognl.*;
 
 /**
  * Ognl用のユーティリティクラスです。
@@ -92,12 +93,8 @@ public class OgnlUtil {
     public static Object getValue(Object exp, Map ctx, Object root,
             String path, int lineNumber) {
         try {
-//            Map newCtx = null; //addClassResolverIfNecessary(ctx, root);
-//            if (newCtx != null) {
-//                return Ognl.getValue(exp, newCtx, root);
-//            } else {
-                return Ognl.getValue(exp, root);
-//            }
+            OgnlContext context = new OgnlContext(null, null, new DefaultMemberAccess(true));
+            return Ognl.getValue(exp, context, root);
         } catch (OgnlException ex) {
             throw new OgnlRuntimeException(ex.getReason() == null ? ex : ex
                     .getReason(), path, lineNumber);
@@ -136,51 +133,95 @@ public class OgnlUtil {
         }
     }
 
-//    static Map addClassResolverIfNecessary(Map ctx, Object root) {
-//        if (root instanceof S2Container) {
-//            S2Container container = (S2Container) root;
-//            ClassLoader classLoader = container.getClassLoader();
-//            if (classLoader != null) {
-//                ClassResolverImpl classResolver = new ClassResolverImpl(
-//                        classLoader);
-//                if (ctx == null) {
-//                    ctx = Ognl.createDefaultContext(root, classResolver);
-//                } else {
-//                    ctx = Ognl.addDefaultContext(root, classResolver, ctx);
-//                }
-//            }
-//        }
-//        return ctx;
-//    }
+    public static class DefaultMemberAccess implements MemberAccess {
 
-    /**
-     * ClassResolverの実装クラスです。
-     *
-     */
-    public static class ClassResolverImpl implements ClassResolver {
-        final private ClassLoader classLoader;
+        private boolean allowPrivateAccess = false;
+        private boolean allowProtectedAccess = false;
+        private boolean allowPackageProtectedAccess = false;
 
-        /**
-         * インスタンスを作成します。
-         *
-         * @param classLoader
+        /*
+         * =================================================================== Constructors
+         * ===================================================================
          */
-        public ClassResolverImpl(ClassLoader classLoader) {
-            this.classLoader = classLoader;
+        public DefaultMemberAccess( boolean allowAllAccess ){
+            this( allowAllAccess, allowAllAccess, allowAllAccess );
         }
 
-        public Class classForName(String className, Map ctx)
-                throws ClassNotFoundException {
-            try {
-                return classLoader.loadClass(className);
-            } catch (ClassNotFoundException ex) {
-                int dot = className.indexOf('.');
-                if (dot < 0) {
-                    return classLoader.loadClass("java.lang." + className);
-                } else {
-                    throw ex;
+        public DefaultMemberAccess( boolean allowPrivateAccess, boolean allowProtectedAccess,
+                                    boolean allowPackageProtectedAccess ){
+            super();
+            this.allowPrivateAccess = allowPrivateAccess;
+            this.allowProtectedAccess = allowProtectedAccess;
+            this.allowPackageProtectedAccess = allowPackageProtectedAccess;
+        }
+
+        /*
+         * =================================================================== Public methods
+         * ===================================================================
+         */
+        public boolean getAllowPrivateAccess(){
+            return allowPrivateAccess;
+        }
+
+        public void setAllowPrivateAccess( boolean value ){
+            allowPrivateAccess = value;
+        }
+
+        public boolean getAllowProtectedAccess() {
+            return allowProtectedAccess;
+        }
+
+        public void setAllowProtectedAccess( boolean value ) {
+            allowProtectedAccess = value;
+        }
+
+        public boolean getAllowPackageProtectedAccess() {
+            return allowPackageProtectedAccess;
+        }
+
+        public void setAllowPackageProtectedAccess( boolean value ) {
+            allowPackageProtectedAccess = value;
+        }
+
+        @Override
+        public Object setup(Map context, Object target, Member member, String propertyName) {
+            Object result = null;
+
+            if ( isAccessible( context, target, member, propertyName ) ) {
+                AccessibleObject accessible = (AccessibleObject) member;
+
+                if ( !accessible.isAccessible() ) {
+                    result = Boolean.TRUE;
+                    accessible.setAccessible( true );
                 }
             }
+            return result;
+        }
+
+        @Override
+        public void restore(Map context, Object target, Member member, String propertyName, Object state) {
+            if ( state != null ) {
+                ( (AccessibleObject) member ).setAccessible( (Boolean) state );
+            }
+        }
+
+        @Override
+        public boolean isAccessible(Map context, Object target, Member member, String propertyName) {
+            int modifiers = member.getModifiers();
+            boolean result = Modifier.isPublic( modifiers );
+
+            if ( !result ) {
+                if ( Modifier.isPrivate( modifiers ) ) {
+                    result = getAllowPrivateAccess();
+                } else {
+                    if ( Modifier.isProtected( modifiers ) ) {
+                        result = getAllowProtectedAccess();
+                    } else {
+                        result = getAllowPackageProtectedAccess();
+                    }
+                }
+            }
+            return result;
         }
     }
 }
