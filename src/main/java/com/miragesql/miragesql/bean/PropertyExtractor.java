@@ -13,14 +13,14 @@ import java.util.Map;
  */
 public interface PropertyExtractor {
 
-	public Map<String, PropertyWrapper> extractProperties(Class<?> clazz);
+    public Map<String, PropertyWrapper> extractProperties(Class<?> clazz);
 
-	public static class PropertyInfo {
-		public String name;
-		public Class<?> type;
-		public Method getterMethod;
-		public Method setterMethod;
-		public Field field;
-	}
+    public static class PropertyInfo {
+        public String name;
+        public Class<?> type;
+        public Method getterMethod;
+        public Method setterMethod;
+        public Field field;
+    }
 
 }

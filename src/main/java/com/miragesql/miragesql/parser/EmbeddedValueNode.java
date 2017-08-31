@@ -35,7 +35,7 @@ public class EmbeddedValueNode extends AbstractNode {
 
     private String propertyName;
 
-	private BeanDescFactory beanDescFactory;
+    private BeanDescFactory beanDescFactory;
 
     /**
      * Creates a <code>EmbeddedValueNode</code> from a string expression.
@@ -45,7 +45,7 @@ public class EmbeddedValueNode extends AbstractNode {
      */
     public EmbeddedValueNode(String expression, BeanDescFactory beanDescFactory) {
         this.expression = expression;
-		this.beanDescFactory = beanDescFactory;
+        this.beanDescFactory = beanDescFactory;
         String[] array = StringUtil.split(expression, ".");
         this.baseName = array[0];
         if (array.length > 1) {
@@ -79,9 +79,9 @@ public class EmbeddedValueNode extends AbstractNode {
         }
     }
 
-	@Override
-	public String toString() {
-		return "EmbeddedValueNode [expression=" + expression + ", baseName=" + baseName + ", propertyName="
-				+ propertyName + ", children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "EmbeddedValueNode [expression=" + expression + ", baseName=" + baseName + ", propertyName="
+                + propertyName + ", children=" + children + "]";
+    }
 }

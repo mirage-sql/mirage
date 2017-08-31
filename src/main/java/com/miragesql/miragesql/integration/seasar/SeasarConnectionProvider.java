@@ -15,35 +15,35 @@ import com.miragesql.miragesql.provider.XADataSourceConnectionProvider;
  */
 public class SeasarConnectionProvider extends XADataSourceConnectionProvider {
 
-	private ThreadLocal<Boolean> registered= new ThreadLocal<>();
-	private TransactionSynchronizationRegistry syncRegistry;
+    private ThreadLocal<Boolean> registered= new ThreadLocal<>();
+    private TransactionSynchronizationRegistry syncRegistry;
 
-	public void setTransactionSynchronizationRegistry(TransactionSynchronizationRegistry syncRegistry) {
-		this.syncRegistry = syncRegistry;
-	}
+    public void setTransactionSynchronizationRegistry(TransactionSynchronizationRegistry syncRegistry) {
+        this.syncRegistry = syncRegistry;
+    }
 
-	@Override
-	public Connection getConnection() {
-		// If TransactionSynchronizationRegistry exists,
-		// register Synchronization to release connection automatically
-		// at the first invocation of this method in the current thread.
-		// TODO: I wonder if I can register for each thread ...
-		if(syncRegistry != null && registered.get() == null){
-			syncRegistry.registerInterposedSynchronization(new Synchronization() {
-				//@Override
-				public void beforeCompletion() {
-				}
+    @Override
+    public Connection getConnection() {
+        // If TransactionSynchronizationRegistry exists,
+        // register Synchronization to release connection automatically
+        // at the first invocation of this method in the current thread.
+        // TODO: I wonder if I can register for each thread ...
+        if(syncRegistry != null && registered.get() == null){
+            syncRegistry.registerInterposedSynchronization(new Synchronization() {
+                //@Override
+                public void beforeCompletion() {
+                }
 
-				//@Override
-				public void afterCompletion(int status) {
-					releaseConnection();
-					registered.remove();
-				}
-			});
-			registered.set(true);
-		}
+                //@Override
+                public void afterCompletion(int status) {
+                    releaseConnection();
+                    registered.remove();
+                }
+            });
+            registered.set(true);
+        }
 
-		return super.getConnection();
-	}
+        return super.getConnection();
+    }
 
 }

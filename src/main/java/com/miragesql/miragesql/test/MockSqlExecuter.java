@@ -25,104 +25,104 @@ import com.miragesql.miragesql.bean.PropertyDesc;
 public class MockSqlExecuter extends SqlExecutor {
 
     /**{@inheritDoc}*/
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> List<T> getResultList(Class<T> clazz, String sql, Object[] params) {
-		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getResultList(Class<T> clazz, String sql, Object[] params) {
+        MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
 
-		if(MirageTestContext.hasNextResult()){
-			return (List<T>) MirageTestContext.getNextResult();
-		}
-		return Collections.emptyList();
-	}
-
-    /**{@inheritDoc}*/
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback,
-			String sql, Object[] params) {
-		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
-
-		List<T> list = null;
-
-		if(MirageTestContext.hasNextResult()){
-			list = (List<T>) MirageTestContext.getNextResult();
-		} else {
-			list = Collections.emptyList();
-		}
-
-		R result = null;
-		for(T entity: list){
-			result = callback.iterate(entity);
-		}
-
-		return result;
-	}
+        if(MirageTestContext.hasNextResult()){
+            return (List<T>) MirageTestContext.getNextResult();
+        }
+        return Collections.emptyList();
+    }
 
     /**{@inheritDoc}*/
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T getSingleResult(Class<T> clazz, String sql, Object[] params) {
-		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback,
+            String sql, Object[] params) {
+        MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
 
-		if(MirageTestContext.hasNextResult()){
-			return (T) MirageTestContext.getNextResult();
-		}
-		return null;
-	}
+        List<T> list = null;
 
-    /**{@inheritDoc}*/
-	@Override
-	public int executeUpdateSql(String sql, PropertyDesc[] propDescs, Object entity) {
-		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entity));
+        if(MirageTestContext.hasNextResult()){
+            list = (List<T>) MirageTestContext.getNextResult();
+        } else {
+            list = Collections.emptyList();
+        }
 
-		if(entity != null){
-			BeanDesc beanDesc = getBeanDescFactory().getBeanDesc(entity.getClass());
-			int size = beanDesc.getPropertyDescSize();
-			for(int i=0; i < size; i++){
-				PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
-				PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
-				if(primaryKey != null && primaryKey.generationType() == GenerationType.IDENTITY){
-					propertyDesc.setValue(entity, MirageTestContext.getNextVal(
-							entity.getClass(), propertyDesc.getPropertyName()));
-				}
-			}
-		}
+        R result = null;
+        for(T entity: list){
+            result = callback.iterate(entity);
+        }
 
-		if(MirageTestContext.hasNextResult()){
-			return (Integer) MirageTestContext.getNextResult();
-		}
-		return 0;
-	}
+        return result;
+    }
 
     /**{@inheritDoc}*/
-	@Override
-	public int executeBatchUpdateSql(String sql, List<PropertyDesc[]> propDescsList, Object[] entities) {
-		for (int i = 0; i < propDescsList.size(); i++) {
-			PropertyDesc[] propDescs = propDescsList.get(i);
-			MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entities[i]));
-		}
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T getSingleResult(Class<T> clazz, String sql, Object[] params) {
+        MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params));
 
-		if(entities != null){
-			for(Object entity: entities){
-				BeanDesc beanDesc = getBeanDescFactory().getBeanDesc(entity.getClass());
-				int size = beanDesc.getPropertyDescSize();
-				for(int i=0; i < size; i++){
-					PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
-					PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
-					if(primaryKey != null && primaryKey.generationType() == GenerationType.IDENTITY){
-						propertyDesc.setValue(entity, MirageTestContext.getNextVal(
-								entity.getClass(), propertyDesc.getPropertyName()));
-					}
-				}
-			}
-		}
+        if(MirageTestContext.hasNextResult()){
+            return (T) MirageTestContext.getNextResult();
+        }
+        return null;
+    }
 
-		if(MirageTestContext.hasNextResult()){
-			return (Integer) MirageTestContext.getNextResult();
-		}
+    /**{@inheritDoc}*/
+    @Override
+    public int executeUpdateSql(String sql, PropertyDesc[] propDescs, Object entity) {
+        MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entity));
 
-		return 0;
-	}
+        if(entity != null){
+            BeanDesc beanDesc = getBeanDescFactory().getBeanDesc(entity.getClass());
+            int size = beanDesc.getPropertyDescSize();
+            for(int i=0; i < size; i++){
+                PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
+                PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
+                if(primaryKey != null && primaryKey.generationType() == GenerationType.IDENTITY){
+                    propertyDesc.setValue(entity, MirageTestContext.getNextVal(
+                            entity.getClass(), propertyDesc.getPropertyName()));
+                }
+            }
+        }
+
+        if(MirageTestContext.hasNextResult()){
+            return (Integer) MirageTestContext.getNextResult();
+        }
+        return 0;
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    public int executeBatchUpdateSql(String sql, List<PropertyDesc[]> propDescsList, Object[] entities) {
+        for (int i = 0; i < propDescsList.size(); i++) {
+            PropertyDesc[] propDescs = propDescsList.get(i);
+            MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entities[i]));
+        }
+
+        if(entities != null){
+            for(Object entity: entities){
+                BeanDesc beanDesc = getBeanDescFactory().getBeanDesc(entity.getClass());
+                int size = beanDesc.getPropertyDescSize();
+                for(int i=0; i < size; i++){
+                    PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
+                    PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
+                    if(primaryKey != null && primaryKey.generationType() == GenerationType.IDENTITY){
+                        propertyDesc.setValue(entity, MirageTestContext.getNextVal(
+                                entity.getClass(), propertyDesc.getPropertyName()));
+                    }
+                }
+            }
+        }
+
+        if(MirageTestContext.hasNextResult()){
+            return (Integer) MirageTestContext.getNextResult();
+        }
+
+        return 0;
+    }
 
 }

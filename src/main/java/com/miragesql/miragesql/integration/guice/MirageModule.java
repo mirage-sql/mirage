@@ -17,23 +17,23 @@ import com.google.inject.matcher.Matchers;
 public class MirageModule extends AbstractModule {
 
 //	@Override
-	protected void configure() {
-		bindInterceptor(
-				Matchers.any(),
-				Matchers.annotatedWith(Transactional.class),
-				new TransactionInterceptor());
-	}
+    protected void configure() {
+        bindInterceptor(
+                Matchers.any(),
+                Matchers.annotatedWith(Transactional.class),
+                new TransactionInterceptor());
+    }
 
-	@Provides
-	@Singleton
-	public Session getSession(){
-		return SessionFactory.getSession();
-	}
+    @Provides
+    @Singleton
+    public Session getSession(){
+        return SessionFactory.getSession();
+    }
 
-	@Provides
-	@Singleton
-	public SqlManager getSqlManager(Session session){
-		return session.getSqlManager();
-	}
+    @Provides
+    @Singleton
+    public SqlManager getSqlManager(Session session){
+        return session.getSqlManager();
+    }
 
 }

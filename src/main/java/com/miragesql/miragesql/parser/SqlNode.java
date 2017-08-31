@@ -40,8 +40,8 @@ public class SqlNode extends AbstractNode {
         ctx.addSql(sql);
     }
 
-	@Override
-	public String toString() {
-		return "SqlNode [sql=" + sql + ", children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "SqlNode [sql=" + sql + ", children=" + children + "]";
+    }
 }

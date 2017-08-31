@@ -16,77 +16,77 @@ import com.miragesql.miragesql.exception.SQLRuntimeException;
  */
 public class MockCallExecuter extends CallExecutor {
 
-	/**{@inheritDoc}*/
-	@Override
-	public void call(String sql, Object parameter){
-		try {
-			List<Param> paramList = new ArrayList<>();
-			List<Param> nonParamList = new ArrayList<>();
+    /**{@inheritDoc}*/
+    @Override
+    public void call(String sql, Object parameter){
+        try {
+            List<Param> paramList = new ArrayList<>();
+            List<Param> nonParamList = new ArrayList<>();
 
-			prepareParameters(paramList, nonParamList, null, parameter);
+            prepareParameters(paramList, nonParamList, null, parameter);
 
-			List<Object> params = new ArrayList<>();
-			for(Param param: paramList){
-				params.add(param.value);
-			}
-			MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params.toArray()));
+            List<Object> params = new ArrayList<>();
+            for(Param param: paramList){
+                params.add(param.value);
+            }
+            MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params.toArray()));
 
-		} catch(SQLException ex){
-			throw new SQLRuntimeException(ex);
-		}
-	}
+        } catch(SQLException ex){
+            throw new SQLRuntimeException(ex);
+        }
+    }
 
-	/**{@inheritDoc}*/
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T call(Class<T> resultClass, String sql, Object parameter){
-		try {
-			List<Param> paramList = new ArrayList<>();
-			List<Param> nonParamList = new ArrayList<>();
+    /**{@inheritDoc}*/
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T call(Class<T> resultClass, String sql, Object parameter){
+        try {
+            List<Param> paramList = new ArrayList<>();
+            List<Param> nonParamList = new ArrayList<>();
 
-			prepareParameters(paramList, nonParamList, null, parameter);
+            prepareParameters(paramList, nonParamList, null, parameter);
 
-			List<Object> params = new ArrayList<>();
-			for(Param param: paramList){
-				params.add(param.value);
-			}
-			MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params.toArray()));
+            List<Object> params = new ArrayList<>();
+            for(Param param: paramList){
+                params.add(param.value);
+            }
+            MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params.toArray()));
 
-			if(MirageTestContext.hasNextResult()){
-				return (T) MirageTestContext.getNextResult();
-			}
-			return null;
+            if(MirageTestContext.hasNextResult()){
+                return (T) MirageTestContext.getNextResult();
+            }
+            return null;
 
-		} catch(SQLException ex){
-			throw new SQLRuntimeException(ex);
-		}
-	}
+        } catch(SQLException ex){
+            throw new SQLRuntimeException(ex);
+        }
+    }
 
-	/**{@inheritDoc}*/
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> List<T> callForList(Class<T> resultClass, String sql, Object parameter){
-		try {
-			List<Param> paramList = new ArrayList<>();
-			List<Param> nonParamList = new ArrayList<>();
+    /**{@inheritDoc}*/
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> List<T> callForList(Class<T> resultClass, String sql, Object parameter){
+        try {
+            List<Param> paramList = new ArrayList<>();
+            List<Param> nonParamList = new ArrayList<>();
 
-			prepareParameters(paramList, nonParamList, null, parameter);
+            prepareParameters(paramList, nonParamList, null, parameter);
 
-			List<Object> params = new ArrayList<>();
-			for(Param param: paramList){
-				params.add(param.value);
-			}
-			MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params.toArray()));
+            List<Object> params = new ArrayList<>();
+            for(Param param: paramList){
+                params.add(param.value);
+            }
+            MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, params.toArray()));
 
-			if(MirageTestContext.hasNextResult()){
-				return (List<T>) MirageTestContext.getNextResult();
-			}
-			return null;
+            if(MirageTestContext.hasNextResult()){
+                return (List<T>) MirageTestContext.getNextResult();
+            }
+            return null;
 
-		} catch(SQLException ex){
-			throw new SQLRuntimeException(ex);
-		}
-	}
+        } catch(SQLException ex){
+            throw new SQLRuntimeException(ex);
+        }
+    }
 
 
 }

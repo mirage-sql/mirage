@@ -17,46 +17,46 @@ import com.miragesql.miragesql.util.JdbcUtil;
  */
 public class XADataSourceConnectionProvider implements ConnectionProvider {
 
-	private static final Logger logger = LoggerFactory.getLogger(XADataSourceConnectionProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(XADataSourceConnectionProvider.class);
 
-	private XADataSource xaDataSource;
+    private XADataSource xaDataSource;
 
-	private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
+    private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
-	public void setDataSource(XADataSource xaDataSource){
-		this.xaDataSource = xaDataSource;
-	}
+    public void setDataSource(XADataSource xaDataSource){
+        this.xaDataSource = xaDataSource;
+    }
 
-	public void releaseConnection(){
-		Connection conn = threadLocal.get();
-		if(conn != null){
-			JdbcUtil.close(conn);
-			threadLocal.remove();
+    public void releaseConnection(){
+        Connection conn = threadLocal.get();
+        if(conn != null){
+            JdbcUtil.close(conn);
+            threadLocal.remove();
 
-			logger.info("Connection is released.");
+            logger.info("Connection is released.");
 
-		} else {
-			logger.info("Connection is not used.");
-		}
-	}
+        } else {
+            logger.info("Connection is not used.");
+        }
+    }
 
 //	@Override
-	/**{@inheritDoc}*/
-	public Connection getConnection() {
-		try {
-			Connection conn = threadLocal.get();
+    /**{@inheritDoc}*/
+    public Connection getConnection() {
+        try {
+            Connection conn = threadLocal.get();
 
-			if(conn == null){
-				conn = xaDataSource.getXAConnection().getConnection();
-				threadLocal.set(conn);
-				logger.info("Get Connection from DataSource.");
-			}
+            if(conn == null){
+                conn = xaDataSource.getXAConnection().getConnection();
+                threadLocal.set(conn);
+                logger.info("Get Connection from DataSource.");
+            }
 
-			return conn;
+            return conn;
 
-		} catch(SQLException ex){
-			throw new SQLRuntimeException(ex);
-		}
-	}
+        } catch(SQLException ex){
+            throw new SQLRuntimeException(ex);
+        }
+    }
 
 }

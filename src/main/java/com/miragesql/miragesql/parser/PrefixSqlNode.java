@@ -22,45 +22,45 @@ package com.miragesql.miragesql.parser;
  */
 public class PrefixSqlNode extends AbstractNode {
 
-	private String prefix;
+    private String prefix;
 
-	private String sql;
+    private String sql;
 
-	/**
-	 * Creates a <code>PrefixSqlNode</code>
-	 *
-	 * @param prefix the prefix
-	 * @param sql the SQL
-	 */
-	public PrefixSqlNode(String prefix, String sql) {
-		this.prefix = prefix;
-		this.sql = sql;
-	}
+    /**
+     * Creates a <code>PrefixSqlNode</code>
+     *
+     * @param prefix the prefix
+     * @param sql the SQL
+     */
+    public PrefixSqlNode(String prefix, String sql) {
+        this.prefix = prefix;
+        this.sql = sql;
+    }
 
-	/**
-	 * @return the prefix
-	 */
-	public String getPrefix() {
-		return prefix;
-	}
+    /**
+     * @return the prefix
+     */
+    public String getPrefix() {
+        return prefix;
+    }
 
-	/**
-	 * @return the SQL
-	 */
-	public String getSql() {
-		return sql;
-	}
+    /**
+     * @return the SQL
+     */
+    public String getSql() {
+        return sql;
+    }
 
 //	@Override
-	public void accept(SqlContext ctx) {
-		if (ctx.isEnabled()) {
-			ctx.addSql(prefix);
-		}
-		ctx.addSql(sql);
-	}
+    public void accept(SqlContext ctx) {
+        if (ctx.isEnabled()) {
+            ctx.addSql(prefix);
+        }
+        ctx.addSql(sql);
+    }
 
-	@Override
-	public String toString() {
-		return "PrefixSqlNode [prefix=" + prefix + ", sql=" + sql + ", children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "PrefixSqlNode [prefix=" + prefix + ", sql=" + sql + ", children=" + children + "]";
+    }
 }

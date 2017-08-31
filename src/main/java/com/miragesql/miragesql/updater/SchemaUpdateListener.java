@@ -26,49 +26,49 @@ import com.miragesql.miragesql.util.StringUtil;
  */
 public class SchemaUpdateListener implements ServletContextListener {
 
-	private static final Logger logger = LoggerFactory.getLogger(SchemaUpdateListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(SchemaUpdateListener.class);
 
-	public void contextInitialized(ServletContextEvent sce) {
+    public void contextInitialized(ServletContextEvent sce) {
 
-		SchemaUpdater updater = new SchemaUpdater();
-		Session session = SessionFactory.getSession();
+        SchemaUpdater updater = new SchemaUpdater();
+        Session session = SessionFactory.getSession();
 
-		updater.setSqlManager(session.getSqlManager());
+        updater.setSqlManager(session.getSqlManager());
 
-		String packageName =
-			sce.getServletContext().getInitParameter("SCHEMA_UPDATE_SQL_PACKAGE");
+        String packageName =
+            sce.getServletContext().getInitParameter("SCHEMA_UPDATE_SQL_PACKAGE");
 
-		if(StringUtil.isNotEmpty(packageName)){
-			updater.setPackageName(packageName);
-		}
+        if(StringUtil.isNotEmpty(packageName)){
+            updater.setPackageName(packageName);
+        }
 
-		try {
-			session.begin();
+        try {
+            session.begin();
 
-			Connection conn = ((SqlManagerImpl) session.getSqlManager())
-				.getConnectionProvider().getConnection();
+            Connection conn = ((SqlManagerImpl) session.getSqlManager())
+                .getConnectionProvider().getConnection();
 
-			try {
-				conn.setAutoCommit(true);
+            try {
+                conn.setAutoCommit(true);
 
 
-			} catch (SQLException ex){
-				logger.error("Failed to update schema.");
-				logger.error(ExceptionUtil.toString(ex));
+            } catch (SQLException ex){
+                logger.error("Failed to update schema.");
+                logger.error(ExceptionUtil.toString(ex));
 
-			} finally {
-				try {
-					conn.setAutoCommit(false);
-				} catch (SQLException ex) {
-					logger.error(ExceptionUtil.toString(ex));
-				}
-			}
-		} finally {
-			session.release();
-		}
-	}
+            } finally {
+                try {
+                    conn.setAutoCommit(false);
+                } catch (SQLException ex) {
+                    logger.error(ExceptionUtil.toString(ex));
+                }
+            }
+        } finally {
+            session.release();
+        }
+    }
 
-	public void contextDestroyed(ServletContextEvent sce) {
-	}
+    public void contextDestroyed(ServletContextEvent sce) {
+    }
 
 }

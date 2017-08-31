@@ -6,10 +6,10 @@ import com.miragesql.miragesql.type.ValueType;
 
 public class OracleDialect extends StandardDialect {
 
-	private OracleResultSetValueType valueType = new OracleResultSetValueType();
+    private OracleResultSetValueType valueType = new OracleResultSetValueType();
 
     /**{@inheritDoc}**/
-	@Override
+    @Override
     public String getName() {
         return "oracle";
     }
@@ -22,23 +22,23 @@ public class OracleDialect extends StandardDialect {
 
     /**{@inheritDoc}**/
     @Override
-	public ValueType<?> getValueType() {
-		return valueType;
-	}
+    public ValueType<?> getValueType() {
+        return valueType;
+    }
 
-	/**{@inheritDoc}**/
+    /**{@inheritDoc}**/
     @Override
-	public String getSequenceSql(String sequenceName) {
-		return String.format("SELECT %s.NEXTVAL FROM DUAL", sequenceName);
-	}
+    public String getSequenceSql(String sequenceName) {
+        return String.format("SELECT %s.NEXTVAL FROM DUAL", sequenceName);
+    }
 
-	/**{@inheritDoc}**/
+    /**{@inheritDoc}**/
     @Override
-	public boolean supportsGenerationType(GenerationType generationType) {
-		if(generationType == GenerationType.IDENTITY){
-			return false;
-		}
-		return true;
-	}
+    public boolean supportsGenerationType(GenerationType generationType) {
+        if(generationType == GenerationType.IDENTITY){
+            return false;
+        }
+        return true;
+    }
 
 }

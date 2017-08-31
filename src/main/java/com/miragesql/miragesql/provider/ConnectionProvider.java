@@ -15,12 +15,12 @@ import com.miragesql.miragesql.exception.SQLRuntimeException;
  */
 public interface ConnectionProvider {
 
-	/**
-	 * Returns the connection to the database.
-	 *
-	 * @return the connection
-	 * @throws SQLRuntimeException Failed to get the connection
-	 */
-	public Connection getConnection();
+    /**
+     * Returns the connection to the database.
+     *
+     * @return the connection
+     * @throws SQLRuntimeException Failed to get the connection
+     */
+    public Connection getConnection();
 
 }

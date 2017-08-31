@@ -22,13 +22,13 @@ package com.miragesql.miragesql.parser;
  */
 public class ContainerNode extends AbstractNode {
 
-	public ContainerNode() {
-	}
+    public ContainerNode() {
+    }
 
 //	@Override
-	public void accept(SqlContext ctx) {
-		for (int i = 0; i < getChildSize(); ++i) {
-			getChild(i).accept(ctx);
-		}
-	}
+    public void accept(SqlContext ctx) {
+        for (int i = 0; i < getChildSize(); ++i) {
+            getChild(i).accept(ctx);
+        }
+    }
 }

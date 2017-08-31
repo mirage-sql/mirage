@@ -18,53 +18,53 @@ public class AbstractResultSetValueType implements ValueType<Object> {
 
 //	@Override
     public Object getDefaultValue() {
-		return null;
-	}
+        return null;
+    }
 
 //	@Override
-	public Object get(Class<?> type, ResultSet rs, int index) throws SQLException {
-		throw new UnsupportedOperationException("not supported");
-	}
+    public Object get(Class<?> type, ResultSet rs, int index) throws SQLException {
+        throw new UnsupportedOperationException("not supported");
+    }
 
 //	@Override
-	public Object get(Class<?> type, ResultSet rs, String columnName) throws SQLException {
-		throw new UnsupportedOperationException("not supported");
-	}
+    public Object get(Class<?> type, ResultSet rs, String columnName) throws SQLException {
+        throw new UnsupportedOperationException("not supported");
+    }
 
 //	@Override
-	public Object get(Class<?> type, CallableStatement cs, int index) throws SQLException {
-		return cs.getObject(index);
-	}
+    public Object get(Class<?> type, CallableStatement cs, int index) throws SQLException {
+        return cs.getObject(index);
+    }
 
 //	@Override
-	public Object get(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
-		return cs.getObject(parameterName);
-	}
+    public Object get(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
+        return cs.getObject(parameterName);
+    }
 
 //	@Override
-	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
-		if (List.class.isAssignableFrom(type)){
-			return true;
-		}
-		return false;
-	}
+    public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
+        if (List.class.isAssignableFrom(type)){
+            return true;
+        }
+        return false;
+    }
 
 //	@Override
-	public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
-		cs.registerOutParameter(index, sqlType);
-	}
+    public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
+        cs.registerOutParameter(index, sqlType);
+    }
 
 //	@Override
-	public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
-		cs.registerOutParameter(parameterName, sqlType);
-	}
+    public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
+        cs.registerOutParameter(parameterName, sqlType);
+    }
 
 //	@Override
-	public void set(Class<?> type, PreparedStatement stmt, Object value, int index) throws SQLException {
-		throw new UnsupportedOperationException("not supported");
-	}
+    public void set(Class<?> type, PreparedStatement stmt, Object value, int index) throws SQLException {
+        throw new UnsupportedOperationException("not supported");
+    }
 
-	public Class<?> getJavaType(int sqlType) {
-		return null;
-	}
+    public Class<?> getJavaType(int sqlType) {
+        return null;
+    }
 }

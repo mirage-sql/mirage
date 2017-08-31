@@ -10,6 +10,6 @@ package com.miragesql.miragesql.exception;
  */
 public class BreakIterationException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 }

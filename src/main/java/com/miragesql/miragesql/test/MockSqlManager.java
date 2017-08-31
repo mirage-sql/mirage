@@ -17,21 +17,21 @@ import com.miragesql.miragesql.SqlManagerImpl;
  */
 public class MockSqlManager extends SqlManagerImpl {
 
-	/**
-	 * Constructor.
-	 */
-	public MockSqlManager() {
-		super();
+    /**
+     * Constructor.
+     */
+    public MockSqlManager() {
+        super();
 
-		this.sqlExecutor = new MockSqlExecuter();
-		this.sqlExecutor.setNameConverter(this.nameConverter);
-		this.sqlExecutor.setDialect(this.dialect);
+        this.sqlExecutor = new MockSqlExecuter();
+        this.sqlExecutor.setNameConverter(this.nameConverter);
+        this.sqlExecutor.setDialect(this.dialect);
 
-		this.callExecutor = new MockCallExecuter();
-		this.callExecutor.setNameConverter(this.nameConverter);
-		this.callExecutor.setDialect(this.dialect);
-	}
+        this.callExecutor = new MockCallExecuter();
+        this.callExecutor.setNameConverter(this.nameConverter);
+        this.callExecutor.setDialect(this.dialect);
+    }
 
-	// TODO GenerationType.SEQUENCE processing
+    // TODO GenerationType.SEQUENCE processing
 
 }

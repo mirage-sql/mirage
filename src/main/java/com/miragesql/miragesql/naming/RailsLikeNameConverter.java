@@ -25,11 +25,11 @@ package com.miragesql.miragesql.naming;
  */
 public class RailsLikeNameConverter extends DefaultNameConverter {
 
-	/**{@inheritDoc}*/
-	@Override
-	public String entityToTable(String entityName) {
-		String pluralized = Inflection.pluralize(entityName);
-		return super.entityToTable(pluralized);
-	}
+    /**{@inheritDoc}*/
+    @Override
+    public String entityToTable(String entityName) {
+        String pluralized = Inflection.pluralize(entityName);
+        return super.entityToTable(pluralized);
+    }
 
 }

@@ -36,85 +36,85 @@ import com.miragesql.miragesql.bean.PropertyDesc;
  * @author daisuke
  */
 public class EnumOrdinalValueType implements ValueType<Object> {
-	
-	private static Enum<? extends Object> toEnum(Class<? extends Object> type, int ordinal) {
-		Object[] values = type.getEnumConstants();
-		if (values.length <= ordinal || ordinal < 0) {
-			return null;
-		}
-		return (Enum<?>) values[ordinal];
-	}
-	
-	public Integer get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
-		int value = cs.getInt(index);
-		if (cs.wasNull()) {
-			return null;
-		}
-		return value;
-	}
-	
-	public Integer get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
-		int value = cs.getInt(parameterName);
-		if (cs.wasNull()) {
-			return null;
-		}
-		return value;
-	}
-	
-	public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
-		int ordinal = rs.getInt(columnIndex);
-		if (rs.wasNull()) {
-			return null;
-		}
-		return toEnum(type, ordinal);
-	}
-	
-	public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
-		int ordinal = rs.getInt(columnName);
-		if (rs.wasNull()) {
-			return null;
-		}
-		return toEnum(type, ordinal);
-	}
-	
-	public Class<? extends Object> getJavaType(int sqlType) {
-		return Integer.class;
-	}
-	
-	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
-		if (Enum.class.isAssignableFrom(type) == false) {
-			return false;
-		}
-		if(propertyDesc != null) {
-			Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
-			if(property != null && property.value() == EnumType.ORDINAL) {
-				return true;
-			}
-		}
-		Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
-		if (fieldType != null && fieldType.value() == EnumType.ORDINAL) {
-			return true;
-		}
-		return false;
-	}
-	
-	public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
-		cs.registerOutParameter(index, Types.INTEGER);
-	}
-	
-	public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
-		cs.registerOutParameter(parameterName, Types.INTEGER);
-	}
-	
-	public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
-		if (value == null) {
-			stmt.setNull(index, Types.INTEGER);
-		} else {
-			stmt.setInt(index, ((Enum<?>) value).ordinal());
-		}
-	}
 
-	public Object getDefaultValue() {
-		return null;
-	}
+    private static Enum<? extends Object> toEnum(Class<? extends Object> type, int ordinal) {
+        Object[] values = type.getEnumConstants();
+        if (values.length <= ordinal || ordinal < 0) {
+            return null;
+        }
+        return (Enum<?>) values[ordinal];
+    }
+
+    public Integer get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
+        int value = cs.getInt(index);
+        if (cs.wasNull()) {
+            return null;
+        }
+        return value;
+    }
+
+    public Integer get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
+        int value = cs.getInt(parameterName);
+        if (cs.wasNull()) {
+            return null;
+        }
+        return value;
+    }
+
+    public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
+        int ordinal = rs.getInt(columnIndex);
+        if (rs.wasNull()) {
+            return null;
+        }
+        return toEnum(type, ordinal);
+    }
+
+    public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
+        int ordinal = rs.getInt(columnName);
+        if (rs.wasNull()) {
+            return null;
+        }
+        return toEnum(type, ordinal);
+    }
+
+    public Class<? extends Object> getJavaType(int sqlType) {
+        return Integer.class;
+    }
+
+    public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
+        if (Enum.class.isAssignableFrom(type) == false) {
+            return false;
+        }
+        if(propertyDesc != null) {
+            Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
+            if(property != null && property.value() == EnumType.ORDINAL) {
+                return true;
+            }
+        }
+        Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
+        if (fieldType != null && fieldType.value() == EnumType.ORDINAL) {
+            return true;
+        }
+        return false;
+    }
+
+    public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
+        cs.registerOutParameter(index, Types.INTEGER);
+    }
+
+    public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
+        cs.registerOutParameter(parameterName, Types.INTEGER);
+    }
+
+    public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
+        if (value == null) {
+            stmt.setNull(index, Types.INTEGER);
+        } else {
+            stmt.setInt(index, ((Enum<?>) value).ordinal());
+        }
+    }
+
+    public Object getDefaultValue() {
+        return null;
+    }
 }

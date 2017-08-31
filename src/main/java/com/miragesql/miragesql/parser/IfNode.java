@@ -67,7 +67,7 @@ public class IfNode extends ContainerNode {
         this.elseNode = elseNode;
     }
 
-	@Override
+    @Override
     public void accept(SqlContext ctx) {
         Object result = OgnlUtil.getValue(parsedExpression, ctx);
         if (result instanceof Boolean) {
@@ -84,9 +84,9 @@ public class IfNode extends ContainerNode {
         }
     }
 
-	@Override
-	public String toString() {
-		return "IfNode [expression=" + expression + ", parsedExpression=" + parsedExpression + ", elseNode=" + elseNode
-				+", children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "IfNode [expression=" + expression + ", parsedExpression=" + parsedExpression + ", elseNode=" + elseNode
+                +", children=" + children + "]";
+    }
 }

@@ -25,28 +25,28 @@ import java.util.regex.Pattern;
  */
 public class AddWhereIfNode extends ContainerNode {
 
-	Pattern pat = Pattern.compile("\\s*(order\\sby)|$)");
+    Pattern pat = Pattern.compile("\\s*(order\\sby)|$)");
 
-	public AddWhereIfNode() {
-	}
+    public AddWhereIfNode() {
+    }
 
-	@Override
-	public void accept(SqlContext ctx) {
-		SqlContext childCtx = new SqlContextImpl(ctx);
-		super.accept(childCtx);
-		if (childCtx.isEnabled()) {
-			String sql = childCtx.getSql();
-			Matcher m = pat.matcher(sql);
-			if (!m.lookingAt()) {
-				sql = " WHERE " + sql;
-			}
-			ctx.addSql(sql, childCtx.getBindVariables(), childCtx
-					.getBindVariableTypes());
-		}
-	}
+    @Override
+    public void accept(SqlContext ctx) {
+        SqlContext childCtx = new SqlContextImpl(ctx);
+        super.accept(childCtx);
+        if (childCtx.isEnabled()) {
+            String sql = childCtx.getSql();
+            Matcher m = pat.matcher(sql);
+            if (!m.lookingAt()) {
+                sql = " WHERE " + sql;
+            }
+            ctx.addSql(sql, childCtx.getBindVariables(), childCtx
+                    .getBindVariableTypes());
+        }
+    }
 
-	@Override
-	public String toString() {
-		return "AddWhereIfNode [children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "AddWhereIfNode [children=" + children + "]";
+    }
 }

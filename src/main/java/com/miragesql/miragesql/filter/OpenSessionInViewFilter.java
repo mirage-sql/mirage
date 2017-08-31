@@ -24,90 +24,90 @@ import com.miragesql.miragesql.util.ExceptionUtil;
  */
 public class OpenSessionInViewFilter implements Filter {
 
-	private static final Logger logger = LoggerFactory.getLogger(OpenSessionInViewFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(OpenSessionInViewFilter.class);
 
 //	@Override
-	/**{@inheritDoc}*/
-	public void destroy() {
-	}
+    /**{@inheritDoc}*/
+    public void destroy() {
+    }
 
 //	@Override
-	/**{@inheritDoc}*/
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+    /**{@inheritDoc}*/
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
 
-		Session session = SessionFactory.getSession();
+        Session session = SessionFactory.getSession();
 
-		// begin
-		try {
-			session.begin();
+        // begin
+        try {
+            session.begin();
 
-		} catch(Exception ex){
-			logger.error("Failed to begin Session.");
-			logger.error(ExceptionUtil.toString(ex));
-			throw new RuntimeException(ex);
-		}
+        } catch(Exception ex){
+            logger.error("Failed to begin Session.");
+            logger.error(ExceptionUtil.toString(ex));
+            throw new RuntimeException(ex);
+        }
 
-		try {
-			chain.doFilter(request, response);
+        try {
+            chain.doFilter(request, response);
 
-			// commit
-			if(!session.isRollbackOnly()){
-				try {
-					session.commit();
+            // commit
+            if(!session.isRollbackOnly()){
+                try {
+                    session.commit();
 
-				} catch(Exception ex){
-					logger.error("Failed to commit Session.");
-					logger.error(ExceptionUtil.toString(ex));
+                } catch(Exception ex){
+                    logger.error("Failed to commit Session.");
+                    logger.error(ExceptionUtil.toString(ex));
 
-					if(ex instanceof RuntimeException){
-						throw (RuntimeException) ex;
-					}
+                    if(ex instanceof RuntimeException){
+                        throw (RuntimeException) ex;
+                    }
 
-					throw new RuntimeException(ex);
-				}
-			}
-		} catch(Exception ex){
-			session.setRollbackOnly();
+                    throw new RuntimeException(ex);
+                }
+            }
+        } catch(Exception ex){
+            session.setRollbackOnly();
 
-		} finally {
-			// rollback
-			if(session.isRollbackOnly()){
-				try {
-					session.rollback();
+        } finally {
+            // rollback
+            if(session.isRollbackOnly()){
+                try {
+                    session.rollback();
 
-				} catch (Exception e) {
-					logger.error("Failed to rollback Session.");
-					logger.error(ExceptionUtil.toString(e));
+                } catch (Exception e) {
+                    logger.error("Failed to rollback Session.");
+                    logger.error(ExceptionUtil.toString(e));
 
-					if (e instanceof RuntimeException) {
-						throw (RuntimeException) e;
-					}
+                    if (e instanceof RuntimeException) {
+                        throw (RuntimeException) e;
+                    }
 
-					throw new RuntimeException(e);
-				}
-			}
+                    throw new RuntimeException(e);
+                }
+            }
 
-			// release
-			try {
-				session.release();
+            // release
+            try {
+                session.release();
 
-			} catch(Exception ex){
-				logger.error("Failed to release Session.");
-				logger.error(ExceptionUtil.toString(ex));
+            } catch(Exception ex){
+                logger.error("Failed to release Session.");
+                logger.error(ExceptionUtil.toString(ex));
 
-				if(ex instanceof RuntimeException){
-					throw (RuntimeException) ex;
-				}
+                if(ex instanceof RuntimeException){
+                    throw (RuntimeException) ex;
+                }
 
-				throw new RuntimeException(ex);
-			}
-		}
-	}
+                throw new RuntimeException(ex);
+            }
+        }
+    }
 
 //	@Override
-	/**{@inheritDoc}*/
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
+    /**{@inheritDoc}*/
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
 }

@@ -36,77 +36,77 @@ import com.miragesql.miragesql.bean.PropertyDesc;
  * @author daisuke
  */
 public class EnumStringValueType implements ValueType<Object> {
-	
-	@SuppressWarnings({
-		"rawtypes",
-		"unchecked"
-	})
-	private static Enum<? extends Object> toEnum(Class type, String name) {
-		try {
-			return Enum.valueOf(type, name);
-		} catch (IllegalArgumentException e) {
-			return null;
-		}
-	}
-	
-	public Enum<? extends Object> get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
-		String name = cs.getString(index);
-		return name == null ? null : toEnum(type, name);
-	}
-	
-	public Enum<? extends Object> get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
-		String name = cs.getString(parameterName);
-		return name == null ? null : toEnum(type, name);
-	}
-	
-	public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
-		String name = rs.getString(columnIndex);
-		return name == null ? null : toEnum(type, name);
-	}
-	
-	public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
-		String name = rs.getString(columnName);
-		return name == null ? null : toEnum(type, name);
-	}
-	
-	public Class<? extends Object> getJavaType(int sqlType) {
-		return String.class;
-	}
-	
-	public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
-		if (Enum.class.isAssignableFrom(type) == false) {
-			return false;
-		}
-		if(propertyDesc != null) {
-			Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
-			if(property != null && property.value() == EnumType.STRING) {
-				return true;
-			}
-		}
-		Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
-		if (fieldType != null && fieldType.value() == EnumType.STRING) {
-			return true;
-		}
-		return false;
-	}
-	
-	public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
-		cs.registerOutParameter(index, Types.VARCHAR);
-	}
-	
-	public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
-		cs.registerOutParameter(parameterName, Types.VARCHAR);
-	}
-	
-	public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
-		if (value == null) {
-			stmt.setNull(index, Types.VARCHAR);
-		} else {
-			stmt.setString(index, ((Enum<?>) value).name());
-		}
-	}
 
-	public Object getDefaultValue() {
-		return null;
-	}
+    @SuppressWarnings({
+        "rawtypes",
+        "unchecked"
+    })
+    private static Enum<? extends Object> toEnum(Class type, String name) {
+        try {
+            return Enum.valueOf(type, name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    public Enum<? extends Object> get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
+        String name = cs.getString(index);
+        return name == null ? null : toEnum(type, name);
+    }
+
+    public Enum<? extends Object> get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
+        String name = cs.getString(parameterName);
+        return name == null ? null : toEnum(type, name);
+    }
+
+    public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
+        String name = rs.getString(columnIndex);
+        return name == null ? null : toEnum(type, name);
+    }
+
+    public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
+        String name = rs.getString(columnName);
+        return name == null ? null : toEnum(type, name);
+    }
+
+    public Class<? extends Object> getJavaType(int sqlType) {
+        return String.class;
+    }
+
+    public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
+        if (Enum.class.isAssignableFrom(type) == false) {
+            return false;
+        }
+        if(propertyDesc != null) {
+            Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
+            if(property != null && property.value() == EnumType.STRING) {
+                return true;
+            }
+        }
+        Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
+        if (fieldType != null && fieldType.value() == EnumType.STRING) {
+            return true;
+        }
+        return false;
+    }
+
+    public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
+        cs.registerOutParameter(index, Types.VARCHAR);
+    }
+
+    public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
+        cs.registerOutParameter(parameterName, Types.VARCHAR);
+    }
+
+    public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
+        if (value == null) {
+            stmt.setNull(index, Types.VARCHAR);
+        } else {
+            stmt.setString(index, ((Enum<?>) value).name());
+        }
+    }
+
+    public Object getDefaultValue() {
+        return null;
+    }
 }

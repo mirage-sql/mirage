@@ -13,11 +13,11 @@ import javax.sql.XADataSource;
  */
 public class JNDIXADataSourceConnectionProvider extends XADataSourceConnectionProvider {
 
-	public JNDIXADataSourceConnectionProvider(String jndiName) throws NamingException {
-		Context initContext = new InitialContext();
-		Context envContext = (Context) initContext.lookup("java:/comp/env");
-		XADataSource xaDataSource = (XADataSource) envContext.lookup(jndiName);
-		setDataSource(xaDataSource);
-	}
+    public JNDIXADataSourceConnectionProvider(String jndiName) throws NamingException {
+        Context initContext = new InitialContext();
+        Context envContext = (Context) initContext.lookup("java:/comp/env");
+        XADataSource xaDataSource = (XADataSource) envContext.lookup(jndiName);
+        setDataSource(xaDataSource);
+    }
 
 }

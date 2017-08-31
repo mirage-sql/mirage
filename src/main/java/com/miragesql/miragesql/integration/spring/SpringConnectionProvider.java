@@ -18,35 +18,35 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  */
 public class SpringConnectionProvider implements ConnectionProvider {
 
-	private DataSource dataSource;
+    private DataSource dataSource;
 
-	public void setTransactionManager(
-			DataSourceTransactionManager transactionManager) {
-		dataSource = transactionManager.getDataSource();
-	}
+    public void setTransactionManager(
+            DataSourceTransactionManager transactionManager) {
+        dataSource = transactionManager.getDataSource();
+    }
 
-	public void setDataSource(DataSource dataSource) {
-		if (dataSource instanceof TransactionAwareDataSourceProxy) {
-			// If we got a TransactionAwareDataSourceProxy, we need to perform transactions
-			// for its underlying target DataSource, else data access code won't see
-			// properly exposed transactions (i.e. transactions for the target DataSource).
-			this.dataSource = ((TransactionAwareDataSourceProxy) dataSource).getTargetDataSource();
-		}
-		else {
-			this.dataSource = dataSource;
-		}
-	}
+    public void setDataSource(DataSource dataSource) {
+        if (dataSource instanceof TransactionAwareDataSourceProxy) {
+            // If we got a TransactionAwareDataSourceProxy, we need to perform transactions
+            // for its underlying target DataSource, else data access code won't see
+            // properly exposed transactions (i.e. transactions for the target DataSource).
+            this.dataSource = ((TransactionAwareDataSourceProxy) dataSource).getTargetDataSource();
+        }
+        else {
+            this.dataSource = dataSource;
+        }
+    }
 
-	public Connection getConnection() {
-		ConnectionHolder conHolder =
-			(ConnectionHolder) TransactionSynchronizationManager.getResource(
-			dataSource);
+    public Connection getConnection() {
+        ConnectionHolder conHolder =
+            (ConnectionHolder) TransactionSynchronizationManager.getResource(
+            dataSource);
 
-		if (conHolder == null) {
-			throw new IllegalStateException("It seems not to be existing a transaction.");
-		}
+        if (conHolder == null) {
+            throw new IllegalStateException("It seems not to be existing a transaction.");
+        }
 
-		return conHolder.getConnection();
-	}
+        return conHolder.getConnection();
+    }
 
 }

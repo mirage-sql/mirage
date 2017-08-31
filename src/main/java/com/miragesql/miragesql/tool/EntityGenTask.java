@@ -153,230 +153,230 @@ import org.apache.tools.ant.Task;
  */
 public class EntityGenTask extends Task {
 
-	private String driver = "";
-	private String url = "";
-	private String user = "";
-	private String password = "";
-	private String packageName = "entity";
-	private String outputDir = ".";
-	private String charset = "UTF-8";
-	private String nameConverter = DefaultNameConverter.class.getName();
-	private String dialect = StandardDialect.class.getName();
-	private String valueTypes = "";
+    private String driver = "";
+    private String url = "";
+    private String user = "";
+    private String password = "";
+    private String packageName = "entity";
+    private String outputDir = ".";
+    private String charset = "UTF-8";
+    private String nameConverter = DefaultNameConverter.class.getName();
+    private String dialect = StandardDialect.class.getName();
+    private String valueTypes = "";
 //	private boolean persistancePrimaryKey = true;
-	private String generationType = "";
-	private String catalog = null;
-	private String schema = null;
-	private String tableNamePattern = "";
-	private String ignoreTableNamePattern = "";
+    private String generationType = "";
+    private String catalog = null;
+    private String schema = null;
+    private String tableNamePattern = "";
+    private String ignoreTableNamePattern = "";
 
-	/**
-	 * Sets the Dialect class name.
-	 * The default value is "com.miragesql.miragesql.dialect.StandardDialect".
-	 *
-	 * @param dialect the dialect class name
-	 */
-	public void setDialect(String dialect){
-		this.dialect = dialect;
-	}
+    /**
+     * Sets the Dialect class name.
+     * The default value is "com.miragesql.miragesql.dialect.StandardDialect".
+     *
+     * @param dialect the dialect class name
+     */
+    public void setDialect(String dialect){
+        this.dialect = dialect;
+    }
 
-	/**
-	 * Sets the package name.
-	 *
-	 * @param packageName the package name
-	 */
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
-	}
+    /**
+     * Sets the package name.
+     *
+     * @param packageName the package name
+     */
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
-	/**
-	 * Sets the NameConverter class name.
-	 * The default value is "com.miragesql.miragesql.naming.DefaultNameConverter".
-	 *
-	 * @param nameConverter the name converter
-	 */
-	public void setNameConverter(String nameConverter) {
-		this.nameConverter = nameConverter;
-	}
+    /**
+     * Sets the NameConverter class name.
+     * The default value is "com.miragesql.miragesql.naming.DefaultNameConverter".
+     *
+     * @param nameConverter the name converter
+     */
+    public void setNameConverter(String nameConverter) {
+        this.nameConverter = nameConverter;
+    }
 
-	/**
-	 * Sets the generation type of primary keys.
-	 *
-	 * @param generationType APPLICATION, IDENTITY or SEQUENCE
-	 */
-	public void setGenerationType(String generationType){
-		this.generationType = generationType;
-	}
+    /**
+     * Sets the generation type of primary keys.
+     *
+     * @param generationType APPLICATION, IDENTITY or SEQUENCE
+     */
+    public void setGenerationType(String generationType){
+        this.generationType = generationType;
+    }
 
-	/**
-	 * Sets the ValueType class names.
-	 * You can specify two oe more class names as comma separated value.
-	 *
-	 * @param valueType the ValueType class names
-	 */
-	public void setValueType(String valueType){
-		this.valueTypes = valueType;
-	}
+    /**
+     * Sets the ValueType class names.
+     * You can specify two oe more class names as comma separated value.
+     *
+     * @param valueType the ValueType class names
+     */
+    public void setValueType(String valueType){
+        this.valueTypes = valueType;
+    }
 
-	/**
-	 * Sets the JDBC drive class name.
-	 *
-	 * @param driver the JDBC drive class name
-	 */
-	public void setDriver(String driver) {
-		this.driver = driver;
-	}
+    /**
+     * Sets the JDBC drive class name.
+     *
+     * @param driver the JDBC drive class name
+     */
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
 
-	/**
-	 * Sets the JDBC connection URL.
-	 *
-	 * @param url the JDBC connection URL
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    /**
+     * Sets the JDBC connection URL.
+     *
+     * @param url the JDBC connection URL
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	/**
-	 * Sets the JDBC user.
-	 *
-	 * @param user the JDBC user
-	 */
-	public void setUser(String user) {
-		this.user = user;
-	}
+    /**
+     * Sets the JDBC user.
+     *
+     * @param user the JDBC user
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	/**
-	 * Sets the JDBC password.
-	 *
-	 * @param password the JDBC password
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * Sets the JDBC password.
+     *
+     * @param password the JDBC password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	/**
-	 * Sets the output directory.
-	 *
-	 * @param outputDir the output directory
-	 */
-	public void setOutputDir(String outputDir) {
-		this.outputDir = outputDir;
-	}
+    /**
+     * Sets the output directory.
+     *
+     * @param outputDir the output directory
+     */
+    public void setOutputDir(String outputDir) {
+        this.outputDir = outputDir;
+    }
 
-	/**
-	 * Sets the charset of the generated entity source file.
-	 *
-	 * @param charset the charset of the generated source file
-	 */
-	public void setCharset(String charset) {
-		this.charset = charset;
-	}
+    /**
+     * Sets the charset of the generated entity source file.
+     *
+     * @param charset the charset of the generated source file
+     */
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
 
-	/**
-	 * Sets the catalog name
-	 *
-	 * @param catalog the catalog name
-	 */
-	public void setCatalog(String catalog) {
-		this.catalog = catalog;
-	}
+    /**
+     * Sets the catalog name
+     *
+     * @param catalog the catalog name
+     */
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
+    }
 
-	/**
-	 * Sets the schema name
-	 *
-	 * @param schema the schema name
-	 */
-	public void setSchema(String schema) {
-		this.schema = schema;
-	}
+    /**
+     * Sets the schema name
+     *
+     * @param schema the schema name
+     */
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
 
-	/**
-	 * Sets the target table name pattern as regular expression.
-	 *
-	 * @param tableNamePattern the target table name pattern
-	 */
-	public void setTableNamePattern(String tableNamePattern) {
-		this.tableNamePattern = tableNamePattern;
-	}
+    /**
+     * Sets the target table name pattern as regular expression.
+     *
+     * @param tableNamePattern the target table name pattern
+     */
+    public void setTableNamePattern(String tableNamePattern) {
+        this.tableNamePattern = tableNamePattern;
+    }
 
-	/**
-	 * Sets the ignore table name pattern as regular expression.
-	 *
-	 * @param ignoreTableNamePattern the ignore table name pattern
-	 */
-	public void setIgnoreTableNamePattern(String ignoreTableNamePattern) {
-		this.ignoreTableNamePattern = ignoreTableNamePattern;
-	}
+    /**
+     * Sets the ignore table name pattern as regular expression.
+     *
+     * @param ignoreTableNamePattern the ignore table name pattern
+     */
+    public void setIgnoreTableNamePattern(String ignoreTableNamePattern) {
+        this.ignoreTableNamePattern = ignoreTableNamePattern;
+    }
 
-	@Override
-	public void execute() throws BuildException {
-		// validate partameters
-		if(StringUtil.isEmpty(driver)){
-			throw new BuildException("driver is required.");
-		}
-		if(StringUtil.isEmpty(url)){
-			throw new BuildException("url is required.");
-		}
+    @Override
+    public void execute() throws BuildException {
+        // validate partameters
+        if(StringUtil.isEmpty(driver)){
+            throw new BuildException("driver is required.");
+        }
+        if(StringUtil.isEmpty(url)){
+            throw new BuildException("url is required.");
+        }
 
-		try {
-			EntityGen entityGen = new EntityGen();
+        try {
+            EntityGen entityGen = new EntityGen();
 
-			entityGen.setPackageName(packageName);
-			entityGen.setDialect(newInstance(Dialect.class, this.dialect));
-			entityGen.setNameConverter(newInstance(NameConverter.class, this.nameConverter));
-			if(StringUtil.isNotEmpty(generationType)){
-				if(generationType.equals("APPLICATION")){
-					entityGen.setGenerationType(GenerationType.APPLICATION);
-				} else if(generationType.equals("IDENTITY")){
-					entityGen.setGenerationType(GenerationType.IDENTITY);
-				} else if(generationType.equals("SEQUENCE")){
-					entityGen.setGenerationType(GenerationType.SEQUENCE);
-				}
-			}
+            entityGen.setPackageName(packageName);
+            entityGen.setDialect(newInstance(Dialect.class, this.dialect));
+            entityGen.setNameConverter(newInstance(NameConverter.class, this.nameConverter));
+            if(StringUtil.isNotEmpty(generationType)){
+                if(generationType.equals("APPLICATION")){
+                    entityGen.setGenerationType(GenerationType.APPLICATION);
+                } else if(generationType.equals("IDENTITY")){
+                    entityGen.setGenerationType(GenerationType.IDENTITY);
+                } else if(generationType.equals("SEQUENCE")){
+                    entityGen.setGenerationType(GenerationType.SEQUENCE);
+                }
+            }
 
-			if(StringUtil.isNotEmpty(this.valueTypes)){
-				for(String valueType: valueTypes.split(",")){
-					entityGen.addValueType(newInstance(ValueType.class, valueType.trim()));
-				}
-			}
+            if(StringUtil.isNotEmpty(this.valueTypes)){
+                for(String valueType: valueTypes.split(",")){
+                    entityGen.addValueType(newInstance(ValueType.class, valueType.trim()));
+                }
+            }
 
-			Connection conn = createConnection();
+            Connection conn = createConnection();
 
-			try {
-				System.out.println("Generating entities...");
+            try {
+                System.out.println("Generating entities...");
 
-				entityGen.saveAllEntitySources(new File(outputDir), charset, conn, this.catalog, this.schema,
-						tableNamePattern, ignoreTableNamePattern);
-			} finally {
-				JdbcUtil.close(conn);
-			}
+                entityGen.saveAllEntitySources(new File(outputDir), charset, conn, this.catalog, this.schema,
+                        tableNamePattern, ignoreTableNamePattern);
+            } finally {
+                JdbcUtil.close(conn);
+            }
 
-		} catch(Exception ex){
-			throw new BuildException(ex);
-		}
-	}
+        } catch(Exception ex){
+            throw new BuildException(ex);
+        }
+    }
 
-	@SuppressWarnings("unchecked")
-	private <T> T newInstance(Class<T> type, String className) throws ReflectiveOperationFailedException {
-		try {
-			return (T) Class.forName(className).newInstance();
-			
-		} catch (InstantiationException e) {
-			throw new ReflectiveOperationFailedException(e);
-			
-		} catch (IllegalAccessException e) {
-			throw new ReflectiveOperationFailedException(e);
-			
-		} catch (ClassNotFoundException e) {
-			throw new ReflectiveOperationFailedException(e);
-			
-		}
-	}
+    @SuppressWarnings("unchecked")
+    private <T> T newInstance(Class<T> type, String className) throws ReflectiveOperationFailedException {
+        try {
+            return (T) Class.forName(className).newInstance();
 
-	private Connection createConnection() throws ClassNotFoundException, SQLException {
-		Class.forName(driver);
-		Connection conn = DriverManager.getConnection(url, user, password);
-		return conn;
-	}
+        } catch (InstantiationException e) {
+            throw new ReflectiveOperationFailedException(e);
+
+        } catch (IllegalAccessException e) {
+            throw new ReflectiveOperationFailedException(e);
+
+        } catch (ClassNotFoundException e) {
+            throw new ReflectiveOperationFailedException(e);
+
+        }
+    }
+
+    private Connection createConnection() throws ClassNotFoundException, SQLException {
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(url, user, password);
+        return conn;
+    }
 
 }

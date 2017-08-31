@@ -48,10 +48,10 @@ public class ParenBindVariableNode extends AbstractNode {
 //	@Override
     public void accept(SqlContext ctx) {
         Object var = OgnlUtil.getValue(parsedExpression, ctx);
-		if (var instanceof Collection) {
-			bindArray(ctx, Collection.class.cast(var).toArray());
-		} else if (var instanceof Iterable) {
-			bindArray(ctx, toArray(Iterable.class.cast(var)));
+        if (var instanceof Collection) {
+            bindArray(ctx, Collection.class.cast(var).toArray());
+        } else if (var instanceof Iterable) {
+            bindArray(ctx, toArray(Iterable.class.cast(var)));
         } else if (var == null) {
             return;
         } else if (var.getClass().isArray()) {
@@ -62,13 +62,13 @@ public class ParenBindVariableNode extends AbstractNode {
 
     }
 
-	private Object[] toArray(Iterable<?> iterable) {
-		LinkedList<Object> list = new LinkedList<>();
-		for (Object o : iterable) {
-			list.add(o);
-		}
-		return list.toArray();
-	}
+    private Object[] toArray(Iterable<?> iterable) {
+        LinkedList<Object> list = new LinkedList<>();
+        for (Object o : iterable) {
+            list.add(o);
+        }
+        return list.toArray();
+    }
 
     /**
      * @param ctx the SqlContext
@@ -97,9 +97,9 @@ public class ParenBindVariableNode extends AbstractNode {
         ctx.addSql(")");
     }
 
-	@Override
-	public String toString() {
-		return "ParenBindVariableNode [expression=" + expression + ", parsedExpression=" + parsedExpression
-				+ ", children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "ParenBindVariableNode [expression=" + expression + ", parsedExpression=" + parsedExpression
+                + ", children=" + children + "]";
+    }
 }

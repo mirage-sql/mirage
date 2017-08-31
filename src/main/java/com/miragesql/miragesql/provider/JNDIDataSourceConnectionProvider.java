@@ -13,11 +13,11 @@ import javax.sql.DataSource;
  */
 public class JNDIDataSourceConnectionProvider extends DataSourceConnectionProvider {
 
-	public JNDIDataSourceConnectionProvider(String jndiName) throws NamingException {
-		Context initContext = new InitialContext();
-		Context envContext = (Context) initContext.lookup("java:/comp/env");
-		DataSource dataSource = (DataSource) envContext.lookup(jndiName);
-		setDataSource(dataSource);
-	}
+    public JNDIDataSourceConnectionProvider(String jndiName) throws NamingException {
+        Context initContext = new InitialContext();
+        Context envContext = (Context) initContext.lookup("java:/comp/env");
+        DataSource dataSource = (DataSource) envContext.lookup(jndiName);
+        setDataSource(dataSource);
+    }
 
 }

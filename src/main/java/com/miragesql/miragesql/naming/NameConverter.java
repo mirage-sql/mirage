@@ -10,29 +10,29 @@ import com.miragesql.miragesql.SqlManager;
  */
 public interface NameConverter {
 
-	/**
-	 * Converts the property name to the column name.
-	 *
-	 * @param propertyName the property name
-	 * @return the column name
-	 */
-	public String propertyToColumn(String propertyName);
+    /**
+     * Converts the property name to the column name.
+     *
+     * @param propertyName the property name
+     * @return the column name
+     */
+    public String propertyToColumn(String propertyName);
 
-	/**
-	 * Converts the column name to the property name.
-	 *
-	 * @param columnName the column name
-	 * @return the property name
-	 */
-	public String columnToProperty(String columnName);
+    /**
+     * Converts the column name to the property name.
+     *
+     * @param columnName the column name
+     * @return the property name
+     */
+    public String columnToProperty(String columnName);
 
-	/**
-	 * Converts the entity name to the table name.
-	 *
-	 * @param entityName the entity name
-	 * @return the table name
-	 */
-	public String entityToTable(String entityName);
+    /**
+     * Converts the entity name to the table name.
+     *
+     * @param entityName the entity name
+     * @return the table name
+     */
+    public String entityToTable(String entityName);
 
 //	public String tableToEntity(String tableName);
 

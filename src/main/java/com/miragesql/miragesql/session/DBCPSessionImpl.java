@@ -42,145 +42,145 @@ import org.apache.commons.pool.impl.StackKeyedObjectPoolFactory;
  */
 public class DBCPSessionImpl implements Session {
 
-	private static final Logger logger = LoggerFactory.getLogger(DBCPSessionImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(DBCPSessionImpl.class);
 
-	private SqlManager sqlManager;
-	private DefaultConnectionProvider provider;
-	private DataSource dataSource;
-	private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
+    private SqlManager sqlManager;
+    private DefaultConnectionProvider provider;
+    private DataSource dataSource;
+    private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
-	/**
-	 * The constructor.
-	 *
-	 * @param properties the Properties object which has a following properties:
-	 *   <ul>
-	 *     <li>jdbc.driver - the JDBC driver classname (optional on JDBC 4.0)</li>
-	 *     <li>jdbc.url - the JDBC connection URL</li>
-	 *     <li>jdbc.user - the username</li>
-	 *     <li>jdbc.password - the password</li>
-	 *     <li>dbcp.max_active - max active connections (optional, default value is 100)</li>
-	 *     <li>dbcp.min_idle - minimum idle time (optional, default value is 10)</li>
-	 *     <li>dbcp.max_wait - max wait time (optional, default value is 5000)</li>
-	 *     <li>sql.cache - if true then SqlManager caches parsing result of 2waySQL</li>
-	 *   </ul>
-	 */
-	public DBCPSessionImpl(Properties properties){
-		String driver   = properties.getProperty("jdbc.driver");
-		String url      = properties.getProperty("jdbc.url");
-		String user     = properties.getProperty("jdbc.user");
-		String password = properties.getProperty("jdbc.password");
+    /**
+     * The constructor.
+     *
+     * @param properties the Properties object which has a following properties:
+     *   <ul>
+     *     <li>jdbc.driver - the JDBC driver classname (optional on JDBC 4.0)</li>
+     *     <li>jdbc.url - the JDBC connection URL</li>
+     *     <li>jdbc.user - the username</li>
+     *     <li>jdbc.password - the password</li>
+     *     <li>dbcp.max_active - max active connections (optional, default value is 100)</li>
+     *     <li>dbcp.min_idle - minimum idle time (optional, default value is 10)</li>
+     *     <li>dbcp.max_wait - max wait time (optional, default value is 5000)</li>
+     *     <li>sql.cache - if true then SqlManager caches parsing result of 2waySQL</li>
+     *   </ul>
+     */
+    public DBCPSessionImpl(Properties properties){
+        String driver   = properties.getProperty("jdbc.driver");
+        String url      = properties.getProperty("jdbc.url");
+        String user     = properties.getProperty("jdbc.user");
+        String password = properties.getProperty("jdbc.password");
 
-		int maxActive = 100;
-		if(StringUtil.isNotEmpty(properties.getProperty("dbcp.max_active"))){
-			maxActive = Integer.parseInt(properties.getProperty("dbcp.max_active"));
-		}
+        int maxActive = 100;
+        if(StringUtil.isNotEmpty(properties.getProperty("dbcp.max_active"))){
+            maxActive = Integer.parseInt(properties.getProperty("dbcp.max_active"));
+        }
 
-		int minIdle = 10;
-		if(StringUtil.isNotEmpty(properties.getProperty("dbcp.min_idle"))){
-			minIdle = Integer.parseInt(properties.getProperty("dbcp.min_idle"));
-		}
+        int minIdle = 10;
+        if(StringUtil.isNotEmpty(properties.getProperty("dbcp.min_idle"))){
+            minIdle = Integer.parseInt(properties.getProperty("dbcp.min_idle"));
+        }
 
-		int maxWait = 5000;
-		if(StringUtil.isNotEmpty(properties.getProperty("dbcp.max_wait"))){
-			maxWait = Integer.parseInt(properties.getProperty("dbcp.max_wait"));
-		}
+        int maxWait = 5000;
+        if(StringUtil.isNotEmpty(properties.getProperty("dbcp.max_wait"))){
+            maxWait = Integer.parseInt(properties.getProperty("dbcp.max_wait"));
+        }
 
-		sqlManager = new SqlManagerImpl();
-		sqlManager.setDialect(DialectAutoSelector.getDialect(url));
-		provider = new DefaultConnectionProvider();
-		sqlManager.setConnectionProvider(provider);
+        sqlManager = new SqlManagerImpl();
+        sqlManager.setDialect(DialectAutoSelector.getDialect(url));
+        provider = new DefaultConnectionProvider();
+        sqlManager.setConnectionProvider(provider);
 
-		String cache = properties.getProperty("sql.cache");
-		if("true".equals(cache)){
-			((SqlManagerImpl) sqlManager).setCacheMode(true);
-		} else {
-			((SqlManagerImpl) sqlManager).setCacheMode(false);
-		}
+        String cache = properties.getProperty("sql.cache");
+        if("true".equals(cache)){
+            ((SqlManagerImpl) sqlManager).setCacheMode(true);
+        } else {
+            ((SqlManagerImpl) sqlManager).setCacheMode(false);
+        }
 
-		try {
-			if(StringUtil.isNotEmpty(driver)){
-				Class.forName(driver);
-			}
-		} catch (ClassNotFoundException e) {
-			throw new ConfigurationException(e);
-			
-		}
+        try {
+            if(StringUtil.isNotEmpty(driver)){
+                Class.forName(driver);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new ConfigurationException(e);
 
-		GenericObjectPool pool = new GenericObjectPool();
-		pool.setMaxActive(maxActive);
-		pool.setMinIdle(minIdle);
-		pool.setMaxWait(maxWait);
-		pool.setWhenExhaustedAction(GenericObjectPool.WHEN_EXHAUSTED_BLOCK);
+        }
 
-		ConnectionFactory factory = new DriverManagerConnectionFactory(url, user, password);
+        GenericObjectPool pool = new GenericObjectPool();
+        pool.setMaxActive(maxActive);
+        pool.setMinIdle(minIdle);
+        pool.setMaxWait(maxWait);
+        pool.setWhenExhaustedAction(GenericObjectPool.WHEN_EXHAUSTED_BLOCK);
 
-		KeyedObjectPoolFactory pstFactory = new StackKeyedObjectPoolFactory(50, 10);
+        ConnectionFactory factory = new DriverManagerConnectionFactory(url, user, password);
 
-		PoolableConnectionFactory poolFactory = new PoolableConnectionFactory(
-				factory, pool, pstFactory, null, false, true);
+        KeyedObjectPoolFactory pstFactory = new StackKeyedObjectPoolFactory(50, 10);
 
-		dataSource = new PoolingDataSource(poolFactory.getPool());
-	}
+        PoolableConnectionFactory poolFactory = new PoolableConnectionFactory(
+                factory, pool, pstFactory, null, false, true);
 
-	/**{@inheritDoc}*/
-	public void begin() {
-		if(logger.isInfoEnabled()){
-			logger.info("Begin transaction.");
-		}
-		try {
-			Connection conn = dataSource.getConnection();
-			conn.setAutoCommit(false);
-			provider.setConnection(conn);
-		} catch (SQLException ex){
-			throw new SessionException("Failed to begin transaction.", ex);
-		}
-	}
+        dataSource = new PoolingDataSource(poolFactory.getPool());
+    }
 
     /**{@inheritDoc}*/
-	public void commit() {
-		if(logger.isInfoEnabled()){
-			logger.info("Commit transaction.");
-		}
-		try {
-			provider.getConnection().commit();
-		} catch (SQLException ex){
-			throw new SessionException("Failed to commit transaction.", ex);
-		}
-	}
+    public void begin() {
+        if(logger.isInfoEnabled()){
+            logger.info("Begin transaction.");
+        }
+        try {
+            Connection conn = dataSource.getConnection();
+            conn.setAutoCommit(false);
+            provider.setConnection(conn);
+        } catch (SQLException ex){
+            throw new SessionException("Failed to begin transaction.", ex);
+        }
+    }
 
     /**{@inheritDoc}*/
-	public void rollback() {
-		if(logger.isInfoEnabled()){
-			logger.info("Rollback transaction.");
-		}
-		try {
-			provider.getConnection().rollback();
-		} catch (SQLException ex){
-			throw new SessionException("Failed to rollback transaction.", ex);
-		}
-	}
+    public void commit() {
+        if(logger.isInfoEnabled()){
+            logger.info("Commit transaction.");
+        }
+        try {
+            provider.getConnection().commit();
+        } catch (SQLException ex){
+            throw new SessionException("Failed to commit transaction.", ex);
+        }
+    }
 
     /**{@inheritDoc}*/
-	public void release() {
-		this.rollbackOnly.remove();
-
-		if(provider instanceof DefaultConnectionProvider){
-			((DefaultConnectionProvider) provider).releaseConnection();
-		}
-	}
-
-    /**{@inheritDoc}*/
-	public SqlManager getSqlManager() {
-		return sqlManager;
-	}
+    public void rollback() {
+        if(logger.isInfoEnabled()){
+            logger.info("Rollback transaction.");
+        }
+        try {
+            provider.getConnection().rollback();
+        } catch (SQLException ex){
+            throw new SessionException("Failed to rollback transaction.", ex);
+        }
+    }
 
     /**{@inheritDoc}*/
-	public void setRollbackOnly() {
-		this.rollbackOnly.set(true);
-	}
+    public void release() {
+        this.rollbackOnly.remove();
+
+        if(provider instanceof DefaultConnectionProvider){
+            ((DefaultConnectionProvider) provider).releaseConnection();
+        }
+    }
 
     /**{@inheritDoc}*/
-	public boolean isRollbackOnly() {
-		return this.rollbackOnly.get() != null;
-	}
+    public SqlManager getSqlManager() {
+        return sqlManager;
+    }
+
+    /**{@inheritDoc}*/
+    public void setRollbackOnly() {
+        this.rollbackOnly.set(true);
+    }
+
+    /**{@inheritDoc}*/
+    public boolean isRollbackOnly() {
+        return this.rollbackOnly.get() != null;
+    }
 }

@@ -77,10 +77,10 @@ public interface SqlTokenizer {
     String skipWhitespace();
     
     public enum TokenType {
-    	SQL,
-    	COMMENT,
-    	ELSE,
-    	BIND_VARIABLE,
-    	EOF
+        SQL,
+        COMMENT,
+        ELSE,
+        BIND_VARIABLE,
+        EOF
     }
 }

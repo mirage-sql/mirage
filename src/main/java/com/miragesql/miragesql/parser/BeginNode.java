@@ -22,21 +22,21 @@ package com.miragesql.miragesql.parser;
  */
 public class BeginNode extends ContainerNode {
 
-	public BeginNode() {
-	}
+    public BeginNode() {
+    }
 
-	@Override
-	public void accept(SqlContext ctx) {
-		SqlContext childCtx = new SqlContextImpl(ctx);
-		super.accept(childCtx);
-		if (childCtx.isEnabled()) {
-			ctx.addSql(childCtx.getSql(), childCtx.getBindVariables(), childCtx
-					.getBindVariableTypes());
-		}
-	}
+    @Override
+    public void accept(SqlContext ctx) {
+        SqlContext childCtx = new SqlContextImpl(ctx);
+        super.accept(childCtx);
+        if (childCtx.isEnabled()) {
+            ctx.addSql(childCtx.getSql(), childCtx.getBindVariables(), childCtx
+                    .getBindVariableTypes());
+        }
+    }
 
-	@Override
-	public String toString() {
-		return "BeginNode [children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "BeginNode [children=" + children + "]";
+    }
 }

@@ -29,50 +29,50 @@ import com.miragesql.miragesql.util.StringUtil;
  */
 public class BindVariableNode extends AbstractNode {
 
-	private String expression;
+    private String expression;
 
-	private String[] names;
+    private String[] names;
 
-	private BeanDescFactory beanDescFactory;
+    private BeanDescFactory beanDescFactory;
 
-	/**
-	 * Creates a <code>BindVariableNode</code> from a string expression.
-	 *
-	 * @param expression string expression
-	 * @param beanDescFactory the bean descriptor factory
-	 */
-	public BindVariableNode(String expression, BeanDescFactory beanDescFactory) {
-		this.expression = expression;
-		names = StringUtil.split(expression, ".");
-		this.beanDescFactory = beanDescFactory;
-	}
+    /**
+     * Creates a <code>BindVariableNode</code> from a string expression.
+     *
+     * @param expression string expression
+     * @param beanDescFactory the bean descriptor factory
+     */
+    public BindVariableNode(String expression, BeanDescFactory beanDescFactory) {
+        this.expression = expression;
+        names = StringUtil.split(expression, ".");
+        this.beanDescFactory = beanDescFactory;
+    }
 
-	/**
-	 * @return the bind expression
-	 */
-	public String getExpression() {
-		return expression;
-	}
+    /**
+     * @return the bind expression
+     */
+    public String getExpression() {
+        return expression;
+    }
 
 //	@Override
-	public void accept(SqlContext ctx) {
-		Object value = ctx.getArg(names[0]);
-		Class<?> clazz = ctx.getArgType(names[0]);
-		for (int pos = 1; pos < names.length; pos++) {
-			BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
-			PropertyDesc pd = beanDesc.getPropertyDesc(names[pos]);
-			if (value == null) {
-				break;
-			}
-			value = pd.getValue(value);
-			clazz = pd.getPropertyType();
-		}
-		ctx.addSql("?", value, clazz);
-	}
+    public void accept(SqlContext ctx) {
+        Object value = ctx.getArg(names[0]);
+        Class<?> clazz = ctx.getArgType(names[0]);
+        for (int pos = 1; pos < names.length; pos++) {
+            BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
+            PropertyDesc pd = beanDesc.getPropertyDesc(names[pos]);
+            if (value == null) {
+                break;
+            }
+            value = pd.getValue(value);
+            clazz = pd.getPropertyType();
+        }
+        ctx.addSql("?", value, clazz);
+    }
 
-	@Override
-	public String toString() {
-		return "BindVariableNode [expression=" + expression + ", names=" + Arrays.toString(names)
-				+ ", children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "BindVariableNode [expression=" + expression + ", names=" + Arrays.toString(names)
+                + ", children=" + children + "]";
+    }
 }

@@ -29,15 +29,15 @@ import com.miragesql.miragesql.util.StringUtil;
  */
 public class SqlParserImpl implements SqlParser {
 
-	private BeanDescFactory beanDescFactory;
-	
+    private BeanDescFactory beanDescFactory;
+
     private SqlTokenizer tokenizer;
 
     private Stack<Node> nodeStack = new Stack<>();
 
 
     public SqlParserImpl(String sql, BeanDescFactory beanDescFactory) {
-		sql = sql.trim();
+        sql = sql.trim();
         if (sql.endsWith(";")) {
             sql = sql.substring(0, sql.length() - 1);
         }
@@ -122,7 +122,7 @@ public class SqlParserImpl implements SqlParser {
                 parseCommentBindVariable();
             }
         } else if(isHintComment(comment)){
-        	peek().addChild(new SqlNode("/*" + comment + "*/"));
+            peek().addChild(new SqlNode("/*" + comment + "*/"));
         }
     }
 
@@ -132,7 +132,7 @@ public class SqlParserImpl implements SqlParser {
     protected void parseIf() {
         String condition = tokenizer.getToken().substring(2).trim();
         if (StringUtil.isEmpty(condition)) {
-        	throw new TwoWaySQLException("If condition not found.");
+            throw new TwoWaySQLException("If condition not found.");
         }
         IfNode ifNode = new IfNode(condition);
         peek().addChild(ifNode);

@@ -22,17 +22,17 @@ package com.miragesql.miragesql.parser;
  */
 public class ElseNode extends ContainerNode {
 
-	public ElseNode() {
-	}
+    public ElseNode() {
+    }
 
-	@Override
-	public void accept(SqlContext ctx) {
-		super.accept(ctx);
-		ctx.setEnabled(true);
-	}
+    @Override
+    public void accept(SqlContext ctx) {
+        super.accept(ctx);
+        ctx.setEnabled(true);
+    }
 
-	@Override
-	public String toString() {
-		return "ElseNode [children=" + children + "]";
-	}
+    @Override
+    public String toString() {
+        return "ElseNode [children=" + children + "]";
+    }
 }

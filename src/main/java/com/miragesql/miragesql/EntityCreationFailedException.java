@@ -11,19 +11,19 @@ package com.miragesql.miragesql;
 @SuppressWarnings("serial")
 public class EntityCreationFailedException extends RuntimeException {
 
-	public EntityCreationFailedException() {
-		super();
-	}
+    public EntityCreationFailedException() {
+        super();
+    }
 
-	public EntityCreationFailedException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public EntityCreationFailedException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public EntityCreationFailedException(String message) {
-		super(message);
-	}
+    public EntityCreationFailedException(String message) {
+        super(message);
+    }
 
-	public EntityCreationFailedException(Throwable cause) {
-		super(cause);
-	}
+    public EntityCreationFailedException(Throwable cause) {
+        super(cause);
+    }
 }

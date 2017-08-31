@@ -7,50 +7,50 @@ import java.sql.SQLException;
 
 public class LongValueType extends AbstractValueType<Long> {
 
-	public LongValueType() {
-		super(Long.class);
-	}
+    public LongValueType() {
+        super(Long.class);
+    }
 
-	public Long get(Class<? extends Long> type, ResultSet rs, int columnIndex) throws SQLException {
-		if(rs.getObject(columnIndex) == null){
-			return null;
-		}
-		return rs.getLong(columnIndex);
-	}
+    public Long get(Class<? extends Long> type, ResultSet rs, int columnIndex) throws SQLException {
+        if(rs.getObject(columnIndex) == null){
+            return null;
+        }
+        return rs.getLong(columnIndex);
+    }
 
-	public Long get(Class<? extends Long> type, ResultSet rs, String columnName) throws SQLException {
-		if(rs.getObject(columnName) == null){
-			return null;
-		}
-		return rs.getLong(columnName);
-	}
+    public Long get(Class<? extends Long> type, ResultSet rs, String columnName) throws SQLException {
+        if(rs.getObject(columnName) == null){
+            return null;
+        }
+        return rs.getLong(columnName);
+    }
 
-	public void set(Class<? extends Long> type, PreparedStatement stmt, Long value,
-			int index) throws SQLException {
-		if (value == null){
-			setNull(type, stmt, index);
-		} else {
-			stmt.setLong(index, (Long) value);
-		}
-	}
+    public void set(Class<? extends Long> type, PreparedStatement stmt, Long value,
+            int index) throws SQLException {
+        if (value == null){
+            setNull(type, stmt, index);
+        } else {
+            stmt.setLong(index, (Long) value);
+        }
+    }
 
-	public Long get(Class<? extends Long> type, CallableStatement cs, int index) throws SQLException {
-		Long value = cs.getLong(index);
+    public Long get(Class<? extends Long> type, CallableStatement cs, int index) throws SQLException {
+        Long value = cs.getLong(index);
 
-		if (value != null && cs.wasNull()) {
-			value = null;
-		}
+        if (value != null && cs.wasNull()) {
+            value = null;
+        }
 
-		return value;
-	}
+        return value;
+    }
 
-	public Long get(Class<? extends Long> type, CallableStatement cs, String parameterName) throws SQLException {
-		Long value =  cs.getLong(parameterName);
+    public Long get(Class<? extends Long> type, CallableStatement cs, String parameterName) throws SQLException {
+        Long value =  cs.getLong(parameterName);
 
-		if (value != null && cs.wasNull()) {
-			value = null;
-		}
+        if (value != null && cs.wasNull()) {
+            value = null;
+        }
 
-		return value;
-	}
+        return value;
+    }
 }
