@@ -11,7 +11,7 @@ import com.miragesql.miragesql.naming.NameConverter;
 /**
  * Annotation that specifies the DB table name which is mapped to the entity class.
  * <p>
- * By the default, Mirage-SQL converts the entity class name to the table name using {@link NameConverter}.
+ * By default, Mirage-SQL converts the entity class name to the table name using {@link NameConverter}.
  * However if the entity class has this annotation, Mirage-SQL uses the specified table name instead of
  * <code>NameConverter</code> conversion.
  *

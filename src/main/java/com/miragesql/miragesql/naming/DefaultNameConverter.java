@@ -10,6 +10,7 @@ package com.miragesql.miragesql.naming;
 public class DefaultNameConverter implements NameConverter {
 
 //	@Override
+	/**{@inheritDoc}*/
 	public String columnToProperty(String columnName) {
 		StringBuilder sb = new StringBuilder();
 		boolean uppercase = false;
@@ -32,6 +33,7 @@ public class DefaultNameConverter implements NameConverter {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public String entityToTable(String entityName) {
 		int index = entityName.lastIndexOf('.');
 		if(index >= 0){
@@ -56,6 +58,7 @@ public class DefaultNameConverter implements NameConverter {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public String propertyToColumn(String propertyName) {
 		StringBuilder sb = new StringBuilder();
 

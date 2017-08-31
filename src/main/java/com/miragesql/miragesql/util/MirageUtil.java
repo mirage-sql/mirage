@@ -40,8 +40,10 @@ public class MirageUtil {
 
 	/**
 	 * Returns the {@link SqlContext} instance.
-	 * 
+	 *
+	 * @param beanDescFactory the bean descriptor factory
 	 * @param param the parameter object
+	 *
 	 * @return {@link SqlContext} instance
 	 */
 	public static SqlContext getSqlContext(BeanDescFactory beanDescFactory, Object param) {
@@ -67,6 +69,7 @@ public class MirageUtil {
 	 *
 	 * @param entityClass the entity class
 	 * @param nameConverter the name converter
+	 *
 	 * @return the table name
 	 */
 	public static String getTableName(Class<?> entityClass, NameConverter nameConverter){
@@ -84,8 +87,11 @@ public class MirageUtil {
 	 * If the property has {@link Column} annotation then this method returns the annotated column name,
 	 * otherwise creates column name from the property name using {@link NameConverter}.
 	 *
+	 * @param entityOperator the entity operator
 	 * @param pd the property
+	 * @param clazz the class
 	 * @param nameConverter the name converter
+	 *
 	 * @return the column name
 	 */
 	public static String getColumnName(EntityOperator entityOperator, Class<?> clazz, PropertyDesc pd, NameConverter nameConverter){
@@ -100,9 +106,13 @@ public class MirageUtil {
 	/**
 	 * Builds select (by primary keys) SQL from the entity class.
 	 *
+	 * @param beanDescFactory the bean descriptor factory
+	 * @param entityOperator the entity operator
 	 * @param clazz the entity class to select
 	 * @param nameConverter the name converter
+	 *
 	 * @return Select SQL
+	 *
 	 * @throws RuntimeException the entity class has no primary keys
 	 */
 	public static String buildSelectSQL(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> clazz, NameConverter nameConverter){
@@ -138,9 +148,12 @@ public class MirageUtil {
 	/**
 	 * Builds insert SQL and correct parameters from the entity.
 	 *
+	 * @param beanDescFactory the bean descriptor factory
+	 * @param entityOperator the entity operator
 	 * @param entityType the entity class insert
 	 * @param nameConverter the name converter
 	 * @param propDescs the list of parameters
+	 *
 	 * @return Insert SQL
 	 */
 	public static String buildInsertSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
@@ -191,9 +204,12 @@ public class MirageUtil {
 	/**
 	 * Builds update SQL and correct parameters from the entity.
 	 *
+	 * @param beanDescFactory the bean descriptor factory
+	 * @param entityOperator the entity operator
 	 * @param entityType the entity class to update
 	 * @param nameConverter the name converter
 	 * @param propDescs the list of parameters
+	 *
 	 * @return Update SQL
 	 */
 	public static String buildUpdateSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,
@@ -246,9 +262,12 @@ public class MirageUtil {
 	/**
 	 * Builds delete SQL and correct parameters from the entity.
 	 *
+	 * @param beanDescFactory the bean descriptor factory
+	 * @param entityOperator the entity operator
 	 * @param entityType the entity class to delete
 	 * @param nameConverter the name converter
 	 * @param propDescs the list of parameters
+	 *
 	 * @return Delete SQL
 	 */
 	public static String buildDeleteSql(BeanDescFactory beanDescFactory, EntityOperator entityOperator, Class<?> entityType, NameConverter nameConverter,

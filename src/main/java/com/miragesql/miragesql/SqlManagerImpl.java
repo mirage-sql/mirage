@@ -391,8 +391,10 @@ public class SqlManagerImpl implements SqlManager {
 	}
 
 	/**
+	 * Sets the value types.
 	 *
-	 * @param valueTypes
+	 * @param valueTypes the value types to set.
+	 *
 	 * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
 	 * an element in the {@code valueTypes} is {@code null}
 	 */

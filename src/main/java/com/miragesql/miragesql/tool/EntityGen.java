@@ -114,6 +114,9 @@ public class EntityGen {
 	 * @param tableName the DB table name
 	 * @param catalog the DB catalog
 	 * @param schema the DB schema
+	 *
+	 * @return the source
+	 *
 	 * @throws SQLException if a something goes wrong when working with the database
 	 */
 	public String getEntitySource(Connection conn,
@@ -182,6 +185,13 @@ public class EntityGen {
 	/**
 	 * Generates the entity source file into the given source directory.
      *
+	 * @param srcDir directory where to generate the Java sources.
+	 * @param charset character set
+	 * @param conn the DB connection
+	 * @param tableName the DB table name
+	 * @param catalog the DB catalog
+	 * @param schema the DB schema
+	 *
 	 * @throws SQLException if a something goes wrong when working with the database
 	 * @throws IOException if the java file can't be written
 	 */
@@ -211,6 +221,7 @@ public class EntityGen {
      * @param schemaS the String
      * @param tableNamePattern positive pattern for the tables to generate entities for
      * @param ignoreTableNamePattern negative pattern for the table NOT to generate entities for
+	 *
      * @throws SQLException if a something goes wrong when working with the database
      * @throws IOException if the Java files can't be written
      */

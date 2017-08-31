@@ -27,10 +27,12 @@ public class OpenSessionInViewFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(OpenSessionInViewFilter.class);
 
 //	@Override
+	/**{@inheritDoc}*/
 	public void destroy() {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 
@@ -104,6 +106,7 @@ public class OpenSessionInViewFilter implements Filter {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
 

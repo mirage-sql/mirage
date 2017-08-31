@@ -22,9 +22,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation that specifies that a persistent property or field should be persisted as an enumerated type.
- * 
- * <p>It may be used in conjunction with the Basic annotation.</p> 
+ * Annotation that specifies that a persistent property or field should be persisted as an enumerated type. <p>
+ * It may be used in conjunction with the Basic annotation.
  * 
  * @since 1.0
  * @author daisuke
@@ -37,26 +36,26 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Enumerated {
 
-    /** (Optional) The type used in mapping an enum type. */
+    /**
+     * (Optional) The type used in mapping an enum type.
+     *
+     *  @return the value
+     */
     EnumType value() default EnumType.ORDINAL;
 
 
     /**
      * Defines a mapping for the enumerated types. The constants of this enumerated type specify how persistent the property
      * or field should be persisted as a enumerated type.
-     *
-     * @since 1.0
-     * @version $Id$
-     * @author daisuke
      */
     enum EnumType {
-        /** Persist enumerated type property or field as an integer */
+        /** Persists enumerated type property or field as an integer. */
         ORDINAL,
 
-        /** Persist enumerated type property or field as an integer */
+        /** Persists enumerated type property or field as an integer. */
         ONE_BASED_ORDINAL,
 
-        /** Persist enumerated type property or field as a string */
+        /** Persists enumerated type property or field as a string. */
         STRING,
     }
 }

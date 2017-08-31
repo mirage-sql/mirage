@@ -11,7 +11,7 @@ import com.miragesql.miragesql.naming.NameConverter;
 /**
  * Annotation that specifies the DB column name which is mapped to the annotated property.
  * <p>
- * By the default, Mirage-SQL converts the property name to the column name using {@link NameConverter}.
+ * By default, Mirage-SQL converts the property name to the column name using {@link NameConverter}.
  * However if the entity property has this annotation, Mirage-SQL uses the specified column name instead of
  * <code>NameConverter</code> conversion.
  *

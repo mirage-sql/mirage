@@ -55,8 +55,10 @@ public class SqlExecutor {
 	}
 
 	/**
+	 * Sets the value types in order to be able to execute the SQL.
 	 *
-	 * @param valueTypes
+	 * @param valueTypes the value types to set.
+	 *
 	 * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
 	 * an element in the {@code valueTypes} is {@code null}
 	 */
@@ -112,10 +114,13 @@ public class SqlExecutor {
 	/**
 	 * Returns a list of entities from the DB after executing the SQL.
 	 *
+	 * @param <T> the entity type
 	 * @param clazz the class of the entity to select
 	 * @param sql the SQL to execute
 	 * @param params parameters required to execute the SQL
+	 *
 	 * @return a List of entities
+	 *
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public <T> List<T> getResultList(Class<T> clazz, String sql, Object[] params) {
@@ -157,10 +162,16 @@ public class SqlExecutor {
 
 	/**
 	 * Iterate over a ResultSet with entities.
+	 *
+	 * @param <T> the entity type
+	 * @param <R> the result type
 	 * @param clazz the class of the entity
 	 * @param callback callback to execute
 	 * @param sql the SQL to execute
 	 * @param params the parameters of the SQL
+	 *
+	 * @return a result entity
+	 *
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, String sql, Object[] params) {
@@ -205,10 +216,13 @@ public class SqlExecutor {
 
 	/**
 	 * Returns a single entity from the first row of an SQL.
+	 *
+	 * @param <T> the entity type
 	 * @param clazz the class of the entity
 	 * @param sql the SQL to execute
 	 * @param params the parameters to execute the SQL
 	 * @return the entity from the result set.
+	 *
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public <T> T getSingleResult(Class<T> clazz, String sql, Object[] params) {
@@ -252,7 +266,9 @@ public class SqlExecutor {
 	 * @param sql the update SQL to execute
 	 * @param propDescs the array of parameters
 	 * @param entity the entity object in insertion, otherwise null
+	 *
 	 * @return the number of updated rows
+	 *
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public int executeUpdateSql(String sql, PropertyDesc[] propDescs, Object entity){
@@ -298,7 +314,9 @@ public class SqlExecutor {
 	 * @param sql the update SQL to execute
 	 * @param params the array of parameters
 	 * @param entity the entity object in insertion, otherwise null
+	 *
 	 * @return the number of updated rows
+	 *
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public int executeUpdateSql(String sql, Object[] params, Object entity){
@@ -344,7 +362,9 @@ public class SqlExecutor {
 	 * @param sql the update SQL to execute
 	 * @param propDescsList the list of parameter arrays.
 	 * @param entities the entities object in insertion, otherwise null
+	 *
 	 * @return the number of updated rows
+	 *
 	 * @throws SQLRuntimeException if a database access error occurs
 	 */
 	public int executeBatchUpdateSql(String sql, List<PropertyDesc[]> propDescsList, Object[] entities) {
@@ -408,6 +428,11 @@ public class SqlExecutor {
 
 	/**
 	 * Sets GenerationType.IDENTITY properties value.
+	 *
+	 * @param entity the entity
+	 * @param rs the result set
+	 *
+	 * @throws SQLException if something goes wrong.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void fillIdentityPrimaryKeys(Object entity, ResultSet rs) throws SQLException {
@@ -433,6 +458,12 @@ public class SqlExecutor {
 
 	/**
 	 * Sets parameters to the PreparedStatement.
+	 *
+	 * @param stmt the prepared statement
+	 * @param propDescs the property descriptors
+	 * @param entity the entity
+	 *
+	 * @throws SQLException if something goes wrong
 	 */
 	@SuppressWarnings("unchecked")
 	protected void setParameters(PreparedStatement stmt, PropertyDesc[] propDescs, Object entity) throws SQLException {
@@ -457,6 +488,11 @@ public class SqlExecutor {
 
 	/**
 	 * Sets parameters to the PreparedStatement.
+	 *
+	 * @param stmt the prepared statement
+	 * @param params the parameters
+	 *
+	 * @throws SQLException if something goes wrong.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void setParameters(PreparedStatement stmt, Object[] params) throws SQLException {

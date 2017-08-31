@@ -36,8 +36,11 @@ public class AnnotationUtils {
 	 * of the given class, checking the superclass itself; if no annotation found there, proceeds
 	 * with the interfaces that the superclass declares. Recurring up through the entire superclass
 	 * hierarchy if no match is found.
+	 *
+	 * @param <A> the annotation type
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the annotation class to look for
+	 *
 	 * @return the annotation found, or {@code null} if none found
 	 */
 	public static <A extends Annotation>A findAnnotation(Class<?> clazz, Class<A> annotationType) {

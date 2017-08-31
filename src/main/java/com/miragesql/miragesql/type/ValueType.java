@@ -14,24 +14,28 @@ public interface ValueType<T> {
 	public T getDefaultValue();
 
 	/**
+	 * Returns the value with the type.
 	 *
-	 * @param type
-	 * @param rs
-	 * @param index
+	 * @param type the type class
+	 * @param rs the result set
+	 * @param index the index column
 	 * @return T
-	 * @throws SQLException
-	 * @throws UnsupportedOperationException
+	 *
+	 * @throws SQLException if something goes wrong
+	 * @throws UnsupportedOperationException for unsupported operations
 	 */
 	public T get(Class<? extends T> type, ResultSet rs, int index) throws SQLException;
 
 	/**
+	 * Returns the value with the type.
 	 *
-	 * @param type
-	 * @param rs
-	 * @param columnName
+	 * @param type the type class
+	 * @param rs the result set
+	 * @param columnName the index column
 	 * @return T
-	 * @throws SQLException
-	 * @throws UnsupportedOperationException
+	 *
+	 * @throws SQLException if something goes wrong
+	 * @throws UnsupportedOperationException for unsupported operations
 	 */
 	public T get(Class<? extends T> type, ResultSet rs, String columnName) throws SQLException;
 
@@ -40,13 +44,15 @@ public interface ValueType<T> {
 	public T get(Class<? extends T> type, CallableStatement cs, String parameterName) throws SQLException;
 
 	/**
+	 * Sets the value with the type.
 	 *
-	 * @param type
-	 * @param stmt
-	 * @param value
-	 * @param index
-	 * @throws SQLException
-	 * @throws UnsupportedOperationException
+	 * @param type the entity type
+	 * @param stmt the prepared statement
+	 * @param value the value to set
+	 * @param index the column index
+	 *
+	 * @throws SQLException if something goes wrong
+	 * @throws UnsupportedOperationException for unsupported operations
 	 */
 	public void set(Class<? extends T> type, PreparedStatement stmt, T value, int index) throws SQLException;
 

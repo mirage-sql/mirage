@@ -15,11 +15,11 @@ public interface BeanDesc {
     public Class<?> getType();
 
     /**
-     * Returns the {@link PropertyDesc} of this bean.
-     *
-     * <p>The {@code name} parameter is a {@link String} specifying the simple name of the desired property.</p>
+     * Returns the {@link PropertyDesc} of this bean. <p>
+     * The {@code name} parameter is a {@link String} specifying the simple name of the desired property.
      *
      * @param name property name
+     *
      * @return the {@link PropertyDesc} or {@code null} if no property with this name is found
      */
     public PropertyDesc getPropertyDesc(String name);
@@ -35,6 +35,7 @@ public interface BeanDesc {
      * Returns {@link PropertyDesc} of this bean.
      *
      * @param i index number
+     *
      * @return the {@link PropertyDesc}
      */
     public PropertyDesc getPropertyDesc(int i);
@@ -42,7 +43,9 @@ public interface BeanDesc {
     /**
      * Returns the {@link Annotation} declared at this entity.
      *
+     * @param <T> the annotation type
      * @param type type of {@link Annotation}
+     *
      * @return {@link Annotation} or {@code null} if no {@link Annotation} with this {@code type} is found
      */
     public <T extends Annotation> T getAnnotation(Class<T> type);

@@ -39,6 +39,7 @@ public class BindVariableNode extends AbstractNode {
 	 * Creates a <code>BindVariableNode</code> from a string expression.
 	 *
 	 * @param expression string expression
+	 * @param beanDescFactory the bean descriptor factory
 	 */
 	public BindVariableNode(String expression, BeanDescFactory beanDescFactory) {
 		this.expression = expression;

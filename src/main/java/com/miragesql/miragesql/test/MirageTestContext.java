@@ -43,6 +43,10 @@ public class MirageTestContext {
 		sequenceMap.clear();
 	}
 
+	/**
+	 * Sets the nameConverter.
+	 * @param nameConverter the NameConverter to set the context to.
+	 */
 	public static void setNameConverter(NameConverter nameConverter){
 		MirageTestContext.nameConverter = nameConverter;
 	}
@@ -146,6 +150,7 @@ public class MirageTestContext {
 	 * Verifies the SQL and parameters which is executed by {@link SqlManager#findEntity(Class, Object...)}.
 	 *
 	 * @param indexOfSql the index of executed SQL
+	 * @param entityClass the class of the entity
 	 * @param id the values of primary key
 	 */
 	public static void verifyFindSql(int indexOfSql, Class<?> entityClass, Object... id){

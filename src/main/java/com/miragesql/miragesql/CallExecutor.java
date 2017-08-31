@@ -55,8 +55,10 @@ public class CallExecutor {
     }
 
     /**
+     * Sets the value types in order to be able to execute procedure.
      *
-     * @param valueTypes
+     * @param valueTypes the value types to set.
+     *
      * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
      * an element in the {@code valueTypes} is {@code null}
      */

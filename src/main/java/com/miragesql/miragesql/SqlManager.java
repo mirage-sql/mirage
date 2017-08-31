@@ -54,6 +54,7 @@ public interface SqlManager {
      * Returns the row count of the result of the given SQL.
      *
      * @param resource the {@link SqlResource} that identifies the SQL
+     *
      * @return the row count
      */
     public int getCount(SqlResource resource);
@@ -64,6 +65,7 @@ public interface SqlManager {
      *
      * @param resource the {@link SqlResource} that identifies the SQL
      * @param param the parameter object
+     *
      * @return the row count
      */
     public int getCount(SqlResource resource, Object param);
@@ -72,8 +74,10 @@ public interface SqlManager {
     /**
      * Returns a list of Objects from the result set for a given SQL.
      *
+     * @param <T> the entity type
      * @param clazz the type
      * @param resource the {@link SqlResource} that identifies the SQL
+     *
      * @return a List of Objects of type T
      */
     public <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
@@ -81,9 +85,11 @@ public interface SqlManager {
     /**
      * Returns a list of Objects from the result set for a given SQL.
      *
+     * @param <T> the entity type
      * @param clazz the type
      * @param resource the {@link SqlResource} that identifies the SQL
      * @param param the parameters for the query
+     *
      * @return a List of Objects of type T
      */
     public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
@@ -96,6 +102,7 @@ public interface SqlManager {
      * @param resource the {@link SqlResource} that identifies the SQL
      * @param <T> the entity type
      * @param <R> the return type
+     *
      * @return the result of the iteration callbacks
      */
     public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
@@ -109,6 +116,7 @@ public interface SqlManager {
      * @param param the parameters for the query
      * @param <T> the entity type
      * @param <R> the return type
+     *
      * @return the result of the iteration callbacks
      */
     public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
@@ -119,6 +127,7 @@ public interface SqlManager {
      * @param clazz the type
      * @param resource the {@link SqlResource} that identifies the SQL
      * @param <T> the entity type
+     *
      * @return an entity
      */
     public <T> T getSingleResult(Class<T> clazz, SqlResource resource);
@@ -130,6 +139,7 @@ public interface SqlManager {
      * @param resource the {@link SqlResource} that identifies the SQL
      * @param param the parameters for the query
      * @param <T> the entity type
+     *
      * @return an entity
      */
     public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
@@ -138,6 +148,7 @@ public interface SqlManager {
      * Executes the SQL identified by the {@link SqlResource}. E.g.
      *
      * @param resource the {@link SqlResource} that identifies the SQL
+     *
      * @return the number of updated rows
      */
     public int executeUpdate(SqlResource resource);
@@ -147,6 +158,7 @@ public interface SqlManager {
      *
      * @param resource the {@link SqlResource} that identifies the SQL
      * @param param the parameters which are set to the placeholder
+     *
      * @return the number of updated rows
      */
     public int executeUpdate(SqlResource resource, Object param);
@@ -155,6 +167,7 @@ public interface SqlManager {
      * Inserts the given entity.
      *
      * @param entity the entity to insert
+     *
      * @return the number of updated rows
      */
     public int insertEntity(Object entity);
@@ -164,6 +177,7 @@ public interface SqlManager {
      *
      * @param <T> the entity type
      * @param entities entities to insert
+     *
      * @return the number of inserted rows
      */
     public <T> int insertBatch(T... entities);
@@ -173,6 +187,7 @@ public interface SqlManager {
      *
      * @param <T> the entity type
      * @param entities entities to insert
+     *
      * @return the number of inserted rows
      */
     public <T> int insertBatch(List<T> entities);
@@ -181,6 +196,7 @@ public interface SqlManager {
      * Updates the given entity.
      *
      * @param entity the entity to update
+     *
      * @return the number of updated rows
      */
     public int updateEntity(Object entity);
@@ -216,6 +232,7 @@ public interface SqlManager {
      *
      * @param <T> the entity type
      * @param entities entities to delete
+     *
      * @return the number of deleted rows
      */
     public <T> int deleteBatch(T... entities);
@@ -235,6 +252,7 @@ public interface SqlManager {
      * @param <T> the type of entity
      * @param clazz the type of entity
      * @param id the primary key
+     *
      * @return the entity. If the entity which corresponds to the given primary key
      *   is not found, this method returns <code>null</code>.
      */
@@ -261,6 +279,7 @@ public interface SqlManager {
      * @param resultClass the type
      * @param functionName the function name
      * @param <T> the entity type
+     *
      * @return the entity
      */
     public <T> T call(Class<T> resultClass, String functionName);
@@ -282,6 +301,7 @@ public interface SqlManager {
      * @param resultClass the type
      * @param functionName the function name
      * @param <T> the entity type
+     *
      * @return a list of entities
      */
     public <T> List<T> callForList(Class<T> resultClass, String functionName);
@@ -293,6 +313,7 @@ public interface SqlManager {
      * @param functionName the function name
      * @param param the parameter object
      * @param <T> the entity type
+     *
      * @return a list of entities
      */
     public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);

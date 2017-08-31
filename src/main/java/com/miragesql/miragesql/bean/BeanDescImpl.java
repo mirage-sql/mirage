@@ -74,30 +74,36 @@ public class BeanDescImpl implements BeanDesc {
     }
 
 //	@Override
+    /**{@inheritDoc}*/
     public Class<?> getType(){
         return clazz;
     }
 
 //	@Override
+    /**{@inheritDoc}*/
     public PropertyDesc getPropertyDesc(String name){
         return propertyMap.get(name);
     }
 
 //	@Override
+    /**{@inheritDoc}*/
     public int getPropertyDescSize(){
         return propertyArray.length;
     }
 
 //	@Override
+    /**{@inheritDoc}*/
     public PropertyDesc getPropertyDesc(int i){
         return propertyArray[i];
     }
 
 //	@Override
+    /**{@inheritDoc}*/
     public <T extends Annotation> T getAnnotation(Class<T> type) {
         return clazz.getAnnotation(type);
     }
 
+    /**{@inheritDoc}*/
     @Override
     public String toString() {
         return new StringBuilder(super.toString())

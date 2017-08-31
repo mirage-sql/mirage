@@ -35,6 +35,7 @@ public class DefaultConnectionProvider implements ConnectionProvider {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public Connection getConnection() {
 		return threadLocal.get();
 	}

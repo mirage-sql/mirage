@@ -15,7 +15,9 @@ public interface PropertyDesc {
      * Returns the value of this property which the {@code entity} has.
      *
      * @param entity entity object
+     *
      * @return the property value
+     *
      * @throws BeanDescException TODO TBD
      */
     public Object getValue(Object entity);
@@ -25,6 +27,7 @@ public interface PropertyDesc {
      *
      * @param entity entity object
      * @param value the property value
+     *
      * @throws BeanDescException TODO TBD
      */
     public void setValue(Object entity, Object value);
@@ -74,7 +77,9 @@ public interface PropertyDesc {
     /**
      * Returns {@link Annotation} which declared at this property.
      *
+     * @param <T> the annotation type
      * @param type type of {@link Annotation}
+     *
      * @return {@link Annotation} or {@code null} if no {@link Annotation} with this {@code type} is found
      */
     public <T extends Annotation> T getAnnotation(Class<T> type);

@@ -41,6 +41,7 @@ public class XADataSourceConnectionProvider implements ConnectionProvider {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public Connection getConnection() {
 		try {
 			Connection conn = threadLocal.get();

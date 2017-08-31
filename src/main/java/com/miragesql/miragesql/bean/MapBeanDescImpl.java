@@ -33,6 +33,7 @@ public class MapBeanDescImpl implements BeanDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public PropertyDesc getPropertyDesc(String name) {
 		if(this.map == null){
 			return new MapPropertyDescImpl(name, "");
@@ -41,6 +42,7 @@ public class MapBeanDescImpl implements BeanDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public PropertyDesc getPropertyDesc(int i) {
 		if(this.map == null){
 			return null;
@@ -49,6 +51,7 @@ public class MapBeanDescImpl implements BeanDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public int getPropertyDescSize() {
 		if(this.map == null){
 			return 0;
@@ -57,6 +60,7 @@ public class MapBeanDescImpl implements BeanDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public Class<?> getType() {
 		if(this.map == null){
 			return Map.class;
@@ -65,6 +69,7 @@ public class MapBeanDescImpl implements BeanDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public <T extends Annotation> T getAnnotation(Class<T> type) {
 		return null;
 	}

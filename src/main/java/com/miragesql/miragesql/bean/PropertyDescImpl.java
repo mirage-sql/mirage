@@ -15,6 +15,7 @@ public class PropertyDescImpl implements PropertyDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public Object getValue(Object entity){
 		try {
 			return propertyWrapper.get(entity);
@@ -28,6 +29,7 @@ public class PropertyDescImpl implements PropertyDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public void setValue(Object entity, Object value){
 		try {
 			propertyWrapper.set(entity, value);
@@ -41,40 +43,48 @@ public class PropertyDescImpl implements PropertyDesc {
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public boolean isReadable(){
 		return propertyWrapper.isReadable();
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public boolean isWritable(){
 		return propertyWrapper.isWritable();
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public Class<?> getPropertyType(){
 		return propertyWrapper.getType();
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public String getPropertyName(){
 		return propertyWrapper.getName();
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public Field getField(){
 		return propertyWrapper.getField();
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public <T extends Annotation> T getAnnotation(Class<T> type){
 		return propertyWrapper.getAnnotation(type);
 	}
 
 //	@Override
+	/**{@inheritDoc}*/
 	public boolean isTransient() {
 		return propertyWrapper.isTransient();
 	}
 
+	/**{@inheritDoc}*/
 	@Override
 	public String toString() {
 		return new StringBuilder(super.toString())

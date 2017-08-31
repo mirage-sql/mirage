@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation that indicates that the property is IN-OUT parameter of the parameter class
+ * Annotation that indicates that the property is <code>IN-OUT</code> parameter of the parameter class
  * which is used for the DB store procedure / function invocation.
  */
 @Retention(RetentionPolicy.RUNTIME)

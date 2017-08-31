@@ -45,8 +45,9 @@ import org.apache.tools.ant.Task;
  *  &lt;/target&gt;
  *
  * &lt;/project&gt;</pre>
- * EntityGenTask has following attributes:
+ *
  * <table border="1">
+ *     <caption>EntityGenTask has following attributes:</caption>
  *   <tr>
  *     <th>name</th>
  *     <th>required</th>

@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation that indicates that the property corresponds to the DB primary key column.
+ * Annotation indicating that a property corresponds to the DB primary key column.
  *
  * @author Naoki Takezoe
  */

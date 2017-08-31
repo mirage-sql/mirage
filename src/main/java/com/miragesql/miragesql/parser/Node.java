@@ -31,6 +31,7 @@ public interface Node {
      * Returns the child <code>Node</code> at the specified <code>index</code>.
      * 
      * @param index the index
+     *
      * @return the child node at the specified index
      */
     Node getChild(int index);
@@ -45,7 +46,7 @@ public interface Node {
     /**
      * <code>CommandContext</code>をこの<code>Node</code>に、 適用します。
      * 
-     * @param ctx
+     * @param ctx the SQL context
      */
     void accept(SqlContext ctx);
 }

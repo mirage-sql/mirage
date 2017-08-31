@@ -2,7 +2,7 @@ package com.miragesql.miragesql.exception;
 
 /**
  * Exception thrown in the {@link com.miragesql.miragesql.IterationCallback} to discontinue iteration search.
- * </p>
+ * <p>
  *
  * <b>Note:</b> to don't use this exception for other purposes.
  *
