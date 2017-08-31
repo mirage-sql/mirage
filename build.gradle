@@ -1,13 +1,11 @@
 plugins {
-    id 'nebula.optional-base' version '3.0.3' // mvn style optional dependencies
-    id 'nebula.provided-base' version '3.0.3' // mvn style provided dependencies
+    id 'nebula.optional-base' version '3.2.0' // mvn style optional dependencies
 }
 
 apply plugin: 'java-library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-apply plugin: 'nebula.provided-base'
 apply plugin: 'nebula.optional-base'
 
 group 'com.miragesql'
@@ -38,13 +36,13 @@ dependencies {
     compile "com.google.inject:guice:4.1.0", optional
 
 
-    provided 'org.apache.ant:ant:1.10.1'
-    provided 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'
-    provided 'javax.servlet:servlet-api:2.5'
+    compileOnly 'org.apache.ant:ant:1.10.1'
+    compileOnly 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'
+    compileOnly 'javax.servlet:servlet-api:2.5'
 
     compile 'junit:junit:4.12'
     testImplementation 'cglib:cglib:3.2.5'
-    testImplementation 'org.mockito:mockito-core:2.7.22'
+    testImplementation 'org.mockito:mockito-core:2.9.0'
     testImplementation 'com.h2database:h2:1.4.196'
     testImplementation 'org.hsqldb:hsqldb:2.4.0'
 
