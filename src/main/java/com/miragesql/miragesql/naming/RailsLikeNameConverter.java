@@ -17,7 +17,8 @@
 package com.miragesql.miragesql.naming;
 
 /**
- * An implementation of {@link NameConverter} which provides naming convention like Ruby on Rails.
+ * An implementation of {@link NameConverter} which provides naming convention like Ruby on Rails, i.e.
+ * it also pluralizes table names using the {@link Inflection} utility for English names only.
  *
  * @since 1.1.4
  * @author daisuke

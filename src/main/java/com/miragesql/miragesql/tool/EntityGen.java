@@ -109,6 +109,11 @@ public class EntityGen {
 
 	/**
 	 * Returns the source code of the entity class which corresponds to the specified table.
+	 *
+	 * @param conn the DB connection
+	 * @param tableName the DB table name
+	 * @param catalog the DB catalog
+	 * @param schema the DB schema
 	 * @throws SQLException if a something goes wrong when working with the database
 	 */
 	public String getEntitySource(Connection conn,

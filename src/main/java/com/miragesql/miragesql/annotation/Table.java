@@ -24,6 +24,8 @@ public @interface Table {
 
     /**
      * The table name which is mapped to the annotated entity class.
+     *
+     * @return the table name.
      */
     String name();
 

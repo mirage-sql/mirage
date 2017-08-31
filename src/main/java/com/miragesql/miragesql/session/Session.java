@@ -21,28 +21,28 @@ public interface Session {
 	/**
 	 * Begins the transaction.
 	 *
-	 * @throws SessionException
+	 * @throws SessionException if something goes wrong.
 	 */
 	public void begin();
 
 	/**
 	 * Commits the transaction.
 	 *
-	 * @throws SessionException
+	 * @throws SessionException if something goes wrong.
 	 */
 	public void commit();
 
 	/**
 	 * Rollbacks the transaction.
 	 *
-	 * @throws SessionException
+	 * @throws SessionException if something goes wrong.
 	 */
 	public void rollback();
 
 	/**
 	 * Releases this transaction.
 	 *
-	 * @throws SessionException
+	 * @throws SessionException if something goes wrong.
 	 */
 	public void release();
 
@@ -62,7 +62,7 @@ public interface Session {
 	 * Returns the instance of <code>SqlManager</code>.
 	 *
 	 * @return the instance of <code>SqlManager</code>
-	 * @throws SessionException
+	 * @throws SessionException if something goes wrong.
 	 */
 	public SqlManager getSqlManager();
 

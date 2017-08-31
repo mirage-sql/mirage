@@ -17,6 +17,9 @@ import com.miragesql.miragesql.SqlManagerImpl;
  */
 public class MockSqlManager extends SqlManagerImpl {
 
+	/**
+	 * Constructor.
+	 */
 	public MockSqlManager() {
 		super();
 

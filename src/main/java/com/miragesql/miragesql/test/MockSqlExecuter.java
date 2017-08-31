@@ -24,6 +24,7 @@ import com.miragesql.miragesql.bean.PropertyDesc;
  */
 public class MockSqlExecuter extends SqlExecutor {
 
+    /**{@inheritDoc}*/
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getResultList(Class<T> clazz, String sql, Object[] params) {
@@ -35,6 +36,7 @@ public class MockSqlExecuter extends SqlExecutor {
 		return Collections.emptyList();
 	}
 
+    /**{@inheritDoc}*/
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback,
@@ -57,6 +59,7 @@ public class MockSqlExecuter extends SqlExecutor {
 		return result;
 	}
 
+    /**{@inheritDoc}*/
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T getSingleResult(Class<T> clazz, String sql, Object[] params) {
@@ -68,6 +71,7 @@ public class MockSqlExecuter extends SqlExecutor {
 		return null;
 	}
 
+    /**{@inheritDoc}*/
 	@Override
 	public int executeUpdateSql(String sql, PropertyDesc[] propDescs, Object entity) {
 		MirageTestContext.addExecutedSql(new ExecutedSQLInfo(sql, propDescs, entity));
@@ -91,6 +95,7 @@ public class MockSqlExecuter extends SqlExecutor {
 		return 0;
 	}
 
+    /**{@inheritDoc}*/
 	@Override
 	public int executeBatchUpdateSql(String sql, List<PropertyDesc[]> propDescsList, Object[] entities) {
 		for (int i = 0; i < propDescsList.size(); i++) {

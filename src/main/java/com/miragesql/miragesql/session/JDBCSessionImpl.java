@@ -34,7 +34,9 @@ public class JDBCSessionImpl implements Session {
 	private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
 	/**
-	 * The constructor.
+	 * The implementation of {@link Session} which creates the connection from a JDBC connection.
+	 *
+	 * To enable it you need to add the properties below to <code>jdbc.properties</code>.
 	 *
 	 * @param properties the Properties object which has a following properties:
 	 *   <ul>

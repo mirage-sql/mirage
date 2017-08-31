@@ -27,8 +27,10 @@ public class JNDISessionImpl implements Session {
 
     /**
      * The implementation of {@link Session} which gets the connection from a JNDI Data Source.
-     * <p/>
-     * To enable JNDI you need to add the following properties to <code>jdbc.properties</code>:
+     * <p>
+     * To enable JNDI you need to add the properties below to <code>jdbc.properties</code>.
+     *
+     * @param properties the Properties object which has a following properties:
      * <pre>
      *  session.class=com.miragesql.miragesql.session.JNDISessionImpl
      *  jndi.name=jdbc/mydbname

@@ -26,10 +26,10 @@ import java.util.Map;
  * <p>The class is based along the lines of JUnit. If an argument value is 
  * deemed invalid, an IllegalArgumentException is thrown. For example:</p>
  * 
- * <pre>
- * Validate.isTrue( i > 0, "The value must be greater than zero: ", i);
+ * <code>
+ * Validate.isTrue( i &gt; 0, "The value must be greater than zero: ", i);
  * Validate.notNull( surname, "The surname must not be null");
- * </pre>
+ * </code>
  *
  * @author Apache Software Foundation
  * @author <a href="mailto:ola.berg@arkitema.se">Ola Berg</a>
@@ -78,7 +78,7 @@ public class Validate {
      * validating according to an arbitrary boolean expression, such as validating a 
      * primitive number or using your own custom validation expression.</p>
      *
-     * <pre>Validate.isTrue(i > 0.0, "The value must be greater than zero: ", i);</pre>
+     * <code>Validate.isTrue(i &gt; 0.0, "The value must be greater than zero: ", i);</code>
      *
      * <p>For performance reasons, the long value is passed as a separate parameter and
      * appended to the exception message only in the case of an error.</p>
@@ -95,12 +95,12 @@ public class Validate {
     }
 
     /**
-     * <p>Validate that the argument condition is <code>true</code>; otherwise 
+     * Validate that the argument condition is <code>true</code>; otherwise
      * throwing an exception with the specified message. This method is useful when
      * validating according to an arbitrary boolean expression, such as validating a 
-     * primitive number or using your own custom validation expression.</p>
+     * primitive number or using your own custom validation expression.<p>
      *
-     * <pre>Validate.isTrue(d > 0.0, "The value must be greater than zero: ", d);</pre>
+     * <code>Validate.isTrue(d &gt; 0.0, "The value must be greater than zero: ", d);</code>
      *
      * <p>For performance reasons, the double value is passed as a separate parameter and
      * appended to the exception message only in the case of an error.</p>
@@ -117,15 +117,15 @@ public class Validate {
     }
 
     /**
-     * <p>Validate that the argument condition is <code>true</code>; otherwise 
+     * Validate that the argument condition is <code>true</code>; otherwise
      * throwing an exception with the specified message. This method is useful when
      * validating according to an arbitrary boolean expression, such as validating a 
-     * primitive number or using your own custom validation expression.</p>
+     * primitive number or using your own custom validation expression.<p>
      *
-     * <pre>
-     * Validate.isTrue( (i > 0), "The value must be greater than zero");
+     * <code>
+     * Validate.isTrue( (i &gt; 0), "The value must be greater than zero");
      * Validate.isTrue( myObject.isOk(), "The object is not OK");
-     * </pre>
+     * </code>
      *
      * @param expression the boolean expression to check 
      * @param message the exception message if invalid
@@ -138,14 +138,14 @@ public class Validate {
     }
 
     /**
-     * <p>Validate that the argument condition is <code>true</code>; otherwise 
+     * Validate that the argument condition is <code>true</code>; otherwise
      * throwing an exception. This method is useful when validating according 
      * to an arbitrary boolean expression, such as validating a 
-     * primitive number or using your own custom validation expression.</p>
+     * primitive number or using your own custom validation expression.<p>
      *
-     * <pre>
-     * Validate.isTrue(i > 0);
-     * Validate.isTrue(myObject.isOk());</pre>
+     * <code>
+     * Validate.isTrue(i &gt; 0);
+     * Validate.isTrue(myObject.isOk());</code>
      *
      * <p>The message of the exception is &quot;The validated expression is 
      * false&quot;.</p>
@@ -378,7 +378,7 @@ public class Validate {
      * 
      * <p>If the array has a <code>null</code> element, then the message in the
      * exception is &quot;The validated array contains null element at index: 
-     * &quot followed by the index.</p>
+     * &quot; followed by the index.</p>
      *
      * @param array the array to check
      * @throws IllegalArgumentException if the array is <code>null</code> or
@@ -433,7 +433,7 @@ public class Validate {
      * 
      * <p>If the collection has a <code>null</code> element, then the message in the
      * exception is &quot;The validated collection contains null element at index: 
-     * &quot followed by the index.</p>
+     * &quot; followed by the index.</p>
      *
      * @param collection  the collection to check
      * @throws IllegalArgumentException if the collection is <code>null</code> or

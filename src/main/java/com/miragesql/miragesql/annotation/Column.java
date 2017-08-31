@@ -25,12 +25,16 @@ public @interface Column {
 
     /**
      * The column name which is mapped to the annotated property.
+     *
+     * @return the column  name.
      */
     String name();
 
     /**
      * The place holder when generate insert / update SQL.
      * Defaults to value: ?
+     *
+     * @return the place holder
      */
     String placeHolder() default "?";
 }

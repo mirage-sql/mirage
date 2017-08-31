@@ -16,6 +16,7 @@ import com.miragesql.miragesql.exception.SQLRuntimeException;
  */
 public class MockCallExecuter extends CallExecutor {
 
+	/**{@inheritDoc}*/
 	@Override
 	public void call(String sql, Object parameter){
 		try {
@@ -35,6 +36,7 @@ public class MockCallExecuter extends CallExecutor {
 		}
 	}
 
+	/**{@inheritDoc}*/
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T call(Class<T> resultClass, String sql, Object parameter){
@@ -60,6 +62,7 @@ public class MockCallExecuter extends CallExecutor {
 		}
 	}
 
+	/**{@inheritDoc}*/
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> List<T> callForList(Class<T> resultClass, String sql, Object parameter){
