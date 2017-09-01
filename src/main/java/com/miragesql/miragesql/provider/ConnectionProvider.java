@@ -21,6 +21,6 @@ public interface ConnectionProvider {
      * @return the connection
      * @throws SQLRuntimeException Failed to get the connection
      */
-    public Connection getConnection();
+    Connection getConnection();
 
 }

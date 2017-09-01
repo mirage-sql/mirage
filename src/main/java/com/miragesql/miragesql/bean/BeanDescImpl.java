@@ -15,7 +15,7 @@ public class BeanDescImpl implements BeanDesc {
     public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){
         this.clazz = clazz;
 
-        List<PropertyDesc> list = new ArrayList<PropertyDesc>();
+        List<PropertyDesc> list = new ArrayList<>();
 
         for(PropertyWrapper propertyWrapper: map.values()){
             PropertyDesc pd = new PropertyDescImpl(propertyWrapper);
@@ -106,8 +106,6 @@ public class BeanDescImpl implements BeanDesc {
     /**{@inheritDoc}*/
     @Override
     public String toString() {
-        return new StringBuilder(super.toString())
-            .append("[").append(clazz == null ? null : clazz.getSimpleName()).append("]")
-            .toString();
+        return super.toString() + "[" + (clazz == null ? null : clazz.getSimpleName()) + "]";
     }
 }

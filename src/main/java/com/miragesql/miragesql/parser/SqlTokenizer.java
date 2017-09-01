@@ -76,7 +76,7 @@ public interface SqlTokenizer {
      */
     String skipWhitespace();
     
-    public enum TokenType {
+    enum TokenType {
         SQL,
         COMMENT,
         ELSE,

@@ -16,7 +16,7 @@ public interface NameConverter {
      * @param propertyName the property name
      * @return the column name
      */
-    public String propertyToColumn(String propertyName);
+    String propertyToColumn(String propertyName);
 
     /**
      * Converts the column name to the property name.
@@ -24,7 +24,7 @@ public interface NameConverter {
      * @param columnName the column name
      * @return the property name
      */
-    public String columnToProperty(String columnName);
+    String columnToProperty(String columnName);
 
     /**
      * Converts the entity name to the table name.
@@ -32,7 +32,7 @@ public interface NameConverter {
      * @param entityName the entity name
      * @return the table name
      */
-    public String entityToTable(String entityName);
+    String entityToTable(String entityName);
 
 //	public String tableToEntity(String tableName);
 

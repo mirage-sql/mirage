@@ -32,7 +32,6 @@ import com.miragesql.miragesql.bean.PropertyDesc;
  * {@link Enum}型を {@link String}型としてDBに保存するための {@link ValueType}実装クラス。
  * 
  * @since 1.0
- * @version $Id$
  * @author daisuke
  */
 public class EnumStringValueType implements ValueType<Object> {

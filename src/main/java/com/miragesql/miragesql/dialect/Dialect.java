@@ -46,6 +46,6 @@ public interface Dialect {
      *
      * @return the value type or null
      */
-    public ValueType<?> getValueType();
+    ValueType<?> getValueType();
 
 }

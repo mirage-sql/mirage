@@ -13,6 +13,6 @@ package com.miragesql.miragesql;
  */
 public interface IterationCallback<T, R> {
 
-    public R iterate(T entity);
+    R iterate(T entity);
 
 }

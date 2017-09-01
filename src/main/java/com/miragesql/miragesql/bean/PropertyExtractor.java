@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public interface PropertyExtractor {
 
-    public Map<String, PropertyWrapper> extractProperties(Class<?> clazz);
+    Map<String, PropertyWrapper> extractProperties(Class<?> clazz);
 
-    public static class PropertyInfo {
+    class PropertyInfo {
         public String name;
         public Class<?> type;
         public Method getterMethod;

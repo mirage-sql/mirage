@@ -7,32 +7,32 @@ import java.lang.reflect.Method;
 
 public interface PropertyWrapper {
 
-    public String getName();
+    String getName();
 
-    public Class<?> getType();
+    Class<?> getType();
 
-    public void set(Object instance, Object value) throws IllegalAccessException, InvocationTargetException;
+    void set(Object instance, Object value) throws IllegalAccessException, InvocationTargetException;
 
-    public Object get(Object instance) throws IllegalAccessException, InvocationTargetException;
+    Object get(Object instance) throws IllegalAccessException, InvocationTargetException;
 
-    public boolean isReadable();
+    boolean isReadable();
 
-    public boolean isWritable();
+    boolean isWritable();
 
-    public boolean isTransient();
+    boolean isTransient();
 
-    public <T extends Annotation> T getAnnotation(Class<T> type);
+    <T extends Annotation> T getAnnotation(Class<T> type);
 
-    public Field getField();
+    Field getField();
 
-    public void setField(Field field);
+    void setField(Field field);
 
-    public Method getGetterMethod();
+    Method getGetterMethod();
 
-    public void setGetterMethod(Method getter);
+    void setGetterMethod(Method getter);
 
-    public Method getSetterMethod();
+    Method getSetterMethod();
 
-    public void setSetterMethod(Method setter);
+    void setSetterMethod(Method setter);
 
 }

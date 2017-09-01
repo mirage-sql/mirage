@@ -30,6 +30,7 @@ public class TransactionInterceptorTest extends TestCase {
 
 	@Override
 	public void setUp() throws Exception {
+		super.setUp();
 		MirageTestContext.initMirageTestContext();
 		MockitoAnnotations.initMocks(this);
 
@@ -41,6 +42,7 @@ public class TransactionInterceptorTest extends TestCase {
 
 	@Override
 	public void tearDown() throws Exception {
+		super.tearDown();
 		// Clears SessionFactory
 		Field field = SessionFactory.class.getDeclaredField("session");
 		field.setAccessible(true);

@@ -40,9 +40,9 @@ public interface EntityOperator {
      * @return the instance of entity class or Map
      * @throws EntityCreationFailedException if {@link EntityOperator} failed to create a result entity
      */
-    public <T> T createEntity(Class<T> clazz, ResultSet rs,
-            ResultSetMetaData meta, int columnCount, BeanDesc beanDesc,
-            Dialect dialect, List<ValueType<?>> valueTypes, NameConverter nameConverter);
+    <T> T createEntity(Class<T> clazz, ResultSet rs,
+                       ResultSetMetaData meta, int columnCount, BeanDesc beanDesc,
+                       Dialect dialect, List<ValueType<?>> valueTypes, NameConverter nameConverter);
 
     /**
      * Retrieves the metadata of the primary key from the given PropertyDesc.
@@ -52,8 +52,8 @@ public interface EntityOperator {
      * @param nameConverter the NameConverter
      * @return the metadata of the primary key
      */
-    public PrimaryKeyInfo getPrimaryKeyInfo(Class<?> clazz,
-            PropertyDesc propertyDesc, NameConverter nameConverter);
+    PrimaryKeyInfo getPrimaryKeyInfo(Class<?> clazz,
+                                     PropertyDesc propertyDesc, NameConverter nameConverter);
 
     /**
      * Retrieves the metadata of the column from the given PropertyDesc.
@@ -63,8 +63,8 @@ public interface EntityOperator {
      * @param nameConverter the NameConverter
      * @return the metadata of the column
      */
-    public ColumnInfo getColumnInfo(Class<?> clazz,
-            PropertyDesc propertyDesc, NameConverter nameConverter);
+    ColumnInfo getColumnInfo(Class<?> clazz,
+                             PropertyDesc propertyDesc, NameConverter nameConverter);
 
     /**
      * DTO for metadata of the primary key which is specified by {@link PrimaryKey} annotation.

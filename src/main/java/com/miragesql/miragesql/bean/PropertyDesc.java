@@ -20,7 +20,7 @@ public interface PropertyDesc {
      *
      * @throws BeanDescException TODO TBD
      */
-    public Object getValue(Object entity);
+    Object getValue(Object entity);
 
     /**
      * Sets the value to this property to the {@code entity}.
@@ -30,49 +30,49 @@ public interface PropertyDesc {
      *
      * @throws BeanDescException TODO TBD
      */
-    public void setValue(Object entity, Object value);
+    void setValue(Object entity, Object value);
 
     /**
      * Tests whether this property is readable.
      *
      * @return true if this property is readable
      */
-    public boolean isReadable();
+    boolean isReadable();
 
     /**
      * Tests whether this property is writable.
      *
      * @return {@code true} if this property is writable
      */
-    public boolean isWritable();
+    boolean isWritable();
 
     /**
      * Returns the type of property.
      *
      * @return the property type
      */
-    public Class<?> getPropertyType();
+    Class<?> getPropertyType();
 
     /**
      * Returns the name of property.
      *
      * @return the property name
      */
-    public String getPropertyName();
+    String getPropertyName();
 
     /**
      * Returns the field object of this property.
      *
      * @return {@link Field} or {@code null} if the property's implementation is not a field.
      */
-    public Field getField();
+    Field getField();
 
     /**
      * Returns whether this property is transient (transient field or {@link Transient} annotated property).
      *
      * @return {@code true} if this property is transient
      */
-    public boolean isTransient();
+    boolean isTransient();
 
     /**
      * Returns {@link Annotation} which declared at this property.
@@ -82,6 +82,6 @@ public interface PropertyDesc {
      *
      * @return {@link Annotation} or {@code null} if no {@link Annotation} with this {@code type} is found
      */
-    public <T extends Annotation> T getAnnotation(Class<T> type);
+    <T extends Annotation> T getAnnotation(Class<T> type);
 
 }

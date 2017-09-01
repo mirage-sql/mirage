@@ -32,7 +32,6 @@ import com.miragesql.miragesql.bean.PropertyDesc;
  * {@link Enum}型をordinalの {@code int}型としてDBに保存するための {@link ValueType}実装クラス。
  * 
  * @since 1.0
- * @version $Id$
  * @author daisuke
  */
 public class EnumOrdinalValueType implements ValueType<Object> {

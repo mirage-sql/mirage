@@ -87,9 +87,9 @@ public class PropertyDescImpl implements PropertyDesc {
     /**{@inheritDoc}*/
     @Override
     public String toString() {
-        return new StringBuilder(super.toString())
-            .append("[").append(getPropertyName()).append(":").append(propertyWrapper.getType() == null ? null :
-                propertyWrapper.getType().getSimpleName()).append("]")
-            .toString();
+        return super.toString() +
+                "[" + getPropertyName() + ":" + (propertyWrapper.getType() == null ? null :
+                propertyWrapper.getType().getSimpleName()) +
+                "]";
     }
 }

@@ -143,7 +143,7 @@ import org.apache.tools.ant.Task;
  *   <tr>
  *     <td>ignoreTableNamePattern</td>
  *     <td>&nbsp;</td>
- *     <td>Ignore table name as regular expresion</td>
+ *     <td>Ignore table name as regular expression</td>
  *     <td>&nbsp;</td>
  *   </tr>
  * </table>
@@ -310,7 +310,7 @@ public class EntityGenTask extends Task {
 
     @Override
     public void execute() throws BuildException {
-        // validate partameters
+        // validate parameters
         if(StringUtil.isEmpty(driver)){
             throw new BuildException("driver is required.");
         }

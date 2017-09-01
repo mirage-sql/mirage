@@ -9,9 +9,9 @@ import com.miragesql.miragesql.bean.PropertyDesc;
 
 public interface ValueType<T> {
 
-    public boolean isSupport(Class<?> type, PropertyDesc propertyDesc);
+    boolean isSupport(Class<?> type, PropertyDesc propertyDesc);
 
-    public T getDefaultValue();
+    T getDefaultValue();
 
     /**
      * Returns the value with the type.
@@ -24,7 +24,7 @@ public interface ValueType<T> {
      * @throws SQLException if something goes wrong
      * @throws UnsupportedOperationException for unsupported operations
      */
-    public T get(Class<? extends T> type, ResultSet rs, int index) throws SQLException;
+    T get(Class<? extends T> type, ResultSet rs, int index) throws SQLException;
 
     /**
      * Returns the value with the type.
@@ -37,11 +37,11 @@ public interface ValueType<T> {
      * @throws SQLException if something goes wrong
      * @throws UnsupportedOperationException for unsupported operations
      */
-    public T get(Class<? extends T> type, ResultSet rs, String columnName) throws SQLException;
+    T get(Class<? extends T> type, ResultSet rs, String columnName) throws SQLException;
 
-    public T get(Class<? extends T> type, CallableStatement cs, int index) throws SQLException;
+    T get(Class<? extends T> type, CallableStatement cs, int index) throws SQLException;
 
-    public T get(Class<? extends T> type, CallableStatement cs, String parameterName) throws SQLException;
+    T get(Class<? extends T> type, CallableStatement cs, String parameterName) throws SQLException;
 
     /**
      * Sets the value with the type.
@@ -54,12 +54,12 @@ public interface ValueType<T> {
      * @throws SQLException if something goes wrong
      * @throws UnsupportedOperationException for unsupported operations
      */
-    public void set(Class<? extends T> type, PreparedStatement stmt, T value, int index) throws SQLException;
+    void set(Class<? extends T> type, PreparedStatement stmt, T value, int index) throws SQLException;
 
-    public Class<?> getJavaType(int sqlType);
+    Class<?> getJavaType(int sqlType);
 
-    public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException;
+    void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException;
 
-    public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException;
+    void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException;
 
 }

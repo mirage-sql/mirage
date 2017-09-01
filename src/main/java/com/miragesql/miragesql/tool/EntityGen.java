@@ -281,9 +281,7 @@ public class EntityGen {
             valueTypes.add(this.dialect.getValueType());
         }
 
-        for(ValueType<?> valueType: this.valueTypes){
-            valueTypes.add(valueType);
-        }
+        valueTypes.addAll(this.valueTypes);
 
         return valueTypes;
     }

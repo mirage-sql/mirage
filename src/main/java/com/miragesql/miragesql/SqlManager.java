@@ -20,35 +20,35 @@ public interface SqlManager {
      *
      * @param converter the name converter
      */
-    public void setNameConverter(NameConverter converter);
+    void setNameConverter(NameConverter converter);
 
     /**
      * Sets the implementation of the {@link ConnectionProvider}.
      *
      * @param connectionProvider the connection provider
      */
-    public void setConnectionProvider(ConnectionProvider connectionProvider);
+    void setConnectionProvider(ConnectionProvider connectionProvider);
 
     /**
      * Sets the implementation of the {@link Dialect}.
      *
      * @param dialect the database dialect
      */
-    public void setDialect(Dialect dialect);
+    void setDialect(Dialect dialect);
 
     /**
      * Adds the implementation of the {@link ValueType}.
      *
      * @param valueType the value type
      */
-    public void addValueType(ValueType<?> valueType);
+    void addValueType(ValueType<?> valueType);
 
     /**
      * Sets the implementation of the {@link EntityOperator}.
      *
      * @param entityOperator the entity operator
      */
-    public void setEntityOperator(EntityOperator entityOperator);
+    void setEntityOperator(EntityOperator entityOperator);
 
     /**
      * Returns the row count of the result of the given SQL.
@@ -57,7 +57,7 @@ public interface SqlManager {
      *
      * @return the row count
      */
-    public int getCount(SqlResource resource);
+    int getCount(SqlResource resource);
 
 
     /**
@@ -68,7 +68,7 @@ public interface SqlManager {
      *
      * @return the row count
      */
-    public int getCount(SqlResource resource, Object param);
+    int getCount(SqlResource resource, Object param);
 
 
     /**
@@ -80,7 +80,7 @@ public interface SqlManager {
      *
      * @return a List of Objects of type T
      */
-    public <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
+    <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
 
     /**
      * Returns a list of Objects from the result set for a given SQL.
@@ -92,7 +92,7 @@ public interface SqlManager {
      *
      * @return a List of Objects of type T
      */
-    public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
+    <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param);
 
     /**
      * Iterates over over a list of Entities produced from a result set, and calls a callback on each.
@@ -105,7 +105,7 @@ public interface SqlManager {
      *
      * @return the result of the iteration callbacks
      */
-    public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
+    <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource);
 
     /**
      * Iterates over over a list of Entities produced from a result set, and calls a callback on each using parameters.
@@ -119,7 +119,7 @@ public interface SqlManager {
      *
      * @return the result of the iteration callbacks
      */
-    public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
+    <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param);
 
     /**
      * Executes an SQL and returns only the first row as an entity, or null if nothing is returned.
@@ -130,7 +130,7 @@ public interface SqlManager {
      *
      * @return an entity
      */
-    public <T> T getSingleResult(Class<T> clazz, SqlResource resource);
+    <T> T getSingleResult(Class<T> clazz, SqlResource resource);
 
     /**
      * Executes an SQL using parameters, and returns only the first row as an entity, or null if nothing is returned.
@@ -142,7 +142,7 @@ public interface SqlManager {
      *
      * @return an entity
      */
-    public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
+    <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param);
 
     /**
      * Executes the SQL identified by the {@link SqlResource}. E.g.
@@ -151,7 +151,7 @@ public interface SqlManager {
      *
      * @return the number of updated rows
      */
-    public int executeUpdate(SqlResource resource);
+    int executeUpdate(SqlResource resource);
 
     /**
      * Executes the SQL identified by the {@link SqlResource} using parameters. E.g.
@@ -161,7 +161,7 @@ public interface SqlManager {
      *
      * @return the number of updated rows
      */
-    public int executeUpdate(SqlResource resource, Object param);
+    int executeUpdate(SqlResource resource, Object param);
 
     /**
      * Inserts the given entity.
@@ -170,7 +170,7 @@ public interface SqlManager {
      *
      * @return the number of updated rows
      */
-    public int insertEntity(Object entity);
+    int insertEntity(Object entity);
 
     /**
      * Inserts given entities in batch mode.
@@ -180,7 +180,7 @@ public interface SqlManager {
      *
      * @return the number of inserted rows
      */
-    public <T> int insertBatch(T... entities);
+    <T> int insertBatch(T... entities);
 
     /**
      * Inserts given entities in batch mode.
@@ -190,7 +190,7 @@ public interface SqlManager {
      *
      * @return the number of inserted rows
      */
-    public <T> int insertBatch(List<T> entities);
+    <T> int insertBatch(List<T> entities);
 
     /**
      * Updates the given entity.
@@ -199,7 +199,7 @@ public interface SqlManager {
      *
      * @return the number of updated rows
      */
-    public int updateEntity(Object entity);
+    int updateEntity(Object entity);
 
     /**
      * Updates given entities in batch mode.
@@ -208,7 +208,7 @@ public interface SqlManager {
      * @param entities entities to update
      * @return the number of updated rows
      */
-    public <T> int updateBatch(T... entities);
+    <T> int updateBatch(T... entities);
 
     /**
      * Updates given entities in batch mode.
@@ -217,7 +217,7 @@ public interface SqlManager {
      * @param entities entities to update
      * @return the number of updated rows
      */
-    public <T> int updateBatch(List<T> entities);
+    <T> int updateBatch(List<T> entities);
 
     /**
      * Deletes the given entity.
@@ -225,7 +225,7 @@ public interface SqlManager {
      * @param entity the entity to delete
      * @return the number of updated rows
      */
-    public int deleteEntity(Object entity);
+    int deleteEntity(Object entity);
 
     /**
      * Deletes given entities in batch mode.
@@ -235,7 +235,7 @@ public interface SqlManager {
      *
      * @return the number of deleted rows
      */
-    public <T> int deleteBatch(T... entities);
+    <T> int deleteBatch(T... entities);
 
     /**
      * Deletes given entities in batch mode.
@@ -244,7 +244,7 @@ public interface SqlManager {
      * @param entities entities to delete
      * @return the number of deleted rows
      */
-    public <T> int deleteBatch(List<T> entities);
+    <T> int deleteBatch(List<T> entities);
 
     /**
      * Finds the entity by the given primary key.
@@ -256,14 +256,14 @@ public interface SqlManager {
      * @return the entity. If the entity which corresponds to the given primary key
      *   is not found, this method returns <code>null</code>.
      */
-    public <T> T findEntity(Class<T> clazz, Object... id);
+    <T> T findEntity(Class<T> clazz, Object... id);
 
     /**
      * Invokes the stored procedure.
      *
      * @param procedureName the procedure name
      */
-    public void call(String procedureName);
+    void call(String procedureName);
 
     /**
      * Invokes the stored procedure using parameters.
@@ -271,7 +271,7 @@ public interface SqlManager {
      * @param procedureName the procedure name
      * @param parameter the parameter object
      */
-    public void call(String procedureName, Object parameter);
+    void call(String procedureName, Object parameter);
 
     /**
      * Invokes the function.
@@ -282,7 +282,7 @@ public interface SqlManager {
      *
      * @return the entity
      */
-    public <T> T call(Class<T> resultClass, String functionName);
+    <T> T call(Class<T> resultClass, String functionName);
 
     /**
      * Invokes the function using parameters.
@@ -293,7 +293,7 @@ public interface SqlManager {
      * @param <T> the entity type
      * @return the entity
      */
-    public <T> T call(Class<T> resultClass, String functionName, Object param);
+    <T> T call(Class<T> resultClass, String functionName, Object param);
 
     /**
      * Invokes a function that returns a list of entities.
@@ -304,7 +304,7 @@ public interface SqlManager {
      *
      * @return a list of entities
      */
-    public <T> List<T> callForList(Class<T> resultClass, String functionName);
+    <T> List<T> callForList(Class<T> resultClass, String functionName);
 
     /**
      * Invokes a function that returns a list of entities, using parameters.
@@ -316,6 +316,6 @@ public interface SqlManager {
      *
      * @return a list of entities
      */
-    public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);
+    <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);
 
 }

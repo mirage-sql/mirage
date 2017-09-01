@@ -23,40 +23,40 @@ public interface Session {
 	 *
 	 * @throws SessionException if something goes wrong.
 	 */
-	public void begin();
+	void begin();
 
 	/**
 	 * Commits the transaction.
 	 *
 	 * @throws SessionException if something goes wrong.
 	 */
-	public void commit();
+	void commit();
 
 	/**
 	 * Rollbacks the transaction.
 	 *
 	 * @throws SessionException if something goes wrong.
 	 */
-	public void rollback();
+	void rollback();
 
 	/**
 	 * Releases this transaction.
 	 *
 	 * @throws SessionException if something goes wrong.
 	 */
-	public void release();
+	void release();
 
 	/**
 	 * Marks the current transaction as rollback-only.
 	 */
-	public void setRollbackOnly();
+	void setRollbackOnly();
 
 	/**
 	 * Returns whether the current transaction has been marked as rollback-only or not marked.
 	 *
 	 * @return If marked true; otherwise false
 	 */
-	public boolean isRollbackOnly();
+	boolean isRollbackOnly();
 
 	/**
 	 * Returns the instance of <code>SqlManager</code>.
@@ -64,6 +64,6 @@ public interface Session {
 	 * @return the instance of <code>SqlManager</code>
 	 * @throws SessionException if something goes wrong.
 	 */
-	public SqlManager getSqlManager();
+	SqlManager getSqlManager();
 
 }

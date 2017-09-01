@@ -12,7 +12,7 @@ public interface BeanDesc {
      *
      * @return class of entity
      */
-    public Class<?> getType();
+    Class<?> getType();
 
     /**
      * Returns the {@link PropertyDesc} of this bean. <p>
@@ -22,14 +22,14 @@ public interface BeanDesc {
      *
      * @return the {@link PropertyDesc} or {@code null} if no property with this name is found
      */
-    public PropertyDesc getPropertyDesc(String name);
+    PropertyDesc getPropertyDesc(String name);
 
     /**
      * Returns the size of {@link PropertyDesc} which this entity has.
      *
      * @return size
      */
-    public int getPropertyDescSize();
+    int getPropertyDescSize();
 
     /**
      * Returns {@link PropertyDesc} of this bean.
@@ -38,7 +38,7 @@ public interface BeanDesc {
      *
      * @return the {@link PropertyDesc}
      */
-    public PropertyDesc getPropertyDesc(int i);
+    PropertyDesc getPropertyDesc(int i);
 
     /**
      * Returns the {@link Annotation} declared at this entity.
@@ -48,6 +48,6 @@ public interface BeanDesc {
      *
      * @return {@link Annotation} or {@code null} if no {@link Annotation} with this {@code type} is found
      */
-    public <T extends Annotation> T getAnnotation(Class<T> type);
+    <T extends Annotation> T getAnnotation(Class<T> type);
 
 }
