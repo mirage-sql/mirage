@@ -24,26 +24,25 @@ import com.miragesql.miragesql.exception.OgnlRuntimeException;
 import ognl.*;
 
 /**
- * Ognl用のユーティリティクラスです。
+ * Utility class for OGNL.
  *
  * @author higa
- *
  */
 @SuppressWarnings("rawtypes")
 public class OgnlUtil {
 
-    /**
-     * インスタンスを構築します。
-     */
+    /** Constructor. */
     protected OgnlUtil() {
     }
 
     /**
-     * 値を返します。
+     * Returns the value using the OGNL expression and the root object.
      *
-     * @param exp
-     * @param root
-     * @return 値
+     * @param exp the OGNL expression
+     * @param root the root object
+     *
+     * @return the value
+     *
      * @see #getValue(Object, Map, Object, String, int)
      */
     public static Object getValue(Object exp, Object root) {
@@ -51,27 +50,30 @@ public class OgnlUtil {
     }
 
     /**
-     * 値を返します。
+     * Returns the value using the OGNL expression, the root object, a path and a line number.
      *
-     * @param exp
-     * @param root
-     * @param path
-     * @param lineNumber
-     * @return 値
+     * @param exp the OGNL expression
+     * @param root the root object
+     * @param path the path
+     * @param lineNumber the line number
+     *
+     * @return the value
+     *
      * @see #getValue(Object, Map, Object, String, int)
      */
-    public static Object getValue(Object exp, Object root, String path,
-            int lineNumber) {
+    public static Object getValue(Object exp, Object root, String path, int lineNumber) {
         return getValue(exp, null, root, path, lineNumber);
     }
 
     /**
-     * 値を返します。
+     * Returns the value using the OGNL expression, the root object and a context map.
      *
-     * @param exp
-     * @param ctx
-     * @param root
-     * @return 値
+     * @param exp the OGNL expression
+     * @param ctx the context map
+     * @param root the root object
+     *
+     * @return the value
+     *
      * @see #getValue(Object, Map, Object, String, int)
      */
     public static Object getValue(Object exp, Map ctx, Object root) {
@@ -79,19 +81,19 @@ public class OgnlUtil {
     }
 
     /**
-     * 値を返します。
+     * Returns the value using the OGNL expression, the root object, a context mpa, a path and a line number.
      *
-     * @param exp
-     * @param ctx
-     * @param root
-     * @param path
-     * @param lineNumber
-     * @return 値
-     * @throws OgnlRuntimeException
-     *             OgnlExceptionが発生した場合
+     * @param exp the OGNL expression
+     * @param ctx the context map
+     * @param root the root object
+     * @param path the path
+     * @param lineNumber the line number
+     *
+     * @return the value
+     *
+     * @throws OgnlRuntimeException when a {@link ognl.OgnlException} occurs
      */
-    public static Object getValue(Object exp, Map ctx, Object root,
-            String path, int lineNumber) {
+    public static Object getValue(Object exp, Map ctx, Object root, String path, int lineNumber) {
         try {
             OgnlContext context = new OgnlContext(null, null, new DefaultMemberAccess(true));
             return Ognl.getValue(exp, context, root);
@@ -104,10 +106,12 @@ public class OgnlUtil {
     }
 
     /**
-     * 式を解析します。
+     * Parses an OGNL expression.
      *
-     * @param expression
-     * @return 解析した結果
+     * @param expression the expression
+     *
+     * @return a tree representation of the OGNL expression
+     *
      * @see #parseExpression(String, String, int)
      */
     public static Object parseExpression(String expression) {
@@ -115,17 +119,17 @@ public class OgnlUtil {
     }
 
     /**
-     * 式を解析します。
+     * Parses an OGNL expression.
      *
-     * @param expression
-     * @param path
-     * @param lineNumber
-     * @return 解析した結果
-     * @throws OgnlRuntimeException
-     *             OgnlExceptionが発生した場合
+     * @param expression the expression
+     * @param path the path
+     * @param lineNumber the line number
+     *
+     * @return a tree representation of the OGNL expression
+     *
+     * @throws OgnlRuntimeException when a {@link ognl.OgnlException} occurs
      */
-    public static Object parseExpression(String expression, String path,
-            int lineNumber) {
+    public static Object parseExpression(String expression, String path, int lineNumber) {
         try {
             return Ognl.parseExpression(expression);
         } catch (Exception ex) {
