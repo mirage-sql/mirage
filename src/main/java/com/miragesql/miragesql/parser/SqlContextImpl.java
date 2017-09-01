@@ -17,8 +17,9 @@ package com.miragesql.miragesql.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import com.miragesql.miragesql.util.CaseInsensitiveMap;
 import ognl.OgnlRuntime;
 
 /**
@@ -30,9 +31,11 @@ public class SqlContextImpl implements SqlContext {
 
     // private static Logger logger = Logger.getLogger(SqlContextImpl.class);
 
-    private CaseInsensitiveMap args = new CaseInsensitiveMap();
+    // CaseInsensitiveMap
+    private Map<String, Object> args = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
-    private CaseInsensitiveMap argTypes = new CaseInsensitiveMap();
+    // CaseInsensitiveMap
+    private Map<String, Class<?>> argTypes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
     private StringBuffer sqlBuf = new StringBuffer(255);
 
