@@ -113,7 +113,7 @@ public class SqlManagerImpl implements SqlManager {
         this.callExecutor.setBeanDescFactory(beanDescFactory);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void setNameConverter(NameConverter nameConverter) {
         this.nameConverter = nameConverter;
         this.sqlExecutor.setNameConverter(nameConverter);
@@ -124,14 +124,14 @@ public class SqlManagerImpl implements SqlManager {
         return this.nameConverter;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void setConnectionProvider(ConnectionProvider connectionProvider) {
         this.connectionProvider = connectionProvider;
         this.sqlExecutor.setConnectionProvider(connectionProvider);
         this.callExecutor.setConnectionProvider(connectionProvider);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void setEntityOperator(EntityOperator entityOperator){
         this.entityOperator = entityOperator;
         this.sqlExecutor.setEntityOperator(entityOperator);
@@ -142,7 +142,7 @@ public class SqlManagerImpl implements SqlManager {
         return this.connectionProvider;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void setDialect(Dialect dialect){
         this.dialect = dialect;
         this.sqlExecutor.setDialect(dialect);
@@ -197,27 +197,26 @@ public class SqlManagerImpl implements SqlManager {
         return MirageUtil.getSqlContext(beanDescFactory, param);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int executeUpdate(SqlResource resource) {
         return executeUpdate(resource, null);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int executeUpdate(SqlResource resource, Object param) {
         Node node = prepareNode(resource);
         SqlContext context = prepareSqlContext(param);
         node.accept(context);
 
         return sqlExecutor.executeUpdateSql(context.getSql(), context.getBindVariables(), null);
-
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> List<T> getResultList(Class<T> clazz, SqlResource resource) {
         return getResultList(clazz, resource, null);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param) {
         Node node = prepareNode(resource);
         SqlContext context = prepareSqlContext(param);
@@ -226,12 +225,12 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.getResultList(clazz, context.getSql(), context.getBindVariables());
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> T getSingleResult(Class<T> clazz, SqlResource resource) {
         return getSingleResult(clazz, resource, null);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param) {
         Node node = prepareNode(resource);
         SqlContext context = prepareSqlContext(param);
@@ -240,7 +239,7 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.getSingleResult(clazz, context.getSql(), context.getBindVariables());
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int deleteEntity(Object entity) {
         List<PropertyDesc> propDescs = new ArrayList<>();
         String executeSql = MirageUtil.buildDeleteSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
@@ -248,7 +247,7 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> int deleteBatch(T... entities) {
         if(entities.length == 0){
             return 0;
@@ -265,7 +264,7 @@ public class SqlManagerImpl implements SqlManager {
                 executeSql = sql;
 
             } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("Different entity is contained in the entity list.");
+                throw new IllegalArgumentException("A different entity is contained in the entity list.");
             }
 
             paramsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
@@ -274,7 +273,7 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, entities);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> int deleteBatch(List<T> entities) {
         return deleteBatch(entities.toArray());
     }
@@ -302,7 +301,7 @@ public class SqlManagerImpl implements SqlManager {
         }
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int insertEntity(Object entity) {
         fillPrimaryKeysBySequence(entity);
 
@@ -312,7 +311,7 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.executeUpdateSql(sql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> int insertBatch(T... entities){
         if(entities.length == 0){
             return 0;
@@ -331,7 +330,7 @@ public class SqlManagerImpl implements SqlManager {
                 executeSql = sql;
 
             } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("Different entity is contained in the entity list.");
+                throw new IllegalArgumentException("A different entity is contained in the entity list.");
             }
 
             propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
@@ -340,12 +339,12 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> int insertBatch(List<T> entities){
         return insertBatch(entities.toArray());
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int updateEntity(Object entity) {
         List<PropertyDesc> propDescs = new ArrayList<>();
         String executeSql = MirageUtil.buildUpdateSql(beanDescFactory, entityOperator, entity.getClass(), nameConverter, propDescs);
@@ -353,7 +352,7 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> int updateBatch(T... entities) {
         if(entities.length == 0){
             return 0;
@@ -370,7 +369,7 @@ public class SqlManagerImpl implements SqlManager {
                 executeSql = sql;
 
             } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("Different entity is contained in the entity list.");
+                throw new IllegalArgumentException("A different entity is contained in the entity list.");
             }
 
             propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
@@ -379,12 +378,12 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> int updateBatch(List<T> entities) {
         return updateBatch(entities.toArray());
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> T findEntity(Class<T> clazz, Object... id) {
         String executeSql = MirageUtil.buildSelectSQL(beanDescFactory, entityOperator, clazz, nameConverter);
         return sqlExecutor.getSingleResult(clazz, executeSql, id);
@@ -404,18 +403,18 @@ public class SqlManagerImpl implements SqlManager {
         this.callExecutor.setValueTypes(valueTypes);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void addValueType(ValueType<?> valueType) {
         this.sqlExecutor.addValueType(valueType);
         this.callExecutor.addValueType(valueType);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int getCount(SqlResource resource) {
         return getCount(resource, null);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public int getCount(SqlResource resource, Object param) {
         Node node = prepareNode(resource);
         SqlContext context = prepareSqlContext(param);
@@ -429,12 +428,12 @@ public class SqlManagerImpl implements SqlManager {
         return result.intValue();
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource) {
         return this.<T, R> iterate(clazz, callback, resource, null);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param) {
         Node node = prepareNode(resource);
         SqlContext context = prepareSqlContext(param);
@@ -443,37 +442,37 @@ public class SqlManagerImpl implements SqlManager {
         return sqlExecutor.<T, R> iterate(clazz, callback, context.getSql(), context.getBindVariables());
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void call(String procedureName){
         String sql = toCallString(procedureName, false);
         callExecutor.call(sql);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public void call(String procedureName, Object parameter){
         String sql = toCallString(procedureName, parameter, false);
         callExecutor.call(sql, parameter);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> T call(Class<T> resultClass, String functionName){
         String sql = toCallString(functionName, true);
         return callExecutor.call(resultClass, sql);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> T call(Class<T> resultClass, String functionName, Object param){
         String sql = toCallString(functionName, param, true);
         return callExecutor.call(resultClass, sql, param);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> List<T> callForList(Class<T> resultClass, String functionName){
         String sql = toCallString(functionName, true);
         return callExecutor.callForList(resultClass, sql);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param){
         String sql = toCallString(functionName, param, true);
         return callExecutor.callForList(resultClass, sql, param);

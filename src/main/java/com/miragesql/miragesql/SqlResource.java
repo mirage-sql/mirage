@@ -15,5 +15,4 @@ public interface SqlResource {
      * @throws IOException if something goes wrong trying to access the SQL.
      */
     InputStream getInputStream() throws IOException;
-
 }

@@ -9,25 +9,25 @@ public class PostgreSQLDialect extends StandardDialect {
 
     private PostgreResultSetValueType valueType = new PostgreResultSetValueType();
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public String getName() {
         return "postgresql";
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public ValueType<?> getValueType(){
         return valueType;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public String getSequenceSql(String sequenceName) {
         return String.format("SELECT NEXTVAL('%s')", sequenceName);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public boolean supportsGenerationType(GenerationType generationType) {
         if(generationType == GenerationType.IDENTITY){

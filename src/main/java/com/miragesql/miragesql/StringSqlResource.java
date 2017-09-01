@@ -21,19 +21,19 @@ public class StringSqlResource implements SqlResource {
         this.sql = sql;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public InputStream getInputStream() throws IOException {
         return new ByteArrayInputStream(sql.getBytes("UTF-8"));
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public String toString() {
         return "StringSqlResource [sql=" + sql + "]";
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -42,7 +42,7 @@ public class StringSqlResource implements SqlResource {
         return result;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

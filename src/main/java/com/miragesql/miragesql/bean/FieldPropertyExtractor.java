@@ -31,6 +31,7 @@ import java.util.Map;
  */
 public class FieldPropertyExtractor implements PropertyExtractor {
 
+    /**{@inheritDoc}*/
     public Map<String, PropertyWrapper> extractProperties(Class<?> clazz) {
         Map<String, PropertyWrapper> map = new LinkedHashMap<>();
         extractProperties0(clazz, map);

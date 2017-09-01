@@ -22,6 +22,7 @@ public interface Dialect {
     /**
      * Returns true if a specific primary key generation type is supported.
      * @param generationType the pk generation type
+     *
      * @return true if generation type is supported, false otherwise
      */
     boolean supportsGenerationType(GenerationType generationType);
@@ -30,6 +31,7 @@ public interface Dialect {
      * Returns an SQL select (String) to execute the sequence.
      *
      * @param sequenceName the name of the DB Sequence
+     *
      * @return an SQL select to execute the sequence
      */
     String getSequenceSql(String sequenceName);
@@ -37,6 +39,7 @@ public interface Dialect {
     /**
      * Wraps a select statement with another in order to count the rows.
      * @param sql the select to wrap with count
+     *
      * @return a select to count the rows
      */
     String getCountSql(String sql);

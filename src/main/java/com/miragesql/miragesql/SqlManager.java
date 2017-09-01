@@ -206,6 +206,7 @@ public interface SqlManager {
      *
      * @param <T> the entity type
      * @param entities entities to update
+     *
      * @return the number of updated rows
      */
     <T> int updateBatch(T... entities);
@@ -242,6 +243,7 @@ public interface SqlManager {
      *
      * @param <T> the entity type
      * @param entities entities to delete
+     *
      * @return the number of deleted rows
      */
     <T> int deleteBatch(List<T> entities);
@@ -291,6 +293,7 @@ public interface SqlManager {
      * @param functionName the function name
      * @param param the parameter object
      * @param <T> the entity type
+     *
      * @return the entity
      */
     <T> T call(Class<T> resultClass, String functionName, Object param);
@@ -317,5 +320,4 @@ public interface SqlManager {
      * @return a list of entities
      */
     <T> List<T> callForList(Class<T> resultClass, String functionName, Object param);
-
 }

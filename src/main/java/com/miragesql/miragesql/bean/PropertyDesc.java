@@ -7,7 +7,7 @@ import com.miragesql.miragesql.annotation.Transient;
 import com.miragesql.miragesql.exception.BeanDescException;
 
 /**
- * Descriptor of the property of entity.
+ * Descriptor of a property of an entity.
  */
 public interface PropertyDesc {
 

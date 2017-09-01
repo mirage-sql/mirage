@@ -17,13 +17,7 @@ public class JdbcUtil {
      * @param conn the <code>Connection</code> to close
      */
     public static void close(Connection conn){
-        if(conn != null){
-            try {
-                conn.close();
-            } catch (Exception ex){
-                // ignore
-            }
-        }
+        if(conn != null) { try { conn.close(); } catch (Exception ex) { /* ignore */ } }
     }
 
     /**
@@ -32,13 +26,7 @@ public class JdbcUtil {
      * @param stmt the <code>Statement</code> to close
      */
     public static void close(Statement stmt){
-        if(stmt != null){
-            try {
-                stmt.close();
-            } catch (Exception ex){
-                // ignore
-            }
-        }
+        if(stmt != null) { try { stmt.close(); } catch (Exception ex) { /* ignore */ } }
     }
 
     /**
@@ -47,12 +35,6 @@ public class JdbcUtil {
      * @param rs the <code>ResultSet</code> to close
      */
     public static void close(ResultSet rs){
-        if(rs != null){
-            try {
-                rs.close();
-            } catch (Exception ex){
-                // ignore
-            }
-        }
+        if(rs != null) { try { rs.close(); } catch (Exception ex) { /* ignore */ } }
     }
 }

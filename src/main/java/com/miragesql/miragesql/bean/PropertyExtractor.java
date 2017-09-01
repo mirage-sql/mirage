@@ -13,6 +13,12 @@ import java.util.Map;
  */
 public interface PropertyExtractor {
 
+    /**
+     * Extracts the properties from a class
+     * @param clazz the class to extract properties from.
+     *
+     * @return a Map of properties
+     */
     Map<String, PropertyWrapper> extractProperties(Class<?> clazz);
 
     class PropertyInfo {

@@ -3,8 +3,7 @@ package com.miragesql.miragesql.bean;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * {@link ReflectiveOperationFailedException} is thrown to indicate
- * reflective operation is failed.
+ * {@link ReflectiveOperationFailedException} is thrown to indicate reflective operation has failed.
  * 
  * @see ClassNotFoundException
  * @see InvocationTargetException

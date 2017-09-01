@@ -20,20 +20,20 @@ public class ClasspathSqlResource implements SqlResource {
         this.sqlPath = sqlPath;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public InputStream getInputStream() throws IOException {
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         return cl.getResourceAsStream(sqlPath);
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public String toString() {
         return "ClasspathSqlResource [sqlPath=" + sqlPath + "]";
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -42,7 +42,7 @@ public class ClasspathSqlResource implements SqlResource {
         return result;
     }
 
-    /**{@inheritDoc}**/
+    /**{@inheritDoc}*/
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

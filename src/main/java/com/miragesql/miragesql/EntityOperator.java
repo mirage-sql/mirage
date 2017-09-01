@@ -71,7 +71,7 @@ public interface EntityOperator {
      *
      * @see PrimaryKey
      */
-    public class PrimaryKeyInfo {
+    class PrimaryKeyInfo {
         public GenerationType generationType;
         public String generator;
 
@@ -90,12 +90,11 @@ public interface EntityOperator {
      *
      * @see Column
      */
-    public class ColumnInfo {
+    class ColumnInfo {
         public String name;
 
         public ColumnInfo(String name){
             this.name = name;
         }
     }
-
 }

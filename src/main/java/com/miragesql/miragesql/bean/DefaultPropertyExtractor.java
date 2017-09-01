@@ -13,6 +13,7 @@ import java.util.Map;
  */
 public class DefaultPropertyExtractor implements PropertyExtractor {
 
+    /**{@inheritDoc}*/
     public Map<String, PropertyWrapper> extractProperties(Class<?> clazz) {
         Map<String, PropertyInfo> map = new LinkedHashMap<>();
 

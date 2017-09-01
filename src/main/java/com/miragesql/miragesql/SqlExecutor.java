@@ -60,7 +60,7 @@ public class SqlExecutor {
      * @param valueTypes the value types to set.
      *
      * @throws IllegalArgumentException if the {@code valueTypes} is {@code null} or
-     * an element in the {@code valueTypes} is {@code null}
+     *         an element in the {@code valueTypes} is {@code null}
      */
     public void setValueTypes(List<ValueType<?>> valueTypes) {
         Validate.notNull(valueTypes);

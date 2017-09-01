@@ -36,7 +36,9 @@ public class DefaultEntityOperator implements EntityOperator {
      * @param dialect the Dialect
      * @param valueTypes the list of ValueTypes
      * @param nameConverter the NameConverter
+     *
      * @return the instance of entity class or Map
+     *
      * @throws EntityCreationFailedException if {@link EntityOperator} failed to create a result entity
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -156,5 +158,4 @@ public class DefaultEntityOperator implements EntityOperator {
         }
         return new ColumnInfo(column.name());
     }
-
 }

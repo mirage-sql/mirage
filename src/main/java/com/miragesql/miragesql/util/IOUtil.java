@@ -13,7 +13,9 @@ public class IOUtil {
     /**
      * Reads an InputStream into a byte array
      * @param in the InputStream to read from
+     *
      * @return a byte array red from the InputStream
+     *
      * @throws IORuntimeException if some other I/O error occurs.
      */
     public static byte[] readStream(InputStream in) {
@@ -39,16 +41,14 @@ public class IOUtil {
         }
     }
 
-    public static void closeQuietly(Closeable closeable){
-        if(closeable != null){
-            try {
-                closeable.close();
-            } catch (Exception ex){
-                // ignore
-            }
-        }
-    }
-
+    /**
+     * Loads ("quietly") a property file to a property object
+     *
+     * @param path the file path
+     *
+     * @return a property object with properties from a file, or null if the property file
+     * can't be opened/accessed.
+     */
     public static Properties loadProperties(String path){
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         InputStream in = null;
@@ -68,4 +68,7 @@ public class IOUtil {
         }
     }
 
+    private static void closeQuietly(Closeable closeable){
+        if(closeable != null){ try { closeable.close(); } catch (Exception ex){ /* ignore */ } }
+    }
 }

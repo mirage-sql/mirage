@@ -14,5 +14,4 @@ package com.miragesql.miragesql;
 public interface IterationCallback<T, R> {
 
     R iterate(T entity);
-
 }
