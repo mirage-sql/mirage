@@ -11,6 +11,7 @@ apply plugin: 'nebula.optional-base'
 group 'com.miragesql'
 version '2.1.0-SNAPSHOT'
 
+compileJava.options.encoding = 'UTF-8'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -22,16 +23,16 @@ repositories {
 
 
 dependencies {
-    compile 'org.javassist:javassist:3.21.0-GA'
+    compile 'org.javassist:javassist:3.22.0-GA'
     compile 'ognl:ognl:3.2.3'
     compile 'org.slf4j:slf4j-api:1.7.25'
 
     compile 'commons-dbcp:commons-dbcp:1.4', optional
-    compile 'com.zaxxer:HikariCP:2.6.3', optional
+    compile 'com.zaxxer:HikariCP:2.7.2', optional
 
-    compile "org.springframework:spring-core:3.2.5.RELEASE", optional
-    compile "org.springframework:spring-context:3.2.5.RELEASE", optional
-    compile "org.springframework:spring-jdbc:3.2.5.RELEASE", optional
+    compile "org.springframework:spring-core:3.2.18.RELEASE", optional
+    compile "org.springframework:spring-context:3.2.18.RELEASE", optional
+    compile "org.springframework:spring-jdbc:3.2.18.RELEASE", optional
 
     compile "com.google.inject:guice:4.1.0", optional
 
@@ -42,11 +43,11 @@ dependencies {
 
     compile 'junit:junit:4.12'
     testImplementation 'cglib:cglib:3.2.5'
-    testImplementation 'org.mockito:mockito-core:2.9.0'
+    testImplementation 'org.mockito:mockito-core:2.11.0'
     testImplementation 'com.h2database:h2:1.4.196'
     testImplementation 'org.hsqldb:hsqldb:2.4.0'
 
-    testImplementation 'org.springframework:spring-aop:3.2.5.RELEASE'
+    testImplementation 'org.springframework:spring-aop:3.2.18.RELEASE'
 }
 
 // JavaDoc 8 problems
