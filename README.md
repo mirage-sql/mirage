@@ -10,12 +10,12 @@ You can get Mirage-SQL from the Maven Central Repository. Add the following frag
 <dependency>
     <groupId>com.miragesql</groupId>
     <artifactId>miragesql</artifactId>
-    <version>1.3.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 or in a Gradle based project add to your ```build.gradle``` the following line:
 ```groovy
-compile 'com.miragesql:miragesql:1.3.0'
+compile 'com.miragesql:miragesql:2.0.0'
 ```
 
 If you are updating your application from a previous Mirage-SQL version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
