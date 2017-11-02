@@ -1,7 +1,7 @@
 Mirage-SQL [![Build Status](https://travis-ci.org/mirage-sql/mirage.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage) [![Join the chat at https://gitter.im/mirage-sql/mirage-sql](https://badges.gitter.im/mirage-sql/mirage-sql.svg)](https://gitter.im/mirage-sql/mirage-sql?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ======
 
-Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
+Mirage-SQL is an easy and powerful SQL-centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
 
 #### Using
 You can get Mirage-SQL from the Maven Central Repository. Add the following fragment into your `pom.xml`.
@@ -17,6 +17,8 @@ or in a Gradle based project add to your ```build.gradle``` the following line:
 ```groovy
 compile 'com.miragesql:miragesql:2.0.0'
 ```
+
+or just download them from the [Release Page](https://github.com/mirage-sql/mirage/releases).
 
 If you are updating your application from a previous Mirage-SQL version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
 
@@ -44,10 +46,11 @@ ORDER BY BOOK_ID ASC
 In Mirage-SQL, you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. 
 This feature used in the Mirage's SQL template it's called [2Way SQL](https://github.com/mirage-sql/mirage/wiki/2WaySQL).
 
-#### Links
+#### Links:
  - A **detailed documentation** is provided in the [Wiki](https://github.com/mirage-sql/mirage/wiki).
- - Support in English is provided in the [Gitter Chatroom](https://gitter.im/mirage-sql/mirage-sql).
- - If you find any bugs or issues, please report them in the [GitHub Issue Tracker](https://github.com/mirage-sql/mirage/issues).
- - Mirage-SQL has integrations with other JVM based languages too:
+ - **Support** in English is provided in the [Gitter Chatroom](https://gitter.im/mirage-sql/mirage-sql).
+ - If you find any **bugs or issues**, please report them in the [GitHub Issue Tracker](https://github.com/mirage-sql/mirage/issues).
+ - **[Release Notes](https://github.com/mirage-sql/mirage/wiki/Releases)** of all previous Mirage-SQL versions.
+ - Mirage-SQL has **integrations** with other JVM based languages too:
    - [Scala Integration](https://github.com/mirage-sql/mirage-scala)
    - [Groovy Integration](https://github.com/mirage-sql/mirage-groovy)
