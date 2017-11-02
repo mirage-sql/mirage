@@ -3,6 +3,7 @@ plugins {
 }
 
 apply plugin: 'java-library'
+apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
@@ -16,8 +17,6 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
 
@@ -48,6 +47,12 @@ dependencies {
     testImplementation 'org.hsqldb:hsqldb:2.4.0'
 
     testImplementation 'org.springframework:spring-aop:3.2.18.RELEASE'
+
+    // Use the latest Groovy version for Spock testing
+    testImplementation 'org.codehaus.groovy:groovy-all:2.4.12'
+    // Use the awesome Spock testing and specification framework even with Java
+    testImplementation 'org.spockframework:spock-core:1.0-groovy-2.4'
+
 }
 
 // JavaDoc 8 problems
