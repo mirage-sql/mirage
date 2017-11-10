@@ -3,7 +3,7 @@ Mirage-SQL [![Build Status](https://travis-ci.org/mirage-sql/mirage.svg?branch=m
 
 **`Mirage-SQL`** is an easy and powerful SQL-centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
 
-#### Using
+### Using
 You can get **`Mirage-SQL`** from the Maven Central repository. Add the following fragment into your `pom.xml`.
 
 ```xml
@@ -22,18 +22,16 @@ or just download it from the [Release Page](https://github.com/mirage-sql/mirage
 
 
 Other **`Mirage-SQL`** Modules:
- - **Mirage-SQL Test** - the testing functionality. Use in your Gradle build with: 
-   ```groovy
-     testCompile 'com.miragesql:miragesql-test:2.1.0'
-   ```
- - **Mirage-SQL Integration** - the integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/). Use in your Gradle build with:
-    ```groovy
-      compile 'com.miragesql:miragesql-integration:2.1.0'
-    ```
+
+Module|Description|Gradle|Build
+---   |---        |---   |---
+**Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-test.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-test)
+**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).|`compile 'com.miragesql:miragesql-integration:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-test.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-integration)
+
 
 If you are updating your application from a previous **`Mirage-SQL`** version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
 
-#### Example
+### Example
 
 This is a simple example of a SQL template:
 
@@ -57,7 +55,7 @@ ORDER BY BOOK_ID ASC
 With **`Mirage-SQL`** you can embed variables or conditions using `special` SQL comments, so it's a plain SQL that can be run with any SQL client tool directly. 
 This feature used in the Mirage's SQL template it's called [2Way SQL](https://github.com/mirage-sql/mirage/wiki/2WaySQL).
 
-#### Links:
+### Links:
  - A **detailed documentation** is provided in the [Wiki](https://github.com/mirage-sql/mirage/wiki).
  - **User Support** in English is provided in the [Gitter Chatroom](https://gitter.im/mirage-sql/mirage-sql).
  - If you find any **bugs or issues**, please report them in the [GitHub Issue Tracker](https://github.com/mirage-sql/mirage/issues).
