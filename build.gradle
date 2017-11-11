@@ -29,7 +29,6 @@ dependencies {
     compile 'commons-dbcp:commons-dbcp:1.4', optional
     compile 'com.zaxxer:HikariCP:2.7.3', optional
 
-    compileOnly 'org.apache.ant:ant:1.10.1'                              // provided
     compileOnly 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'  // provided
     compileOnly 'javax.servlet:servlet-api:2.5'                          // provided
 
