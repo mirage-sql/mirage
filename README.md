@@ -26,7 +26,7 @@ Other **`Mirage-SQL`** Modules:
 Module|Description|Gradle|Build
 ---   |---        |---   |---
 **Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-test.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-test)
-**Mirage-SQL Tols**|The tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-tools.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-tools)
+**Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-tools.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-tools)
 **Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).|`compile 'com.miragesql:miragesql-integration:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-test.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-integration)
 
 
