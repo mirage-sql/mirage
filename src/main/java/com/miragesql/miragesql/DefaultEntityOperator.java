@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -56,8 +57,10 @@ public class DefaultEntityOperator implements EntityOperator {
 
             T entity = null;
 
-            if(entityType == Map.class){
+            if(entityType == Map.class || entityType == HashMap.class){
                 entity = (T) new HashMap<String, Object>();
+            } else if(entityType == LinkedHashMap.class){
+                entity = (T) new LinkedHashMap<String, Object>();
             } else {
                 Constructor<T>[] constructors = (Constructor<T>[]) entityType.getDeclaredConstructors();
                 for(Constructor<T> constructor: constructors){

@@ -1,5 +1,7 @@
 package com.miragesql.miragesql.bean;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,7 +33,7 @@ public class BeanDescFactory {
     }
 
     public BeanDesc getBeanDesc(Class<?> clazz){
-        if(clazz == Map.class){
+        if(clazz == Map.class || clazz == HashMap.class || clazz == LinkedHashMap.class){
             return new MapBeanDescImpl();
         }
 
