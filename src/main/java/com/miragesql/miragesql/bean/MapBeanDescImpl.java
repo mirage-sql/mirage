@@ -1,9 +1,7 @@
 package com.miragesql.miragesql.bean;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,7 +9,9 @@ public class MapBeanDescImpl implements BeanDesc {
 
     private Map<String, Object> map;
     private PropertyDesc[] propertyArray;
-    private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<>();
+
+    // keep the order of original properties
+    private Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
 
     public MapBeanDescImpl(){
     }
@@ -26,7 +26,7 @@ public class MapBeanDescImpl implements BeanDesc {
             Object value = entry.getValue();
             PropertyDesc pd = new MapPropertyDescImpl(propertyName, value);
             properties.add(pd);
-            this.propertyMap.put(propertyName, pd);
+            addToMap(propertyName, pd);
         }
 
         this.propertyArray = properties.toArray(new PropertyDesc[properties.size()]);
@@ -72,5 +72,11 @@ public class MapBeanDescImpl implements BeanDesc {
     /**{@inheritDoc}*/
     public <T extends Annotation> T getAnnotation(Class<T> type) {
         return null;
+    }
+
+    private void addToMap(String propertyName, PropertyDesc pd) {
+        synchronized (propertyMap) {
+            propertyMap.put(propertyName,pd);
+        }
     }
 }
