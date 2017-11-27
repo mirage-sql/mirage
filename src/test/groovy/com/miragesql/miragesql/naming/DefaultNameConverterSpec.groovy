@@ -3,7 +3,7 @@ package com.miragesql.miragesql.naming
 import spock.lang.Shared
 import spock.lang.Specification
 
-class DefaultNameConverterTest  extends Specification {
+class DefaultNameConverterSpec extends Specification {
     @Shared converter = new DefaultNameConverter()
 
     def "column to property with data"(){

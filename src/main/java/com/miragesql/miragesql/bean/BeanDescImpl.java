@@ -1,16 +1,15 @@
 package com.miragesql.miragesql.bean;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanDescImpl implements BeanDesc {
 
     private Class<?> clazz;
-    private Map<String, PropertyDesc> propertyMap = new ConcurrentHashMap<>();
     private PropertyDesc[] propertyArray;
+    // keep the order of original properties
+    private Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
 
     public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){
         this.clazz = clazz;
@@ -27,7 +26,8 @@ public class BeanDescImpl implements BeanDesc {
 //			}
 
             list.add(pd);
-            this.propertyMap.put(pd.getPropertyName(), pd);
+            // this.propertyMap.put(pd.getPropertyName(), pd);
+            addToMap(pd.getPropertyName(),pd);
         }
 
 //		// for Scala classes
@@ -107,5 +107,11 @@ public class BeanDescImpl implements BeanDesc {
     @Override
     public String toString() {
         return super.toString() + "[" + (clazz == null ? null : clazz.getSimpleName()) + "]";
+    }
+
+    private void addToMap(String propertyName, PropertyDesc pd) {
+        synchronized (propertyMap) {
+            propertyMap.put(propertyName,pd);
+        }
     }
 }

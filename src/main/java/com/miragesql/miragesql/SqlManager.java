@@ -1,6 +1,7 @@
 package com.miragesql.miragesql;
 
 import java.util.List;
+import java.util.Map;
 
 import com.miragesql.miragesql.dialect.Dialect;
 import com.miragesql.miragesql.naming.NameConverter;
@@ -73,6 +74,7 @@ public interface SqlManager {
 
     /**
      * Returns a list of Objects from the result set for a given SQL.
+     * These objects can be any POJO or even a Map (or LinkedHashMap).
      *
      * @param <T> the entity type
      * @param clazz the type
@@ -84,6 +86,7 @@ public interface SqlManager {
 
     /**
      * Returns a list of Objects from the result set for a given SQL.
+     * These objects can be any POJO or even a Map (or LinkedHashMap).
      *
      * @param <T> the entity type
      * @param clazz the type
@@ -123,6 +126,7 @@ public interface SqlManager {
 
     /**
      * Executes an SQL and returns only the first row as an entity, or null if nothing is returned.
+     * This entity can be any POJO or even a Map (or LinkedHashMap).
      *
      * @param clazz the type
      * @param resource the {@link SqlResource} that identifies the SQL
@@ -134,6 +138,7 @@ public interface SqlManager {
 
     /**
      * Executes an SQL using parameters, and returns only the first row as an entity, or null if nothing is returned.
+     * This entity can be any POJO or even a Map (or LinkedHashMap).
      *
      * @param clazz the type
      * @param resource the {@link SqlResource} that identifies the SQL
@@ -173,6 +178,16 @@ public interface SqlManager {
     int insertEntity(Object entity);
 
     /**
+     * Inserts the given entity.
+     *
+     * @param entityName the entity name to insert
+     * @param entity the entity to insert
+     *
+     * @return the number of updated rows
+     */
+    int insertEntity(String entityName, Object entity);
+
+    /**
      * Inserts given entities in batch mode.
      *
      * @param <T> the entity type
@@ -186,11 +201,23 @@ public interface SqlManager {
      * Inserts given entities in batch mode.
      *
      * @param <T> the entity type
+     * @param entityName the entity name to insert
      * @param entities entities to insert
      *
      * @return the number of inserted rows
      */
-    <T> int insertBatch(List<T> entities);
+    <T> int insertBatch(String entityName, T... entities);
+
+    /**
+     * Inserts given entities in batch mode.
+     *
+     * @param <T> the entity type
+     * @param entityName the entity name to insert
+     * @param entities entities to insert
+     *
+     * @return the number of inserted rows
+     */
+    <T> int insertBatch(String entityName, List<T> entities);
 
     /**
      * Updates the given entity.
@@ -200,6 +227,16 @@ public interface SqlManager {
      * @return the number of updated rows
      */
     int updateEntity(Object entity);
+
+    /**
+     * Updates the given entity.
+     *
+     * @param entityName the entity name to update
+     * @param entity the entity to update
+     *
+     * @return the number of updated rows
+     */
+    int updateEntity(String entityName, Object entity);
 
     /**
      * Updates given entities in batch mode.
@@ -215,10 +252,31 @@ public interface SqlManager {
      * Updates given entities in batch mode.
      *
      * @param <T> the entity type
+     * @param entityName the entity name to update
+     * @param entities entities to update
+     *
+     * @return the number of updated rows
+     */
+    <T> int updateBatch(String entityName, T... entities);
+
+    /**
+     * Updates given entities in batch mode.
+     *
+     * @param <T> the entity type
      * @param entities entities to update
      * @return the number of updated rows
      */
     <T> int updateBatch(List<T> entities);
+
+    /**
+     * Updates given entities in batch mode.
+     *
+     * @param <T> the entity type
+     * @param entityName the entity name to update
+     * @param entities entities to update
+     * @return the number of updated rows
+     */
+    <T> int updateBatch(String entityName, List<T> entities);
 
     /**
      * Deletes the given entity.
@@ -227,6 +285,14 @@ public interface SqlManager {
      * @return the number of updated rows
      */
     int deleteEntity(Object entity);
+
+    /**
+     * Deletes the given entity.
+     * @param entityName the entity name to delete
+     * @param entity the entity to delete
+     * @return the number of updated rows
+     */
+    int deleteEntity(String entityName, Object entity);
 
     /**
      * Deletes given entities in batch mode.
@@ -242,11 +308,33 @@ public interface SqlManager {
      * Deletes given entities in batch mode.
      *
      * @param <T> the entity type
+     * @param entityName the entity name to delete
+     * @param entities entities to delete
+     *
+     * @return the number of deleted rows
+     */
+    <T> int deleteBatch(String entityName, T... entities);
+
+    /**
+     * Deletes given entities in batch mode.
+     *
+     * @param <T> the entity type
      * @param entities entities to delete
      *
      * @return the number of deleted rows
      */
     <T> int deleteBatch(List<T> entities);
+
+    /**
+     * Deletes given entities in batch mode.
+     *
+     * @param <T> the entity type
+     * @param entityName the entity name to delete
+     * @param entities entities to delete
+     *
+     * @return the number of deleted rows
+     */
+    <T> int deleteBatch(String entityName, List<T> entities);
 
     /**
      * Finds the entity by the given primary key.
@@ -259,6 +347,19 @@ public interface SqlManager {
      *   is not found, this method returns <code>null</code>.
      */
     <T> T findEntity(Class<T> clazz, Object... id);
+
+    /**
+     * Finds the entity by the given primary key.
+     *
+     * @param <T> the type of entity
+     * @param entityName the entity name to delete
+     * @param clazz the type of entity
+     * @param id the primary key
+     *
+     * @return the entity. If the entity which corresponds to the given primary key
+     *   is not found, this method returns <code>null</code>.
+     */
+    <T> T findEntity(String entityName, Class<T> clazz, Object... id);
 
     /**
      * Invokes the stored procedure.

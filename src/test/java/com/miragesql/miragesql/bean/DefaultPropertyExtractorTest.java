@@ -20,16 +20,16 @@ public class DefaultPropertyExtractorTest extends TestCase {
 	public void testDefaultPropertyExtractor_magazine() {
 		Map<String, PropertyWrapper> properties = extractor.extractProperties(Magazine.class);
 
-		// フィールド名よりも、accessorの名前を優先してプロパティ名を抽出する
+		// The property name is extracted by giving preference to the name of the accessor rather than the field name
 		assertTrue(properties.containsKey("id"));
 
-		// アクセサが無い場合も、フィールドをプロパティとして抽出する
+		// Even when there is no accessor, the field is extracted as a property
 		assertTrue(properties.containsKey("magazineCode"));
 
-		// 見えないフィールドは抽出しない
+		// Do not extract invisible fields
 		assertFalse(properties.containsKey("price"));
 
-		// staticだったりfinalだったりする、定数フィールドはプロパティとして抽出しない
+		// static final constants are not extracted
 		assertFalse(properties.containsKey("CONSTANT"));
 		assertEquals(2, properties.size());
 	}

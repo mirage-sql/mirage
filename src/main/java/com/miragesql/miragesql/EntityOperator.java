@@ -3,6 +3,7 @@ package com.miragesql.miragesql;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.List;
+import java.util.Objects;
 
 import com.miragesql.miragesql.annotation.Column;
 import com.miragesql.miragesql.annotation.PrimaryKey;
@@ -52,8 +53,7 @@ public interface EntityOperator {
      * @param nameConverter the NameConverter
      * @return the metadata of the primary key
      */
-    PrimaryKeyInfo getPrimaryKeyInfo(Class<?> clazz,
-                                     PropertyDesc propertyDesc, NameConverter nameConverter);
+    PrimaryKeyInfo getPrimaryKeyInfo(Class<?> clazz, PropertyDesc propertyDesc, NameConverter nameConverter);
 
     /**
      * Retrieves the metadata of the column from the given PropertyDesc.
@@ -63,11 +63,10 @@ public interface EntityOperator {
      * @param nameConverter the NameConverter
      * @return the metadata of the column
      */
-    ColumnInfo getColumnInfo(Class<?> clazz,
-                             PropertyDesc propertyDesc, NameConverter nameConverter);
+    ColumnInfo getColumnInfo(Class<?> clazz, PropertyDesc propertyDesc, NameConverter nameConverter);
 
     /**
-     * DTO for metadata of the primary key which is specified by {@link PrimaryKey} annotation.
+     * DTO for metadata of the primary key which is also used by the {@link PrimaryKey} annotation.
      *
      * @see PrimaryKey
      */
@@ -83,10 +82,15 @@ public interface EntityOperator {
             this.generationType = generationType;
             this.generator = generator;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            return Objects.deepEquals(this, obj);
+        }
     }
 
     /**
-     * DTO for metadata of the column which is specified by {@link Column} annotation.
+     * DTO for metadata of the column which is also used by the {@link Column} annotation.
      *
      * @see Column
      */
@@ -95,6 +99,11 @@ public interface EntityOperator {
 
         public ColumnInfo(String name){
             this.name = name;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return Objects.equals(this, obj);
         }
     }
 }

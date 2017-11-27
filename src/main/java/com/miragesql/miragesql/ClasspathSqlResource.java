@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * {@link SqlResource} represented by an sql path (of the file containing the SQL.
+ * {@link SqlResource} represented by an sql path, more precisely the classpath resource of the file containing
+ * the SQL string, found by the rules of: {@link ClassLoader#getResource(String)}.
  */
 public class ClasspathSqlResource implements SqlResource {
 
