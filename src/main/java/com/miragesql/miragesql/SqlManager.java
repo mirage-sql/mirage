@@ -38,7 +38,7 @@ public interface SqlManager {
     void setDialect(Dialect dialect);
 
     /**
-     * Adds the implementation of the {@link ValueType}.
+     * Adds an implementation of {@link ValueType}.
      *
      * @param valueType the value type
      */
@@ -52,7 +52,7 @@ public interface SqlManager {
     void setEntityOperator(EntityOperator entityOperator);
 
     /**
-     * Returns the row count of the result of the given SQL.
+     * Returns the row count of the result of the given select SQL.
      *
      * @param resource the {@link SqlResource} that identifies the SQL
      *
@@ -73,7 +73,7 @@ public interface SqlManager {
 
 
     /**
-     * Returns a list of Objects from the result set for a given SQL.
+     * Returns a list of Objects from the result set for a given select SQL.
      * These objects can be any POJO or even a Map (or LinkedHashMap).
      *
      * @param <T> the entity type
@@ -85,7 +85,7 @@ public interface SqlManager {
     <T> List<T> getResultList(Class<T> clazz, SqlResource resource);
 
     /**
-     * Returns a list of Objects from the result set for a given SQL.
+     * Returns a list of Objects from the result set for a given select SQL.
      * These objects can be any POJO or even a Map (or LinkedHashMap).
      *
      * @param <T> the entity type
@@ -207,6 +207,16 @@ public interface SqlManager {
      * @return the number of inserted rows
      */
     <T> int insertBatch(String entityName, T... entities);
+
+    /**
+     * Inserts given entities in batch mode.
+     *
+     * @param <T> the entity type
+     * @param entities entities to insert
+     *
+     * @return the number of inserted rows
+     */
+    <T> int insertBatch(List<T> entities);
 
     /**
      * Inserts given entities in batch mode.
