@@ -1,8 +1,6 @@
 package com.miragesql.miragesql.util
 
 import com.miragesql.miragesql.DefaultEntityOperator
-import com.miragesql.miragesql.annotation.PrimaryKey
-import com.miragesql.miragesql.annotation.Table
 import com.miragesql.miragesql.bean.BeanDesc
 import com.miragesql.miragesql.bean.BeanDescFactory
 import com.miragesql.miragesql.bean.PropertyDesc
