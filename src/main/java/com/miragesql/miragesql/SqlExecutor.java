@@ -90,7 +90,7 @@ public class SqlExecutor {
             }
         }
 
-        logger.info(sb.toString().trim());
+        logger.debug(sb.toString().trim());
     }
 
     private static void printParameters(PropertyDesc[] propDescs, Object entity){
@@ -98,7 +98,7 @@ public class SqlExecutor {
             return;
         }
         for(int i=0; i<propDescs.length; i++){
-            logger.info(String.format("params[%d]=%s", i, propDescs[i].getValue(entity)));
+            logger.debug(String.format("params[%d]=%s", i, propDescs[i].getValue(entity)));
         }
     }
 
@@ -107,7 +107,7 @@ public class SqlExecutor {
             return;
         }
         for(int i=0; i<params.length; i++){
-            logger.info(String.format("params[%d]=%s", i, params[i]));
+            logger.debug(String.format("params[%d]=%s", i, params[i]));
         }
     }
 
@@ -132,7 +132,7 @@ public class SqlExecutor {
 
             List<T> list = new ArrayList<>();
 
-            if(logger.isInfoEnabled()){
+            if (logger.isDebugEnabled()) {
                 printSql(sql);
                 printParameters(params);
             }
@@ -181,7 +181,7 @@ public class SqlExecutor {
             stmt = connectionProvider.getConnection().prepareStatement(sql);
             setParameters(stmt, params);
 
-            if(logger.isInfoEnabled()){
+            if (logger.isDebugEnabled()) {
                 printSql(sql);
                 printParameters(params);
             }
@@ -232,7 +232,7 @@ public class SqlExecutor {
             stmt = connectionProvider.getConnection().prepareStatement(sql);
             setParameters(stmt, params);
 
-            if(logger.isInfoEnabled()){
+            if (logger.isDebugEnabled()) {
                 printSql(sql);
                 printParameters(params);
             }
@@ -277,7 +277,7 @@ public class SqlExecutor {
         try {
             Connection conn = connectionProvider.getConnection();
 
-            if(logger.isInfoEnabled()){
+            if (logger.isDebugEnabled()) {
                 printSql(sql);
                 printParameters(propDescs);
             }
@@ -325,7 +325,7 @@ public class SqlExecutor {
         try {
             Connection conn = connectionProvider.getConnection();
 
-            if(logger.isInfoEnabled()){
+            if (logger.isDebugEnabled()) {
                 printSql(sql);
                 printParameters(params);
             }
@@ -373,11 +373,11 @@ public class SqlExecutor {
         try {
             Connection conn = connectionProvider.getConnection();
 
-            if(logger.isInfoEnabled()){
+            if (logger.isDebugEnabled()) {
                 printSql(sql);
                 for(int i=0; i < propDescsList.size(); i++){
                     PropertyDesc[] propDescs = propDescsList.get(i);
-                    logger.info("[" + i + "]");
+                    logger.debug("[" + i + "]");
                     printParameters(propDescs, entities[i]);
                 }
             }
