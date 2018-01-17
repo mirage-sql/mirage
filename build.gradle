@@ -23,26 +23,26 @@ repositories {
 
 dependencies {
     compile 'org.javassist:javassist:3.22.0-GA'
-    compile 'ognl:ognl:3.2.3'
+    compile 'ognl:ognl:3.2.4'
     compile 'org.slf4j:slf4j-api:1.7.25'
 
     compile 'commons-dbcp:commons-dbcp:1.4', optional
-    compile 'com.zaxxer:HikariCP:2.7.3', optional
+    compile 'com.zaxxer:HikariCP:2.7.6', optional
 
     compileOnly 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'  // provided
     compileOnly 'javax.servlet:servlet-api:2.5'                          // provided
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'cglib:cglib:3.2.5'
-    testImplementation 'org.mockito:mockito-core:2.12.0'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
     testImplementation 'org.apache.commons:commons-lang3:3.7'
     testImplementation 'com.h2database:h2:1.4.196'
     testImplementation 'org.hsqldb:hsqldb:2.4.0'
 
     // Use the latest Groovy version for Spock testing
-    testImplementation 'org.codehaus.groovy:groovy-all:2.4.12'
+    testImplementation 'org.codehaus.groovy:groovy-all:2.4.13'
     // Use the awesome Spock testing and specification framework even with Java
-    testImplementation 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
 
 }
 
