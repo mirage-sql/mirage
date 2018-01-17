@@ -77,6 +77,7 @@ class MirageUtilSpec extends Specification {
     }
 
     // UPDATE
+/*
     def "deprecated buildUpdateSql String with data"() {
         expect:
             MirageUtil.buildUpdateSql(descriptor, operator, clazz,converter,descs) == result
@@ -86,15 +87,16 @@ class MirageUtilSpec extends Specification {
             // new BeanDescFactory()| new DefaultEntityOperator()|Book.class       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ? "
             new BeanDescFactory()| new DefaultEntityOperator()|BookPartial.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ? "
     }
+*/
 
     def "buildUpdateSql String with data"() {
         expect:
             MirageUtil.buildUpdateSql(name, descriptor, operator, entity,converter,descs) == result
         where:
             name |descriptor           |operator                    |entity                           |converter                 |descs                        || result
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookChanged()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
+//            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookChanged()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
           //null |new BeanDescFactory()| new DefaultEntityOperator()|new Book()                       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookPartial()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
+//            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookPartial()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
            "book"|new BeanDescFactory()| new DefaultEntityOperator()|[id:1,name:"a"]                  |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ? WHERE ID = ?"
            "book"|new BeanDescFactory()| new DefaultEntityOperator()|[id:1,name:"a",title:"",year:199]|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ?"
     }
