@@ -57,9 +57,9 @@ class MirageUtilSpec extends Specification {
             MirageUtil.buildInsertSql(descriptor, operator, clazz,converter,descs) == result
         where:
             descriptor           |operator                    |clazz            |converter                 |descs                        || result
-            new BeanDescFactory()| new DefaultEntityOperator()|BookChanged.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO book (NAME, YEAR, TITLE) VALUES (?, ?, ?)"
-            new BeanDescFactory()| new DefaultEntityOperator()|Book.class       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK (NAME, ID, YEAR, TITLE) VALUES (?, ?, ?, ?)"
-            new BeanDescFactory()| new DefaultEntityOperator()|BookPartial.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK_PARTIAL (NAME, YEAR, TITLE) VALUES (?, ?, ?)"
+            new BeanDescFactory()| new DefaultEntityOperator()|BookChanged.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO book (NAME, TITLE, YEAR) VALUES (?, ?, ?)"
+            new BeanDescFactory()| new DefaultEntityOperator()|Book.class       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK (ID, NAME, TITLE, YEAR) VALUES (?, ?, ?, ?)"
+            new BeanDescFactory()| new DefaultEntityOperator()|BookPartial.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK_PARTIAL (NAME, TITLE, YEAR) VALUES (?, ?, ?)"
     }
 
     def "buildInsertSql String with data"() {
@@ -67,9 +67,9 @@ class MirageUtilSpec extends Specification {
             MirageUtil.buildInsertSql(name, descriptor, operator, entity,converter,descs) == result
         where:
             name |descriptor           |operator                    |entity                           |converter                 |descs                        || result
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookChanged()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO book (NAME, YEAR, TITLE) VALUES (?, ?, ?)"
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new Book()                       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK (NAME, ID, YEAR, TITLE) VALUES (?, ?, ?, ?)"
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookPartial()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK_PARTIAL (NAME, YEAR, TITLE) VALUES (?, ?, ?)"
+            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookChanged()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO book (NAME, TITLE, YEAR) VALUES (?, ?, ?)"
+            null |new BeanDescFactory()| new DefaultEntityOperator()|new Book()                       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK (ID, NAME, TITLE, YEAR) VALUES (?, ?, ?, ?)"
+            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookPartial()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO BOOK_PARTIAL (NAME, TITLE, YEAR) VALUES (?, ?, ?)"
            "book"|new BeanDescFactory()| new DefaultEntityOperator()|[name:"",title:"",year:1999]     |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO book (NAME, TITLE, YEAR) VALUES (?, ?, ?)"
            "book"|new BeanDescFactory()| new DefaultEntityOperator()|[id:1,name:"",title:"",year:1999]|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "INSERT INTO book (ID, NAME, TITLE, YEAR) VALUES (?, ?, ?, ?)"
     }
@@ -80,9 +80,9 @@ class MirageUtilSpec extends Specification {
             MirageUtil.buildUpdateSql(descriptor, operator, clazz,converter,descs) == result
         where:
             descriptor           |operator                    |clazz            |converter                 |descs                        || result
-            new BeanDescFactory()| new DefaultEntityOperator()|BookChanged.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ? "
-            // new BeanDescFactory()| new DefaultEntityOperator()|Book.class       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ? "
-            new BeanDescFactory()| new DefaultEntityOperator()|BookPartial.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ? "
+            new BeanDescFactory()| new DefaultEntityOperator()|BookChanged.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ? "
+            // new BeanDescFactory()| new DefaultEntityOperator()|Book.class       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ? "
+            new BeanDescFactory()| new DefaultEntityOperator()|BookPartial.class|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ? "
     }
 
     def "buildUpdateSql String with data"() {
@@ -90,9 +90,9 @@ class MirageUtilSpec extends Specification {
             MirageUtil.buildUpdateSql(name, descriptor, operator, entity,converter,descs) == result
         where:
             name |descriptor           |operator                    |entity                           |converter                 |descs                        || result
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookChanged()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
-          //null |new BeanDescFactory()| new DefaultEntityOperator()|new Book()                       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
-            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookPartial()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, YEAR = ?, TITLE = ? WHERE ID = ?"
+            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookChanged()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ?"
+          //null |new BeanDescFactory()| new DefaultEntityOperator()|new Book()                       |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ?"
+            null |new BeanDescFactory()| new DefaultEntityOperator()|new BookPartial()                |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE BOOK_PARTIAL SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ?"
            "book"|new BeanDescFactory()| new DefaultEntityOperator()|[id:1,name:"a"]                  |new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ? WHERE ID = ?"
            "book"|new BeanDescFactory()| new DefaultEntityOperator()|[id:1,name:"a",title:"",year:199]|new DefaultNameConverter()|new ArrayList<PropertyDesc>()|| "UPDATE book SET NAME = ?, TITLE = ?, YEAR = ? WHERE ID = ?"
     }
@@ -125,28 +125,4 @@ class MirageUtilSpec extends Specification {
         BeanDesc beanDesc = bdf.getBeanDesc(clazz)
         PropertyDesc pd = beanDesc.getPropertyDesc(column);
     }
-}
-
-// Entity NOT annotated at all
-class Book {
-    Long    id
-    String  name
-    String  title
-    Integer year
-}
-
-// Entity partially annotated
-class BookPartial {
-    @PrimaryKey(generationType=PrimaryKey.GenerationType.IDENTITY) Long id
-    String  name
-    String  title
-    Integer year
-}
-
-// Entity annotated, but with default name changed.
-@Table(name = "book") class BookChanged {
-    @PrimaryKey(generationType=PrimaryKey.GenerationType.IDENTITY) Long id
-    String  name
-    String  title
-    Integer year
 }
