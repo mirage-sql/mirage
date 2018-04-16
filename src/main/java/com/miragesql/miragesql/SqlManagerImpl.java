@@ -35,6 +35,7 @@ import com.miragesql.miragesql.type.IntegerPrimitiveValueType;
 import com.miragesql.miragesql.type.IntegerValueType;
 import com.miragesql.miragesql.type.LongPrimitiveValueType;
 import com.miragesql.miragesql.type.LongValueType;
+import com.miragesql.miragesql.type.ObjectValueType;
 import com.miragesql.miragesql.type.ShortPrimitiveValueType;
 import com.miragesql.miragesql.type.ShortValueType;
 import com.miragesql.miragesql.type.SqlDateValueType;
@@ -95,6 +96,7 @@ public class SqlManagerImpl implements SqlManager {
         addValueType(new EnumStringValueType());
         addValueType(new EnumOrdinalValueType());
         addValueType(new EnumOneBasedOrdinalValueType());
+        addValueType(new ObjectValueType());
 //		addValueType(new com.miragesql.miragesql.type.DefaultValueType());
 
         setDialect(dialect);
