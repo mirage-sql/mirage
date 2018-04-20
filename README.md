@@ -1,4 +1,4 @@
-Mirage-SQL [![Build Status](https://travis-ci.org/mirage-sql/mirage.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage) [![Join the chat at https://gitter.im/mirage-sql/mirage-sql](https://badges.gitter.im/mirage-sql/mirage-sql.svg)](https://gitter.im/mirage-sql/mirage-sql?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Mirage-SQL [![Build Status](https://travis-ci.org/mirage-sql/mirage.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.miragesql/miragesql/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.miragesql/miragesql) [![Join the chat at https://gitter.im/mirage-sql/mirage-sql](https://badges.gitter.im/mirage-sql/mirage-sql.svg)](https://gitter.im/mirage-sql/mirage-sql?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ======
 
 **`Mirage-SQL`** is an easy and powerful SQL-centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.
