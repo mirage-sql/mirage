@@ -79,10 +79,9 @@ public class StringUtil {
             return null;
         }
         StringBuffer buf = new StringBuffer(100);
-        int pos = 0;
         int pos2 = 0;
         while (true) {
-            pos = text.indexOf(fromText, pos2);
+            int pos = text.indexOf(fromText, pos2);
             if (pos == 0) {
                 buf.append(toText);
                 pos2 = fromText.length();
