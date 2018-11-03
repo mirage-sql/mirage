@@ -29,20 +29,20 @@ public class IntegerPrimitiveValueType extends AbstractValueType<Integer> {
     }
 
     public Integer get(Class<? extends Integer> type, CallableStatement cs, int index) throws SQLException {
-        Integer value = cs.getInt(index);
+        int value = cs.getInt(index);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
     }
 
     public Integer get(Class<? extends Integer> type, CallableStatement cs, String parameterName) throws SQLException {
-        Integer value = cs.getInt(parameterName);
+        int value = cs.getInt(parameterName);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;

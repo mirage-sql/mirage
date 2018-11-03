@@ -36,20 +36,20 @@ public class BooleanValueType extends AbstractValueType<Boolean> {
     }
 
     public Boolean get(Class<? extends Boolean> type, CallableStatement cs, int index) throws SQLException {
-        Boolean value = cs.getBoolean(index);
+        boolean value = cs.getBoolean(index);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
     }
 
     public Boolean get(Class<? extends Boolean> type, CallableStatement cs, String parameterName) throws SQLException {
-        Boolean value = cs.getBoolean(parameterName);
+        boolean value = cs.getBoolean(parameterName);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;

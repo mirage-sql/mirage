@@ -37,20 +37,20 @@ public class ShortValueType extends AbstractValueType<Short> {
     }
 
     public Short get(Class<? extends Short> type, CallableStatement cs, int index) throws SQLException {
-        Short value = cs.getShort(index);
+        short value = cs.getShort(index);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
     }
 
     public Short get(Class<? extends Short> type, CallableStatement cs, String parameterName) throws SQLException {
-        Short value = cs.getShort(parameterName);
+        short value = cs.getShort(parameterName);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
