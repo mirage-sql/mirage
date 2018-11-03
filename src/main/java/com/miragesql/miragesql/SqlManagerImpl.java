@@ -3,6 +3,7 @@ package com.miragesql.miragesql;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -166,7 +167,7 @@ public class SqlManagerImpl implements SqlManager {
                 throw new RuntimeException(String.format(
                         "resource: %s is not found.", resource));
             }
-            sql = new String(IOUtil.readStream(in), "UTF-8");
+            sql = new String(IOUtil.readStream(in), StandardCharsets.UTF_8);
         } catch (IORuntimeException ex){
             throw new IORuntimeException(String.format("Failed to load SQL from: %s", resource), ex.getCause());
 

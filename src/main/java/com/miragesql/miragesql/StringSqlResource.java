@@ -3,6 +3,7 @@ package com.miragesql.miragesql;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * {@link SqlResource} represented by an SQL string.
@@ -24,7 +25,7 @@ public class StringSqlResource implements SqlResource {
     /**{@inheritDoc}*/
     @Override
     public InputStream getInputStream() throws IOException {
-        return new ByteArrayInputStream(sql.getBytes("UTF-8"));
+        return new ByteArrayInputStream(sql.getBytes(StandardCharsets.UTF_8));
     }
 
     /**{@inheritDoc}*/
