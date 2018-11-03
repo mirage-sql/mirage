@@ -3,7 +3,6 @@ package com.miragesql.miragesql.bean;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MapBeanDescImpl implements BeanDesc {
 
