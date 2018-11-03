@@ -238,8 +238,8 @@ public class SqlParserImpl implements SqlParser {
      * @return <code>true</code> if in the ELSE branch, <code>false</code> otherwise.
      */
     protected boolean isElseMode() {
-        for (int i = 0; i < nodeStack.size(); ++i) {
-            if (nodeStack.get(i) instanceof ElseNode) {
+        for (Node node : nodeStack) {
+            if (node instanceof ElseNode) {
                 return true;
             }
         }

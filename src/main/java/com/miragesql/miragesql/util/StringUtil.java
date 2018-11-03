@@ -462,8 +462,8 @@ public class StringUtil {
             return "";
         }
         StringBuffer sb = new StringBuffer(bytes.length * 2);
-        for (int i = 0; i < bytes.length; ++i) {
-            appendHex(sb, bytes[i]);
+        for (byte b : bytes) {
+            appendHex(sb, b);
         }
         return sb.toString();
     }
@@ -526,8 +526,8 @@ public class StringUtil {
             return StringUtil.capitalize(s);
         }
         StringBuffer buf = new StringBuffer(40);
-        for (int i = 0; i < array.length; ++i) {
-            buf.append(StringUtil.capitalize(array[i]));
+        for (String string : array) {
+            buf.append(StringUtil.capitalize(string));
         }
         return buf.toString();
     }

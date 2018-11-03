@@ -359,8 +359,8 @@ public class Validate {
      */
     public static void noNullElements(Object[] array, String message) {
         Validate.notNull(array);
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
+        for (Object element : array) {
+            if (element == null) {
                 throw new IllegalArgumentException(message);
             }
         }
@@ -414,8 +414,8 @@ public class Validate {
      */
     public static void noNullElements(Collection<?> collection, String message) {
         Validate.notNull(collection);
-        for (Iterator<?> it = collection.iterator(); it.hasNext();) {
-            if (it.next() == null) {
+        for (Object element : collection) {
+            if (element == null) {
                 throw new IllegalArgumentException(message);
             }
         }
