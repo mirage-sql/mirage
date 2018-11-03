@@ -87,7 +87,7 @@ public class StringUtil {
                 buf.append(toText);
                 pos2 = fromText.length();
             } else if (pos > 0) {
-                buf.append(text.substring(pos2, pos));
+                buf.append(text, pos2, pos);
                 buf.append(toText);
                 pos2 = pos + fromText.length();
             } else {
