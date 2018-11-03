@@ -10,7 +10,7 @@ public class MapBeanDescImpl implements BeanDesc {
     private PropertyDesc[] propertyArray;
 
     // keep the order of original properties
-    private Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
+    private final Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
 
     public MapBeanDescImpl(){
     }

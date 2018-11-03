@@ -8,7 +8,7 @@ public class BeanDescImpl implements BeanDesc {
     private Class<?> clazz;
     private PropertyDesc[] propertyArray;
     // keep the order of original properties
-    private Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
+    private final Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
 
     public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){
         this.clazz = clazz;
