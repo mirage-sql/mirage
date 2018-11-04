@@ -1,7 +1,8 @@
 package com.miragesql.miragesql.updater;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -129,15 +130,10 @@ public class SchemaUpdater {
         }
 
         byte[] buf = IOUtil.readStream(in);
-
-        try {
-            return new String(buf, "UTF-8");
-
-        } catch(UnsupportedEncodingException ex){
-            // must not to be reached here
-            throw new RuntimeException(ex);
-        }
-    }
+	
+		return new String(buf, StandardCharsets.UTF_8);
+	
+	}
 
     /**
      * Checks the table which manages a schema version exists or not exists.

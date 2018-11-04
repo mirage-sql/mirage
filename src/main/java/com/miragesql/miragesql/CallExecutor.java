@@ -273,14 +273,13 @@ public class CallExecutor {
             if (!resultSetGettable) {
                 cs.getMoreResults();
             }
-            for (int i = 0; i < nonParamList.size(); i++) {
+            for (Param param : nonParamList) {
                 final ResultSet rs = getResultSet(cs);
                 if (rs == null) {
                     break;
                 }
-                final Param param = nonParamList.get(i);
                 PropertyDesc pd = param.propertyDesc;
-                final Object value = handleResultSet(pd , cs.getResultSet());
+                final Object value = handleResultSet(pd, cs.getResultSet());
                 pd.setValue(parameter, value);
                 cs.getMoreResults();
             }

@@ -1,7 +1,6 @@
 package com.miragesql.miragesql;
 
 import java.util.List;
-import java.util.Map;
 
 import com.miragesql.miragesql.dialect.Dialect;
 import com.miragesql.miragesql.naming.NameConverter;

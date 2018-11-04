@@ -254,9 +254,6 @@ public class DefaultValueType implements ValueType<Object> {
         } else if(type == Boolean.class  || type == Boolean.TYPE){
             stmt.setBoolean(index, (Boolean) value);
 
-        } else if(type == Boolean.class  || type == Boolean.TYPE){
-            stmt.setBoolean(index, (Boolean) value);
-
         } else if(type == BigDecimal.class){
             stmt.setBigDecimal(index, (BigDecimal) value);
 

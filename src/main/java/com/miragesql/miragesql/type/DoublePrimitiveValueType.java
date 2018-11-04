@@ -30,20 +30,20 @@ public class DoublePrimitiveValueType extends AbstractValueType<Double> {
     }
 
     public Double get(Class<? extends Double> type, CallableStatement cs, int index) throws SQLException {
-        Double value = cs.getDouble(index);
+        double value = cs.getDouble(index);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
     }
 
     public Double get(Class<? extends Double> type, CallableStatement cs, String parameterName) throws SQLException {
-        Double value = cs.getDouble(parameterName);
+        double value = cs.getDouble(parameterName);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;

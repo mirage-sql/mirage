@@ -79,15 +79,14 @@ public class StringUtil {
             return null;
         }
         StringBuffer buf = new StringBuffer(100);
-        int pos = 0;
         int pos2 = 0;
         while (true) {
-            pos = text.indexOf(fromText, pos2);
+            int pos = text.indexOf(fromText, pos2);
             if (pos == 0) {
                 buf.append(toText);
                 pos2 = fromText.length();
             } else if (pos > 0) {
-                buf.append(text.substring(pos2, pos));
+                buf.append(text, pos2, pos);
                 buf.append(toText);
                 pos2 = pos + fromText.length();
             } else {
@@ -462,8 +461,8 @@ public class StringUtil {
             return "";
         }
         StringBuffer sb = new StringBuffer(bytes.length * 2);
-        for (int i = 0; i < bytes.length; ++i) {
-            appendHex(sb, bytes[i]);
+        for (byte b : bytes) {
+            appendHex(sb, b);
         }
         return sb.toString();
     }
@@ -526,8 +525,8 @@ public class StringUtil {
             return StringUtil.capitalize(s);
         }
         StringBuffer buf = new StringBuffer(40);
-        for (int i = 0; i < array.length; ++i) {
-            buf.append(StringUtil.capitalize(array[i]));
+        for (String string : array) {
+            buf.append(StringUtil.capitalize(string));
         }
         return buf.toString();
     }

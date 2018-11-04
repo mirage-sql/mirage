@@ -35,20 +35,20 @@ public class LongValueType extends AbstractValueType<Long> {
     }
 
     public Long get(Class<? extends Long> type, CallableStatement cs, int index) throws SQLException {
-        Long value = cs.getLong(index);
+        long value = cs.getLong(index);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
     }
 
     public Long get(Class<? extends Long> type, CallableStatement cs, String parameterName) throws SQLException {
-        Long value =  cs.getLong(parameterName);
+        long value =  cs.getLong(parameterName);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;

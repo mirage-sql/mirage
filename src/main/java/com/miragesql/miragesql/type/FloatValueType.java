@@ -36,20 +36,20 @@ public class FloatValueType extends AbstractValueType<Float> {
     }
 
     public Float get(Class<? extends Float> type, CallableStatement cs, int index) throws SQLException {
-        Float value = cs.getFloat(index);
+        float value = cs.getFloat(index);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
     }
 
     public Float get(Class<? extends Float> type, CallableStatement cs, String parameterName) throws SQLException {
-        Float value = cs.getFloat(parameterName);
+        float value = cs.getFloat(parameterName);
 
-        if (value != null && cs.wasNull()) {
-            value = null;
+        if (cs.wasNull()) {
+            return null;
         }
 
         return value;
