@@ -10,7 +10,7 @@ apply plugin: 'signing'
 apply plugin: 'nebula.optional-base'
 
 group 'com.miragesql'
-version '2.1.0'
+version '2.2.0-SNAPSHOT'
 
 compileJava.options.encoding = 'UTF-8'
 sourceCompatibility = 1.8
