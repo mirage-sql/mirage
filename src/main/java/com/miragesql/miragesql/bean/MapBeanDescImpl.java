@@ -35,7 +35,7 @@ public class MapBeanDescImpl implements BeanDesc {
     /**{@inheritDoc}*/
     public PropertyDesc getPropertyDesc(String name) {
         if(this.map == null){
-            return new MapPropertyDescImpl(name, "");
+            return new MapPropertyDescImpl(name, new Object());
         }
         return this.propertyMap.get(name);
     }

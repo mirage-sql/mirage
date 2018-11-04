@@ -31,7 +31,8 @@ public class SqlManagerImplTest extends AbstractDatabaseTest {
 
         assertEquals("Mirage in Action", map.get("bookName"));
         assertEquals("Naoki Takezoe", map.get("author"));
-        assertEquals("20", map.get("price"));
+        assertEquals(Integer.class, map.get("price").getClass());
+        assertEquals(20, map.get("price"));
     }
 
     public void testSelectIn() throws Exception {
