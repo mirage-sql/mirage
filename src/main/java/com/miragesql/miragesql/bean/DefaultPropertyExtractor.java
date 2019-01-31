@@ -6,6 +6,8 @@ import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.miragesql.miragesql.annotation.Property;
+
 /**
  * The default implementation of {@link PropertyExtractor}.
  *
@@ -60,6 +62,13 @@ public class DefaultPropertyExtractor implements PropertyExtractor {
             if (map.containsKey(field.getName()) == false
                     && Modifier.isStatic(modifiers) == false
                     && Modifier.isFinal(modifiers) == false) {
+                PropertyInfo info = new PropertyInfo();
+                info.name = field.getName();
+                info.field = field;
+                info.type = field.getType();
+                map.put(field.getName(), info);
+            } else if (Modifier.isStatic(modifiers) == false
+                    && field.getAnnotation(Property.class) != null) {
                 PropertyInfo info = new PropertyInfo();
                 info.name = field.getName();
                 info.field = field;
