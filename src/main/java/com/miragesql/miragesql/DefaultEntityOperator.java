@@ -96,16 +96,9 @@ public class DefaultEntityOperator implements EntityOperator {
                         pd = property;
                         break;
                     }
-                }
-
-                if(pd == null){
-                    for(int j = 0; j < beanDesc.getPropertyDescSize(); j++){
-                        PropertyDesc property = beanDesc.getPropertyDesc(j);
-                        Column column = property.getAnnotation(Column.class);
-                        if(column != null && columnName.equalsIgnoreCase(column.name())){
-                            pd = property;
-                            break;
-                        }
+                    if(column != null && columnName.equalsIgnoreCase(column.name())){
+                        pd = property;
+                        break;
                     }
                 }
 
