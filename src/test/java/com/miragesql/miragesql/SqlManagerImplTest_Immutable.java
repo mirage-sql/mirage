@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import com.miragesql.miragesql.annotation.Column;
 import com.miragesql.miragesql.annotation.PrimaryKey;
-import com.miragesql.miragesql.annotation.Property;
+import com.miragesql.miragesql.annotation.Transient;
 
 public class SqlManagerImplTest_Immutable extends AbstractDatabaseTest {
 
@@ -24,9 +24,9 @@ public class SqlManagerImplTest_Immutable extends AbstractDatabaseTest {
     public static class Subscription {
 
         @PrimaryKey(generationType= PrimaryKey.GenerationType.APPLICATION)
-        @Property
         public final Long userId;
         
+        @Transient
         public final String computedProperty;
         
         public Subscription(@Column(name = "USER_ID") Long userId) {
