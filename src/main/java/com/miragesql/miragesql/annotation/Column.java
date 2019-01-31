@@ -19,7 +19,7 @@ import com.miragesql.miragesql.naming.NameConverter;
  * @author SHUJI Watanabe
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Documented
 public @interface Column {
 
