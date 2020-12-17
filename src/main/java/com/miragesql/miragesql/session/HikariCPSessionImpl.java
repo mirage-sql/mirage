@@ -93,8 +93,15 @@ public class HikariCPSessionImpl implements Session {
         config.setUsername(user);
         config.setPassword(password);
 
+        Properties hikariProperties = new Properties(properties);
+        hikariProperties.remove("jdbc.driver");
+        hikariProperties.remove("jdbc.url");
+        hikariProperties.remove("jdbc.user");
+        hikariProperties.remove("jdbc.password");
+        hikariProperties.remove("sql.cache");
+
         // set Hikari optional properties. All start with "dataSource.XXX"
-        PropertyElf.setTargetFromProperties(config, properties);
+        PropertyElf.setTargetFromProperties(config, hikariProperties);
 
         dataSource = new HikariDataSource(config);
     }
