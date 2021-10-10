@@ -25,9 +25,9 @@ Other **`Mirage-SQL`** Modules:
 
 Module|Description|Gradle|Build
 ---   |---        |---   |---
-**Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-test.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-test)
-**Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-tools.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-tools)
-**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).|`compile 'com.miragesql:miragesql-integration:2.1.0'`|[![Build Status](https://travis-ci.org/mirage-sql/mirage-test.svg?branch=master)](https://travis-ci.org/mirage-sql/mirage-integration)
+**Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.1'`|[![Build](https://github.com/mirage-sql/mirage-test/actions/workflows/gradle.yml/badge.svg)](https://github.com/mirage-sql/mirage-test/actions/workflows/gradle.yml)
+**Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.1'`|[![Build](https://github.com/mirage-sql/mirage-tools/actions/workflows/gradle.yml/badge.svg)](https://github.com/mirage-sql/mirage-tools/actions/workflows/gradle.yml)
+**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).|`compile 'com.miragesql:miragesql-integration:2.1.1'`|[![Build](https://github.com/mirage-sql/mirage-integration/actions/workflows/gradle.yml/badge.svg)](https://github.com/mirage-integration/mirage-tools/actions/workflows/gradle.yml)
 
 
 If you are updating your application from a previous **`Mirage-SQL`** version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
