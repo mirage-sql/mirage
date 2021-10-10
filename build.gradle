@@ -2,24 +2,127 @@ plugins {
     id 'nebula.optional-base' version '3.2.0' // mvn style optional dependencies
 }
 
-apply plugin: 'java-library'
-apply plugin: 'groovy'
-apply plugin: 'maven'
-apply plugin: 'signing'
+allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'groovy'
+    apply plugin: 'maven'
+    apply plugin: 'signing'
+    apply plugin: 'nebula.optional-base'
 
-apply plugin: 'nebula.optional-base'
+    group 'com.miragesql'
+    version '2.1.2-SNAPSHOT'
 
-group 'com.miragesql'
-version '2.1.1'
+    compileJava.options.encoding = 'UTF-8'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-compileJava.options.encoding = 'UTF-8'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+    repositories {
+        jcenter()
+    }
 
-repositories {
-    jcenter()
+    // JavaDoc 8 problems
+    javadoc { failOnError false }
+
+    jar {
+        manifest {
+            attributes('Implementation-Title': project.name,
+                    'Implementation-Version': project.version,
+                    'Built-Date': new Date(),
+                    'Built-JDK': System.getProperty('java.version'),
+                    'Built-Gradle': gradle.gradleVersion,
+                    'Target-JDK': project.targetCompatibility)
+        }
+    }
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives javadocJar, sourcesJar
+    }
+
+    signing {
+        sign configurations.archives
+    }
+
+    // set these to 'dummy' for Travis CI
+    def stUser = rootProject.hasProperty('ossrhUsername')? ossrhUsername: 'dummy'
+    def stPwd = rootProject.hasProperty('ossrhPassword')? ossrhPassword: 'dummy'
+
+    uploadArchives.repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            authentication(userName: stUser, password: stPwd)
+        }
+
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+            authentication(userName: stUser, password: stPwd)
+        }
+
+        pom.project {
+            name 'Mirage-SQL'
+            description 'Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.'
+            packaging 'jar'
+
+            organization {
+                name 'Mirage-SQL'
+                url 'https://github.com/mirage-sql/'
+            }
+
+            scm {
+                connection 'scm:git:https://github.com/mirage-sql/mirage.git'
+                developerConnection 'scm:git:https://github.com/mirage-sql/mirage.git'
+                url 'https://github.com/mirage-sql/mirage'
+            }
+
+            issueManagement {
+                system 'GitHub Issues'
+                url 'https://github.com/mirage-sql/mirage/issues'
+            }
+            licenses {
+                license {
+                    name 'The Apache License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+
+            developers {
+                developer {
+                    id 'takezoe'
+                    name 'Naoki Takezoe'
+                    email 'takezoe_at_gmail.com'
+                    url 'http://d.hatena.ne.jp/takezoe/'
+                    timezone '+9'
+                }
+                developer {
+                    id 'daisuke'
+                    name 'Daisuke Miyamoto'
+                    email 'dai.0304_at_gmail.com'
+                    url 'http://d.hatena.ne.jp/daisuke-m/'
+                    timezone '+9'
+                }
+                developer {
+                    id 'aadrian'
+                    name 'Adrian A.'
+                    email 'a.adrian.tech_at_gmail.com'
+                    url 'https://github.com/aadrian'
+                    timezone '+1'
+                }
+            }
+        }
+    }
 }
 
+//displayName "Mirage-SQL"
+description "Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files."
 
 dependencies {
     compile 'org.javassist:javassist:3.24.0-GA'
@@ -42,126 +145,4 @@ dependencies {
     testImplementation 'org.codehaus.groovy:groovy-all:2.4.13'
     // Use the awesome Spock testing and specification framework even with Java
     testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
-
-}
-
-// JavaDoc 8 problems
-javadoc { failOnError false }
-
-jar {
-    manifest {
-        attributes('Implementation-Title': project.name,
-                'Implementation-Version': project.version,
-                'Built-Date': new Date(),
-                'Built-JDK': System.getProperty('java.version'),
-                'Built-Gradle': gradle.gradleVersion,
-                'Target-JDK': project.targetCompatibility)
-    }
-}
-
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-def getPom(project) {
-    return {
-        name 'Mirage-SQL'
-        packaging 'jar'
-        // optionally artifactId can be defined here
-        description 'Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.'
-        url 'https://github.com/mirage-sql/mirage'
-
-        organization {
-            name 'Mirage-SQL'
-            url 'https://github.com/mirage-sql/'
-        }
-
-        scm {
-            connection 'scm:git:https://github.com/mirage-sql/mirage.git'
-            developerConnection 'scm:git:https://github.com/mirage-sql/mirage.git'
-            url 'https://github.com/mirage-sql/mirage'
-        }
-
-        issueManagement {
-            system 'GitHub Issues'
-            url 'https://github.com/mirage-sql/mirage/issues'
-        }
-        licenses {
-            license {
-                name 'The Apache License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            }
-        }
-
-        developers {
-            developer {
-                id 'takezoe'
-                name 'Naoki Takezoe'
-                email 'takezoe_at_gmail.com'
-                url 'http://d.hatena.ne.jp/takezoe/'
-                timezone '+9'
-            }
-            developer {
-                id 'daisuke'
-                name 'Daisuke Miyamoto'
-                email 'dai.0304_at_gmail.com'
-                url 'http://d.hatena.ne.jp/daisuke-m/'
-                timezone '+9'
-            }
-            developer {
-                id 'aadrian'
-                name 'Adrian A.'
-                email 'a.adrian.tech_at_gmail.com'
-                url 'https://github.com/aadrian'
-                timezone '+1'
-            }
-        }
-    }
-}
-
-// set these to 'dummy' for Travis CI
-def stUser = hasProperty('ossrhUsername')? ossrhUsername: 'dummy'
-def stPwd = hasProperty('ossrhPassword')? ossrhPassword: 'dummy'
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: stUser, password: stPwd)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: stUser, password: stPwd)
-            }
-
-            pom {
-                project getPom(project)
-            }
-        }
-    }
-}
-
-// note: this task still does not display 'provided' and 'optional' correctly
-task writeNewPom {
-    doLast {
-        pom {
-            project getPom(project)
-        }.writeTo("$buildDir/newpom.xml")
-    }
 }

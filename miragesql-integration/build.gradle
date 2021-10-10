@@ -1,0 +1,34 @@
+uploadArchives.repositories.mavenDeployer {
+    pom.project {
+        name 'Mirage-SQL Integration'
+        description 'Mirage-SQL Integration is an easy way to integrate Mirage-SQL with Spring, Guice or Seasar2'
+    }
+}
+
+dependencies {
+    compile rootProject
+    compile project(":miragesql-test")
+
+    compile 'org.slf4j:slf4j-api:1.7.25'
+
+    compile 'commons-dbcp:commons-dbcp:1.4', optional
+    compile 'com.zaxxer:HikariCP:2.7.2', optional
+
+    compile "org.springframework:spring-core:5.3.10", optional
+    compile "org.springframework:spring-context:5.3.10", optional
+    compile "org.springframework:spring-jdbc:5.3.10", optional
+
+    compile "com.google.inject:guice:5.0.1", optional
+
+
+    compileOnly 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'
+    compileOnly 'javax.servlet:servlet-api:2.5'
+
+    compile 'junit:junit:4.12'
+    testImplementation 'cglib:cglib:3.2.5'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
+    testImplementation 'com.h2database:h2:1.4.196'
+    testImplementation 'org.hsqldb:hsqldb:2.4.0'
+
+    testImplementation 'org.springframework:spring-aop:5.3.10'
+}
