@@ -63,8 +63,6 @@ This feature used in the Mirage's SQL template it's called [2Way SQL](https://gi
  - **[Release Notes](https://github.com/mirage-sql/mirage/wiki/Releases)** of all previous Mirage-SQL versions.
  - Mirage-SQL also has support for other **JVM based languages**:
    - [Scala language](http://www.scala-lang.org/) support - [Mirage-SQL Scala](https://github.com/mirage-sql/mirage-scala)
-   - [Groovy language](http://www.groovy-lang.org/) support - [Mirage-SQL Groovy](https://github.com/mirage-sql/mirage-groovy)
-   - [Clojure language](https://clojure.org/) support - [Mirage-SQL Clojure](https://github.com/mirage-sql/mirage-clojure)
 
 ### Dependencies:
 ![Module Dependencies](dependencies.png)   
