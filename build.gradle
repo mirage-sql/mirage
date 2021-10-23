@@ -70,6 +70,7 @@ allprojects {
         pom.project {
             name 'Mirage-SQL'
             description 'Mirage-SQL is an easy and powerful SQL centric database access library for Java (or JVM based languages) which provides dynamic SQL templates in plain SQL files.'
+            url 'https://github.com/mirage-sql/mirage'
             packaging 'jar'
 
             organization {
