@@ -23,11 +23,11 @@ or just download it from the [Release Page](https://github.com/mirage-sql/mirage
 
 Other **`Mirage-SQL`** Modules:
 
-Module|Description|Gradle|Build
+Module|Description|Gradle|
 ---   |---        |---   |---
-**Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.1'`|[![Build](https://github.com/mirage-sql/mirage-test/actions/workflows/gradle.yml/badge.svg)](https://github.com/mirage-sql/mirage-test/actions/workflows/gradle.yml)
-**Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.1'`|[![Build](https://github.com/mirage-sql/mirage-tools/actions/workflows/gradle.yml/badge.svg)](https://github.com/mirage-sql/mirage-tools/actions/workflows/gradle.yml)
-**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).|`compile 'com.miragesql:miragesql-integration:2.1.1'`|[![Build](https://github.com/mirage-sql/mirage-integration/actions/workflows/gradle.yml/badge.svg)](https://github.com/mirage-integration/mirage-tools/actions/workflows/gradle.yml)
+**Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.1'`
+**Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.1'`
+**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).
 
 
 If you are updating your application from a previous **`Mirage-SQL`** version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
@@ -63,6 +63,3 @@ This feature used in the Mirage's SQL template it's called [2Way SQL](https://gi
  - **[Release Notes](https://github.com/mirage-sql/mirage/wiki/Releases)** of all previous Mirage-SQL versions.
  - Mirage-SQL also has support for other **JVM based languages**:
    - [Scala language](http://www.scala-lang.org/) support - [Mirage-SQL Scala](https://github.com/mirage-sql/mirage-scala)
-
-### Dependencies:
-![Module Dependencies](dependencies.png)   
