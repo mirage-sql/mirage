@@ -23,8 +23,8 @@ or just download it from the [Release Page](https://github.com/mirage-sql/mirage
 
 Other **`Mirage-SQL`** Modules:
 
-Module|Description|Gradle|
----   |---        |---   |---
+Module|Description|Gradle
+---   |---        |---
 **Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.1'`
 **Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.1'`
 **Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).
