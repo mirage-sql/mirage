@@ -10,7 +10,7 @@ allprojects {
     apply plugin: 'nebula.optional-base'
 
     group 'com.miragesql'
-    version '2.1.2-SNAPSHOT'
+    version '2.1.2'
 
     compileJava.options.encoding = 'UTF-8'
     sourceCompatibility = 1.8
