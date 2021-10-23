@@ -1,0 +1,24 @@
+package com.miragesql.miragesql.entity
+
+import com.miragesql.miragesql.annotation.Table
+import com.miragesql.miragesql.annotation.Column
+import com.miragesql.miragesql.annotation.PrimaryKey
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType
+
+@Table(name="BOOK")
+class Book {
+
+    @PrimaryKey(generationType=GenerationType.SEQUENCE, generator="BOOK_BOOK_ID_SEQ")
+    @Column(name="BOOK_ID")
+    Integer bookId
+
+    @Column(name="BOOK_NAME")
+    String bookName
+
+    @Column(name="AUTHOR")
+    String author
+
+    @Column(name="PRICE")
+    Integer price
+
+}

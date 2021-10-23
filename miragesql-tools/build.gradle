@@ -1,0 +1,24 @@
+uploadArchives.repositories.mavenDeployer {
+    pom.project {
+        name 'Mirage-SQL Tools'
+        description 'Mirage-SQL Tools is a set of tools to help the development of Mirage-SQL based applications.'
+    }
+}
+
+dependencies {
+    compile rootProject
+
+    compile 'org.slf4j:slf4j-api:1.7.25'
+
+    compileOnly 'org.apache.ant:ant:1.10.1'                              // provided
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
+    testImplementation 'com.h2database:h2:1.4.196'
+    testImplementation 'org.hsqldb:hsqldb:2.4.0'
+
+    // Use the latest Groovy version for Spock testing
+    testImplementation 'org.codehaus.groovy:groovy-all:2.4.13'
+    // Use the awesome Spock testing and specification framework even with Java
+    testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
+}

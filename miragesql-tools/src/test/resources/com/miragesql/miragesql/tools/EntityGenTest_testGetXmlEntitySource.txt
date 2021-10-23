@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity name="Book" table="BOOK">
+  <attribute name="bookId" type="integer">
+    <column name="BOOK_ID" pk="true" generation="SEQUENCE" generator="BOOK_BOOK_ID_SEQ"/>
+  </attribute>
+  <attribute name="bookName" type="string">
+    <column name="BOOK_NAME"/>
+  </attribute>
+  <attribute name="author" type="string">
+    <column name="AUTHOR"/>
+  </attribute>
+  <attribute name="price" type="integer">
+    <column name="PRICE"/>
+  </attribute>
+</entity>
