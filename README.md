@@ -27,7 +27,7 @@ Module|Description|Gradle
 ---   |---        |---
 **Mirage-SQL Test**|The testing functionality.| `testCompile 'com.miragesql:miragesql-test:2.1.1'`
 **Mirage-SQL Tools**|The development tools.| `testCompile 'com.miragesql:miragesql-tools:2.1.1'`
-**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/).
+**Mirage-SQL Integration** |The integration with [Spring](https://projects.spring.io/spring-framework/), [Guice](https://github.com/google/guice) and [Seasar2](http://www.seasar.org/en/)..|`compile 'com.miragesql:miragesql-integration:2.1.1'`
 
 
 If you are updating your application from a previous **`Mirage-SQL`** version, see the [Migration Guide](https://github.com/mirage-sql/mirage/wiki/Migration-Guide).
